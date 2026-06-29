@@ -10,6 +10,9 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
+
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = MIENCRAP3MINERAT.MODID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -28,4 +31,19 @@ public class MIENCRAP3MINERATClient {
         MIENCRAP3MINERAT.LOGGER.info("HELLO FROM CLIENT SETUP");
         MIENCRAP3MINERAT.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
+}
+
+@EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.CLIENT) 
+public class Music {
+
+
+    @SubscribeEvent
+    static void onClientTick(ClientTickEvent event) {
+
+        Minecraft minecraft = Minecraft.getInstance();
+        MIENCRAP3MINERAT.LOGGER.info("TICK");
+
+    }
+    
+
 }

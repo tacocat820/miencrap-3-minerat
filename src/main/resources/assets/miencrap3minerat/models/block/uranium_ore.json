@@ -1,6 +1,6 @@
 {
-   "parent": "minecraft:item/templates/block",
-    "textures": {
-       "b": "item/block/uranium_ore"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "miencrap3minerat:block/uranium_ore"
+  }
 }
