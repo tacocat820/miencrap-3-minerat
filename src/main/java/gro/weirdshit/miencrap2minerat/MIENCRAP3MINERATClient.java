@@ -32,18 +32,3 @@ public class MIENCRAP3MINERATClient {
         MIENCRAP3MINERAT.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }
-
-@EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.CLIENT) 
-public class Music {
-
-
-    @SubscribeEvent
-    static void onClientTick(ClientTickEvent event) {
-
-        Minecraft minecraft = Minecraft.getInstance();
-        MIENCRAP3MINERAT.LOGGER.info("TICK");
-
-    }
-    
-
-}
