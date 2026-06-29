@@ -1,0 +1,13 @@
+{
+  "itemGroup.meincrap3minerat": "Example Mod Tab",
+  "block.meincrap3minerat.example_block": "Example Block",
+  "item.meincrap3minerat.example_item": "Example Item",
+
+  "meincrap3minerat.configuration.title": "MEINCRAP 3 MINERAT Configs",
+  "meincrap3minerat.configuration.section.meincrap3minerat.common.toml": "MEINCRAP 3 MINERAT Configs",
+  "meincrap3minerat.configuration.section.meincrap3minerat.common.toml.title": "MEINCRAP 3 MINERAT Configs",
+  "meincrap3minerat.configuration.items": "Item List",
+  "meincrap3minerat.configuration.logDirtBlock": "Log Dirt Block",
+  "meincrap3minerat.configuration.magicNumberIntroduction": "Magic Number Text",
+  "meincrap3minerat.configuration.magicNumber": "Magic Number"
+}
