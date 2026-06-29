@@ -1,0 +1,6 @@
+{
+	"ost.fard":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ost/fard","stream": true}]},
+	"musichall.epic_techno_music":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/epic_techno_music","stream": true}]}
+}
