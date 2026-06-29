@@ -1,0 +1,13 @@
+{
+  "itemGroup.miencrap3minerat": "MIENCRAP 3 MINERAT",
+  "block.miencrap3minerat.uranium_block": "Uranium block",
+  "item.miencrap3minerat.example_item": "Example Item",
+
+  "miencrap3minerat.configuration.title": "MEINCRAP 3 MINERAT Configs",
+  "miencrap3minerat.configuration.section.miencrap3minerat.common.toml": "MEINCRAP 3 MINERAT Configs",
+  "miencrap3minerat.configuration.section.miencrap3minerat.common.toml.title": "MEINCRAP 3 MINERAT Configs",
+  "miencrap3minerat.configuration.items": "Item List",
+  "miencrap3minerat.configuration.logDirtBlock": "Log Dirt Block",
+  "miencrap3minerat.configuration.magicNumberIntroduction": "Magic Number Text",
+  "miencrap3minerat.configuration.magicNumber": "Magic Number"
+}
