@@ -50,7 +50,7 @@ public class MIENCRAP3MINERAT {
 
     // Creates a new Block with the id "meincrap3minerat:example_block", combining the namespace and path
 
-
+    //URANIUM
     public static final DeferredBlock<Block> URANIUM_BLOCK = BLOCKS.register(
         "uranium_block", 
         registryName -> new Block(BlockBehaviour.Properties.of()
@@ -63,7 +63,7 @@ public class MIENCRAP3MINERAT {
     
     public static final DeferredItem<BlockItem> URANIUM_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("uranium_block", URANIUM_BLOCK);
 
-
+    //ORE
     public static final DeferredBlock<Block> URANIUM_ORE = BLOCKS.register(
         "uranium_ore", 
         registryName -> new Block(BlockBehaviour.Properties.of()
@@ -76,8 +76,7 @@ public class MIENCRAP3MINERAT {
     
     public static final DeferredItem<BlockItem> URANIUM_ORE_ITEM = ITEMS.registerSimpleBlockItem("uranium_ore", URANIUM_ORE);
 
-
-
+    //VLC
     public static final DeferredBlock<Block> VLC_BLOCK = BLOCKS.register(
         "vlc", 
         registryName -> new Block(BlockBehaviour.Properties.of()
@@ -88,8 +87,19 @@ public class MIENCRAP3MINERAT {
             .noOcclusion().noCollision()
         ));
     
-    
     public static final DeferredItem<BlockItem> VLC_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("vlc", VLC_BLOCK);
+
+    //BAD ROCK
+    public static final DeferredBlock<Block> BAD_ROCK_BLOCK = BLOCKS.register(
+        "bad_rock", 
+        registryName -> new Block(BlockBehaviour.Properties.of()
+            .setId(ResourceKey.create(Registries.BLOCK, registryName))
+            .destroyTime(0.1f)
+            .sound(SoundType.GRAVEL)
+        ));
+    
+    public static final DeferredItem<BlockItem> BAD_ROCK_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("bad_rock", BAD_ROCK_BLOCK);
+
 
     // Creates a new food item with the id "meincrap3minerat:example_id", nutrition 1 and saturation 2
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", p -> p.food(new FoodProperties.Builder()
@@ -105,6 +115,7 @@ public class MIENCRAP3MINERAT {
                 output.accept(URANIUM_BLOCK_ITEM.get());
                 output.accept(URANIUM_ORE_ITEM.get());
                 output.accept(VLC_BLOCK_ITEM.get());
+                output.accept(BAD_ROCK_BLOCK_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.

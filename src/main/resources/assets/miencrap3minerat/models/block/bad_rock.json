@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/block",
+  "parent": "block/cube_all",
   "textures": {
-    "b": "item/block/bad_rock"
+    "all": "miencrap3minerat:block/bad_rock"
   }
 }
