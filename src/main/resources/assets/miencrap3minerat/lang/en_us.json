@@ -3,7 +3,12 @@
   "block.miencrap3minerat.uranium_block": "Uranium Block",
   "block.miencrap3minerat.uranium_ore": "Uranium Ore",
   "block.miencrap3minerat.vlc": "Traffic Cone",
+  "block.miencrap3minerat.backrooms": "Backrooms Wall",
+  "block.miencrap3minerat.backrooms_lamp": "Backrooms Lamp",
+  "block.miencrap3minerat.backrooms_carpet": "Backrooms Carpet",
   "item.miencrap3minerat.example_item": "Example Item",
+  "item.miencrap3minerat.cheeseburger": "Cheeseburger",
+  "item.miencrap3minerat.cheeseburger_crumbs": "Cheeseburger Crumbs",
 
   "miencrap3minerat.configuration.title": "MEINCRAP 3 MINERAT Configs",
   "miencrap3minerat.configuration.section.miencrap3minerat.common.toml": "MEINCRAP 3 MINERAT Configs",

@@ -49,7 +49,7 @@ public class BlocksData {
     new GenericBlock("backrooms_carpet", 0, SoundType.WOOL,32000.0f, 32000.0f),
     };
 
-    public static final void gen_blocks() {
+    public static final void genBlocks() {
         for (GenericBlock gblock : genericBlocks ) {
             
             DeferredBlock<Block> BLOCK = BLOCKS.register(

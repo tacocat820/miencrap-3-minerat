@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -12,6 +13,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -101,10 +104,6 @@ public class MIENCRAP3MINERAT {
     public static final DeferredItem<BlockItem> BAD_ROCK_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("bad_rock", BAD_ROCK_BLOCK);
 
 
-    // Creates a new food item with the id "meincrap3minerat:example_id", nutrition 1 and saturation 2
-    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", p -> p.food(new FoodProperties.Builder()
-            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
-
     // Creates a creative tab with the id "meincrap3minerat:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("miencrap3minerat_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.miencrap3minerat")) //The language key for the title of your CreativeModeTab
@@ -115,6 +114,9 @@ public class MIENCRAP3MINERAT {
                     output.accept(item.get());
                 }
                 for (DeferredHolder<Item,? extends Item> item : BlocksData.ITEMS.getEntries()) {
+                    output.accept(item.get());
+                }
+                for (DeferredHolder<Item,? extends Item> item : ItemData.ITEMS.getEntries()) {
                     output.accept(item.get());
                 }
             }).build());
@@ -135,9 +137,10 @@ public class MIENCRAP3MINERAT {
         MusicSounds.SOUND_EVENTS.register(modEventBus);
 
         //BlocksData
-        BlocksData.gen_blocks();
+        BlocksData.genBlocks();
         BlocksData.BLOCKS.register(modEventBus);
         BlocksData.ITEMS.register(modEventBus);
+        ItemData.ITEMS.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MIENCRAP3MINERAT) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
