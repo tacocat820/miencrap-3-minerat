@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/block",
-	 "textures": {
-		"b": "item/block/backrooms_side"
-	 }
- }
+	"parent": "block/cube_all",
+	"textures": {
+	"all": "miencrap3minerat:block/backrooms_side"
+	}
+}

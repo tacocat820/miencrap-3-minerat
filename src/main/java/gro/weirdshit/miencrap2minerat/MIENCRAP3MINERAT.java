@@ -106,16 +106,17 @@ public class MIENCRAP3MINERAT {
             .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
 
     // Creates a creative tab with the id "meincrap3minerat:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("miencrap3minerat_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.miencrap3minerat")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> VLC_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get());
-                output.accept(URANIUM_BLOCK_ITEM.get());
-                output.accept(URANIUM_ORE_ITEM.get());
-                output.accept(VLC_BLOCK_ITEM.get());
-                output.accept(BAD_ROCK_BLOCK_ITEM.get());
+                for (DeferredHolder<Item,? extends Item> item : ITEMS.getEntries()) {
+                    output.accept(item.get());
+                }
+                for (DeferredHolder<Item,? extends Item> item : BlocksData.ITEMS.getEntries()) {
+                    output.accept(item.get());
+                }
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -132,6 +133,9 @@ public class MIENCRAP3MINERAT {
         CREATIVE_MODE_TABS.register(modEventBus);
 
         MusicSounds.SOUND_EVENTS.register(modEventBus);
+
+        BlocksData.BLOCKS.register(modEventBus);
+        BlocksData.ITEMS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MIENCRAP3MINERAT) to respond directly to events.
