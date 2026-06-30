@@ -24,6 +24,11 @@ import net.minecraft.world.level.block.SoundType;
  * GenericBlock
  */
 class GenericBlock {
+    public GenericBlock(String name, int light, SoundType sound, float destroyT, float explRes) {
+        this.name = name; this.lightLevel = light;
+        this.sound = sound; this.destroyTime = destroyT;
+        this.explosionResistance = explRes;
+    }
     String name;
     int lightLevel;
     SoundType sound;
@@ -38,6 +43,29 @@ public class BlocksData {
     // Create a Deferred Register to hold Items which will all be registered under the "meincrap3minerat" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MIENCRAP3MINERAT.MODID);
     
+    //blocks:::::generic
+    public static final GenericBlock[] genericBlocks = {
+    new GenericBlock("backrooms_lamp", 15, SoundType.GLASS,32000.0f, 32000.0f),
+    new GenericBlock("backrooms_carpet", 0, SoundType.WOOL,32000.0f, 32000.0f),
+    };
+
+    public static final void gen_blocks() {
+        for (GenericBlock gblock : genericBlocks ) {
+            
+            DeferredBlock<Block> BLOCK = BLOCKS.register(
+                gblock.name, 
+                registryName -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, registryName))
+                    .destroyTime( gblock.destroyTime )
+                    .lightLevel( state -> gblock.lightLevel )
+                    .explosionResistance( gblock.explosionResistance )
+                    .sound( gblock.sound )
+                ));
+            ITEMS.registerSimpleBlockItem(gblock.name, BLOCK);
+
+        };
+    }
+
     //bcroomz
     public static final DeferredBlock<Block> BACKROOMS_BLOCK = BLOCKS.register(
         "backrooms", 
@@ -46,8 +74,5 @@ public class BlocksData {
             .destroyTime(16000.0f)
             .explosionResistance(16000.0f)
         ));
-    
     public static final DeferredItem<BlockItem> BACKROOMS_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("backrooms", BACKROOMS_BLOCK);
-
-    
 }

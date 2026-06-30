@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/block",
-  "textures": {
-    "b": "item/block/backrooms_lamp"
-  }
+	"parent": "block/cube_all",
+	"textures": {
+	"all": "miencrap3minerat:block/backrooms_lamp"
+	}
 }
