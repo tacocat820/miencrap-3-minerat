@@ -3,7 +3,7 @@
 	"credit": "Made with Blockхуенч",
 	"textures": {
 		"0": "item/item/badapple",
-		"1": "item/block/_whatisthis",
+		"1": "miencrap3minerat:block/_whatisthis",
 		"particle": "item/item/badapple"
 	},
 	"elements": [

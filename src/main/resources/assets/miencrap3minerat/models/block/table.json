@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"format_version": "1.9.0",
 	"credit": "Made with Blockхуенч",
 	"textures": {

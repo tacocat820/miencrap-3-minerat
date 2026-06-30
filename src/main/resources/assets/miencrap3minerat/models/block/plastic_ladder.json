@@ -1,11 +1,11 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockхуенч",
-	"parent": "minecraft:item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"textures": {
-		"1": "item/block/plastic_block_red",
+		"1": "miencrap3minerat:block/plastic_block_red",
 		"2": "marker/plastic",
-		"particle": "item/block/plastic_block_red"
+		"particle": "miencrap3minerat:block/plastic_block_red"
 	},
 	"elements": [
 		{

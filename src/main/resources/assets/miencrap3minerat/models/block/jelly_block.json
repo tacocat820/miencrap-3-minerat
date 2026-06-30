@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:item/templates/block_6s",
+  "parent": "miencrap3minerat:templates/block_6s",
   "textures": {
-    "north": "item/block/jelly_block",
-   "east":  "item/block/jelly_block",
-   "south": "item/block/jelly_block",
-   "west":  "item/block/jelly_block",
-   "up":    "item/block/jelly_block_top",
-   "down":  "item/block/jelly_block_bottom"
+    "north": "miencrap3minerat:block/jelly_block",
+   "east":  "miencrap3minerat:block/jelly_block",
+   "south": "miencrap3minerat:block/jelly_block",
+   "west":  "miencrap3minerat:block/jelly_block",
+   "up":    "miencrap3minerat:block/jelly_block_top",
+   "down":  "miencrap3minerat:block/jelly_block_bottom"
   }
 }

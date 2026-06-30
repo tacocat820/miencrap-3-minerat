@@ -1,10 +1,10 @@
 {
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
-	"parent": "item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"textures": {
-		"0": "item/block/crafting_table_block",
-		"particle": "item/block/crafting_table_block"
+		"0": "miencrap3minerat:block/crafting_table_block",
+		"particle": "miencrap3minerat:block/crafting_table_block"
 	},
 	"elements": [
 		{

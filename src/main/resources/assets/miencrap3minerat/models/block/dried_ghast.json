@@ -3,14 +3,14 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"bottom": "item/block/dried_ghast/dried_ghast_hydration_0_bottom",
-		"particle": "item/block/dried_ghast/dried_ghast_hydration_0_east",
-		"east": "item/block/dried_ghast/dried_ghast_hydration_0_east",
-		"north": "item/block/dried_ghast/dried_ghast_hydration_0_north",
-		"south": "item/block/dried_ghast/dried_ghast_hydration_0_south",
-		"west": "item/block/dried_ghast/dried_ghast_hydration_0_west",
-		"top": "item/block/dried_ghast/dried_ghast_hydration_0_top",
-		"tentacles": "item/block/dried_ghast/dried_ghast_hydration_0_tentacles"
+		"bottom": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_bottom",
+		"particle": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_east",
+		"east": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_east",
+		"north": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_north",
+		"south": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_south",
+		"west": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_west",
+		"top": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_top",
+		"tentacles": "miencrap3minerat:block/dried_ghast/dried_ghast_hydration_0_tentacles"
 	},
 	"elements": [
 		{

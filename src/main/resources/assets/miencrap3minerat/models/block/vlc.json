@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:item/templates/display_as_block_2",
+	"parent": "miencrap3minerat:templates/display_as_block_2",
 	"textures": {
 		"0": "miencrap3minerat:block/vlc_side",
 		"1": "miencrap3minerat:block/vlc_base",

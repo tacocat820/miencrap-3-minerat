@@ -1,12 +1,12 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
-	"parent": "item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"ambientocclusion": false,
 	"texture_size": [64, 64],
 	"textures": {
-		"2": "item/block/door_3",
-		"particle": "item/block/door_3"
+		"2": "miencrap3minerat:block/door_3",
+		"particle": "miencrap3minerat:block/door_3"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/block",
+	"parent": "miencrap3minerat:templates/block",
 	 "textures": {
-		"b": "item/block/sacabambaspis"
+		"b": "miencrap3minerat:block/sacabambaspis"
 	 }
  }

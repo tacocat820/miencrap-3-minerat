@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/painting",
+  "parent": "miencrap3minerat:templates/painting",
   "textures": {
-    "image": "item/block/914_blocks_stare"
+    "image": "miencrap3minerat:block/914_blocks_stare"
   }
 }

@@ -2,7 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockхуенч",
 	"textures": {
-		"1": "item/block/_whatisthis",
+		"1": "miencrap3minerat:block/_whatisthis",
 		"2": "item/item/trplbk"
 	},
 	"elements": [

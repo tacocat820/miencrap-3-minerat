@@ -19,6 +19,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TestBlock;
 
 /**
  * GenericBlock
@@ -29,6 +30,9 @@ class GenericBlock {
         this.sound = sound; this.destroyTime = destroyT;
         this.explosionResistance = explRes;
     }
+    public static GenericBlock TestBlock(String name) {
+        return new GenericBlock(name,0,SoundType.STONE,16.0f,16.0f);
+    }
     String name;
     int lightLevel;
     SoundType sound;
@@ -38,17 +42,18 @@ class GenericBlock {
 
 @EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.DEDICATED_SERVER) 
 public class BlocksData {
-    // Create a Deferred Register to hold Blocks which will all be registered under the "meincrap3minerat" namespace
+    // Create a Deferred Registers
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MIENCRAP3MINERAT.MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "meincrap3minerat" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MIENCRAP3MINERAT.MODID);
     
-    //blocks:::::generic
+    //automatically generated blocks
     public static final GenericBlock[] genericBlocks = {
-    new GenericBlock("backrooms_lamp", 15, SoundType.GLASS,32000.0f, 32000.0f),
-    new GenericBlock("backrooms_carpet", 0, SoundType.WOOL,32000.0f, 32000.0f),
+        new GenericBlock("backrooms_lamp", 15, SoundType.GLASS,32000.0f, 32000.0f),
+        new GenericBlock("backrooms_carpet", 0, SoundType.WOOL,32000.0f, 32000.0f),
+        new GenericBlock("backrooms",0,SoundType.STONE,32000.0f,32000.0f),
     };
 
+    //fnction
     public static final void genBlocks() {
         for (GenericBlock gblock : genericBlocks ) {
             
@@ -66,13 +71,4 @@ public class BlocksData {
         };
     }
 
-    //bcroomz
-    public static final DeferredBlock<Block> BACKROOMS_BLOCK = BLOCKS.register(
-        "backrooms", 
-        registryName -> new Block(BlockBehaviour.Properties.of()
-            .setId(ResourceKey.create(Registries.BLOCK, registryName))
-            .destroyTime(16000.0f)
-            .explosionResistance(16000.0f)
-        ));
-    public static final DeferredItem<BlockItem> BACKROOMS_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("backrooms", BACKROOMS_BLOCK);
 }

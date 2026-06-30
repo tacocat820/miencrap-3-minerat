@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:item/templates/inverted_block_6s",
+	"parent": "miencrap3minerat:templates/inverted_block_6s",
 	 "textures": {
 		"0": "block/oak_sapling",
 		"1": "block/oak_sapling",

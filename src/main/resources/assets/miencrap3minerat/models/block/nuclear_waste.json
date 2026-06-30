@@ -1,11 +1,11 @@
 {
-   "parent": "minecraft:item/templates/block_6s",
+   "parent": "miencrap3minerat:templates/block_6s",
     "textures": {
-       "north": "item/block/nuclear_waste",
-	   "east": "item/block/nuclear_waste",
-	   "south": "item/block/nuclear_waste",
-	   "west": "item/block/nuclear_waste",
-	   "up": "item/block/nuclear_waste_still",
-	   "down": "item/block/nuclear_waste_still"
+       "north": "miencrap3minerat:block/nuclear_waste",
+	   "east": "miencrap3minerat:block/nuclear_waste",
+	   "south": "miencrap3minerat:block/nuclear_waste",
+	   "west": "miencrap3minerat:block/nuclear_waste",
+	   "up": "miencrap3minerat:block/nuclear_waste_still",
+	   "down": "miencrap3minerat:block/nuclear_waste_still"
     }
 }

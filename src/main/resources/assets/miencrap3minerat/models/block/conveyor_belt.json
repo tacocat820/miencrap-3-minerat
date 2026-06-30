@@ -1,9 +1,9 @@
 {
-	"parent": "item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"textures": {
-		"0": "item/block/conveyor_belt/moving",
-		"1": "item/block/conveyor_belt/s",
-		"particle": "item/block/conveyor_belt/moving"
+		"0": "miencrap3minerat:block/conveyor_belt/moving",
+		"1": "miencrap3minerat:block/conveyor_belt/s",
+		"particle": "miencrap3minerat:block/conveyor_belt/moving"
 	},
 	"elements": [
 		{

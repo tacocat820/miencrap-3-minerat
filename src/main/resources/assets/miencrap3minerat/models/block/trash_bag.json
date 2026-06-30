@@ -1,11 +1,11 @@
 {
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
-	"parent": "item/templates/display_as_block",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"textures": {
-		"0": "item/block/trash_bag",
-		"1": "item/block/rope",
-		"particle": "item/block/trash_bag"
+		"0": "miencrap3minerat:block/trash_bag",
+		"1": "miencrap3minerat:block/rope",
+		"particle": "miencrap3minerat:block/trash_bag"
 	},
 	"elements": [
 		{

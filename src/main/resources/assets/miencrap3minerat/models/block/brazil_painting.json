@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/painting",
+  "parent": "miencrap3minerat:templates/painting",
   "textures": {
-    "image": "item/block/brazil_painting"
+    "image": "miencrap3minerat:block/brazil_painting"
   }
 }

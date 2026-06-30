@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/painting",
+  "parent": "miencrap3minerat:templates/painting",
   "textures": {
-    "image": "item/block/paintings/elon_mask"
+    "image": "miencrap3minerat:block/paintings/elon_mask"
   }
 }

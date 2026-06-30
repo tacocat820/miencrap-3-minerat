@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:item/templates/display_as_block_2",
+	"parent": "miencrap3minerat:templates/display_as_block_2",
 	"textures": {
 		"0": "block/quartz_block_top",
 		"particle": "block/quartz_block_top"

@@ -1,11 +1,11 @@
 {
-	"parent": "item/templates/display_as_block_2",
+	"parent": "miencrap3minerat:templates/display_as_block_2",
 	"format_version": "1.9.0",
 	"credit": "Made with Blockхуенч",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "item/block/packet",
-		"particle": "item/block/packet"
+		"0": "miencrap3minerat:block/packet",
+		"particle": "miencrap3minerat:block/packet"
 	},
 	"elements": [
 		{

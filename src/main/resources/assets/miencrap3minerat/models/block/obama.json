@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/block",
+	"parent": "miencrap3minerat:templates/block",
 	 "textures": {
-		"b": "item/block/obama"
+		"b": "miencrap3minerat:block/obama"
 	 }
  }

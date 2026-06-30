@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/block",
+	"parent": "miencrap3minerat:templates/block",
 	 "textures": {
-		"b": "item/block/caramel_bricks"
+		"b": "miencrap3minerat:block/caramel_bricks"
 	 }
  }

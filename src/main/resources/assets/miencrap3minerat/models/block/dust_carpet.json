@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/carpet",
+	"parent": "miencrap3minerat:templates/carpet",
 	 "textures": {
-		"b": "item/block/dust"
+		"b": "miencrap3minerat:block/dust"
 	 }
  }

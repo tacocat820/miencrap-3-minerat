@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:item/templates/block_6s",
+  "parent": "miencrap3minerat:templates/block_6s",
    "textures": {
-    "north": "item/block/grassblockmond_block_side",
-    "east":  "item/block/grassblockmond_block_side",
-    "south": "item/block/grassblockmond_block_side",
-    "west":  "item/block/grassblockmond_block_side",
-    "up":    "item/block/grassblockmond_block_top",
-    "down":  "item/block/grassblockmond_block_bottom"
+    "north": "miencrap3minerat:block/grassblockmond_block_side",
+    "east":  "miencrap3minerat:block/grassblockmond_block_side",
+    "south": "miencrap3minerat:block/grassblockmond_block_side",
+    "west":  "miencrap3minerat:block/grassblockmond_block_side",
+    "up":    "miencrap3minerat:block/grassblockmond_block_top",
+    "down":  "miencrap3minerat:block/grassblockmond_block_bottom"
    }
 }

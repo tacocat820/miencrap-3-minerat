@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "item/block/toaster/toasted",
-		"particle": "item/block/toaster/toasted"
+		"0": "miencrap3minerat:block/toaster/toasted",
+		"particle": "miencrap3minerat:block/toaster/toasted"
 	},
 	"elements": [
 		{

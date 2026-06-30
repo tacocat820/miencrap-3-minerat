@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/templates/block",
+  "parent": "miencrap3minerat:templates/block",
   "textures": {
-    "b": "item/block/sulfuric_acid"
+    "b": "miencrap3minerat:block/sulfuric_acid"
   }
 }

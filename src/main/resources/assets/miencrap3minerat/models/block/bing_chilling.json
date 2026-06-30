@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/templates/block",
+	"parent": "miencrap3minerat:templates/block",
 	 "textures": {
-		"b": "item/block/bing_chilling"
+		"b": "miencrap3minerat:block/bing_chilling"
 	 }
  }

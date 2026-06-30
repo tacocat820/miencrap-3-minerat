@@ -5,8 +5,8 @@
 	"textures": {
 		"0": "item/item/banana",
 		"1": "item/item/blue_tape",
-		"3": "item/block/xp_metal_block",
-		"4": "item/block/banana_tape_low_price",
+		"3": "miencrap3minerat:block/xp_metal_block",
+		"4": "miencrap3minerat:block/banana_tape_low_price",
 		"particle": "item/item/banana"
 	},
 	"elements": [

@@ -1,6 +1,6 @@
 {
-   "parent": "minecraft:item/templates/4s_r_block",
+   "parent": "miencrap3minerat:templates/4s_r_block",
     "textures": {
-       "b": "item/block/icicle"
+       "b": "miencrap3minerat:block/icicle"
     }
 }
