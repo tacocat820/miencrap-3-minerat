@@ -30,8 +30,11 @@ import net.minecraft.world.level.block.SoundType;
  * GenericItem
  */
 class GenericItem<T extends Item> {
+
+    private Class<T> type;
+
     String name;
-    Item.Properties properties = new Item.Properties();
+    FoodProperties.Builder food = null;
 
     public GenericItem(Class<T> type, String name) {
         this.type = type;
@@ -40,12 +43,10 @@ class GenericItem<T extends Item> {
 
 
     public GenericItem<T> food(boolean always, int nutrition, float saturation) {
-        FoodProperties.Builder food = new FoodProperties.Builder();
+        food = new FoodProperties.Builder();
         food = food.nutrition(nutrition).saturationModifier(saturation);
 
         if (always) food = food.alwaysEdible();
-
-        this.properties.food(food.build());
 
         return this;
     }
@@ -53,14 +54,24 @@ class GenericItem<T extends Item> {
     //     return null;
     // }
 
-    private Class<T> type;
+
+    public Item.Properties configure(Item.Properties properties) {
+
+        if (food != null) properties.food(food.build());
+        
+        return properties;
+
+    }
 
     public DeferredItem<T> toDeferredItem(DeferredRegister.Items regItems) {
 
-        DeferredItem<T> BLOCK = ItemData.ITEMS.register(name, registryName -> {
+        DeferredItem<T> BLOCK = regItems.registerItem(name, p -> {
+
+            Item.Properties configuredProperties = configure(p);
+
             T constructed = null;
             try {
-                constructed = type.getDeclaredConstructor(Item.Properties.class).newInstance(this.properties);
+                constructed = type.getDeclaredConstructor(Item.Properties.class).newInstance(configuredProperties);
             } catch (Exception e) {
                 throw new RuntimeException("cannot make class " + type.getSimpleName() + " into a deferred item : " + e.toString());
             }
