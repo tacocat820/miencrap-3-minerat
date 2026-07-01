@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap2minerat;
 
+import gro.weirdshit.miencrap2minerat.blocks.classes.ChairBlock;
+import gro.weirdshit.miencrap2minerat.blocks.classes.TrafficConeBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
@@ -110,6 +112,8 @@ public class BlocksData {
         new GenericBlock<Block>(Block.class, "blackscreen",SoundType.STONE,-1.0f,-1.0f),
         new GenericBlock<Block>(Block.class, "whitescreen",SoundType.STONE,-1.0f,-1.0f).light(15).friction(0.1f),
         new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision(),
+        new GenericBlock<ChairBlock>(ChairBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
+        new GenericBlock<TrafficConeBlock>(TrafficConeBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
     };
 
     //fnction

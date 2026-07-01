@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import gro.weirdshit.miencrap2minerat.blocks.BlockData;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -79,19 +80,6 @@ public class MIENCRAP3MINERAT {
     
     public static final DeferredItem<BlockItem> URANIUM_ORE_ITEM = ITEMS.registerSimpleBlockItem("uranium_ore", URANIUM_ORE);
 
-    //VLC
-    public static final DeferredBlock<Block> VLC_BLOCK = BLOCKS.register(
-        "vlc", 
-        registryName -> new Block(BlockBehaviour.Properties.of()
-            .setId(ResourceKey.create(Registries.BLOCK, registryName))
-            .destroyTime(0.5f)
-            //.sound(SoundType.GRAVEL)
-            .lightLevel(state -> 7)
-            .noOcclusion().noCollision()
-        ));
-    
-    public static final DeferredItem<BlockItem> VLC_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("vlc", VLC_BLOCK);
-
     //BAD ROCK
     public static final DeferredBlock<Block> BAD_ROCK_BLOCK = BLOCKS.register(
         "bad_rock", 
@@ -108,12 +96,12 @@ public class MIENCRAP3MINERAT {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("miencrap3minerat_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.miencrap3minerat")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> VLC_BLOCK_ITEM.get().getDefaultInstance())
+            .icon(() -> URANIUM_ORE_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 for (DeferredHolder<Item,? extends Item> item : ITEMS.getEntries()) {
                     output.accept(item.get());
                 }
-                for (DeferredHolder<Item,? extends Item> item : BlocksData.ITEMS.getEntries()) {
+                for (DeferredHolder<Item,? extends Item> item : BlockData.ITEMS.getEntries()) {
                     output.accept(item.get());
                 }
                 for (DeferredHolder<Item,? extends Item> item : ItemData.ITEMS.getEntries()) {
@@ -137,9 +125,9 @@ public class MIENCRAP3MINERAT {
         MusicSounds.SOUND_EVENTS.register(modEventBus);
 
         //BlocksData
-        BlocksData.genBlocks();
-        BlocksData.BLOCKS.register(modEventBus);
-        BlocksData.ITEMS.register(modEventBus);
+        BlockData.genBlocks();
+        BlockData.BLOCKS.register(modEventBus);
+        BlockData.ITEMS.register(modEventBus);
         ItemData.ITEMS.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MIENCRAP3MINERAT) to respond directly to events.
