@@ -23,6 +23,42 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.SoundType;
 
+/**
+ * GenericItem
+ */
+class GenericItem {
+    String name;
+    Item.Properties properties = new Item.Properties();
+
+    public GenericItem(String name) {
+        this.name = name;
+    }
+
+    public GenericItem food(boolean always, int nutrition, float saturation) {
+        FoodProperties.Builder food = new FoodProperties.Builder();
+        food = food.nutrition(nutrition).saturationModifier(saturation);
+
+        if (always) food = food.alwaysEdible();
+
+        this.properties.food(food.build());
+
+        return this;
+    }
+
+    // public Item.Properties configure(DeferredRegister.Items regItems) {
+    //     return null;
+    // }
+    
+    public DeferredItem<Item> toDeferredItem(DeferredRegister.Items regItems) {
+        final DeferredItem<Item> ITEM = regItems.registerSimpleItem(
+            this.name,
+            p -> properties
+        );
+
+        return ITEM;
+    }
+}
+
 @EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.DEDICATED_SERVER) 
 public class ItemData {
     

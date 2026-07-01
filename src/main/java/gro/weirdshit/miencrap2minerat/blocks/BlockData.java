@@ -41,6 +41,7 @@ class GenericBlock<T extends Block> {
     float explosionResistance;
     boolean noOcclusion = false;
     boolean noCollision = false;
+    boolean emissiveRend = false;
     float friction = 0.6f;
 
     private Class<T> type;
@@ -62,16 +63,22 @@ class GenericBlock<T extends Block> {
         return this;
     }
 
+    public GenericBlock<T> emissiveRendering() {
+        emissiveRend = true;
+        return this;
+    }
+
     public BlockBehaviour.Properties configure(DeferredRegister.Blocks regBlocks) {
 
         BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
             .setId(ResourceKey.create(Registries.BLOCK, regBlocks.getRegistryName()))
             .destroyTime( destroyTime )
-            .lightLevel( state -> lightLevel )
             .explosionResistance( explosionResistance )
             .sound( sound )
+            .emissiveRendering(state -> emissiveRend)
             .friction(friction);
 
+        if (lightLevel != 0) properties = properties.lightLevel( state -> lightLevel );
         if (noCollision) properties = properties.noCollision();
         if (noOcclusion) properties = properties.noOcclusion();
 
@@ -108,6 +115,10 @@ public class BlockData {
     
     //automatically generated blocks
     public static final GenericBlock<?>[] genericBlocks = {
+        //new GenericBlock<Block>(Block.class, "blk", SoundType.GLASS,12.0f, 12.0f),
+        new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
+        new GenericBlock<Block>(Block.class, "uranium_block", SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering(),
+        new GenericBlock<Block>(Block.class, "uranium_ore", SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering(),
         new GenericBlock<Block>(Block.class, "backrooms_lamp", SoundType.GLASS,32000.0f, 32000.0f).light(15),
         new GenericBlock<Block>(Block.class, "backrooms_carpet", SoundType.WOOL,32000.0f, 32000.0f),
         new GenericBlock<Block>(Block.class, "backrooms",SoundType.STONE,32000.0f,32000.0f),
@@ -115,8 +126,9 @@ public class BlockData {
         new GenericBlock<Block>(Block.class, "whitescreen",SoundType.STONE,-1.0f,-1.0f).light(15).friction(0.1f),
         new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision(),
         new GenericBlock<HorizontallyRotatingBlock>(HorizontallyRotatingBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
-        new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
         new GenericBlock<Block>(Block.class, "red_ice",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
+        new GenericBlock<Block>(Block.class, "xp_glass",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
+        new GenericBlock<Block>(Block.class, "drywall",SoundType.CROP,32000.0f,32000.0f),
     };
 
     //fnction

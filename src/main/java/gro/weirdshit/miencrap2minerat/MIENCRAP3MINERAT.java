@@ -54,32 +54,6 @@ public class MIENCRAP3MINERAT {
 
     // Creates a new Block with the id "meincrap3minerat:example_block", combining the namespace and path
 
-    //URANIUM
-    public static final DeferredBlock<Block> URANIUM_BLOCK = BLOCKS.register(
-        "uranium_block", 
-        registryName -> new Block(BlockBehaviour.Properties.of()
-            .setId(ResourceKey.create(Registries.BLOCK, registryName))
-            .destroyTime(4.0f)
-            .explosionResistance(10.0f)
-            //.sound(SoundType.GRAVEL)
-            .lightLevel(state -> 7)
-        ));
-    
-    public static final DeferredItem<BlockItem> URANIUM_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("uranium_block", URANIUM_BLOCK);
-
-    //ORE
-    public static final DeferredBlock<Block> URANIUM_ORE = BLOCKS.register(
-        "uranium_ore", 
-        registryName -> new Block(BlockBehaviour.Properties.of()
-            .setId(ResourceKey.create(Registries.BLOCK, registryName))
-            .destroyTime(4.0f)
-            .explosionResistance(10.0f)
-            //.sound(SoundType.GRAVEL)
-            .lightLevel(state -> 7)
-        ));
-    
-    public static final DeferredItem<BlockItem> URANIUM_ORE_ITEM = ITEMS.registerSimpleBlockItem("uranium_ore", URANIUM_ORE);
-
     //BAD ROCK
     public static final DeferredBlock<Block> BAD_ROCK_BLOCK = BLOCKS.register(
         "bad_rock", 
@@ -96,7 +70,7 @@ public class MIENCRAP3MINERAT {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("miencrap3minerat_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.miencrap3minerat")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> URANIUM_ORE_ITEM.get().getDefaultInstance())
+            .icon(() -> BAD_ROCK_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 for (DeferredHolder<Item,? extends Item> item : ITEMS.getEntries()) {
                     output.accept(item.get());
@@ -157,7 +131,7 @@ public class MIENCRAP3MINERAT {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(URANIUM_BLOCK_ITEM);
+            event.accept(BAD_ROCK_BLOCK_ITEM);
         }
     }
 

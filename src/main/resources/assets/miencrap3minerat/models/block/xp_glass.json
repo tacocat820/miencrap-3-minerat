@@ -1,7 +1,9 @@
 {
-  "parent": "miencrap3minerat:templates/block_with_marker",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "b": "miencrap3minerat:block/xp_glass",
-    "marker": "marker/shine"
+    "all": {
+      "force_translucent": true,
+      "sprite": "miencrap3minerat:block/xp_glass"
+    }
   }
 }
