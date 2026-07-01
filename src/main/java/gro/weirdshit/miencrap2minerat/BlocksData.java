@@ -51,6 +51,8 @@ public class BlocksData {
         new GenericBlock("backrooms_lamp", 15, SoundType.GLASS,32000.0f, 32000.0f),
         new GenericBlock("backrooms_carpet", 0, SoundType.WOOL,32000.0f, 32000.0f),
         new GenericBlock("backrooms",0,SoundType.STONE,32000.0f,32000.0f),
+        new GenericBlock("blackscreen",0,SoundType.STONE,-1.0f,-1.0f),
+        new GenericBlock("whitescreen",15,SoundType.STONE,-1.0f,-1.0f),
     };
 
     //fnction

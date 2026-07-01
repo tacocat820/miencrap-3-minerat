@@ -1,7 +1,6 @@
 {
 	"parent": "miencrap3minerat:templates/block",
 	 "textures": {
-		"b": "marker/whitest_white",
-		"particle": "miencrap3minerat:block/whitescreen"
+		"b": "miencrap3minerat:block/whitescreen"
 	 }
  }
