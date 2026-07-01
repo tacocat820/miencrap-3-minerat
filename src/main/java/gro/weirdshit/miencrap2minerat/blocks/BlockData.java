@@ -113,10 +113,14 @@ public class BlockData {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MIENCRAP3MINERAT.MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MIENCRAP3MINERAT.MODID);
     
+    //VLC, as mod's icon
+    public static final GenericBlock<?> VLC = new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion();
+    public static final DeferredBlock<?> VLC_BLOCK = VLC.intoDeferredBlock(BLOCKS);
+    public static final DeferredItem<BlockItem> VLC_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(VLC.name, VLC_BLOCK);
+
     //automatically generated blocks
     public static final GenericBlock<?>[] genericBlocks = {
         //new GenericBlock<Block>(Block.class, "blk", SoundType.GLASS,12.0f, 12.0f),
-        new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
         new GenericBlock<Block>(Block.class, "uranium_block", SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering(),
         new GenericBlock<Block>(Block.class, "uranium_ore", SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering(),
         new GenericBlock<Block>(Block.class, "backrooms_lamp", SoundType.GLASS,32000.0f, 32000.0f).light(15),

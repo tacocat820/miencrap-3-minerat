@@ -1,5 +1,8 @@
 package gro.weirdshit.miencrap2minerat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
@@ -26,15 +29,17 @@ import net.minecraft.world.level.block.SoundType;
 /**
  * GenericItem
  */
-class GenericItem {
+class GenericItem<T extends Item> {
     String name;
     Item.Properties properties = new Item.Properties();
 
-    public GenericItem(String name) {
+    public GenericItem(Class<T> type, String name) {
+        this.type = type;
         this.name = name;
     }
 
-    public GenericItem food(boolean always, int nutrition, float saturation) {
+
+    public GenericItem<T> food(boolean always, int nutrition, float saturation) {
         FoodProperties.Builder food = new FoodProperties.Builder();
         food = food.nutrition(nutrition).saturationModifier(saturation);
 
@@ -44,25 +49,45 @@ class GenericItem {
 
         return this;
     }
-
     // public Item.Properties configure(DeferredRegister.Items regItems) {
     //     return null;
     // }
-    
-    public DeferredItem<Item> toDeferredItem(DeferredRegister.Items regItems) {
-        final DeferredItem<Item> ITEM = regItems.registerSimpleItem(
-            this.name,
-            p -> properties
-        );
 
-        return ITEM;
+    private Class<T> type;
+
+    public DeferredItem<T> toDeferredItem(DeferredRegister.Items regItems) {
+
+        DeferredItem<T> BLOCK = ItemData.ITEMS.register(name, registryName -> {
+            T constructed = null;
+            try {
+                constructed = type.getDeclaredConstructor(Item.Properties.class).newInstance(this.properties);
+            } catch (Exception e) {
+                throw new RuntimeException("cannot make class " + type.getSimpleName() + " into a deferred item : " + e.toString());
+            }
+            return constructed;
+        });
+
+        return BLOCK;
     }
 }
 
 @EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.DEDICATED_SERVER) 
 public class ItemData {
-    
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MIENCRAP3MINERAT.MODID);
+
+    // public static final GenericItem[] genericItems = {
+    //     new GenericItem("test_item").food(true, 3, 1f)
+    // };
+    public static final ArrayList<GenericItem<?>> genericItems = new ArrayList<>(Arrays.asList(
+        new GenericItem<Item>(Item.class, "test_item").food(true, 3, 1f)
+    ));
+
+
+    public static final void genItems() {
+        for (GenericItem<?> genericItem : genericItems) {
+            DeferredItem<?> ITEM = genericItem.toDeferredItem(ITEMS);
+        }
+    }
 
     public static final DeferredItem<Item> CHEESEBURGER_CRUMBS = ITEMS.registerSimpleItem("cheeseburger_crumbs", 
         p -> p.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(1f).build()));

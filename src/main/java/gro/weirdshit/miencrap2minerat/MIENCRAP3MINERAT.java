@@ -70,7 +70,7 @@ public class MIENCRAP3MINERAT {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("miencrap3minerat_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.miencrap3minerat")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> BAD_ROCK_BLOCK_ITEM.get().getDefaultInstance())
+            .icon(() -> BlockData.VLC_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 for (DeferredHolder<Item,? extends Item> item : ITEMS.getEntries()) {
                     output.accept(item.get());
@@ -102,7 +102,11 @@ public class MIENCRAP3MINERAT {
         BlockData.genBlocks();
         BlockData.BLOCKS.register(modEventBus);
         BlockData.ITEMS.register(modEventBus);
+
+        //ItemData
+        ItemData.genItems();
         ItemData.ITEMS.register(modEventBus);
+        
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MIENCRAP3MINERAT) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -131,7 +135,7 @@ public class MIENCRAP3MINERAT {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(BAD_ROCK_BLOCK_ITEM);
+            event.accept(BlockData.VLC_BLOCK_ITEM);
         }
     }
 
