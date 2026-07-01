@@ -1,6 +1,7 @@
 package gro.weirdshit.miencrap2minerat.blocks;
 
 import gro.weirdshit.miencrap2minerat.blocks.classes.HorizontallyRotatingBlock;
+import gro.weirdshit.miencrap2minerat.blocks.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap2minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap2minerat.blocks.classes.FaceRotatingBlock;
 import net.minecraft.client.Minecraft;
@@ -130,7 +131,7 @@ public class BlockData {
         new GenericBlock<Block>(Block.class, "whitescreen",SoundType.STONE,-1.0f,-1.0f).light(15).friction(0.1f),
         new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision(),
         new GenericBlock<HorizontallyRotatingBlock>(HorizontallyRotatingBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
-        new GenericBlock<Block>(Block.class, "red_ice",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
+        new GenericBlock<SpecificRedIceBlock>(SpecificRedIceBlock.class, "red_ice",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
         new GenericBlock<Block>(Block.class, "xp_glass",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
         new GenericBlock<Block>(Block.class, "drywall",SoundType.CROP,32000.0f,32000.0f),
     };

@@ -89,9 +89,10 @@ public class ItemData {
     // public static final GenericItem[] genericItems = {
     //     new GenericItem("test_item").food(true, 3, 1f)
     // };
-    public static final ArrayList<GenericItem<?>> genericItems = new ArrayList<>(Arrays.asList(
-        new GenericItem<Item>(Item.class, "test_item").food(true, 3, 1f)
-    ));
+    public static final GenericItem<?>[] genericItems = {
+        new GenericItem<Item>(Item.class, "test_item").food(true, 3, 1f),
+        new GenericItem<Item>(Item.class, "bedian"),
+    };
 
 
     public static final void genItems() {
