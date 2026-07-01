@@ -69,7 +69,8 @@ class GenericBlock<T extends Block> {
             .destroyTime( destroyTime )
             .lightLevel( state -> lightLevel )
             .explosionResistance( explosionResistance )
-            .sound( sound );
+            .sound( sound )
+            .friction(friction);
 
         if (noCollision) properties = properties.noCollision();
         if (noOcclusion) properties = properties.noOcclusion();
@@ -115,6 +116,7 @@ public class BlockData {
         new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision(),
         new GenericBlock<HorizontallyRotatingBlock>(HorizontallyRotatingBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
         new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
+        new GenericBlock<Block>(Block.class, "red_ice",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion(),
     };
 
     //fnction
