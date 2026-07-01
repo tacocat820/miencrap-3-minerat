@@ -1,7 +1,8 @@
-package gro.weirdshit.miencrap2minerat;
+package gro.weirdshit.miencrap2minerat.blocks;
 
-import gro.weirdshit.miencrap2minerat.blocks.classes.ChairBlock;
-import gro.weirdshit.miencrap2minerat.blocks.classes.TrafficConeBlock;
+import gro.weirdshit.miencrap2minerat.blocks.classes.HorizontallyRotatingBlock;
+import gro.weirdshit.miencrap2minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap2minerat.blocks.classes.FaceRotatingBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
@@ -78,7 +79,7 @@ class GenericBlock<T extends Block> {
     }
     public DeferredBlock<T> intoDeferredBlock(DeferredRegister.Blocks regBlocks) {
 
-        DeferredBlock<T> BLOCK = BlocksData.BLOCKS.register(name, registryName -> {
+        DeferredBlock<T> BLOCK = BlockData.BLOCKS.register(name, registryName -> {
             
             T constructed = null;
             try {
@@ -99,7 +100,7 @@ class GenericBlock<T extends Block> {
 }
 
 @EventBusSubscriber(modid = MIENCRAP3MINERAT.MODID, value = Dist.DEDICATED_SERVER) 
-public class BlocksData {
+public class BlockData {
     
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MIENCRAP3MINERAT.MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MIENCRAP3MINERAT.MODID);
@@ -112,8 +113,8 @@ public class BlocksData {
         new GenericBlock<Block>(Block.class, "blackscreen",SoundType.STONE,-1.0f,-1.0f),
         new GenericBlock<Block>(Block.class, "whitescreen",SoundType.STONE,-1.0f,-1.0f).light(15).friction(0.1f),
         new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision(),
-        new GenericBlock<ChairBlock>(ChairBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
-        new GenericBlock<TrafficConeBlock>(TrafficConeBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
+        new GenericBlock<HorizontallyRotatingBlock>(HorizontallyRotatingBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision(),
+        new GenericBlock<FaceRotatingBlock>(FaceRotatingBlock.class, "vlc",SoundType.STONE,0.5f,0.5f).noCollision().noOcclusion(),
     };
 
     //fnction

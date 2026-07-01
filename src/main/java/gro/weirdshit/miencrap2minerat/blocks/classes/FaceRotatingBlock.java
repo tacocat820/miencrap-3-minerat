@@ -14,10 +14,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 
-public class TrafficConeBlock extends FaceAttachedHorizontalDirectionalBlock {
-    public static final MapCodec<TrafficConeBlock> CODEC = simpleCodec(TrafficConeBlock::new);
+public class FaceRotatingBlock extends FaceAttachedHorizontalDirectionalBlock {
+    public static final MapCodec<FaceRotatingBlock> CODEC = simpleCodec(FaceRotatingBlock::new);
 
-    public TrafficConeBlock(BlockBehaviour.Properties properties) {
+    public FaceRotatingBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
