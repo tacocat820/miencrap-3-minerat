@@ -7,15 +7,18 @@ import gro.weirdshit.miencrap2minerat.blocks.classes.SpecificRedIceBlock;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import gro.weirdshit.miencrap2minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap2minerat.blocks.classes.FaceRotatingBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -91,7 +94,7 @@ class GenericBlock<T extends Block> {
             .explosionResistance( explosionResistance )
             .sound( sound )
             .emissiveRendering(state -> emissiveRendering)
-            //.overrideLootTable(ResourceKey.create(, null))
+            .overrideLootTable(Optional.of(ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("miencrap3minerat", "blocks/" + name))))
             .friction(friction);
 
         if (lightLevel != 0) properties = properties.lightLevel( state -> lightLevel );
@@ -121,7 +124,7 @@ class GenericBlock<T extends Block> {
     }
     public DeferredBlock<T> intoDeferredBlockArgs(DeferredRegister.Blocks regBlocks, Object[] args) {
 
-        deferredBlock = BlockData.BLOCKS.register(name, registryName -> {
+        deferredBlock = MIENCRAP3MINERAT.BLOCKS.register(name, registryName -> {
 
             Class<?>[] argClasses = new Class[args.length + 1];
             for (int i = 0; i < args.length; ++i) {
