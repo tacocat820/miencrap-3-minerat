@@ -65,7 +65,7 @@ class GenericItem<T extends Item> {
 
     public DeferredItem<T> toDeferredItem(DeferredRegister.Items regItems) {
 
-        DeferredItem<T> BLOCK = regItems.registerItem(name, p -> {
+        DeferredItem<T> ITEM = regItems.registerItem(name, p -> {
 
             Item.Properties configuredProperties = configure(p);
 
@@ -78,7 +78,7 @@ class GenericItem<T extends Item> {
             return constructed;
         });
 
-        return BLOCK;
+        return ITEM;
     }
 }
 

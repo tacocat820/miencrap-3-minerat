@@ -77,6 +77,8 @@ class GenericBlock<T extends Block> {
             .explosionResistance( explosionResistance )
             .sound( sound )
             .emissiveRendering(state -> emissiveRend)
+            //.overrideLootTable(ResourceKey.create())
+            //.overrideLootTable(ResourceKey.create(, null))
             .friction(friction);
 
         if (lightLevel != 0) properties = properties.lightLevel( state -> lightLevel );
@@ -97,9 +99,7 @@ class GenericBlock<T extends Block> {
                 constructed = type.getDeclaredConstructor(BlockBehaviour.Properties.class).newInstance(properties);
                 
             } catch(Exception e) {
-
                 throw new RuntimeException("cannot make class " + type.getSimpleName() + " into a deferred block : " + e.toString());
-
             }
             
             return constructed;
