@@ -39,5 +39,10 @@ public class SpecificRedIceBlock extends Block {
         Vec3 movement = entity.getDeltaMovement();
         entity.setDeltaMovement(movement.x * 2.0, movement.y * 2.0, movement.z * 2.0);
     }
+
+    @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+        level.destroyBlock(pos, false);
+    }
     
 }

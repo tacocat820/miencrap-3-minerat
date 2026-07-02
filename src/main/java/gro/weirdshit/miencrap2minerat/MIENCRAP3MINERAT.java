@@ -99,7 +99,6 @@ public class MIENCRAP3MINERAT {
         MusicSounds.SOUND_EVENTS.register(modEventBus);
 
         //BlocksData
-        BlockData.genBlocks();
         BlockData.BLOCKS.register(modEventBus);
         BlockData.ITEMS.register(modEventBus);
 
