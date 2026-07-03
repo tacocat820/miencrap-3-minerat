@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "miencrap3minerat",
+	"version": "${version}",
+	"name": "MIENCRAP3MINERAT",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/miencrap3minerat/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT"
+		],
+		"client": [
+			"gro.weirdshit.miencrap3minerat.client.MIENCRAP3MINERATClient"
+		],
+		"fabric-datagen": [
+			"gro.weirdshit.miencrap3minerat.client.MIENCRAP3MINERATDataGenerator"
+		]
+	},
+	"mixins": [
+		"miencrap3minerat.mixins.json",
+		{
+			"config": "miencrap3minerat.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
