@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+       "north": "miencrap3minerat:block/oil_flow",
+	   "east": "miencrap3minerat:block/oil_flow",
+	   "south": "miencrap3minerat:block/oil_flow",
+	   "west": "miencrap3minerat:block/oil_flow",
+	   "up": "miencrap3minerat:block/oil_still",
+	   "down": "miencrap3minerat:block/oil_still"
+    }
+}

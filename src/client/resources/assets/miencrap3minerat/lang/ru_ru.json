@@ -1,0 +1,20 @@
+{
+  "itemGroup.miencrap3minerat": "MIENCRAP 3 MINERAT",
+  "block.miencrap3minerat.uranium_block": "Блок урана",
+  "block.miencrap3minerat.uranium_ore": "Уроновая руда",
+  "block.miencrap3minerat.vlc": "Конус.",
+  "block.miencrap3minerat.backrooms": "Стена закулисья",
+  "block.miencrap3minerat.backrooms_lamp": "Лампа закулисья",
+  "block.miencrap3minerat.backrooms_carpet": "Ковёр закулисья",
+  "item.miencrap3minerat.example_item": "Example Item",
+  "item.miencrap3minerat.cheeseburger": "Чизбугер",
+  "item.miencrap3minerat.cheeseburger_crumbs": "Крошки от чизбугера",
+
+  "miencrap3minerat.configuration.title": "Настройки МЕИНКРАП 3 МАЙНРАТ",
+  "miencrap3minerat.configuration.section.miencrap3minerat.common.toml": "Настройки МЕИНКРАП 3 МАЙНРАТ",
+  "miencrap3minerat.configuration.section.miencrap3minerat.common.toml.title": "Настройки МЕИНКРАП 3 МАЙНРАТ",
+  "miencrap3minerat.configuration.items": "Предметы",
+  "miencrap3minerat.configuration.logDirtBlock": "Log Dirt Block",
+  "miencrap3minerat.configuration.magicNumberIntroduction": "Magic Number Text",
+  "miencrap3minerat.configuration.magicNumber": "Magic Number"
+}

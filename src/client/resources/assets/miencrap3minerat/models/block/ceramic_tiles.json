@@ -1,0 +1,7 @@
+{
+  "parent": "miencrap3minerat:templates/block_with_marker",
+  "textures": {
+    "b": "miencrap3minerat:block/ceramic_tiles",
+    "marker": "marker/tiles3x3"
+  }
+}

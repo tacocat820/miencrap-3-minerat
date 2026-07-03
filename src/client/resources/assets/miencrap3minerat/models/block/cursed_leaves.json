@@ -1,0 +1,11 @@
+{
+	"parent": "miencrap3minerat:templates/inverted_block_6s",
+	 "textures": {
+		"0": "miencrap3minerat:block/oak_leaves",
+		"1": "miencrap3minerat:block/oak_leaves",
+		"2": "miencrap3minerat:block/oak_leaves",
+		"3": "miencrap3minerat:block/oak_leaves",
+		"4": "miencrap3minerat:block/oak_leaves",
+		"5": "miencrap3minerat:block/oak_leaves"
+	 }
+ }

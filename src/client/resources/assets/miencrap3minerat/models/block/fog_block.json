@@ -1,0 +1,6 @@
+{
+  "parent": "miencrap3minerat:templates/block",
+  "textures": {
+    "b": "marker/fog"
+  }
+}

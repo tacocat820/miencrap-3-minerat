@@ -1,0 +1,11 @@
+{
+  "parent": "miencrap3minerat:templates/block",
+  "textures": {
+    "b": "marker/cloud"
+  },
+  "display": {
+		"head": {
+			"scale": [1.00,1.00,1.00]
+		}
+	}
+}

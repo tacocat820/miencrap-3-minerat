@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+       "north": "miencrap3minerat:block/crafting_table_2/north",
+	   "east":  "miencrap3minerat:block/crafting_table_2/east",
+	   "south": "miencrap3minerat:block/crafting_table_2/south",
+	   "west":  "miencrap3minerat:block/crafting_table_2/west",
+	   "up":    "miencrap3minerat:block/crafting_table_2/top",
+	   "down":  "miencrap3minerat:block/crafting_table_2/bottom"
+    }
+}

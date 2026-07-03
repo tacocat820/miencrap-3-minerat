@@ -1,0 +1,6 @@
+{
+	"parent": "miencrap3minerat:templates/carpet",
+	 "textures": {
+		"b": "miencrap3minerat:block/dust"
+	 }
+ }

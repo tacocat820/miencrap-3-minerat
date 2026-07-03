@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+       "north": "miencrap3minerat:block/unfurnace_side",
+	   "east": "miencrap3minerat:block/unfurnace_side",
+	   "south": "miencrap3minerat:block/unfurnace_front",
+	   "west": "miencrap3minerat:block/unfurnace_side",
+	   "up": "miencrap3minerat:block/unfurnace_top",
+	   "down": "miencrap3minerat:block/unfurnace_top"
+    }
+}

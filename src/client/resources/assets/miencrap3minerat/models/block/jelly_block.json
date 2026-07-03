@@ -1,0 +1,11 @@
+{
+  "parent": "miencrap3minerat:templates/block_6s",
+  "textures": {
+    "north": "miencrap3minerat:block/jelly_block",
+   "east":  "miencrap3minerat:block/jelly_block",
+   "south": "miencrap3minerat:block/jelly_block",
+   "west":  "miencrap3minerat:block/jelly_block",
+   "up":    "miencrap3minerat:block/jelly_block_top",
+   "down":  "miencrap3minerat:block/jelly_block_bottom"
+  }
+}

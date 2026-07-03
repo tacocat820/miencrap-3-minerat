@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+	   "north": "miencrap3minerat:block/maple_wood",
+	   "east": "miencrap3minerat:block/maple_wood",
+	   "south": "miencrap3minerat:block/maple_wood",
+	   "west": "miencrap3minerat:block/maple_wood",
+	   "up": "miencrap3minerat:block/maple_top",
+	   "down": "miencrap3minerat:block/maple_top"
+    }
+}

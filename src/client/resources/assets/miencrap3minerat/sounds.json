@@ -1,0 +1,241 @@
+{
+    "microwave":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:microwave","stream": false}]},
+    "bad_to_the_bone":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bad","stream": false}]},
+    "ragdoll":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ragdoll","stream": true}]},
+    "raah":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:raah","stream": false}]},
+    "fard":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:fard","stream": false}]},
+    "slep":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:slep","stream": false}]},
+    "repeer":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:repeer","stream": false}]},
+    "static":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:static","stream": false}]},
+    "nokia":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:nokia","stream": false}]},
+    "destroyer":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:creator","stream": true}]},
+    "otherside":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:otherside","stream": true}]},
+    "pipe_bomb":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:pipe_bomb","stream": false}]},
+    "uranium":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:uranium","stream": false}]},
+    "metal_pipe":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:metal_pipe","stream": false}]},
+    "tadaaa":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:tadaaa","stream": false}]},
+    "fith":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:fire_in_the_hole","stream": false}]},
+    "siren":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:siren","stream": false}]},
+    "bruh":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bruh","stream": false}]},
+    "hairdryer":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:hairdryer","stream": false}]},
+    "iamsteve":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:iamsteve","stream": false}]},
+    "bite":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bite","stream": false}]},
+    "pixie_dust_notification":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:pixie_dust_notification","stream": false}]},
+    "unfurnace":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:unfurnace","stream": false}]},
+    "scream":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:scream","stream": false}]},
+    "lefishe":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:lefishe","stream": false}]},
+	"ohmypc":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ohmypc","stream": false}]},
+	"puff":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:puff","stream": false}]},
+	"tetris_mono":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:tetris_mono","stream": true}]},
+	"tetris_stereo":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:tetris_stereo","stream": true}]},
+	"ost.balladofthecat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/balladofthecat","stream": true}]},
+	"ost.calm5":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/calm5","stream": true}]},
+	"ost.catsong":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/catsong","stream": true}]},
+	"ost.creator":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/creator","stream": true}]},
+	"ost.greece":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/greece","stream": true}]},
+	"ost.idrinkglue":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/idrinkglue","stream": true}]},
+	"ost.minerat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/minerat","stream": true}]},
+	"ost.pupepupe":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/pupepupe","stream": true}]},
+	"ost.shit":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/shit","stream": true}]},
+	"ost.speedrun":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/speedrun","stream": true}]},
+	"ost.tetris":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tetris","stream": true}]},
+	"ost.rat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/rat","stream": true}]},
+	"ost.fard":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fard","stream": true}]},
+	"ost.fardium":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fardium","stream": true}]},
+	"ost.boss":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/boss","stream": true}]},
+	"ost.steppig":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/steppig","stream": true}]},
+	"ost.garbagetypebeat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/garbagetypebeat","stream": true}]},
+	"ost.stal":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/stal","stream": true}]},
+	"ost.gromadji":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/gromadji","stream": true}]},
+	"ost.lavachickeb":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/lavachickeb","stream": true}]},
+	"ost.poom":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/poom","stream": true}]},
+	"ost.fryingghasts":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fryingghasts","stream": true}]},
+	"ost.scott_joplin_the_original_chirps":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/scott_joplin_the_original_chirps","stream": true}]},
+	"ost.fuckingpig":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fuckingpig","stream": true}]},
+	"ost.tweeter_alarm":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tweeter_alarm","stream": true}]},
+	"ost.pyramids":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/pyramids","stream": true}]},
+	"ost.strad":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/strad","stream": true}]},
+	"ost.concrete_houses":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/concrete_houses","stream": true}]},
+	"ost.drums":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/drums","stream": true}]},
+	"frying_pan":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:hitsound","stream": false}]},
+	"asgor":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:asgor","stream": true}]},
+	"backrooms":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:backrooms","stream": true}]},
+	"elonstutter":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:elonstutter","stream": true}]},
+	"musk":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musk","stream": true}]},
+	"gaster":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:gaster","stream": true}]},
+	"vanish":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:vanish","stream": true}]},
+	"ost.eror":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/eror","stream": true}]},
+	"pop":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:pop","stream": false}]},
+	"sad":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:sad","stream": false}]},
+	"shotgun":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:shotgun","stream": false}]},
+	"ost.garbagemusic":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/garbagemusic","stream": false}]},
+	"ost.speedrunmode":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/speedrunmode","stream": false}]},
+	"ost.wwtb":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/wwtb","stream": false}]},
+	"gong":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:gong","stream": false}]},
+	"turn_off":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:turn_off","stream": false}]},
+	"ost.blues":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blues","stream": true}]},
+	"ost.blues2":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blues2","stream": true}]},
+	"ost.blues3":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blues3","stream": true}]},
+	"ost.iateacat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/iateacat","stream": true}]},
+	"musichall.epic_techno_music":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/epic_techno_music","stream": true}]},
+	"musichall.potentially_tetris":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/potentially_tetris","stream": true}]},
+	"musichall.skeletons_dont_have_organs":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/skeletons_dont_have_organs","stream": true}]},
+	"musichall.very_orchestral_music":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/very_orchestral_music","stream": true}]},
+	"musichall.thisisnotatoaster":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:musichall/thisisnotatoaster","stream": true}]},
+	"ost.wwtb_final":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/wwtb_final","stream": true}]},
+	"ost.credits":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/credits","stream": true}]},
+	"ost.dangerous":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/dangerous","stream": true}]},
+	"ost.mapple":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/mapple","stream": true}]},
+	"ost.bapple":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/bapple","stream": true}]},
+	"ost.fryingapples":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fryingapples","stream": true}]},
+	"ost.aaa":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/aaa","stream": true}]},
+	"ost.smi":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/smi2","stream": true}]},
+	"ed2_alarm":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ed2_1","stream": false}]},
+	"ed2_hysteria":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ed2_2","stream": false}]},
+	"ed2_music":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:ed2_6","stream": false}]},
+	"ost.ki":
+	{"category": "master","sounds": [{"name": "miencrap3minerat:ost/ki","stream": true}]},
+	"ost.hog":
+	{"category": "master","sounds": [{"name": "miencrap3minerat:ost/hog","stream": true}]},
+	"ost.bgb":
+	{"category": "master","sounds": [{"name": "miencrap3minerat:ost/bgb","stream": true}]},
+	"ost.edibles":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/edibles","stream": true}]},
+	"bee":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
+	"bee_alt":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bee_alt","stream": false}]},
+
+
+	"ed2_scream": {
+	    "sounds": [
+	      {
+	        "name": "miencrap3minerat:ed2_3",
+	        "stream": false
+	      },
+  	   	  {
+  	   	     "name": "miencrap3minerat:ed2_4",
+  	   	     "stream": false
+ 	   	  },
+	      {
+	        "name": "miencrap3minerat:ed2_5",
+	        "stream": false
+	      }
+	  ]
+	},
+	"music.menu": {
+	    "sounds": [
+	      {
+	        "name": "music/menu/menu1",
+	        "stream": true
+	      },
+	      {
+	        "name": "music/menu/menu2",
+	        "stream": true
+	      },
+	      {
+	        "name": "music/menu/menu3",
+	        "stream": true
+	      },
+   	      {
+   	        "name": "music/menu/menu4",
+   	        "stream": true
+   	      }
+	  ]
+	}
+	
+}

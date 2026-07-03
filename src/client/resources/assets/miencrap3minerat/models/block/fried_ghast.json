@@ -1,0 +1,6 @@
+{
+	"parent": "miencrap3minerat:templates/flat",
+	 "textures": {
+		"b": "item/item/fried_ghast"
+	 }
+ }
