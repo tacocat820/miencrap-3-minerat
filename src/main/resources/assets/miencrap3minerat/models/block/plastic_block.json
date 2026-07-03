@@ -1,6 +1,0 @@
-{
-  "parent": "miencrap3minerat:templates/block",
-  "textures": {
-    "b": "miencrap3minerat:block/plastic_block"
-  }
-}

@@ -1,8 +1,0 @@
-{
-	"parent": "minecraft:miencrap3minerat:block/chair_plant/2",
-	"textures": {
-		"0": "miencrap3minerat:block/liquid_wooden_planks",
-		"1": "miencrap3minerat:block/liquid_wood",
-		"particle": "block/oak_planks"
-	}
-}

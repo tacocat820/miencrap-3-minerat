@@ -1,7 +1,0 @@
-{
-  "parent": "miencrap3minerat:templates/block_with_marker",
-  "textures": {
-    "b": "miencrap3minerat:block/golden_window",
-    "marker": "marker/shine"
-  }
-}
