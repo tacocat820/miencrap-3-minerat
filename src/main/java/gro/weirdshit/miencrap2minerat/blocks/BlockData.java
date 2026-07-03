@@ -93,7 +93,7 @@ class GenericBlock<T extends Block> {
             .destroyTime( destroyTime )
             .explosionResistance( explosionResistance )
             .sound( sound )
-            .emissiveRendering(state -> emissiveRendering)
+            //.emissiveRendering(state -> emissiveRendering)
             .overrideLootTable(Optional.of(ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("miencrap3minerat", "blocks/" + name))))
             .friction(friction);
 
@@ -185,7 +185,7 @@ public class BlockData {
     public static GenericBlock<?> WHITESCREEN = new GenericBlock<Block>(Block.class, "whitescreen",SoundType.STONE,-1.0f,-1.0f).light(15).friction(0.1f).reg();
     public static GenericBlock<?> DIRT = new GenericBlock<Block>(Block.class, "dirt",SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
     public static GenericBlock<?> CHAIR = new GenericBlock<HorizontallyRotatingBlock>(HorizontallyRotatingBlock.class, "chair",SoundType.STONE,0.5f,0.5f).noCollision().reg();
-    public static GenericBlock<?> RED_ICE = new GenericBlock<SpecificRedIceBlock>(SpecificRedIceBlock.class, "red_ice",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion().reg();
+    public static GenericBlock<?> RED_ICE = new GenericBlock<SpecificRedIceBlock>(SpecificRedIceBlock.class, "red_ice",SoundType.GLASS,3.0f,0.5f).friction(1.5f).noOcclusion().reg();
     public static GenericBlock<?> XP_GLASS = new GenericBlock<Block>(Block.class, "xp_glass",SoundType.GLASS,3.0f,1.5f).friction(12.0f).noOcclusion().reg();
     public static GenericBlock<?> WETWALL = new GenericBlock<Block>(Block.class, "wetwall",SoundType.CROP,3.0f,0.5f).friction(0.07f).reg();
     public static GenericBlock<?> DRYWALL = new GenericBlock<SpecificDrywallBlock>(SpecificDrywallBlock.class, "drywall",SoundType.CROP,32000.0f,32000.0f).reg(WETWALL.deferredBlock);
