@@ -16,11 +16,7 @@ import gro.weirdshit.miencrap3minerat.item.ModItems;
 
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 
@@ -50,7 +46,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "creative_tab")
 	);
 	public static final CreativeModeTab CUSTOM_CREATIVE_TAB = FabricCreativeModeTab.builder()
-		.icon(() -> new ItemStack(ModItems.TEST_ITEM))
+		.icon(() -> new ItemStack(ModBlocks.VLC.item))
 		.title(Component.translatable("creativeTab.MIENCRAP3MINERAT"))
 		.displayItems((params, output) -> {
 			output.accept(ModItems.TEST_ITEM);
