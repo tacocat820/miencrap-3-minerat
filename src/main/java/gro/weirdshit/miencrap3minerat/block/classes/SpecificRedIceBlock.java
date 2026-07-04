@@ -12,8 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.lang.Math;
-
 public class SpecificRedIceBlock extends Block {
     public static final MapCodec<SpecificRedIceBlock> CODEC = simpleCodec(SpecificRedIceBlock::new);
 

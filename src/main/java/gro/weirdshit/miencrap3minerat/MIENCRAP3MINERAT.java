@@ -10,6 +10,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import gro.weirdshit.miencrap3minerat.block.BlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
@@ -37,6 +38,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		LOGGER.info("Hello Fabric world & MIENCRAP 3 MINERAT!!");
 
 		ModBlocks.generate();
+		BlockEntities.generate();
 		ModItems.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);

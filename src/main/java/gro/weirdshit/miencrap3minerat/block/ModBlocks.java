@@ -5,8 +5,9 @@ import java.util.function.Function;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.FaceRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
-//import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -83,7 +84,7 @@ class GenericBlock {
 
 public class ModBlocks {
 
-	public static RegisteredBlock VLC = new GenericBlock("vlc", FaceRotatingBlock::new, SoundType.STONE,4.0f, 10.0f).noCollision().noOcclusion().reg();
+	public static RegisteredBlock VLC = new GenericBlock("vlc", FaceRotatingBlock::new, SoundType.STONE,4.0f, 10.0f).noCollision().noOcclusion().reg();    
 	public static RegisteredBlock URANIUM_BLOCK = new GenericBlock("uranium_block", Block::new, SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering().reg();
     public static RegisteredBlock URANIUM_ORE = new GenericBlock("uranium_ore", Block::new, SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering().reg();
     public static RegisteredBlock BACKROOMS_LAMP = new GenericBlock("backrooms_lamp", Block::new, SoundType.GLASS,32000.0f, 32000.0f).light(15).reg();
@@ -92,18 +93,18 @@ public class ModBlocks {
     public static RegisteredBlock BLACKSCREEN = new GenericBlock("blackscreen", Block::new, SoundType.STONE,-1.0f,-1.0f).reg();
     public static RegisteredBlock WHITESCREEN = new GenericBlock("whitescreen", Block::new, SoundType.STONE,-1.0f,-1.0f).light(15).reg();
     public static RegisteredBlock DIRT = new GenericBlock("dirt", Block::new, SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
-    public static RegisteredBlock CHAIR = new GenericBlock("chair", Block::new, SoundType.STONE,0.5f,0.5f).noCollision().reg();
+    public static RegisteredBlock CHAIR = new GenericBlock("chair", HorizontallyRotatingBlock::new, SoundType.STONE,0.5f,0.5f).noCollision().reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
     public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", Block::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", Block::new, SoundType.CROP,3.0f,0.5f).reg();
-    //public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
-
+    public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
+	public static RegisteredBlock WATERCOOLER = new GenericBlock("watercooler", SpecificWatercoolerBlock::new, SoundType.STONE,0.0f,0.5f).noCollision().reg();
+    
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
 
 
-    public static void generate() {
-        }
+    public static void generate() {}
 }
