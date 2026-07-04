@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
-
+import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -49,10 +49,13 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		.icon(() -> new ItemStack(ModBlocks.VLC.item))
 		.title(Component.translatable("creativeTab.MIENCRAP3MINERAT"))
 		.displayItems((params, output) -> {
-			output.accept(ModItems.TEST_ITEM);
+			//output.accept(ModItems.TEST_ITEM);
 
 			for (RegisteredBlock registeredBlock : RegisteredBlock.registeredBlocks) {
 				output.accept(registeredBlock.item);
+			}
+			for (RegisteredItem<?> regItem : RegisteredItem.registeredItems) {
+				output.accept(regItem.item);
 			}
 			//output.accept(ModItems.POISONOUS_APPLE);
 
