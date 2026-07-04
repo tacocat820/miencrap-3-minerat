@@ -3,9 +3,13 @@ package gro.weirdshit.miencrap3minerat;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
 
 public class MIENCRAP3MINERAT implements ModInitializer {
 	public static final String MOD_ID = "miencrap3minerat";
@@ -21,10 +25,14 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Hello Fabric world & MIENCRAP 3 MINERAT!!");
+
+		ModBlocks.generate();
+		ModItems.generate();
 	}
 
 	public static Identifier id(String path) {
 		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 	}
+
 }
