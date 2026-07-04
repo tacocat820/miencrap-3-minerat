@@ -23,7 +23,10 @@ public class ModItems {
 		MIENCRAP3MINERAT.LOGGER.warn("ITEM GENERATED: "+item.toString());
 		return item;
 	}
+
+	public final static Item TEST_ITEM = ModItems.register("test_item", Item::new, new Item.Properties());
+
 	public static void generate() {
-		final Item TEST_ITEM = ModItems.register("test_item", Item::new, new Item.Properties());
+		final Item BEDIAN = ModItems.register("bedian", Item::new, new Item.Properties());
 	}
 }

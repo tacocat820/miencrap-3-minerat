@@ -43,11 +43,6 @@ public class ModBlocks {
 	}
 
     public static void generate() {
-        final Block TEST_BLOCK = register(
-            "test_block",
-            Block::new,
-            BlockBehaviour.Properties.of().sound(SoundType.GRASS),
-            true
-        );
+        final Block BACKROOMS = register("backrooms",Block::new,BlockBehaviour.Properties.of().sound(SoundType.GRASS),true);
     }
 }
