@@ -54,7 +54,7 @@ class GenericBlock {
     }
 
     public GenericBlock emissiveRendering() {
-		properties = properties.emissiveRendering((_, _, _) -> true);
+		properties = properties.emissiveRendering((a, b, c) -> true);
         return this;
     }
 
