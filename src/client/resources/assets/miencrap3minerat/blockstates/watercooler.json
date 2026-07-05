@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "miencrap3minerat:block/watercooler"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/watercooler",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/watercooler",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/watercooler",
+      "y": 270
     }
   }
 }
