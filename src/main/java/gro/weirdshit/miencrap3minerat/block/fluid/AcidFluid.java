@@ -3,7 +3,11 @@ package gro.weirdshit.miencrap3minerat.block.fluid;
 import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
+import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -19,11 +23,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.InsideBlockEffectType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -100,11 +106,11 @@ public abstract class AcidFluid extends FlowingFluid {
 		return 5;
 	}
 
-	// @Override
-	// public boolean canBeReplacedWith(FluidState state, BlockGetter world, BlockPos pos, Fluid fluid,
-	// 		Direction direction) {
-	// 	return direction == Direction.DOWN && !fluid.is(ModFluidTags.ACID);
-	// }
+	@Override
+	public boolean canBeReplacedWith(FluidState state, BlockGetter world, BlockPos pos, Fluid fluid,
+			Direction direction) {
+		return direction == Direction.DOWN; //&& !fluid.is(ModFluidTags.ACID);
+	}
 
 	@Override
 	protected float getExplosionResistance() {
@@ -116,25 +122,31 @@ public abstract class AcidFluid extends FlowingFluid {
 		return Optional.of(SoundEvents.BUCKET_FILL);
 	}
 
-	public abstract class Flowing extends AcidFluid {
-		@Override
-		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
-			super.createFluidStateDefinition(builder);
-			builder.add(LEVEL);
-		}
-
-		@Override
-		public int getAmount(FluidState state) {
-			return state.getValue(LEVEL);
-		}
-
-		@Override
-		public boolean isSource(FluidState state) {
-			return false;
-		}
+	public static class Flowing extends AcidFluid {
+	@Override
+	protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
+		super.createFluidStateDefinition(builder);
+		builder.add(LEVEL);
 	}
 
-	public abstract class Source extends AcidFluid {
+	@Override
+	public int getAmount(FluidState state) {
+		return state.getValue(LEVEL);
+	}
+
+	@Override
+	public boolean isSource(FluidState state) {
+		return false;
+	}
+
+	@Override
+	public Item getBucket() {
+		return ModItems.TEST_ITEM.item;
+		//throw new UnsupportedOperationException("Unimplemented method 'getBucket'");
+	}
+}
+
+	public static class Source extends AcidFluid {
 		@Override
 		public int getAmount(FluidState state) {
 			return 8;
@@ -144,5 +156,31 @@ public abstract class AcidFluid extends FlowingFluid {
 		public boolean isSource(FluidState state) {
 			return true;
 		}
+
+		@Override
+		public @NonNull Item getBucket() {
+			return ModItems.TEST_ITEM.item;
+			//throw new UnsupportedOperationException("Unimplemented method 'getBucket'");
+		}
+	}
+
+	@Override
+	public Fluid getFlowing() {
+		return ModFluids.ACID_FLOWING;
+	}
+
+	@Override
+	public Fluid getSource() {
+		return ModFluids.ACID_STILL;
+	}
+
+	@Override
+	public boolean isSame(Fluid fluid) {
+		return fluid == ModFluids.ACID_STILL || fluid == ModFluids.ACID_FLOWING;
+	}
+
+	@Override
+	protected BlockState createLegacyBlock(FluidState state) {
+		return ModFluids.ACID.block.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
 	}
 }

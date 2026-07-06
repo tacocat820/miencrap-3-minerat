@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
@@ -39,6 +40,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 		ModBlocks.generate();
 		ModBlockEntities.generate();
+		ModFluids.generate();
 		ModItems.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);

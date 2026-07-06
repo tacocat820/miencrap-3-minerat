@@ -6,7 +6,10 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.BlockGetter;
@@ -49,8 +52,13 @@ public class DustFallingBlock extends FallingBlock {
     @Override
     protected void tick(final BlockState state, final ServerLevel level, final BlockPos pos, final RandomSource random) {
         if (isFree(level.getBlockState(pos.below())) && pos.getY() >= level.getMinY()) {
-            FallingBlockEntity entity = FallingBlockEntity.fall(level, pos, state);
-            this.falling(entity);
+            if (! isFree(level.getBlockState(pos.below().below()))) {
+                level.removeBlock(pos, false);
+                level.setBlock(pos.below(), state, UPDATE_ALL);
+            } else {
+                FallingBlockEntity entity = FallingBlockEntity.fall(level, pos, state);
+                this.falling(entity);
+            }
         } else {
             BlockPos fallpos = getFallPos(level, pos);
             if (fallpos != null) {
@@ -60,31 +68,9 @@ public class DustFallingBlock extends FallingBlock {
                 // this.falling(entity);
                 level.removeBlock(pos, false);
                 level.setBlock(fallpos, state, UPDATE_ALL);
+                ParticleUtils.spawnParticleBelow(level, pos, random, new BlockParticleOption(ParticleTypes.FALLING_DUST, state));
                 //level.destroyBlock(pos, false);
             }
         }
     }
-
-    // @Override
-    // protected BlockState updateShape(
-    //     final BlockState state,
-    //     final LevelReader level,
-    //     final ScheduledTickAccess ticks,
-    //     final BlockPos pos,
-    //     final Direction directionToNeighbour,
-    //     final BlockPos neighbourPos,
-    //     final BlockState neighbourState,
-    //     final RandomSource random
-    // ) {
-    //     Direction dir = getUnstableDirection(level, pos);
-    //     if (dir == null) {
-    //         return super.defaultBlockState();
-    //     } else {
-    //         //return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
-    //         FallingBlockEntity entity = FallingBlockEntity.fall((Level) level, pos, state);
-    //         return super.defaultBlockState();
-    //     }
-        
-    //     //
-    // }
 }
