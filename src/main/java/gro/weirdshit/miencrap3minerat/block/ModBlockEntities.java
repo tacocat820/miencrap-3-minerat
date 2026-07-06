@@ -10,7 +10,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class BlockEntities {
+public class ModBlockEntities {
   public static final BlockEntityType<SpecificWatercoolerBlockEntity> WATERCOOLER_BLOCK_ENTITY_TYPE =
   register("counter", SpecificWatercoolerBlockEntity::new, ModBlocks.WATERCOOLER.block);
 

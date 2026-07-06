@@ -2,7 +2,7 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 
 import com.mojang.serialization.MapCodec;
 
-import gro.weirdshit.miencrap3minerat.block.BlockEntities;
+import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -36,7 +36,7 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
 
 
     public SpecificWatercoolerBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.WATERCOOLER_BLOCK_ENTITY_TYPE, pos, state);
+        super(ModBlockEntities.WATERCOOLER_BLOCK_ENTITY_TYPE, pos, state);
     }
 
     private int clicks = 0;
