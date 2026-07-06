@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import gro.weirdshit.miencrap3minerat.block.BlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
@@ -38,6 +39,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		LOGGER.info("Hello Fabric world & MIENCRAP 3 MINERAT!!");
 
 		ModBlocks.generate();
+		ModFluids.generate();
 		BlockEntities.generate();
 		ModItems.generate();
 
