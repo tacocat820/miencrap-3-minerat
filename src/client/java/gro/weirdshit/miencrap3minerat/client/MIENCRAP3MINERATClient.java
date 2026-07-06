@@ -47,6 +47,16 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.opaque(0xff0000))
 			)
 		);
+		FluidRenderingRegistry.register(
+			ModFluids.EARS_STILL,
+			ModFluids.EARS_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/ear")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/ear")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/ear")),
+					BlockTintSources.constant(ARGB.white(0))
+			)
+		);
 	}
 	
 }
