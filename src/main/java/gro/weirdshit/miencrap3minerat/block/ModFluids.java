@@ -5,7 +5,7 @@ import java.util.function.Function;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 
 import gro.weirdshit.miencrap3minerat.block.fluid.AcidFluid;
-
+import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -62,6 +62,10 @@ public class ModFluids {
 	public static final FlowingFluid ACID_FLOWING = register("flowing_acid", new AcidFluid.Flowing());
 	public static final FlowingFluid ACID_STILL = register("acid", new AcidFluid.Source());
     public static RegisteredBlock ACID = new GenericFluid("acid",(props) -> new LiquidBlock(ModFluids.ACID_STILL, props)).reg();
+
+	public static final FlowingFluid BLOOD_FLOWING = register("flowing_blood", new BloodFluid.Flowing());
+	public static final FlowingFluid BLOOD_STILL = register("blood", new BloodFluid.Source());
+    public static RegisteredBlock BLOOD = new GenericFluid("blood",(props) -> new LiquidBlock(ModFluids.BLOOD_STILL, props)).reg();
 
     public static void generate() {}
 }
