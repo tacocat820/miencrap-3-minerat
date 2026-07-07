@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.client;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		ModPackets.generate();
 		MusicSounds.initialize();
 		MenuScreens.register(ModMenuType.WATERCOOLER, WatercoolerScreen::new);
 		ClientTickEvents.START_CLIENT_TICK.register(m -> Music.onClientTick(m)); 

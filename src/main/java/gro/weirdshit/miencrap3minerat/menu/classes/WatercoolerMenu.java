@@ -1,6 +1,7 @@
 package gro.weirdshit.miencrap3minerat.menu.classes;
 
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -24,6 +25,8 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 
 	private final Container container;
 
+	private final BucketSlot bucketSlot; 
+
 	// Client-side constructor
 	public WatercoolerMenu(final int containerId, final Inventory inventory) {
 		this(containerId, inventory, new SimpleContainer(SLOTS_COUNT));
@@ -38,39 +41,22 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 		// Some containers do custom logic when opened by a player.
 		container.startOpen(inventory.player);
 
-		// Add the slots for our container in a 3x3 grid.
-		this.add3x3GridSlots();
-
-		// Add the player inventory slots.
-		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
-	}
-
-	private void add3x3GridSlots() {
-		this.addSlot(new Slot(
+		
+		this.bucketSlot = new BucketSlot(
 			this.container,
 			0,
 			8, 7
-		));
-		this.addSlot(new Slot(
-			this.container,
-			1,
-			128, 8
-		));
-		this.addSlot(new Slot(
-			this.container,
-			2,
-			152, 8
-		));
-		this.addSlot(new Slot(
-			this.container,
-			3,
-			103, 61
-		));
-		this.addSlot(new Slot(
+		);
+		this.addSlot(bucketSlot);
+
+		this.addSlot(new ResultSlot(
 			this.container,
 			4,
 			140, 57
 		));
+
+		// Add the player inventory slots.
+		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
 	}
 
 	@Override
@@ -115,5 +101,42 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 	public void removed(Player player) {
 		super.removed(player);
 		this.container.stopOpen(player);
+	}
+
+	public void putBucketSlot() {
+		this.bucketSlot.remove(1);
+	}
+
+
+	private static class BucketSlot extends Slot {
+		public BucketSlot(final Container container, final int slot, final int x, final int y) {
+			super(container, slot, x, y);
+		}
+
+		@Override
+		public boolean mayPlace(final ItemStack itemStack) {
+			//return itemStack.is(ItemTags.);
+			return true;
+		}
+
+		@Override
+		public int getMaxStackSize() {
+			return 1;
+		}
+	}
+	private static class ResultSlot extends Slot {
+		public ResultSlot(final Container container, final int slot, final int x, final int y) {
+			super(container, slot, x, y);
+		}
+
+		@Override
+		public boolean mayPlace(final ItemStack itemStack) {
+			return false;
+		}
+
+		@Override
+		public int getMaxStackSize() {
+			return 1;
+		}
 	}
 }
