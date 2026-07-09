@@ -21,7 +21,9 @@ import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -34,6 +36,23 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
     private final NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
 
 
+    public enum WaterType {
+        UNKNOWN, WATER, LAVA;
+
+        public static <T extends Item> WaterType fromItem(T item) {
+            if (item.equals(Items.WATER_BUCKET)) return WaterType.WATER;
+            if (item.equals(Items.LAVA_BUCKET)) return WaterType.LAVA;
+            return WaterType.UNKNOWN;
+        }
+        public static WaterType fromItemStack(ItemStack item) {
+            if (item.is(Items.WATER_BUCKET)) return WaterType.WATER;
+            if (item.is(Items.LAVA_BUCKET)) return WaterType.LAVA;
+            return WaterType.UNKNOWN;
+        }
+    }
+
+    public boolean[] lock = {false};
+    public WaterType type = WaterType.UNKNOWN;
 
     public SpecificWatercoolerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.WATERCOOLER_BLOCK_ENTITY_TYPE, pos, state);
@@ -49,11 +68,22 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
+
+	    this.lock[0] = input.getBooleanOr("lock", false);
+        int liquidType = input.getIntOr("liquid_type", 0);
+
+        if (liquidType <= WaterType.values().length)
+            this.type = WaterType.values()[liquidType];
+        else 
+            this.type = WaterType.UNKNOWN; 
+	    
         ContainerHelper.loadAllItems(input, this.items);
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
+        output.putBoolean("lock", this.lock[0]);
+        output.putInt("liquid_type", this.type.ordinal());
         ContainerHelper.saveAllItems(output, this.items);
         super.saveAdditional(output);
     }

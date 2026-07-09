@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.menu.classes;
 
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
@@ -31,6 +32,14 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 	public WatercoolerMenu(final int containerId, final Inventory inventory) {
 		this(containerId, inventory, new SimpleContainer(SLOTS_COUNT));
 	}
+	private boolean[] getLock() {
+		if (container instanceof SpecificWatercoolerBlockEntity watercoolerBlockEntity) {
+			return watercoolerBlockEntity.lock;
+		} else {
+			boolean[] tmp = {false};
+			return tmp;
+		}
+	}
 
 	// Server-side constructor
 	public WatercoolerMenu(final int containerId, final Inventory inventory, final Container container) {
@@ -38,11 +47,14 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 		checkContainerSize(container, SLOTS_COUNT);
 		this.container = container;
 
+		
+
 		// Some containers do custom logic when opened by a player.
 		container.startOpen(inventory.player);
 
 		
 		this.bucketSlot = new BucketSlot(
+			this.getLock(),
 			this.container,
 			0,
 			8, 7
@@ -104,19 +116,25 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 	}
 
 	public void putBucketSlot() {
-		this.bucketSlot.remove(1);
+		this.getLock()[0] = true;
 	}
 
 
 	private static class BucketSlot extends Slot {
-		public BucketSlot(final Container container, final int slot, final int x, final int y) {
+		private boolean[] lock;
+
+		public BucketSlot(boolean[] lock, final Container container, final int slot, final int x, final int y) {
+			this.lock = lock;
 			super(container, slot, x, y);
 		}
 
 		@Override
 		public boolean mayPlace(final ItemStack itemStack) {
-			//return itemStack.is(ItemTags.);
-			return true;
+			return !this.lock[0] && SpecificWatercoolerBlockEntity.WaterType.fromItemStack(itemStack) != SpecificWatercoolerBlockEntity.WaterType.UNKNOWN;
+		}
+		@Override
+		public boolean mayPickup(final Player player) {
+			return !this.lock[0];
 		}
 
 		@Override

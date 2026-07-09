@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.client.screens;
 
+import gro.weirdshit.miencrap3minerat.client.widgets.WatercoolerWaterWidget;
 import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -37,6 +38,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 	private static final Identifier CANCEL_SPRITE = Identifier.withDefaultNamespace("container/beacon/cancel");
 
 	private final List<WatercoolerScreen.WatercoolerButton> buttons = Lists.newArrayList();
+	private static boolean variant = false;
 
 	private interface WatercoolerButton {
 		void updateStatus(final int levels);
@@ -51,6 +53,9 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 		this.addButton(new WatercoolerOkButton(this.leftPos + 102, this.topPos + 60));
 		this.addButton(new WatercoolerPutButton(this.leftPos + 28, this.topPos + 6));
 		
+		WatercoolerWaterWidget watercoolerWaterWidget = new WatercoolerWaterWidget(this.leftPos + 8, this.topPos + 7 + 43, 90, 20);
+		this.addRenderableWidget(watercoolerWaterWidget);
+
 	}
 	private <T extends AbstractWidget & WatercoolerButton> void addButton(final T beaconButton) {
 		this.addRenderableWidget(beaconButton);
@@ -146,6 +151,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 				watercoolerSpriteScreenButton.setSelected(false);
 			}
 			this.setSelected(true);
+			variant = false;
 		}
 
 		@Override
@@ -173,6 +179,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 				watercoolerSpriteScreenButton.setSelected(false);
 			}
 			this.setSelected(true);
+			variant = true;
 		}
 
 		@Override
@@ -210,6 +217,9 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 
 		@Override
 		public void onPress(final InputWithModifiers input) {
+
+			WatercoolerPutPayload payload = new WatercoolerPutPayload(BlockPos.ZERO);
+			ClientPlayNetworking.send(payload);
 			//WatercoolerScreen.this.minecraft
 			//.getConnection()
 			//.send(new ServerboundSetBeaconPacket(Optional.ofNullable(WatercoolerScreen.this.primary), Optional.ofNullable(WatercoolerScreen.this.secondary)));
