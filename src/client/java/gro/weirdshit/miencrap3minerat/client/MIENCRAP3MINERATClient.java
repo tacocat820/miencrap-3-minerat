@@ -3,7 +3,9 @@ package gro.weirdshit.miencrap3minerat.client;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.client.entity.MiniGolemEntityRenderer;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
+import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderingRegistry;
@@ -15,6 +17,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.entity.DisplayRenderer.BlockDisplayRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
@@ -59,6 +62,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.white(0))
 			)
 		);
+
+		//EntityRenderers.register(ModEntityTypes.MINI_GOLEM, MiniGolemEntityRenderer::new);
 	}
 	
 }
