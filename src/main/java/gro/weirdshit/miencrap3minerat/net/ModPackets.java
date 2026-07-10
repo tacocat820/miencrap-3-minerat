@@ -36,7 +36,7 @@ public class ModPackets {
                     return;
                 }
 
-                menu.putBucketSlot();
+                menu.use(payload.variant());
             }
         });
     }

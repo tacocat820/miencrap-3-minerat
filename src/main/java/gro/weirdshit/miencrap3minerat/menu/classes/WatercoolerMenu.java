@@ -1,12 +1,15 @@
 package gro.weirdshit.miencrap3minerat.menu.classes;
 
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity.WaterType;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
@@ -25,12 +28,13 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 	private static final int INVENTORY_START_Y = 84;
 
 	private final Container container;
+	private final ContainerData data;
 
 	private final BucketSlot bucketSlot; 
 
 	// Client-side constructor
 	public WatercoolerMenu(final int containerId, final Inventory inventory) {
-		this(containerId, inventory, new SimpleContainer(SLOTS_COUNT));
+		this(containerId, inventory, new SimpleContainer(SLOTS_COUNT), new SimpleContainerData(1));
 	}
 	private boolean[] getLock() {
 		if (container instanceof SpecificWatercoolerBlockEntity watercoolerBlockEntity) {
@@ -42,11 +46,11 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 	}
 
 	// Server-side constructor
-	public WatercoolerMenu(final int containerId, final Inventory inventory, final Container container) {
+	public WatercoolerMenu(final int containerId, final Inventory inventory, final Container container, final ContainerData data) {
 		super(ModMenuType.WATERCOOLER, containerId);
 		checkContainerSize(container, SLOTS_COUNT);
 		this.container = container;
-
+		this.data = data;
 		
 
 		// Some containers do custom logic when opened by a player.
@@ -69,6 +73,7 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 
 		// Add the player inventory slots.
 		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
+		this.addDataSlots(data);
 	}
 
 	@Override
@@ -117,6 +122,27 @@ public class WatercoolerMenu extends AbstractContainerMenu {
 
 	public void putBucketSlot() {
 		this.getLock()[0] = true;
+
+		SpecificWatercoolerBlockEntity.WaterType waterType = WaterType.fromItemStack(this.container.getItem(0));
+
+		this.data.set(0, waterType.ordinal());
+		if (container instanceof SpecificWatercoolerBlockEntity watercoolerBlockEntity) {
+			watercoolerBlockEntity.type = waterType;
+		}
+	}
+	public void use(boolean variant) {
+		if (getWaterType() == WaterType.UNKNOWN) return;
+
+		
+		if (container instanceof SpecificWatercoolerBlockEntity watercoolerBlockEntity)
+			watercoolerBlockEntity.milk();
+		
+		this.slots.get(1).set(new ItemStack(variant ? getWaterType().hotItem : getWaterType().coldItem));
+	}
+
+	public WaterType getWaterType() {
+		return WaterType.values()[this.data.get(0)];
+		
 	}
 
 

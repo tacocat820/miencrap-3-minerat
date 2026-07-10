@@ -11,27 +11,28 @@ public class WatercoolerWaterWidget extends AbstractWidget {
 	}
 
 	private double offset = 0;
+	public int startColor = 0xA0345FDA;
+	public int endColor = 0xA0344875; 
+	public double esc = 100; 
 
 	@Override
 	protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
 		// We'll just draw a simple rectangle for now.
 		// x1, y1, x2, y2, startColor, endColor
-		int startColor = 0xA0345FDA; // Green#345FDA
-		int endColor = 0xA0344875; // Blue#344875
 		
 		offset += 0.1; offset %= 750;
         
 		for (int i = 0; i < this.width; ++i) {
             int yOffset = (int)(Math.sin((double)(i + offset) / 12.0) * 10);
 			//int yOffset = 0;
-		    graphics.fillGradient(getX() + i, getY() + yOffset, getX() + i + 1, getY() + this.height, startColor, endColor);
+		    graphics.fillGradient(getX() + i, Math.min(getY() + yOffset + (int)esc, getY() + this.height), getX() + i + 1, getY() + this.height, startColor, endColor);
 
         } 
         
 		for (int i = 0; i < this.width; ++i) {
             int yOffset = (int)(Math.sin((double)(i - offset) / 12.0) * 10);
 			//int yOffset = 0;
-		    graphics.fillGradient(getX() + i, getY() + yOffset, getX() + i + 1, getY() + this.height, startColor, endColor);
+		    graphics.fillGradient(getX() + i, Math.min(getY() + yOffset + (int)esc, getY() + this.height), getX() + i + 1, getY() + this.height, startColor, endColor);
 
         } 
 

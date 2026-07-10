@@ -1,8 +1,10 @@
 package gro.weirdshit.miencrap3minerat.client.screens;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.widgets.WatercoolerWaterWidget;
 import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerUsePayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractButton;
@@ -37,8 +39,12 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 	private static final Identifier OK_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/watercooler/ok");
 	private static final Identifier CANCEL_SPRITE = Identifier.withDefaultNamespace("container/beacon/cancel");
 
+	private WatercoolerMenu menu;
+
 	private final List<WatercoolerScreen.WatercoolerButton> buttons = Lists.newArrayList();
 	private static boolean variant = false;
+
+	private WatercoolerWaterWidget watercoolerWaterWidget;
 
 	private interface WatercoolerButton {
 		void updateStatus(final int levels);
@@ -53,7 +59,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 		this.addButton(new WatercoolerOkButton(this.leftPos + 102, this.topPos + 60));
 		this.addButton(new WatercoolerPutButton(this.leftPos + 28, this.topPos + 6));
 		
-		WatercoolerWaterWidget watercoolerWaterWidget = new WatercoolerWaterWidget(this.leftPos + 8, this.topPos + 7 + 43, 90, 20);
+		watercoolerWaterWidget = new WatercoolerWaterWidget(this.leftPos + 8, this.topPos + 7 + 43, 90, 20);
 		this.addRenderableWidget(watercoolerWaterWidget);
 
 	}
@@ -65,6 +71,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 	public WatercoolerScreen(WatercoolerMenu abstractContainerMenu, Inventory inventory, Component component) {
 		super(abstractContainerMenu, inventory, component);
 		// Center the title
+		this.menu = abstractContainerMenu;
 		this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 	}
 
@@ -72,6 +79,21 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
 		super.extractBackground(graphics, mouseX, mouseY, delta);
 		graphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight, BACKGROUND_TEXTURE_WIDTH, BACKGROUND_TEXTURE_HEIGHT);
+
+		//MIENCRAP3MINERAT.LOGGER.info(this.menu.getWaterType().toString());
+		switch (this.menu.getWaterType()) {
+			case UNKNOWN:
+				if (watercoolerWaterWidget.esc < 100) watercoolerWaterWidget.esc *= 1.2; 	
+
+				break;
+		
+			default:
+				if (watercoolerWaterWidget.esc > 2) watercoolerWaterWidget.esc /= 1.2; 
+				watercoolerWaterWidget.startColor = this.menu.getWaterType().startColor;
+				watercoolerWaterWidget.endColor = this.menu.getWaterType().endColor;
+				
+				break;
+		}
 	}
 
 	private abstract static class WatercoolerScreenButton extends AbstractButton implements WatercoolerButton {
@@ -218,7 +240,7 @@ public class WatercoolerScreen extends AbstractContainerScreen<WatercoolerMenu> 
 		@Override
 		public void onPress(final InputWithModifiers input) {
 
-			WatercoolerPutPayload payload = new WatercoolerPutPayload(BlockPos.ZERO);
+			WatercoolerUsePayload payload = new WatercoolerUsePayload(variant);
 			ClientPlayNetworking.send(payload);
 			//WatercoolerScreen.this.minecraft
 			//.getConnection()

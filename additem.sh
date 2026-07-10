@@ -5,7 +5,7 @@ read -r -p "> Enter item(s), space as splitter: " items_names
 resources_PATH="src/client/resources"
 
 for itemname in $items_names; do
-  jq -n --arg model "miencrap3minerat:block/$itemname" '{
+  jq -n --arg model "miencrap3minerat:item/$itemname" '{
     "model": {
       "type":"model",
       "model": $model
