@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.client.entity.MiniGolemEntityRenderer;
+import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
@@ -29,7 +30,11 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		ModPackets.generate();
 		MusicSounds.initialize();
+
+		//MENUS
 		MenuScreens.register(ModMenuType.WATERCOOLER, WatercoolerScreen::new);
+		MenuScreens.register(ModMenuType.CRAFTING_TABLE_2, CTableScreen::new);
+		
 		ClientTickEvents.START_CLIENT_TICK.register(m -> Music.onClientTick(m)); 
 
 		FluidRenderingRegistry.register(
