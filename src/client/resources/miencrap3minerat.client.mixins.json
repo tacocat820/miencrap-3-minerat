@@ -3,7 +3,8 @@
 	"package": "gro.weirdshit.miencrap3minerat.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-		"ExampleClientMixin"
+		"ExampleClientMixin",
+		"Sky"
 	],
 	"injectors": {
 		"defaultRequire": 1

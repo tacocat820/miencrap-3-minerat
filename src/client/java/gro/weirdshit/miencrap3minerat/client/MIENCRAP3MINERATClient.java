@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.entity.DisplayRenderer.BlockDisplayRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.state.level.SkyRenderState;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
@@ -67,6 +68,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.white(0))
 			)
 		);
+		
 
 		//EntityRenderers.register(ModEntityTypes.MINI_GOLEM, MiniGolemEntityRenderer::new);
 	}
