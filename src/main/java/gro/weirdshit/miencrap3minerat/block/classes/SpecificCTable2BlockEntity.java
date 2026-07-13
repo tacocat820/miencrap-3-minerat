@@ -26,7 +26,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public class SpecificCTable2BlockEntity extends BlockEntity implements ImplementedContainer, MenuProvider {
-	public static final int CONTAINER_SIZE = 3 * 3 + 1;
+    private static final int SLOTS_ROWS = 3;
+	private static final int SLOTS_COLUMNS = 4;
+    public static final int CONTAINER_SIZE = SLOTS_ROWS * SLOTS_COLUMNS + 1;
 	private final NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
 
 
@@ -75,7 +77,7 @@ public class SpecificCTable2BlockEntity extends BlockEntity implements Implement
 
 	@Override
 	public Component getDisplayName() {
-		return Component.translatable("block.example-mod.dirt_chest");
+		return Component.translatable("block.miencrap3minerat.crafting_table_2");
 	}
 
     @Override

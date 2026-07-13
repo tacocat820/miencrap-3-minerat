@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.menu.classes;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class CTableMenu extends AbstractContainerMenu {
 	private static final int SLOTS_ROWS = 3;
-	private static final int SLOTS_COLUMNS = 3;
+	private static final int SLOTS_COLUMNS = 4;
 	private static final int SLOTS_COUNT = SLOTS_ROWS * SLOTS_COLUMNS + 1;
 
 	private static final int CONTAINER_START = 0;
@@ -24,10 +25,12 @@ public class CTableMenu extends AbstractContainerMenu {
 	private static final int INVENTORY_START_X = 8;
 	private static final int INVENTORY_START_Y = 84;
 
-	private static final int RESULT_SLOT_X = 139;
-	private static final int RESULT_SLOT_Y = 39;
+	private static final int RESULT_SLOT_X = 138;
+	private static final int RESULT_SLOT_Y = 40;
 
 	private final Container container;
+
+	private ResultSlot resultSlot;
 
 	// Client-side constructor
 	public CTableMenu(final int containerId, final Inventory inventory) {
@@ -48,6 +51,8 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		// Add the player inventory slots.
 		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
+
+
 	}
 
 	private void addSlots() {
@@ -57,19 +62,18 @@ public class CTableMenu extends AbstractContainerMenu {
 			for (int x = 0; x < SLOTS_COLUMNS; x++) {
 				slot++;
 				this.addSlot(new Slot(
-								this.container,
-								slot,
-								CONTAINER_START_X + x * SLOT_SIZE,
-								CONTAINER_START_Y + y * SLOT_SIZE
+					this.container,
+					slot,
+					CONTAINER_START_X + x * SLOT_SIZE,
+					CONTAINER_START_Y + y * SLOT_SIZE
 				));
 			}
 		}
-		//result v v
-		slot++;
-		this.addSlot(
-			new Slot(this.container, slot, RESULT_SLOT_X, RESULT_SLOT_Y)
-		);
 
+		//RESULT SLOT!!
+		slot++;
+		this.resultSlot = new ResultSlot(this.container, slot, RESULT_SLOT_X, RESULT_SLOT_Y);
+		this.addSlot(this.resultSlot);
 	}
 
 	@Override
@@ -103,6 +107,35 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 
 		return clicked;
+	}
+
+	public class ResultSlot extends Slot {
+		public ResultSlot(Container container, int slot, int x, int y) {
+			super(container, slot, x, y);
+		}
+
+		@Override
+		public void onTake(final Player player, final ItemStack carried) {
+			this.setChanged();
+			MIENCRAP3MINERAT.LOGGER.warn("кошка: МЯЯЯЯУУУ");
+			//this.;
+		}
+
+		@Override
+		public boolean mayPlace(final ItemStack itemStack) {
+			return false;
+		}
+	}
+
+	@Override
+	public void slotsChanged(final Container container) {
+
+		for (int slot = 0; slot < 13; slot++) {
+			
+		}
+		this.slots.get(resultSlot.index).set( this.slots.get(0).getItem() );
+
+		this.broadcastChanges();
 	}
 
 	@Override
