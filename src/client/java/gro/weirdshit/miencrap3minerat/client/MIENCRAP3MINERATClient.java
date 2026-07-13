@@ -17,6 +17,7 @@ import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.DisplayRenderer.BlockDisplayRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -38,6 +39,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		
 		ClientTickEvents.START_CLIENT_TICK.register(m -> Music.onClientTick(m)); 
 
+		//BlockRenderLayerMap.putBlock(ModBlocks.red, ChunkSectionLayer.CUTOUT);
 		FluidRenderingRegistry.register(
 			ModFluids.ACID_STILL,
 			ModFluids.ACID_FLOWING,
