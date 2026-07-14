@@ -1,0 +1,14 @@
+{
+    "grid": {
+        "cols":2,
+        "rows":2,
+        "grid": [
+            {"name": "minecraft:apple", "count": 1},
+            {"name": "minecraft:apple", "count": 1},
+            
+            {"name": "minecraft:apple", "count": 1},
+            {"name": "minecraft:apple", "count": 1}
+        ]
+    },
+    "result": {"name": "minecraft:carrot", "count": 5}
+}
