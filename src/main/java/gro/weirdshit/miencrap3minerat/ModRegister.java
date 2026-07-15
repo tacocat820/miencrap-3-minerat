@@ -90,7 +90,39 @@ public class ModRegister {
         );
     }
 
-    public class sus {
-    
+    private static <T> void generate_json_server_data(Class<T> class_type, ArrayList<T> REGISTER_ARRAY, String data_path ) {
+        ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, data_path), new PreparableReloadListener() {
+            @Override
+            public CompletableFuture<Void> reload(SharedState currentReload, Executor taskExecutor, PreparationBarrier preparationBarrier, Executor reloadExecutor) {
+                CompletableFuture<List<T>> dataList = CompletableFuture.supplyAsync(() -> {
+                    var res_data = new ArrayList<T>();
+                    var resources = currentReload.resourceManager().listResources(data_path, path -> path.toString().endsWith(".json"));
+
+                    MIENCRAP3MINERAT.LOGGER.info("shitty");
+
+                    resources.forEach((i, resource) -> {
+                        T registered = classFromResource(resource, class_type);
+                        //MIENCRAP3MINERAT.LOGGER.info("resource " + registered.result.name);
+
+                        res_data.add(registered);
+                    });
+                    MIENCRAP3MINERAT.LOGGER.info("addeded");
+
+                    return res_data;
+                }, taskExecutor);
+
+                CompletableFuture<List<T>> applyFuture = dataList.thenCompose(preparationBarrier::wait); 
+                /*
+                preparedCompletableFuture.thenAccept((data) -> {
+                    RECIPES_2.add(data);
+                }); */
+
+                return applyFuture.thenRunAsync(() -> {
+                    REGISTER_ARRAY.clear();
+                    REGISTER_ARRAY.addAll(applyFuture.join());
+                    MIENCRAP3MINERAT.LOGGER.info("loaded " + REGISTER_ARRAY.size() + " '" + class_type + "'");
+                }, reloadExecutor);
+            }}
+        );
     }
 }
