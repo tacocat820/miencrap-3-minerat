@@ -7,7 +7,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.stream.Stream;
 
 import com.google.gson.Gson;
@@ -18,13 +21,17 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftRecipe;
+import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
+
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 
 public class ModRegister {
     private static final Identifier fabricid = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "sus");
@@ -46,28 +53,41 @@ public class ModRegister {
     }
 
     public static void generate() {
-        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+        
+        ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "recipes2"), new PreparableReloadListener() {
 
             @Override
-            public Identifier getFabricId() {
-                return fabricid;
-            }
+            public CompletableFuture<Void> reload(SharedState currentReload, Executor taskExecutor, PreparationBarrier preparationBarrier, Executor reloadExecutor) {
+                CompletableFuture<List<CraftRecipe>> recipeList = CompletableFuture.supplyAsync(() -> {
+                    var recipes = new ArrayList<CraftRecipe>();
+                    var resources = currentReload.resourceManager().listResources("recipes2", path -> path.toString().endsWith(".json"));
 
-            @Override
-            public void onResourceManagerReload(ResourceManager resourceManager) {
-                for (Identifier id : resourceManager.listResources("recipes2", path -> path.toString().endsWith(".json")).keySet()) {
-                    Resource res = resourceManager.getResource(id).get();
-                    ////
-                    CTableMenu.CraftRecipe registered = classFromResource(res, CTableMenu.CraftRecipe.class);
-                    ////
-                    if (registered != null) {
-                        RECIPES_2.add(registered);
-                        //
-                        MIENCRAP3MINERAT.LOGGER.info("Recipe for crafting table 2 registered! at "+id);
-                        registered.grid.display();
-                    } else { MIENCRAP3MINERAT.LOGGER.error("Recipe parsing error! at "+id); }
-                }
-            }});
+                    MIENCRAP3MINERAT.LOGGER.info("shitty");
+
+                    resources.forEach((i, resource) -> {
+                        CTableMenu.CraftRecipe registered = classFromResource(resource, CTableMenu.CraftRecipe.class);
+                        MIENCRAP3MINERAT.LOGGER.info("resource " + registered.result.name);
+
+                        recipes.add(registered);
+                    });
+                    MIENCRAP3MINERAT.LOGGER.info("addeded");
+
+                    return recipes;
+                }, taskExecutor);
+
+                CompletableFuture<List<CraftRecipe>> applyFuture = recipeList.thenCompose(preparationBarrier::wait); 
+                /*
+                preparedCompletableFuture.thenAccept((data) -> {
+                    RECIPES_2.add(data);
+                }); */
+
+                return applyFuture.thenRunAsync(() -> {
+                    RECIPES_2.clear();
+                    RECIPES_2.addAll(applyFuture.join());
+                    MIENCRAP3MINERAT.LOGGER.info("loaded " + RECIPES_2.size() + " recipes");
+                }, reloadExecutor);
+            }}
+        );
     }
 
     public class sus {

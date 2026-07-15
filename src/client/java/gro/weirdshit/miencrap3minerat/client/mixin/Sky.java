@@ -55,10 +55,11 @@ public class Sky {
         Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
         modelViewStack.pushMatrix();
         modelViewStack.mul(poseStack.last().pose());
-        modelViewStack.translate(0.0F, 50.0F, 0.0F);
-        modelViewStack.scale(60.0F, 60.0F, 60.0F);
+        modelViewStack.translate(0.0F, 100.0F, 0.0F);
+        modelViewStack.scale(10.0F, 10.0F, 10.0F);
+        modelViewStack.rotate(1.0f, 1.0f, 0.0f, 0.0f);
         GpuBufferSlice dynamicTransforms = RenderSystem.getDynamicUniforms()
-            .writeTransform(modelViewStack, new Vector4f(3.0F, 3.0F, 3.0F, rainBrightness), new Vector3f(), new Matrix4f());
+            .writeTransform(modelViewStack, new Vector4f(0.0F, 0.0F, 0.0F, 0.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Matrix4f());
         GpuTextureView color = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
         GpuTextureView depth = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
         GpuBuffer indexBuffer = this.quadIndices.getBuffer(6);
@@ -70,7 +71,7 @@ public class Sky {
         try (RenderPass renderPass = RenderSystem.getDevice()
             .createCommandEncoder()
             .createRenderPass(() -> "Sky sun", color, OptionalInt.empty(), depth, OptionalDouble.empty())) {
-            renderPass.setPipeline(RenderPipelines.CELESTIAL);
+            renderPass.setPipeline(RenderPipelines.SKY);
             RenderSystem.bindDefaultUniforms(renderPass);
             renderPass.setUniform("DynamicTransforms", dynamicTransforms);
             renderPass.bindTexture("Sampler0", SkyMod.sunTexture.getTextureView(), SkyMod.sunTexture.getSampler());
