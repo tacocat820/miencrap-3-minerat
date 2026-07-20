@@ -53,6 +53,7 @@ public class Sky {
     @Inject(at = @At("HEAD"), method = "renderSun")
     private void renderSun(final float rainBrightness, final PoseStack poseStack, CallbackInfo info) {
     
+        /*
         Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
         modelViewStack.pushMatrix();
         modelViewStack.mul(poseStack.last().pose());
@@ -83,7 +84,7 @@ public class Sky {
             renderPass.drawIndexed(0, 0, 6, 4);
         }
 
-        modelViewStack.popMatrix();
+        modelViewStack.popMatrix(); */
     
     }
 }

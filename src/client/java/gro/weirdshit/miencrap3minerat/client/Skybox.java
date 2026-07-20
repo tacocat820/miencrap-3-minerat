@@ -43,8 +43,9 @@ public class Skybox {
 		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/skybox_cube"))
         .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/skybox_cube"))
         .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/skybox_cube"))
-        .withVertexFormat(DefaultVertexFormat.BLOCK, Mode.QUADS)
+        .withVertexFormat(DefaultVertexFormat.POSITION_TEX_COLOR, Mode.QUADS)
         .withDepthStencilState(new DepthStencilState(CompareOp.LESS_THAN_OR_EQUAL, true, -3.0f, -3.0f))
+        .withCull(false)
         .build()
     );
 
@@ -109,39 +110,39 @@ public class Skybox {
     private static void renderFilledBox(Matrix4fc positionMatrix, BufferBuilder buffer, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float red, float green, float blue, float alpha) {
         // Front Face (reversed)
         buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
         // Back face (reversed)
         buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
         // Left face (reversed)
         buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
         // Right face (reversed)
         buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
         // Top face (reversed)
         buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
         // Bottom face (reversed)
         buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
     }
 
     private static void drawFilledThroughWalls(Minecraft client, @SuppressWarnings("SameParameterValue") RenderPipeline pipeline) {
@@ -213,9 +214,9 @@ public class Skybox {
 			// Sampler0 is used for texture inputs in vertices
 			// renderPass.bindTexture("Sampler0", textureSetup.texure0(), textureSetup.sampler0());
 
-			renderPass.setVertexBuffer(0, vertices);
 			renderPass.setIndexBuffer(indices, indexType);
             renderPass.bindTexture("Sampler0", skyboxTexture.getTextureView(), skyboxTexture.getSampler());
+			renderPass.setVertexBuffer(0, vertices);
 
 			// The base vertex is the starting index when we copied the data into the vertex buffer divided by vertex size
 			//noinspection ConstantValue
