@@ -63,5 +63,5 @@ public class MusicSounds {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);
 		return Registry.register(BuiltInRegistries.SOUND_EVENT, identifier, SoundEvent.createVariableRangeEvent(identifier));
 	}
-    public static void initialize() {}
+    public static void generate() {}
 }

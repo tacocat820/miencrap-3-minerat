@@ -6,6 +6,7 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.client.entity.MiniGolemEntityRenderer;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -31,8 +32,9 @@ import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		MusicSounds.generate();
 		ModPackets.generate();
-		MusicSounds.initialize();
+		Pipelines.generate();
 
 		//MENUS
 		MenuScreens.register(ModMenuType.WATERCOOLER, WatercoolerScreen::new);
@@ -72,8 +74,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			)
 		);
 		
-		LevelRenderEvents.END_EXTRACTION.register(Skybox::extractSkyboxState);
-		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(Skybox::renderAndDrawSkybox);
+		LevelRenderEvents.END_EXTRACTION.register(Skyboxes::extractSkyboxState);
+		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(Skyboxes::renderAndDrawSkybox);
 
 		//EntityRenderers.register(ModEntityTypes.MINI_GOLEM, MiniGolemEntityRenderer::new);
 	}

@@ -28,6 +28,9 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.minecraft.client.Minecraft;
@@ -38,24 +41,18 @@ import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
 
-public class Skybox {
-    private static final RenderPipeline FILLED_THROUGH_WALLS = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_PROJECTION_SNIPPET)
-		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/skybox_cube"))
-        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/skybox_cube"))
-        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/skybox_cube"))
-        .withVertexFormat(DefaultVertexFormat.POSITION_TEX_COLOR, Mode.QUADS)
-        .withDepthStencilState(new DepthStencilState(CompareOp.LESS_THAN_OR_EQUAL, true, -3.0f, -3.0f))
-        .withSampler("Sampler0")
-        .withCull(false)
-        .build()
-    );
+public class Skyboxes {
 
-    private static final Identifier SKYBOX_TEXTURE = Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky.png");
-    private static AbstractTexture skyboxTexture;
+    private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky.png"));
+    private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
+
+    @SuppressWarnings("unchecked")
+    private static <T extends Skybox> T getCurrentSkybox() {
+        return (T)OVERWORLD_SKYBOX;
+    }
 
     private static SkyboxState skyboxState;
     private static final ByteBufferBuilder ALLOCATOR = new ByteBufferBuilder(RenderType.SMALL_BUFFER_SIZE);
-    private static final Vector4f COLOR_MODULATOR = new Vector4f(1f, 1f, 1f, 1f);
     private static final Vector3f MODEL_OFFSET = new Vector3f();
     private static final Matrix4f TEXTURE_MATRIX = new Matrix4f();
 
@@ -81,14 +78,12 @@ public class Skybox {
 
     public static void renderAndDrawSkybox(LevelRenderContext context) {
         renderSkybox(context);
-        drawFilledThroughWalls(Minecraft.getInstance(), FILLED_THROUGH_WALLS);
+        drawFilledThroughWalls(Minecraft.getInstance(), Pipelines.SKYBOX_DEFAULT_PIPELINE);
     }
 
     public static void renderSkybox(LevelRenderContext context) {
         if (skyboxState == null) return;
-        if (skyboxTexture == null) {
-            skyboxTexture = Minecraft.getInstance().getTextureManager().getTexture(SKYBOX_TEXTURE);
-        }
+        getCurrentSkybox().tick();
 
         PoseStack matrices = context.poseStack();
         Vec3 cam = context.levelState().cameraRenderState.pos;
@@ -97,7 +92,7 @@ public class Skybox {
         matrices.translate(-cam.x, -cam.y, -cam.z);
 
         if (buffer == null) {
-            buffer = new BufferBuilder(ALLOCATOR, FILLED_THROUGH_WALLS.getVertexFormatMode(), FILLED_THROUGH_WALLS.getVertexFormat());
+            buffer = new BufferBuilder(ALLOCATOR, Pipelines.SKYBOX_DEFAULT_PIPELINE.getVertexFormatMode(), Pipelines.SKYBOX_DEFAULT_PIPELINE.getVertexFormat());
         }
 
         renderFilledBox(matrices.last().pose(), buffer, 
@@ -186,6 +181,7 @@ public class Skybox {
     private static void draw(Minecraft client, RenderPipeline pipeline, MeshData builtBuffer, MeshData.DrawState drawParameters, GpuBuffer vertices, VertexFormat format) {
 		GpuBuffer indices;
 		VertexFormat.IndexType indexType;
+        getCurrentSkybox().preRenderPass();
 
 		if (pipeline.getVertexFormatMode() == VertexFormat.Mode.QUADS) {
 			// Sort the quads if there is translucency
@@ -202,11 +198,11 @@ public class Skybox {
 
 		// Actually execute the draw
 		GpuBufferSlice dynamicTransforms = RenderSystem.getDynamicUniforms()
-				.writeTransform(RenderSystem.getModelViewMatrix(), COLOR_MODULATOR, MODEL_OFFSET, TEXTURE_MATRIX);
+				.writeTransform(RenderSystem.getModelViewMatrix(), getCurrentSkybox().getColorModulator(), MODEL_OFFSET, TEXTURE_MATRIX);
 		try (RenderPass renderPass = RenderSystem.getDevice()
 				.createCommandEncoder()
 				.createRenderPass(() -> "miencrap3minerat example render pipeline rendering", client.getMainRenderTarget().getColorTextureView(), OptionalInt.empty(), client.getMainRenderTarget().getDepthTextureView(), OptionalDouble.empty())) {
-			renderPass.setPipeline(pipeline);
+			renderPass.setPipeline(getCurrentSkybox().getPipeline());
 
 			RenderSystem.bindDefaultUniforms(renderPass);
 			renderPass.setUniform("DynamicTransforms", dynamicTransforms);
@@ -216,8 +212,10 @@ public class Skybox {
 			// renderPass.bindTexture("Sampler0", textureSetup.texure0(), textureSetup.sampler0());
 
 			renderPass.setIndexBuffer(indices, indexType);
-            renderPass.bindTexture("Sampler0", skyboxTexture.getTextureView(), skyboxTexture.getSampler());
+            renderPass.bindTexture("Sampler0", getCurrentSkybox().getTexture().getTextureView(), getCurrentSkybox().getTexture().getSampler());
 			renderPass.setVertexBuffer(0, vertices);
+
+            getCurrentSkybox().renderPasses(renderPass);
 
 			// The base vertex is the starting index when we copied the data into the vertex buffer divided by vertex size
 			//noinspection ConstantValue
