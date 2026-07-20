@@ -17,6 +17,7 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MappableRingBuffer;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -33,6 +34,7 @@ public class SkyMod {
     public static AbstractTexture sunTexture = getTexture(Minecraft.getInstance().getTextureManager(), SUN_SPRITE);
 	private static MappableRingBuffer vertexBuffer;
 	public static BufferBuilder buffer;
+    public static float rotate = 0.0f;
 
     public static GpuBuffer sunBuffer = buildSunQuad(); 
 
@@ -44,7 +46,7 @@ public class SkyMod {
 	private static final ByteBufferBuilder ALLOCATOR = new ByteBufferBuilder(RenderType.SMALL_BUFFER_SIZE);
 
     public static GpuBuffer buildSunQuad() {
-        return buildCelestialQuad("Sun quad");
+        return buildCelestialQuad("Sky 2 quad");
     }
 
     private static AbstractTexture getTexture(final TextureManager textureManager, final Identifier location) {
@@ -76,7 +78,7 @@ public class SkyMod {
         VertexFormat format = DefaultVertexFormat.POSITION_COLOR;
 
         GpuBuffer var6;
-        try (ByteBufferBuilder byteBufferBuilder = ByteBufferBuilder.exactlySized(4 * format.getVertexSize())) {
+        try (ByteBufferBuilder byteBufferBuilder = ByteBufferBuilder.exactlySized(8 * format.getVertexSize())) {
             BufferBuilder bufferBuilder = new BufferBuilder(byteBufferBuilder, Mode.QUADS, format);
             bufferBuilder.addVertex(-1.0F, 0.0F, -1.0F).setColor(100, 100, 0, 50);
             bufferBuilder.addVertex(1.0F, 0.0F, -1.0F).setColor(100, 100, 0, 50);

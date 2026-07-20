@@ -52,34 +52,38 @@ public class Sky {
 
     @Inject(at = @At("HEAD"), method = "renderSun")
     private void renderSun(final float rainBrightness, final PoseStack poseStack, CallbackInfo info) {
+    
         Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
         modelViewStack.pushMatrix();
         modelViewStack.mul(poseStack.last().pose());
-        modelViewStack.translate(0.0F, 100.0F, 0.0F);
-        modelViewStack.scale(10.0F, 10.0F, 10.0F);
-        modelViewStack.rotate(1.0f, 1.0f, 0.0f, 0.0f);
+        modelViewStack.translate(0.0f, 100.0f, 0.0f);
+        modelViewStack.scale(300.0F, 30.0F, 300.0F);
+        modelViewStack.rotate(0.0f, 0.0f, 0.0f, 0.0f);
         GpuBufferSlice dynamicTransforms = RenderSystem.getDynamicUniforms()
-            .writeTransform(modelViewStack, new Vector4f(0.0F, 0.0F, 0.0F, 0.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Matrix4f());
+            .writeTransform(modelViewStack, new Vector4f(0.0F, 0.0F, 0.0F, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), new Matrix4f());
         GpuTextureView color = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
         GpuTextureView depth = Minecraft.getInstance().getMainRenderTarget().getDepthTextureView();
-        GpuBuffer indexBuffer = this.quadIndices.getBuffer(6);
+        GpuBuffer indexBuffer = this.quadIndices.getBuffer(12);
 
         SkyMod.poke();
+        SkyMod.rotate += 0.1f;
+        if (SkyMod.rotate > 36.0) SkyMod.rotate = 0;
 
         GpuBuffer vertices = SkyMod.sunBuffer;
 
         try (RenderPass renderPass = RenderSystem.getDevice()
             .createCommandEncoder()
             .createRenderPass(() -> "Sky sun", color, OptionalInt.empty(), depth, OptionalDouble.empty())) {
-            renderPass.setPipeline(RenderPipelines.SKY);
+            renderPass.setPipeline(RenderPipelines.END_PORTAL);
             RenderSystem.bindDefaultUniforms(renderPass);
             renderPass.setUniform("DynamicTransforms", dynamicTransforms);
             renderPass.bindTexture("Sampler0", SkyMod.sunTexture.getTextureView(), SkyMod.sunTexture.getSampler());
             renderPass.setVertexBuffer(0, vertices);
             renderPass.setIndexBuffer(indexBuffer, this.quadIndices.type());
-            renderPass.drawIndexed(0, 0, 6, 1);
+            renderPass.drawIndexed(0, 0, 6, 4);
         }
 
         modelViewStack.popMatrix();
+    
     }
 }

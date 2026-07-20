@@ -95,6 +95,7 @@ public class Music {
                     MusicSounds.STAL,
                     MusicSounds.TWEETER_ALARM,
                     MusicSounds.GROMADJI,
+                    MusicSounds.BLOCKS_AND_SHIT,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

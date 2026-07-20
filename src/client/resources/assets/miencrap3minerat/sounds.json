@@ -195,6 +195,8 @@
 	{"category": "master","sounds": [{"name": "miencrap3minerat:ost/bgb","stream": true}]},
 	"ost.edibles":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/edibles","stream": true}]},
+	"ost.blocks_and_shit":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blocks_and_shit","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"bee_alt":
