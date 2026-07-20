@@ -104,41 +104,41 @@ public class Skyboxes {
     }
 
     private static void renderFilledBox(Matrix4fc positionMatrix, BufferBuilder buffer, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, float red, float green, float blue, float alpha) {
-        // Front Face (reversed)
-        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+        // Front Face
+		buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
-        // Back face (reversed)
-        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+		// Back face
+		buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
-        // Left face (reversed)
-        buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+		// Left face
+		buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
-        // Right face (reversed)
-        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+		// Right face
+		buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
-        // Top face (reversed)
-        buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+		// Top face
+		buffer.addVertex(positionMatrix, minX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, maxY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
 
-        // Bottom face (reversed)
-        buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
-        buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
+		// Bottom face
+		buffer.addVertex(positionMatrix, minX, minY, minZ).setColor(red, green, blue, alpha).setUv(0f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, minY, minZ).setColor(red, green, blue, alpha).setUv(1f, 0f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, maxX, minY, maxZ).setColor(red, green, blue, alpha).setUv(1f, 1f).setUv2(0, 0);
+		buffer.addVertex(positionMatrix, minX, minY, maxZ).setColor(red, green, blue, alpha).setUv(0f, 1f).setUv2(0, 0);
     }
 
     private static void drawFilledThroughWalls(Minecraft client, @SuppressWarnings("SameParameterValue") RenderPipeline pipeline) {
