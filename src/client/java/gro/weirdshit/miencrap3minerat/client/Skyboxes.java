@@ -28,6 +28,7 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.MbSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
@@ -45,10 +46,11 @@ public class Skyboxes {
 
     private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky.png"));
     private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
+	private static final Skybox MB_SKYBOX = new MbSkybox();
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
-        return (T)OVERWORLD_SKYBOX;
+        return (T)MB_SKYBOX;
     }
 
     private static SkyboxState skyboxState;
