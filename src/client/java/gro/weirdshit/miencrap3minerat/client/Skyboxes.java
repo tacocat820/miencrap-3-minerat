@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.client;
 
+import java.rmi.registry.Registry;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -40,6 +41,10 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
 
 public class Skyboxes {
@@ -50,7 +55,15 @@ public class Skyboxes {
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
-        return (T)MB_SKYBOX;
+		Identifier dimension = Minecraft.getInstance().player.level().dimension().identifier();
+		MIENCRAP3MINERAT.LOGGER.info(dimension.toString());
+
+		if (dimension.equals(BuiltinDimensionTypes.OVERWORLD.identifier())) {
+			return (T)OVERWORLD_SKYBOX;
+		} else if (dimension.equals(BuiltinDimensionTypes.END.identifier())) {
+			return (T)MB_SKYBOX;
+		}
+        return (T)TEST_SKYBOX;
     }
 
     private static SkyboxState skyboxState;
