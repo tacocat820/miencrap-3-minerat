@@ -1,0 +1,25 @@
+{
+    "grid": {
+        "cols":4,
+        "rows":3,
+        "grid": [
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:flint_and_steel", "count": 1},
+            {"name": "air", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1},
+            {"name": "minecraft:obsidian", "count": 1}
+
+
+        ]
+    },
+    "result": {"name": "minecraft:apple", "count": 1}
+}

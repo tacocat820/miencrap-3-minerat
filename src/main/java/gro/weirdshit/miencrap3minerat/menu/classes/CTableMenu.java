@@ -1,10 +1,14 @@
 package gro.weirdshit.miencrap3minerat.menu.classes;
 
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModRegister;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -41,9 +45,6 @@ public class CTableMenu extends AbstractContainerMenu {
 
 	private final Container container;
 
-	private ResultSlot resultSlot;
-	private CraftGrid craft;
-
 	// Client-side constructor
 	public CTableMenu(final int containerId, final Inventory inventory) {
 		this(containerId, inventory, new SimpleContainer(SLOTS_COUNT));
@@ -65,7 +66,7 @@ public class CTableMenu extends AbstractContainerMenu {
 		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
 
 		// craft
-		this.craft = new CraftGrid(3, 4);
+
 
 		//add listener for craft result!!
 		this.addSlotListener(new ContainerListener() {
@@ -80,51 +81,30 @@ public class CTableMenu extends AbstractContainerMenu {
 		} );
 	}
 
-	private void checkCrafting(AbstractContainerMenu container, int slotIndex, ItemStack itemStack) {
+	private <T extends CraftRecipe> void checkCrafting(AbstractContainerMenu container, int slotIndex, ItemStack itemStack) {
+		// HashMap<ItemSet,?> recipes = new HashMap<>();
+		// ShapedRecipe a = new ShapedRecipe();
+		// recipes.put(new ItemSet(), a);
 
-		this.craft.setItem(itemStack, slotIndex);
+		ShapedRecipe a = new ShapedRecipe(2, 2);
+		a.grid.setItem(new GridItem("apple"), 0);
+		a.grid.setItem(new GridItem("apple"), 1);
+		a.grid.setItem(new GridItem("apple"), 2);
+		a.grid.setItem(new GridItem("apple"), 3);
+		ItemHash itemset = new ItemHash();
+		itemset.addItem("apple");
 
-		CraftGrid crafting_grid = this.craft.getOptimized();
+		HashMap<ItemHash,ArrayList<CraftRecipe>> recipes = new HashMap<>();
+		recipes.put(itemset, new ArrayList<>());
 
-		CraftRecipe newRecipe = null;
+		recipes.get(itemset).add(a);
 
-		for (CraftRecipe recipe : ModRegister.RECIPES_2) {
-			if ( crafting_grid.equal( recipe.grid ) ) {
-				newRecipe = recipe;
-				break;
-			}
-		}
-		if (newRecipe == null) {
-			//if no!
-			container.setItem(resultSlot.index, containerId, new ItemStack(Items.AIR, 0));
-		} else {
-			// set up result slot
-			Identifier id = Identifier.tryParse( newRecipe.result.name );
-			Item item = BuiltInRegistries.ITEM.get(id).map(Holder::value).orElse(Items.AIR);
-			container.setItem(resultSlot.index, containerId, new ItemStack(item, newRecipe.result.count));
+		//-----------------------//
 
-			MIENCRAP3MINERAT.LOGGER.info("Recipe found:");
-			newRecipe.grid.display();
-		}
+		ItemHash itemset2 = new ItemHash();
+		itemset2.addItem("apple");
 
-		// Item another_item = BuiltInRegistries.ITEM.get(Identifier.parse("minecraft:apple")).map(Holder::value).orElse(Items.AIR);
-		// CraftItem[] another_grid = {
-		// 	new CraftItem(new ItemStack(another_item, 1)),
-		// 	new CraftItem(new ItemStack(another_item, 1)),
-		// 	new CraftItem(new ItemStack(another_item, 1)),
-		// 	new CraftItem(new ItemStack(another_item, 1)),
-		// };
-		// CraftGrid another_crafting_grid = new CraftGrid(2, 2, another_grid);
 
-		// MIENCRAP3MINERAT.LOGGER.info("returned:");
-		// crafting_grid.display();
-		// if (crafting_grid.equal(another_crafting_grid)) {
-		// 	MIENCRAP3MINERAT.LOGGER.info("-------------\nIDENTICAL!\n-------------");
-		// 	//MIENCRAP3MINERAT.LOGGER.info("-------------\nIDENTICAL!\n-------------");
-		// } else {
-		// 	MIENCRAP3MINERAT.LOGGER.info("required:");
-		// 	another_crafting_grid.display();
-		// }
 	}
 
 	private void addSlots() {
@@ -143,9 +123,7 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 
 		//RESULT SLOT!!
-		slot++;
-		this.resultSlot = new ResultSlot(this.container, slot, RESULT_SLOT_X, RESULT_SLOT_Y);
-		this.addSlot(this.resultSlot);
+
 	}
 
 	@Override
@@ -180,72 +158,77 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		return clicked;
 	}
-
-	public class ResultSlot extends Slot {
-		public ResultSlot(Container container, int slot, int x, int y) {
-			super(container, slot, x, y);
+	//-------class
+	public class CraftRecipe {
+		ItemsGrid result;
+	}
+	public class ShapedRecipe extends CraftRecipe {
+		ItemsGrid grid;
+		public ShapedRecipe(int h, int w) {
+			this.grid = new ItemsGrid(h,w);
 		}
+		public ShapedRecipe(ItemsGrid grid) {this.grid = grid;}
+	}
+	public class ShapelessRecipe extends CraftRecipe {
+		ItemsSet set;
+		public ShapelessRecipe(ItemsSet set) {this.set = set;}
+	}
+	public class GridItem {
+		public String id = "minecraft:air";
+		public int count = 0;
 
-		@Override
-		public void onTake(final Player player, final ItemStack carried) {
-			if (!player.level().isClientSide()) {
-				MIENCRAP3MINERAT.LOGGER.warn("кошка: МЯЯЯЯУУУ");
-			}
-
-			for (int slot = 0; slot < 12; slot++) {
-				ItemStack stack = this.container.getItem(slot);
-				stack.setCount(
-					stack.getCount() - 1
-				);
-			}
-
-			this.setChanged();
-			//craft !
+		public GridItem(String id, int count) {
+			this.id = id;this.count = count;
 		}
+		public GridItem(String id) {
+			this.id = id;this.count = 1;
+		}
+	}
+	public class ItemHash {
+		public HashSet<String> items = new HashSet<>();
 
-		@Override
-		public boolean mayPlace(final ItemStack itemStack) {
-			return false;
+		public void addItem(String item) {
+			items.add(item);
 		}
 	}
 
-	public class CraftGrid {
+	public class ItemsSet {		//айтем сет
+		public HashMap<String, Integer> items = new HashMap<>();
+
+		public void addItem(GridItem item) {
+			int oldcount = items.getOrDefault(item.id, 0);
+			items.put(item.id, oldcount + item.count);
+		}
+	}
+	public class ItemsGrid {	//айтем грид
 		final public int cols;
 		final public int rows;
-		public CraftItem[] grid;
+		public GridItem[] items;
 
-		public CraftGrid(int h, int w) {
+		public ItemsGrid(int h, int w) {
 			this.rows = h;
 			this.cols = w;
-			this.grid = new CraftItem[h*w];
-			for (int i = 0; i < grid.length; i++) {
-				this.grid[i] = new CraftItem("air", 0);
-			}
-		}
-		public CraftGrid(int h, int w, CraftItem[] grid) {
-			this.rows = h;
-			this.cols = w;
-			this.grid = grid;
-			if (grid.length != h*w) {
-				System.err.println("[!] WRONG LENGTH");
-				new CraftGrid(h, w);
+			this.items = new GridItem[h*w];
+			for (int i = 0; i < items.length; i++) {
+				this.items[i] = new GridItem("apple");
 			}
 		}
 
-		private boolean _craftitem_matches( CraftItem that, CraftItem another ) {
+		private boolean _craftitem_matches( GridItem that, GridItem another ) {
 			return (
-				(! that.name.equalsIgnoreCase( another.name ) )
+				//(! that.name.equalsIgnoreCase( another.name ) )
+				false
 			);
 		}
 
-		public boolean equal(CraftGrid another) {
+		public boolean equal(ItemsGrid another) {
 			if (another.cols != this.cols || another.rows != this.rows) {
-				MIENCRAP3MINERAT.LOGGER.warn("* 1 check ( "+another.cols+"x"+another.rows+" =? "+this.cols+"x"+this.rows+" )"+ " FAILED");
+				//MIENCRAP3MINERAT.LOGGER.warn("* 1 check ( "+another.cols+"x"+another.rows+" =? "+this.cols+"x"+this.rows+" )"+ " FAILED");
 				return false;
 			}
-			for (int i = 0; i < this.grid.length; i++) {
-				if (_craftitem_matches(this.grid[i], another.grid[i])) {
-					MIENCRAP3MINERAT.LOGGER.warn("* 2 check on #"+i+" : "+this.grid[i].name+" == "+another.grid[i].name + " is " + (this.grid[i].name.equalsIgnoreCase( another.grid[i].name )) + " FAILED");
+			for (int i = 0; i < this.items.length; i++) {
+				if (_craftitem_matches(this.items[i], another.items[i])) {
+					//MIENCRAP3MINERAT.LOGGER.warn("* 2 check on #"+i+" : "+this.grid[i].name+" == "+another.grid[i].name + " is " + (this.grid[i].name.equalsIgnoreCase( another.grid[i].name )) + " FAILED");
 					return false;
 				}
 			}
@@ -253,25 +236,19 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 
 		//SET ITEM
-		public void setItem(ItemStack itemstack, int row, int col) {
-			this.grid[row + col*this.cols] = new CraftItem(itemstack);
+		public void setItem(GridItem item, int index) {
+			this.items[index] = item;
 		}
-		public void setItem(ItemStack itemstack, int index) {
-			this.grid[index] = new CraftItem(itemstack);
-		}
-		public void setItem(CraftItem item, int index) {
-			this.grid[index] = item;
-		}
-		public void setItem(CraftItem item, int x, int y) {
-			this.grid[x + y*this.cols] = item;
+		public void setItem(GridItem item, int x, int y) {
+			this.items[x + y*this.cols] = item;
 		}
 
-		public CraftGrid getOptimized() {
+		public ItemsGrid getOptimized() {
 			int max_x = 0; int min_x = this.cols;
 			int max_y = 0; int min_y = this.rows;
 			
 			int i = -1;
-			for (CraftItem cItem : this.grid) {
+			for (GridItem cItem : this.items) {
 				i++;
 
 				if (cItem.count != 0) {
@@ -282,11 +259,11 @@ public class CTableMenu extends AbstractContainerMenu {
 				}
 			}
 
-			CraftGrid cg = new CraftGrid(max_y-min_y+1, max_x-min_x+1);
+			ItemsGrid cg = new ItemsGrid(max_y-min_y+1, max_x-min_x+1);
 
 			//MIENCRAP3MINERAT.LOGGER.warn("sus! xols:"+cg.cols+"  rows:"+cg.rows+"\n"+"min_y:"+min_x+" min_x:"+min_x);
 			i = -1;
-			for (CraftItem cItem : this.grid) {
+			for (GridItem cItem : this.items) {
 				i++;
 				if (cItem.count != 0) {
 					int x = (i % this.cols) - min_x;
@@ -299,41 +276,14 @@ public class CTableMenu extends AbstractContainerMenu {
 			return cg;
 			//return new CraftGrid();
 		}
-		//display
-		public void display() { 
-			MIENCRAP3MINERAT.LOGGER.info(this.cols+"x"+this.rows+"[");
-			for (CraftItem cItem : this.grid) {
-				MIENCRAP3MINERAT.LOGGER.info("  " + cItem.name + " - " + cItem.count);
+		public ItemsSet toItemsSet() {
+			ItemsSet iSet = new ItemsSet();
+			for (GridItem item : this.items) {
+				iSet.addItem(item);
 			}
-			MIENCRAP3MINERAT.LOGGER.info("]");
+			return iSet;
 		}
 	}
-
-	public class CraftItem {
-		public String name;
-		public int count;
-
-		public CraftItem(String name, int count) {
-			this.name = name;
-			this.count = count;
-		}
-		public CraftItem(ItemStack itemstack) {
-			this.name = itemstack.getItem().toString();
-			this.count = itemstack.count();
-		}
-	}
-
-	//-------class
-
-	public class CraftRecipe {
-		public CraftGrid grid;
-		public CraftItem result;
-
-		public CraftRecipe(CraftGrid grid, CraftItem result) {
-			this.grid = grid; this.result = result;
-		}
-	}
-
 	@Override
 	public boolean stillValid(Player player) {
 		return this.container.stillValid(player);

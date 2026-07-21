@@ -56,8 +56,8 @@ public class Skyboxes {
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
 		Identifier dimension = Minecraft.getInstance().player.level().dimension().identifier();
-		MIENCRAP3MINERAT.LOGGER.info(dimension.toString());
-
+		//MIENCRAP3MINERAT.LOGGER.info(dimension.toString());
+		//TODO: igduiqwdhuqgdqh
 		if (dimension.equals(BuiltinDimensionTypes.OVERWORLD.identifier())) {
 			return (T)OVERWORLD_SKYBOX;
 		} else if (dimension.equals(BuiltinDimensionTypes.END.identifier())) {
@@ -82,7 +82,7 @@ public class Skyboxes {
     public static void extractSkyboxState(LevelExtractionContext context) {
         Vec3 playerPos = context.levelState().cameraRenderState.pos;
 
-        double xzOffset = 512.0;
+        double xzOffset = 350.0;
         double yOffset = 256.0;
 
         skyboxState = new SkyboxState(
