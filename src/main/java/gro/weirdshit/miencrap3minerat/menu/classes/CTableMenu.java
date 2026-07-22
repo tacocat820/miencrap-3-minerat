@@ -2,13 +2,14 @@ package gro.weirdshit.miencrap3minerat.menu.classes;
 
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModRegister;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
-
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -44,6 +45,10 @@ public class CTableMenu extends AbstractContainerMenu {
 	private static final int RESULT_SLOT_Y = 40;
 
 	private final Container container;
+
+	private ItemsGrid craftGrid = new ItemsGrid(3, 4);
+	
+	private ResultSlot resultSlot;
 
 	// Client-side constructor
 	public CTableMenu(final int containerId, final Inventory inventory) {
@@ -81,30 +86,93 @@ public class CTableMenu extends AbstractContainerMenu {
 		} );
 	}
 
-	private <T extends CraftRecipe> void checkCrafting(AbstractContainerMenu container, int slotIndex, ItemStack itemStack) {
-		// HashMap<ItemSet,?> recipes = new HashMap<>();
-		// ShapedRecipe a = new ShapedRecipe();
-		// recipes.put(new ItemSet(), a);
+	public class ResultSlot extends Slot {
+		public ResultSlot(Container container, int slot, int x, int y) {
+			super(container, slot, x, y);
+		}
 
+		@Override
+		public void onTake(final Player player, final ItemStack carried) {
+			if (!player.level().isClientSide()) {
+				MIENCRAP3MINERAT.LOGGER.warn("кошка: МЯЯЯЯУУУ");
+			}
+
+			for (int slot = 0; slot < 12; slot++) {
+				ItemStack stack = this.container.getItem(slot);
+				stack.setCount(
+					stack.getCount() - 1
+				);
+			}
+
+			this.setChanged();
+			//craft !
+		}
+
+		@Override
+		public boolean mayPlace(final ItemStack itemStack) {
+			return false;
+		}
+	}
+
+	private void checkCrafting(AbstractContainerMenu container, int slotIndex, ItemStack itemStack) {
+		
+		GridItem item = new GridItem(itemStack);
+		this.craftGrid.setItem(item, slotIndex);
+		
+		// ------------ TODO --------------- //
+		HashMap<Integer, ArrayList<CraftRecipe>> recipes = new HashMap<>();
+
+		//shaped -
 		ShapedRecipe a = new ShapedRecipe(2, 2);
-		a.grid.setItem(new GridItem("apple"), 0);
-		a.grid.setItem(new GridItem("apple"), 1);
-		a.grid.setItem(new GridItem("apple"), 2);
-		a.grid.setItem(new GridItem("apple"), 3);
-		ItemHash itemset = new ItemHash();
-		itemset.addItem("apple");
+		a.grid.setItem(new GridItem("minecraft:apple"), 0);
+		a.grid.setItem(new GridItem("minecraft:apple"), 1);
+		a.grid.setItem(new GridItem("minecraft:apple"), 2);
+		a.grid.setItem(new GridItem("minecraft:apple"), 3);
+		ItemsSet itemhash_ = a.grid.toItemsSet();
 
-		HashMap<ItemHash,ArrayList<CraftRecipe>> recipes = new HashMap<>();
-		recipes.put(itemset, new ArrayList<>());
+		//shapeless -
+		ItemsSet itemset_ = new ItemsSet();
+		itemset_.addItem(new GridItem("minecraft:apple", 4));
+		ShapelessRecipe b = new ShapelessRecipe(itemset_);
 
-		recipes.get(itemset).add(a);
+		recipes.put(itemhash_.hashCode(), new ArrayList<>()); // типо инициализируем
 
-		//-----------------------//
+		recipes.get(itemhash_.hashCode()).addFirst(a); //добавляем сначала форменных
+		recipes.get(itemhash_.hashCode()).addLast(b); //а в конец бесформенных
 
-		ItemHash itemset2 = new ItemHash();
-		itemset2.addItem("apple");
+		// EDIT: НЕ ДОЛЖНА БЫТЬ!!!! ^^^
+		//также должна быть сортировка в конце, чтобы форменные рецепты
+		// были раньше
+		// recipes.get(itemhash_.hashCode()).sort(Comparator.comparing(
+			//условие ? true : false
+		// ));
 
-
+		//----------- TODO end ------------//
+		MIENCRAP3MINERAT.LOGGER.warn("presented:");
+		ItemsGrid optimizedGrid = craftGrid.getOptimized();
+		optimizedGrid.display(); //==
+		ItemsSet itemset = optimizedGrid.toItemsSet();
+		
+		//---//
+		MIENCRAP3MINERAT.LOGGER.warn(itemhash_.items + " = " + itemhash_.hashCode());
+		MIENCRAP3MINERAT.LOGGER.warn(itemset.items + " = " + itemset.hashCode());
+		ArrayList<CraftRecipe> matched_recipes = recipes.get(itemset.hashCode());
+		if (matched_recipes != null) { //проверка рецептов.
+			for (CraftRecipe recipe : matched_recipes) {
+				MIENCRAP3MINERAT.LOGGER.warn("(#) matched: " + recipe);
+				if (recipe instanceof ShapedRecipe) { //shaped
+					if ( ((ShapedRecipe)recipe).grid.equal( optimizedGrid ) ) {
+						MIENCRAP3MINERAT.LOGGER.warn("FULL MATCHED! to that ^^^^^^ recipe.");
+						break;
+					}
+				} else if (recipe instanceof ShapelessRecipe) { //shapeless
+					if ( ((ShapelessRecipe)recipe).set.equal( itemset ) ) {
+						MIENCRAP3MINERAT.LOGGER.warn("FULL MATCHED! to that ^^^^^^ recipe.");
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	private void addSlots() {
@@ -123,7 +191,9 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 
 		//RESULT SLOT!!
-
+		slot++;
+		this.resultSlot = new ResultSlot(this.container, slot, RESULT_SLOT_X, RESULT_SLOT_Y);
+		this.addSlot(this.resultSlot);
 	}
 
 	@Override
@@ -183,12 +253,20 @@ public class CTableMenu extends AbstractContainerMenu {
 		public GridItem(String id) {
 			this.id = id;this.count = 1;
 		}
+		public GridItem(ItemStack itemStack) {
+			this.id = itemStack.getItem().toString();this.count = itemStack.count();
+		}
 	}
 	public class ItemHash {
 		public HashSet<String> items = new HashSet<>();
 
 		public void addItem(String item) {
 			items.add(item);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(items);
 		}
 	}
 
@@ -198,6 +276,15 @@ public class CTableMenu extends AbstractContainerMenu {
 		public void addItem(GridItem item) {
 			int oldcount = items.getOrDefault(item.id, 0);
 			items.put(item.id, oldcount + item.count);
+		}
+
+		public boolean equal(ItemsSet another) {
+			return this.items.equals(another.items);
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(items);
 		}
 	}
 	public class ItemsGrid {	//айтем грид
@@ -210,7 +297,7 @@ public class CTableMenu extends AbstractContainerMenu {
 			this.cols = w;
 			this.items = new GridItem[h*w];
 			for (int i = 0; i < items.length; i++) {
-				this.items[i] = new GridItem("apple");
+				this.items[i] = new GridItem("minecraft:air");
 			}
 		}
 
@@ -243,7 +330,13 @@ public class CTableMenu extends AbstractContainerMenu {
 			this.items[x + y*this.cols] = item;
 		}
 
+		private boolean isEmpty(GridItem item) {
+			return item.count == 0 || item.id == "minecraft:air";
+		}
+
 		public ItemsGrid getOptimized() {
+
+
 			int max_x = 0; int min_x = this.cols;
 			int max_y = 0; int min_y = this.rows;
 			
@@ -251,7 +344,7 @@ public class CTableMenu extends AbstractContainerMenu {
 			for (GridItem cItem : this.items) {
 				i++;
 
-				if (cItem.count != 0) {
+				if (!isEmpty(cItem)) {
 					int x = i % this.cols;
 					int y = i / this.cols;
 					max_x = Math.max(max_x, x); min_x = Math.min(min_x, x);
@@ -265,7 +358,7 @@ public class CTableMenu extends AbstractContainerMenu {
 			i = -1;
 			for (GridItem cItem : this.items) {
 				i++;
-				if (cItem.count != 0) {
+				if (!isEmpty(cItem)) {
 					int x = (i % this.cols) - min_x;
 					int y = (i / this.cols) - min_y;
 
@@ -276,12 +369,37 @@ public class CTableMenu extends AbstractContainerMenu {
 			return cg;
 			//return new CraftGrid();
 		}
+		public void display() {
+			System.out.println("------------------------");
+			int i = 0;
+			for (int y = 0; y < this.rows; y++) {
+				System.out.print("| ");
+				for (int x = 0; x < this.cols; x++) {
+					System.out.print(this.items[i].id);
+					System.out.print(this.items[i].count);
+					System.out.print("\t\t");
+					i++;
+				}
+				System.out.println("");
+			}
+			System.out.println("------------------------");
+		}
+
 		public ItemsSet toItemsSet() {
 			ItemsSet iSet = new ItemsSet();
 			for (GridItem item : this.items) {
+				if (isEmpty(item)) {continue;}
 				iSet.addItem(item);
 			}
 			return iSet;
+		}
+		public ItemHash toItemHash() {
+			ItemHash iHash = new ItemHash();
+			for (GridItem item : this.items) {
+				if (isEmpty(item)) {continue;}
+				iHash.addItem(item.id);
+			}
+			return iHash;
 		}
 	}
 	@Override
