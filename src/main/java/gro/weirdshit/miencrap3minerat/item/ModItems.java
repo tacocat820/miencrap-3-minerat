@@ -27,6 +27,10 @@ public class ModItems {
 
 	public static RegisteredItem<?> TEST_ITEM = ModItems.register("test_item", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BEDIAN = ModItems.register("bedian", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BAGUETTE = ModItems.register("baguette", Item::new, new Item.Properties());
+	public static RegisteredItem<?> IRON_APPLE = ModItems.register("iron_apple", Item::new, new Item.Properties());
+	public static RegisteredItem<?> SOAP = ModItems.register("soap", Item::new, new Item.Properties());
+	public static RegisteredItem<?> ESTROGEN = ModItems.register("estrogen", Item::new, new Item.Properties());
 
 	public static RegisteredItem<?> CUP_EMPTY = ModItems.register("cup_empty", Item::new, new Item.Properties());
 	public static RegisteredItem<?> CUP_DEAD = ModItems.register("cup_dead", Item::new, new Item.Properties()

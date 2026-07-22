@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "miencrap3minerat:block/lego"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/lego",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/lego",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/lego",
+      "y": 270
+    }
+  }
+}
