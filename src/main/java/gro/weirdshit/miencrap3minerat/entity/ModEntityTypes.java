@@ -10,16 +10,22 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.PathfinderMob;
 
 class GenericEntity {
 
 }
 
 public class ModEntityTypes {
-	public static final EntityType<NotjuanEntity> NOTJUAN = register(
+	public static final EntityType<Notjuan> NOTJUAN = register(
 			"notjuan",
-			EntityType.Builder.<NotjuanEntity>of(NotjuanEntity::new, MobCategory.MISC)
+			EntityType.Builder.<Notjuan>of(Notjuan::new, MobCategory.MISC)
+					.fireImmune()
 					.sized(0.75f, 1.75f)
+	);
+	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
+			"notjuan_spit",
+			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune()
 	);
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
@@ -32,7 +38,7 @@ public class ModEntityTypes {
 	}
 
 	public static void registerAttributes() {
-		FabricDefaultAttributeRegistry.register(NOTJUAN, NotjuanEntity.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 	}
 	public static void generate() {}
 }

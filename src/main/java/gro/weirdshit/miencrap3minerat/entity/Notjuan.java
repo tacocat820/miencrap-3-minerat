@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 import net.minecraft.world.BossEvent.BossBarColor;
@@ -31,19 +32,23 @@ import net.minecraft.world.entity.animal.cow.Cow;
 import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.animal.turtle.Turtle;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 
 class NotjuanAttackGoal extends MeleeAttackGoal {
-	private final NotjuanEntity notjuan;
+	private final Notjuan notjuan;
 
-	public NotjuanAttackGoal(final NotjuanEntity notjuan, final double speedModifier, final boolean trackTarget) {
+	public NotjuanAttackGoal(final Notjuan notjuan, final double speedModifier, final boolean trackTarget) {
 		super(notjuan, speedModifier, trackTarget);
 		this.notjuan = notjuan;
 	}
@@ -64,28 +69,36 @@ class NotjuanAttackGoal extends MeleeAttackGoal {
 }
 
 
-public class NotjuanEntity extends PathfinderMob {
+public class Notjuan extends PathfinderMob {
+   
+	private static final EntityDataAccessor<Integer> DATA_ID_COOLD = SynchedEntityData.defineId(Notjuan.class, EntityDataSerializers.INT);
 
 	private final ServerBossEvent bossEvent = Util.make(
 		new ServerBossEvent(Mth.createInsecureUUID(this.random), this.getDisplayName(), BossBarColor.PINK, BossBarOverlay.NOTCHED_10),
 		e -> e.setDarkenScreen(true)
 	);
 
-	public NotjuanEntity(Level world) {
+	public Notjuan(Level world) {
 		this(ModEntityTypes.NOTJUAN, world);
 	}
 
-	public NotjuanEntity(EntityType<? extends NotjuanEntity> entityType, Level world) {
+	public Notjuan(EntityType<? extends Notjuan> entityType, Level world) {
 		super(entityType, world);
 	}
 
+
+	@Override
+	protected void defineSynchedData(final Builder entityData) {
+		super.defineSynchedData(entityData);
+		entityData.define(DATA_ID_COOLD, 0);
+	}
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 65536)
 				.add(Attributes.TEMPT_RANGE, 10)
-				.add(Attributes.MOVEMENT_SPEED, 0.6)
-				.add(Attributes.FOLLOW_RANGE, 500)
+				.add(Attributes.MOVEMENT_SPEED, 0.5)
+				.add(Attributes.FOLLOW_RANGE, 50)
 				.add(Attributes.ATTACK_DAMAGE, 13.0);
 	}
 
@@ -116,6 +129,7 @@ public class NotjuanEntity extends PathfinderMob {
 		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
       	this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<EnderMan>(this, EnderMan.class, true));
     }
 
 	@Override
@@ -128,5 +142,54 @@ public class NotjuanEntity extends PathfinderMob {
 	public void stopSeenByPlayer(final ServerPlayer player) {
 		super.stopSeenByPlayer(player);
 		this.bossEvent.removePlayer(player);
+	}
+
+	private void performSpitAttack(final LivingEntity target) {
+		this.performSpitAttack(target.getX(), target.getY() + target.getEyeHeight() * 0.5, target.getZ(), this.random.nextFloat() < 0.001F);
+	}
+	private void performSpitAttack(final double tx, final double ty, final double tz, final boolean dangerous) {
+		if (!this.isSilent()) {
+			this.level().playSound(null, this.getOnPos(), SoundEvents.LLAMA_SPIT, this.getSoundSource());
+		}
+
+		Vec3 eye = this.getEyePosition();
+		double hx = eye.x;
+		double hy = eye.y;
+		double hz = eye.z;
+		double xd = tx - hx;
+		double yd = ty - hy;
+		double zd = tz - hz;
+		Vec3 direction = new Vec3(xd, yd, zd);
+		NotjuanSpit entity = new NotjuanSpit(this.level(), this, direction.normalize());
+		entity.setOwner(this);
+		if (dangerous) {
+			entity.setDangerous(true);
+		}
+
+		entity.setPos(hx, hy, hz);
+		this.level().addFreshEntity(entity);
+	}
+
+	@Override
+	public void tick() {
+		LivingEntity target = this.getTarget();
+		if (target != null && this.getCooldown() <= 0) 
+			if (target.distanceTo(this) < 40) {
+				this.performSpitAttack(target);
+				this.setCooldown(70);
+			}
+		
+		if (this.getCooldown() > 0) 
+			this.setCooldown(this.getCooldown() - 1);
+
+		super.tick();
+	}
+
+	public int getCooldown() {
+		return this.entityData.get(DATA_ID_COOLD);
+	}
+
+	public void setCooldown(final int invulnerableTicks) {
+		this.entityData.set(DATA_ID_COOLD, invulnerableTicks);
 	}
 }

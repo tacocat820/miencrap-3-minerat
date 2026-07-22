@@ -3,7 +3,7 @@ package gro.weirdshit.miencrap3minerat.client.entity.classes;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.MobRenderInterface;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
-import gro.weirdshit.miencrap3minerat.entity.NotjuanEntity;
+import gro.weirdshit.miencrap3minerat.entity.Notjuan;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.EntityModel;
@@ -22,7 +22,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
-public class Notjuan extends MobRenderInterface {
+public class NotjuanRenderer extends MobRenderInterface {
     public static class Model extends EntityModel<RenderState> {
 	
         // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -80,7 +80,7 @@ public class Notjuan extends MobRenderInterface {
             this.leg3.xRot = Mth.cos(limbSwingAnimationProgress * 0.2f) * 3.4f * limbSwingAmplitude;
         }
     }
-    public static class EntityRenderer extends MobRenderer<NotjuanEntity, RenderState, Model> {
+    public static class EntityRenderer extends MobRenderer<Notjuan, RenderState, Model> {
         private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/notjuan.png");
 
         public EntityRenderer(EntityRendererProvider.Context context) {
