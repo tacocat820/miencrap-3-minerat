@@ -3,7 +3,7 @@ package gro.weirdshit.miencrap3minerat.client;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
-import gro.weirdshit.miencrap3minerat.client.entity.MiniGolemEntityRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
@@ -35,6 +35,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		MusicSounds.generate();
 		ModPackets.generate();
 		Pipelines.generate();
+
+		ModEntityModelLayers.registerModelLayers();
 
 		//MENUS
 		MenuScreens.register(ModMenuType.WATERCOOLER, WatercoolerScreen::new);
@@ -76,8 +78,6 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		
 		LevelRenderEvents.END_EXTRACTION.register(Skyboxes::extractSkyboxState);
 		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(Skyboxes::renderAndDrawSkybox);
-
-		//EntityRenderers.register(ModEntityTypes.MINI_GOLEM, MiniGolemEntityRenderer::new);
 	}
 	
 }

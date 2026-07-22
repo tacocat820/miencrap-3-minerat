@@ -11,10 +11,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
+class GenericEntity {
+
+}
+
 public class ModEntityTypes {
-	public static final EntityType<MiniGolemEntity> MINI_GOLEM = register(
-			"mini_golem",
-			EntityType.Builder.<MiniGolemEntity>of(MiniGolemEntity::new, MobCategory.MISC)
+	public static final EntityType<NotjuanEntity> NOTJUAN = register(
+			"notjuan",
+			EntityType.Builder.<NotjuanEntity>of(NotjuanEntity::new, MobCategory.MISC)
 					.sized(0.75f, 1.75f)
 	);
 
@@ -28,6 +32,7 @@ public class ModEntityTypes {
 	}
 
 	public static void registerAttributes() {
-		FabricDefaultAttributeRegistry.register(MINI_GOLEM, MiniGolemEntity.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(NOTJUAN, NotjuanEntity.createCubeAttributes());
 	}
+	public static void generate() {}
 }

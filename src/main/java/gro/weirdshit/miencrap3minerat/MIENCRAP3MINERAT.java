@@ -14,6 +14,7 @@ import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
+import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
@@ -40,6 +41,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 		ModBlocks.generate();
 		ModBlockEntities.generate();
+		ModEntityTypes.generate();
+		ModEntityTypes.registerAttributes();
 		ModFluids.generate();
 		ModItems.generate();
 		ModRegister.generate();
