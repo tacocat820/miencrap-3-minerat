@@ -5,6 +5,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.PuffercopterRenderer;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.NotjuanSpit;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
@@ -16,6 +17,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
 	public static final ModelLayerLocation FLOAT = createMain("float");
+	public static final ModelLayerLocation PUFFERCOPTER = createMain("puffercopter");
 	public static final ModelLayerLocation NOTJUAN_SPIT = createMain("notjuan_spit");
 
 	private static ModelLayerLocation createMain(String name) {
@@ -26,6 +28,7 @@ public class ModEntityModelLayers {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
 		FloatRenderer.register(FLOAT);
+		PuffercopterRenderer.register(PUFFERCOPTER);
 		NotjuanSpitRenderer.register(NOTJUAN_SPIT);
 	}
 }

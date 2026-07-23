@@ -33,6 +33,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Float>of(Float::new, MobCategory.MISC)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<Puffercopter> PUFFERCOPTER = register(
+			"puffercopter",
+			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.MISC)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
 			"notjuan_spit",
 			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune()
@@ -51,6 +56,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());
 	}
 	public static void generate() {}
 }
