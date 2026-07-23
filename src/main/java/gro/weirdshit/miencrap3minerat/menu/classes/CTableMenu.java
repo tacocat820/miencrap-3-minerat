@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModRegister;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.GridItem;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsGrid;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsSet;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -48,6 +52,7 @@ public class CTableMenu extends AbstractContainerMenu {
 
 	private ItemsGrid craftGrid = new ItemsGrid(3, 4);
 	
+	private CraftRecipe currentRecipe;
 	private ResultSlot resultSlot;
 
 	// Client-side constructor
@@ -70,9 +75,6 @@ public class CTableMenu extends AbstractContainerMenu {
 		// Add the player inventory slots.
 		this.addStandardInventorySlots(inventory, INVENTORY_START_X, INVENTORY_START_Y);
 
-		// craft
-
-
 		//add listener for craft result!!
 		this.addSlotListener(new ContainerListener() {
 			@Override public void dataChanged(AbstractContainerMenu container, int id, int value) {MIENCRAP3MINERAT.LOGGER.warn("dataChanged " + container + " " + id + " " + value);}
@@ -91,21 +93,42 @@ public class CTableMenu extends AbstractContainerMenu {
 			super(container, slot, x, y);
 		}
 
-		@Override
-		public void onTake(final Player player, final ItemStack carried) {
-			if (!player.level().isClientSide()) {
-				MIENCRAP3MINERAT.LOGGER.warn("кошка: МЯЯЯЯУУУ");
-			}
-
+		public void take_from() {
 			for (int slot = 0; slot < 12; slot++) {
 				ItemStack stack = this.container.getItem(slot);
 				stack.setCount(
 					stack.getCount() - 1
 				);
 			}
+		}
+
+		@Override
+		public void onTake(final Player player, final ItemStack carried) {
+			if (!player.level().isClientSide()) {
+				MIENCRAP3MINERAT.LOGGER.warn("кошка: МЯЯЯЯУУУ");
+			}
+
+			take_from();
 
 			this.setChanged();
 			//craft !
+		}
+
+		private void remove() {
+			this.set(
+				new ItemStack(
+					Items.AIR, 0
+				)
+			);
+		}
+		private void set_result(CraftRecipe recipe) {
+			Identifier id = Identifier.tryParse( recipe.result.id );
+			Item item = BuiltInRegistries.ITEM.get(id).map(Holder::value).orElse(Items.AIR);
+			this.set(
+				new ItemStack(
+					item, recipe.result.count
+				)
+			);
 		}
 
 		@Override
@@ -119,60 +142,20 @@ public class CTableMenu extends AbstractContainerMenu {
 		GridItem item = new GridItem(itemStack);
 		this.craftGrid.setItem(item, slotIndex);
 		
-		// ------------ TODO --------------- //
-		HashMap<Integer, ArrayList<CraftRecipe>> recipes = new HashMap<>();
-
-		//shaped -
-		ShapedRecipe a = new ShapedRecipe(2, 2);
-		a.grid.setItem(new GridItem("minecraft:apple"), 0);
-		a.grid.setItem(new GridItem("minecraft:apple"), 1);
-		a.grid.setItem(new GridItem("minecraft:apple"), 2);
-		a.grid.setItem(new GridItem("minecraft:apple"), 3);
-		ItemsSet itemhash_ = a.grid.toItemsSet();
-
-		//shapeless -
-		ItemsSet itemset_ = new ItemsSet();
-		itemset_.addItem(new GridItem("minecraft:apple", 4));
-		ShapelessRecipe b = new ShapelessRecipe(itemset_);
-
-		recipes.put(itemhash_.hashCode(), new ArrayList<>()); // типо инициализируем
-
-		recipes.get(itemhash_.hashCode()).addFirst(a); //добавляем сначала форменных
-		recipes.get(itemhash_.hashCode()).addLast(b); //а в конец бесформенных
-
-		// EDIT: НЕ ДОЛЖНА БЫТЬ!!!! ^^^
-		//также должна быть сортировка в конце, чтобы форменные рецепты
-		// были раньше
-		// recipes.get(itemhash_.hashCode()).sort(Comparator.comparing(
-			//условие ? true : false
-		// ));
-
-		//----------- TODO end ------------//
-		MIENCRAP3MINERAT.LOGGER.warn("presented:");
 		ItemsGrid optimizedGrid = craftGrid.getOptimized();
 		optimizedGrid.display(); //==
 		ItemsSet itemset = optimizedGrid.toItemsSet();
-		
+		MIENCRAP3MINERAT.LOGGER.warn("hash :::: "+itemset.hashCode());
 		//---//
-		MIENCRAP3MINERAT.LOGGER.warn(itemhash_.items + " = " + itemhash_.hashCode());
-		MIENCRAP3MINERAT.LOGGER.warn(itemset.items + " = " + itemset.hashCode());
-		ArrayList<CraftRecipe> matched_recipes = recipes.get(itemset.hashCode());
-		if (matched_recipes != null) { //проверка рецептов.
-			for (CraftRecipe recipe : matched_recipes) {
-				MIENCRAP3MINERAT.LOGGER.warn("(#) matched: " + recipe);
-				if (recipe instanceof ShapedRecipe) { //shaped
-					if ( ((ShapedRecipe)recipe).grid.equal( optimizedGrid ) ) {
-						MIENCRAP3MINERAT.LOGGER.warn("FULL MATCHED! to that ^^^^^^ recipe.");
-						break;
-					}
-				} else if (recipe instanceof ShapelessRecipe) { //shapeless
-					if ( ((ShapelessRecipe)recipe).set.equal( itemset ) ) {
-						MIENCRAP3MINERAT.LOGGER.warn("FULL MATCHED! to that ^^^^^^ recipe.");
-						break;
-					}
-				}
-			}
+		try {
+			CraftRecipe rec = ModRegister.RECIPES_2.get(optimizedGrid).orElseThrow();
+			resultSlot.set_result(
+				rec
+			);
+		} catch (NoSuchElementException e) {
+			resultSlot.set(new ItemStack(Items.AIR));
 		}
+		
 	}
 
 	private void addSlots() {
@@ -199,6 +182,10 @@ public class CTableMenu extends AbstractContainerMenu {
 	@Override
 	public ItemStack quickMoveStack(Player player, int slotIndex) {
 		Slot slot = this.slots.get(slotIndex);
+
+		if (slotIndex == resultSlot.index) {
+			resultSlot.take_from();
+		}
 
 		if (!slot.hasItem()) {
 			return ItemStack.EMPTY;
@@ -230,18 +217,35 @@ public class CTableMenu extends AbstractContainerMenu {
 	}
 	//-------class
 	public class CraftRecipe {
-		ItemsGrid result;
+		public static final String type = "none";
+		GridItem result = new GridItem("minecraft:air", 1);
+
+		public ItemsSet toItemsSet() { return null; }
 	}
 	public class ShapedRecipe extends CraftRecipe {
-		ItemsGrid grid;
+		public static final String type = "shaped";
+		public ItemsGrid grid;
 		public ShapedRecipe(int h, int w) {
 			this.grid = new ItemsGrid(h,w);
 		}
 		public ShapedRecipe(ItemsGrid grid) {this.grid = grid;}
+
+		public ItemsSet toItemsSet() {
+			// if (grid == null) {
+			// 	MIENCRAP3MINERAT.LOGGER.error("Yuyyyy: "+grid);
+			// }
+			//grid.display();
+			return grid.toItemsSet();
+		};
 	}
 	public class ShapelessRecipe extends CraftRecipe {
-		ItemsSet set;
+		public static final String type = "shapeless";
+		public ItemsSet set;
 		public ShapelessRecipe(ItemsSet set) {this.set = set;}
+
+		public ItemsSet toItemsSet() {
+			return set;
+		};
 	}
 	public class GridItem {
 		public String id = "minecraft:air";
@@ -270,12 +274,19 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 	}
 
-	public class ItemsSet {		//айтем сет
-		public HashMap<String, Integer> items = new HashMap<>();
+	static public class ItemsSet {
+		public HashMap<String, Integer> items;
+
+		//public ItemsSet(HashMap<String, Integer> items) {this.items = items;};
+		public ItemsSet() {this.items = new HashMap<String, Integer>();}
 
 		public void addItem(GridItem item) {
 			int oldcount = items.getOrDefault(item.id, 0);
 			items.put(item.id, oldcount + item.count);
+		}
+		public void addItem(String item_id) {
+			int oldcount = items.getOrDefault(item_id, 0);
+			items.put(item_id, oldcount + 1);
 		}
 
 		public boolean equal(ItemsSet another) {
@@ -303,8 +314,7 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		private boolean _craftitem_matches( GridItem that, GridItem another ) {
 			return (
-				//(! that.name.equalsIgnoreCase( another.name ) )
-				false
+				(! that.id.equalsIgnoreCase( another.id ) )
 			);
 		}
 
@@ -385,14 +395,24 @@ public class CTableMenu extends AbstractContainerMenu {
 			System.out.println("------------------------");
 		}
 
+		// public ItemsSet toItemsSet() {
+        //     ItemsSet set = new ItemsSet();
+		// 	return set;
+        // }
+
 		public ItemsSet toItemsSet() {
 			ItemsSet iSet = new ItemsSet();
+			
 			for (GridItem item : this.items) {
 				if (isEmpty(item)) {continue;}
-				iSet.addItem(item);
+				iSet.addItem(item.id);
+				//iSet.addItem(item);
 			}
+			//iSet.addItem("air");
+
 			return iSet;
 		}
+
 		public ItemHash toItemHash() {
 			ItemHash iHash = new ItemHash();
 			for (GridItem item : this.items) {

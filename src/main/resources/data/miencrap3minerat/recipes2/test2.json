@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"minecraft:stone","count":3},
+    "set": {
+        "items": {
+            "minecraft:apple": 4
+        }
+    }
+
+}
