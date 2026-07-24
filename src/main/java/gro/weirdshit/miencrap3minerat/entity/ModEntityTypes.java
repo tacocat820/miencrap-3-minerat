@@ -28,6 +28,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MISC)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<Psycho> PSYCHO = register(
+			"psycho",
+			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.MISC)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",
 			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.MISC)
@@ -60,6 +65,7 @@ public class ModEntityTypes {
 	public static void registerAttributes() {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());
