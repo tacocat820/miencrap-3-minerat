@@ -28,6 +28,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MISC)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<Repeer> REPEER = register(
+			"repeer",
+			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.MISC)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<Float> FLOAT = register(
 			"float",
 			EntityType.Builder.<Float>of(Float::new, MobCategory.MISC)
@@ -56,6 +61,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());
 	}
 	public static void generate() {}

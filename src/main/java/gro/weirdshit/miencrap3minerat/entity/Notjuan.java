@@ -2,6 +2,8 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -40,6 +42,8 @@ import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
@@ -135,12 +139,14 @@ public class Notjuan extends PathfinderMob {
 	@Override
 	public void startSeenByPlayer(final ServerPlayer player) {
 		super.startSeenByPlayer(player);
+		this.setPathfindingMalus(PathType.LAVA, 0.0f);
 		this.bossEvent.addPlayer(player);
 	}
 
 	@Override
 	public void stopSeenByPlayer(final ServerPlayer player) {
 		super.stopSeenByPlayer(player);
+		this.setPathfindingMalus(PathType.LAVA, 0.0f);
 		this.bossEvent.removePlayer(player);
 	}
 
@@ -172,6 +178,16 @@ public class Notjuan extends PathfinderMob {
 
 	@Override
 	public void tick() {
+
+		if (!level().isClientSide() && this.level() instanceof ServerLevel serverLevel) {
+			if (serverLevel.getBlockState(BlockPos.containing(this.getX(), this.getY(), this.getZ())).is(Blocks.LAVA)) {
+				Vec3 direction = Vec3.directionFromRotation(this.getXRot(), this.getYHeadRot());
+				this.setDeltaMovement(direction.multiply(0.4, 0.4, 0.4).add(0.0, 0.4, 0.0));
+
+				MIENCRAP3MINERAT.LOGGER.info("lave");
+			}
+		}
+
 		LivingEntity target = this.getTarget();
 		if (target != null && this.getCooldown() <= 0) 
 			if (target.distanceTo(this) < 40) {
