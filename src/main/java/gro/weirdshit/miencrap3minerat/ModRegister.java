@@ -127,7 +127,6 @@ public class ModRegister {
 					return Optional.of(recipe);
 				
                 } else if (
-
                     recipe instanceof CTableMenu.ShapelessRecipe
                     && ((CTableMenu.ShapelessRecipe)recipe).set.equal( itemset )
                 ) { //shapeless

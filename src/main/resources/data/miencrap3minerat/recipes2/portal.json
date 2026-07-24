@@ -1,6 +1,6 @@
 {
     "type":"shaped",
-    "result": {"id":"minecraft:obsidian","count":10},
+    "result": {"id":"miencrap3minerat:nether_portal","count":1},
     "grid": {
         "cols":4,
         "rows":3,
