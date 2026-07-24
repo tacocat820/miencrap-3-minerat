@@ -36,7 +36,7 @@ public class ModEntityTypes {
 	public static final EntityType<Puffercopter> PUFFERCOPTER = register(
 			"puffercopter",
 			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.MISC)
-					.sized(1.4f, 0.7f)
+					.sized(0.8f, 0.8f)
 	);
 	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
 			"notjuan_spit",

@@ -3,6 +3,9 @@ package gro.weirdshit.miencrap3minerat.entity;
 import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModSounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -44,8 +47,10 @@ import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
@@ -83,10 +88,12 @@ public class Puffercopter extends PathfinderMob {
 	
 	public Puffercopter(Level world) {
 		this(ModEntityTypes.PUFFERCOPTER, world);
+		this.setNoGravity(true);
 	}
 
 	public Puffercopter(EntityType<? extends Puffercopter> entityType, Level world) {
 		super(entityType, world);
+		this.setNoGravity(true);
 	}
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
@@ -124,25 +131,60 @@ public class Puffercopter extends PathfinderMob {
 	@Override
 	public void tick() {
 		super.tick();
+		this.setNoGravity(true);
 
 		if (!level().isClientSide() && this.level() instanceof ServerLevel serverLevel) {
+
+			float r = this.getYHeadRot();
+			Vec3 direction = Vec3.directionFromRotation(0, r);
+
+			if (!serverLevel.getBlockState(BlockPos.containing(this.getX() + direction.x * 0.7, this.getY(), this.getZ() + direction.z * 0.7)).isAir()) {
+				r += 10;
+				this.setYHeadRot(r);
+				direction = Vec3.directionFromRotation(0, r);
+			}
+
+			this.setYBodyRot(r);
+			this.setYRot(r);
+
+			float yDelta = 0.0f;
+
+			if (!serverLevel.getBlockState(BlockPos.containing(this.getX(), this.getY() - 10.0, this.getZ())).isAir()) {
+				yDelta = 1.0f;
+			}
+
+			this.setDeltaMovement(direction.x * 0.4, yDelta, direction.z * 0.4);
+			if (serverLevel.getBlockState(BlockPos.containing(this.getX(), this.getY() - 11.0, this.getZ())).isAir()) {
+				this.setDeltaMovement(0.0, -0.9, 0.0);
+			}
+
 			if (this.isShitting()) {
+				if (this.shittingTimer == 15) {
+					PrimedTnt spawnedTnt = EntityType.TNT.create(serverLevel, null);
+
+					Vec3 reverseDirection = new Vec3(0 - direction.x * 0.6, -0.5, 0 - direction.z * 0.6);
+
+					spawnedTnt.setPos(this.position());
+					spawnedTnt.setFuse(30);
+					spawnedTnt.setDeltaMovement(reverseDirection);
+
+					serverLevel.addFreshEntity(spawnedTnt);
+				}
 				if (this.shittingTimer -- <= 0) {
 					this.setShitting(false);
 					this.shittingTimer = 100;
 				}
 			} else {
 				if (this.shittingTimer -- <= 20) {
-					PrimedTnt spawnedTnt = EntityType.TNT.create(serverLevel, null);
-					spawnedTnt.setPos(this.position());
-					spawnedTnt.setFuse(30);
-
-					serverLevel.addFreshEntity(spawnedTnt);
-
+					this.playSound(ModSounds.FARD, 2.0f, 1.0f);
 					this.setShitting(true);
 				}
 			}
 		}
+	}
+
+	@Override
+	protected void checkFallDamage(final double ya, final boolean onGround, final BlockState onState, final BlockPos pos) {
 	}
 
 	@Override
