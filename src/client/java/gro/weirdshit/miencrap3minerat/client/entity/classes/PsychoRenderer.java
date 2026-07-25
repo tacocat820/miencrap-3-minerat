@@ -33,6 +33,7 @@ public class PsychoRenderer extends MobRenderInterface {
         private final ModelPart Left_Arm;
         private final ModelPart Right_Leg;
         private final ModelPart Left_Leg;
+        private final ModelPart[] parts;
 
         public Model(ModelPart root) {
             super(root);
@@ -43,6 +44,7 @@ public class PsychoRenderer extends MobRenderInterface {
             this.Left_Arm = this.Waist.getChild("Left Arm");
             this.Right_Leg = root.getChild("Right Leg");
             this.Left_Leg = root.getChild("Left Leg");
+            this.parts = new ModelPart[]{Left_Arm,Right_Arm,Left_Leg,Right_Leg,Waist};
         }
 
         public static LayerDefinition getTexturedModelData() {
@@ -75,13 +77,21 @@ public class PsychoRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
-            this.Left_Arm.xRot = state.xRot * (float) (Math.PI / 180.0);
-            this.Left_Arm.yRot = state.yRot * (float) (Math.PI / 180.0);
-            this.Head.yRot = this.Head.yRot + 0.07f;
+            float AnimationProgressX = state.ageInTicks * 0.21f + 0.1f;
+            float AnimationProgressY = state.ageInTicks * 0.302f + 21f;
+            float AnimationProgressZ = state.ageInTicks * 0.553f + 2.0f;
+            
+            int n = 0;
+            for (ModelPart part : this.parts) {
+                n++;
+                part.xRot = Mth.cos(AnimationProgressX +n);
+                part.yRot = Mth.cos(AnimationProgressY +n);
+                part.zRot = Mth.cos(AnimationProgressZ +n);
+            }
         }
     }
     public static class EntityRenderer extends MobRenderer<Psycho, RenderState, Model> {
-        private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/pshycho.png");
+        private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/psycho.png");
 
         public EntityRenderer(EntityRendererProvider.Context context) {
             super(context, new Model(context.bakeLayer(ModEntityModelLayers.PSYCHO)), 0.375f); // 0.375 shadow radius

@@ -103,7 +103,7 @@ public class ModBlocks {
     public static RegisteredBlock BLACKSCREEN = new GenericBlock("blackscreen", Block::new, SoundType.STONE,-1.0f,-1.0f).reg();
     public static RegisteredBlock WHITESCREEN = new GenericBlock("whitescreen", Block::new, SoundType.STONE,-1.0f,-1.0f).light(15).reg();
     public static RegisteredBlock DIRT = new GenericBlock("dirt", SpecificDirtBlock::new, SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
-    public static RegisteredBlock CHAIR = new GenericBlock("chair", HorizontallyRotatingBlock::new, SoundType.STONE,0.5f,0.5f).noCollision().reg();
+    public static RegisteredBlock CHAIR = new GenericBlock("chair", p -> new HorizontallyRotatingBlock(p).shape(Block.column(14.0, 0.0, 10.0)), SoundType.STONE,0.5f,0.5f).reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
     public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", Block::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", NormalFallingBlock::new, SoundType.CROP,3.0f,0.5f).reg();
@@ -113,6 +113,9 @@ public class ModBlocks {
 	public static RegisteredBlock CRAFTING_TABLE_2 = new GenericBlock("crafting_table_2", SpecificCTable2Block::new, SoundType.IRON,0.1f,0.1f).reg();
 	public static RegisteredBlock OBAMA = new GenericBlock("obama", Block::new, SoundType.STONE,2.0f, 1.0f).reg();
 	public static RegisteredBlock SAND = new GenericBlock("sand", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
+	public static RegisteredBlock STOOL = new GenericBlock("stool", p -> new HorizontallyRotatingBlock(p).shape(Block.column(14.0, 0.0, 11.0)), SoundType.WOOD,0.5f, 4.5f).reg();
+	public static RegisteredBlock TABLE = new GenericBlock("table", p -> new HorizontallyRotatingBlock(p).shape(Block.column(14.0, 0.0, 16.0)), SoundType.WOOD,0.5f, 4.5f).reg();
+	public static RegisteredBlock HELLSTONE = new GenericBlock("hell_stone", Block::new, SoundType.STONE,-1f, -1f).reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
