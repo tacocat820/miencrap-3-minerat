@@ -55,30 +55,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 
-class PuffercopterAttackGoal extends MeleeAttackGoal {
-	private final Puffercopter puffercopter;
-
-	public PuffercopterAttackGoal(final Puffercopter puffercopter, final double speedModifier, final boolean trackTarget) {
-		super(puffercopter, speedModifier, trackTarget);
-		this.puffercopter = puffercopter;
-	}
-
-	public void start() {
-		super.start();
-	}
-
-	public void stop() {
-		super.stop();
-		this.puffercopter.setAggressive(false);
-	}
-
-	public void tick() {
-		super.tick();
-		this.puffercopter.setAggressive(true);
-	}
-}
-
-
 public class Puffercopter extends PathfinderMob {
 
 	private static final EntityDataAccessor<Boolean> SHITTING = SynchedEntityData.defineId(Puffercopter.class, EntityDataSerializers.BOOLEAN);
@@ -203,11 +179,8 @@ public class Puffercopter extends PathfinderMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, IronGolem.class, 20, 1.0, 1.0));
-    	this.goalSelector.addGoal(1, new PuffercopterAttackGoal(this, 1.0, true));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Cow.class, 4));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-      	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<AbstractVillager>(this, AbstractVillager.class, false));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
     }
 }
