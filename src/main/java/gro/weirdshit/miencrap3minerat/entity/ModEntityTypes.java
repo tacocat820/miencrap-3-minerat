@@ -35,7 +35,7 @@ public class ModEntityTypes {
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",
 			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.MISC)
-					.sized(1.4f, 0.7f)
+					.sized(0.7f, 0.7f)
 	);
 	public static final EntityType<Float> FLOAT = register(
 			"float",
