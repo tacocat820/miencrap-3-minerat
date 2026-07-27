@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,11 +18,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class HorizontallyRotatingBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<HorizontallyRotatingBlock> CODEC = simpleCodec(HorizontallyRotatingBlock::new);
-    private VoxelShape SHAPE;
+    private VoxelShape SHAPE = Block.cube(16.0);
 
     public HorizontallyRotatingBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        SHAPE = Block.cube(16.0);
     }
 
     public HorizontallyRotatingBlock shape(VoxelShape shape) {
