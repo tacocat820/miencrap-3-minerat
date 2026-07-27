@@ -53,6 +53,10 @@ public class Psycho extends Monster {
 		this(ModEntityTypes.PSYCHO, world);
 	}
 
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)

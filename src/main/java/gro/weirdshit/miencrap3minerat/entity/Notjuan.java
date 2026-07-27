@@ -91,6 +91,12 @@ public class Notjuan extends PathfinderMob {
 	}
 
 
+
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
+
 	@Override
 	protected void defineSynchedData(final Builder entityData) {
 		super.defineSynchedData(entityData);

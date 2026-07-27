@@ -1,0 +1,21 @@
+{
+    "criteria": {
+      "eat": {
+        "trigger": "minecraft:consume_item",
+        "conditions": {
+          "item": {
+            "items": "miencrap3minerat:iron_apple"
+          }
+        }
+      }
+    },
+    "requirements": [
+      [
+        "eat"
+      ]
+    ],
+    "rewards": {
+      "function": "miencrap3minerat:food/iron_apple"
+    }
+  }
+  

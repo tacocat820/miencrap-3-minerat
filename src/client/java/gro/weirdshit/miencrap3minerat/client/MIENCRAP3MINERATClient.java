@@ -66,6 +66,16 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			)
 		);
 		FluidRenderingRegistry.register(
+			ModFluids.OIL_STILL,
+			ModFluids.OIL_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.withDefaultNamespace("block/water_still")),
+					new Material(Identifier.withDefaultNamespace("block/water_flow")),
+					new Material(Identifier.withDefaultNamespace("block/water_overlay")),
+					BlockTintSources.constant(ARGB.opaque(0x000000))
+			)
+		);
+		FluidRenderingRegistry.register(
 			ModFluids.EARS_STILL,
 			ModFluids.EARS_FLOWING,
 			new FluidModel.Unbaked(

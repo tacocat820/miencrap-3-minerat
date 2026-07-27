@@ -104,6 +104,10 @@ public class Float extends Animal implements NeutralMob, PlayerRideable {
 		this(ModEntityTypes.FLOAT, world);
 	}
 
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
 	@Override
 	protected void checkFallDamage(final double ya, final boolean onGround, final BlockState onState, final BlockPos pos) {
 	}

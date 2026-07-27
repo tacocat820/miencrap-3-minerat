@@ -72,6 +72,10 @@ public class Puffercopter extends PathfinderMob {
 		this.setNoGravity(true);
 	}
 
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)
@@ -152,7 +156,7 @@ public class Puffercopter extends PathfinderMob {
 				}
 			} else {
 				if (this.shittingTimer -- <= 20) {
-					this.playSound(ModSounds.FARD, 2.0f, 1.0f);
+					this.playSound(ModSounds.FARD, 6.0f, 1.0f);
 					this.setShitting(true);
 				}
 			}

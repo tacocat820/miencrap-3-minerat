@@ -7,6 +7,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificEarsFluidBlock;
 import gro.weirdshit.miencrap3minerat.block.fluid.AcidFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -63,6 +64,10 @@ public class ModFluids {
 	public static final FlowingFluid ACID_FLOWING = register("flowing_acid", new AcidFluid.Flowing());
 	public static final FlowingFluid ACID_STILL = register("acid", new AcidFluid.Source());
     public static RegisteredBlock ACID = new GenericFluid("acid",(props) -> new LiquidBlock(ModFluids.ACID_STILL, props.noCollision())).reg();
+
+	public static final FlowingFluid OIL_FLOWING = register("flowing_oil", new OilFluid.Flowing());
+	public static final FlowingFluid OIL_STILL = register("oil", new OilFluid.Source());
+    public static RegisteredBlock OIL = new GenericFluid("oil",(props) -> new LiquidBlock(ModFluids.OIL_STILL, props.noCollision())).reg();
 
 	public static final FlowingFluid BLOOD_FLOWING = register("flowing_blood", new BloodFluid.Flowing());
 	public static final FlowingFluid BLOOD_STILL = register("blood", new BloodFluid.Source());

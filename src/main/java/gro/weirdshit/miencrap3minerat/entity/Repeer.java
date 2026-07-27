@@ -163,6 +163,10 @@ public class Repeer extends PathfinderMob {
 		this.setTUB(5000);
 	}
 
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
