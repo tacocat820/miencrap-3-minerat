@@ -46,6 +46,7 @@ public class ModItems {
 	public static RegisteredItem<?> IRON_APPLE = ModItems.register("iron_apple", IronAppleItem::new, new Item.Properties());
 	public static RegisteredItem<?> SOAP = ModItems.register("soap", Item::new, new Item.Properties());
 	public static RegisteredItem<?> ESTROGEN = ModItems.register("estrogen", Item::new, new Item.Properties());
+	public static RegisteredItem<?> TETO_EARS = ModItems.register("teto_ears", Item::new, new Item.Properties());
 	
 	public static RegisteredItem<?> VILLAGER_MEAT = ModItems.register("villager_meat", Item::new, 
 		new Item.Properties().food(new FoodProperties

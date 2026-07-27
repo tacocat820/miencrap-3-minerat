@@ -58,6 +58,7 @@ public class MusicSounds {
     public static final SoundEvent HOG = registerSound("ost.hog");
     public static final SoundEvent BILL_GATES_BATTLE_THEME = registerSound("ost.bgb");
     public static final SoundEvent BLOCKS_AND_SHIT = registerSound("ost.blocks_and_shit");
+    public static final SoundEvent EXCUSE = registerSound("ost.excuse");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

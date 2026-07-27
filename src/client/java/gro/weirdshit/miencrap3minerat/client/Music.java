@@ -77,6 +77,7 @@ public class Music {
                     MusicSounds.STAL,
                     MusicSounds.MINERAT,
                     MusicSounds.CREDITS,
+                    MusicSounds.EXCUSE,
                 });
             case PEACEFUL:
                 return Choose(new SoundEvent[]{
@@ -96,6 +97,7 @@ public class Music {
                     MusicSounds.TWEETER_ALARM,
                     MusicSounds.GROMADJI,
                     MusicSounds.BLOCKS_AND_SHIT,
+                    MusicSounds.EXCUSE,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{
