@@ -66,7 +66,10 @@ public class ModItems {
 	);
 	
 	public static RegisteredItem<?> NETHER_PORTAL = ModItems.register("nether_portal", NetherPortalItem::new, new Item.Properties()
-	.fireResistant().useCooldown(1.0f)
+	.sword(ToolMaterial.COPPER, 0.1F, -30.4F).attributes(ItemAttributeModifiers.builder()
+	.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0, Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build())
+	
+	.fireResistant().useCooldown(5.12f)
 	); 
 	
 
@@ -80,6 +83,10 @@ public class ModItems {
 	public static RegisteredItem<?> CUP_OF_BLOOD = ModItems.register("cup_of_blood", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(1f).build()).usingConvertsTo(CUP_DEAD.item));
 	public static RegisteredItem<?> CUP_OF_OBSIDIAN = ModItems.register("cup_of_obsidian", Item::new, new Item.Properties());
+
+	public static RegisteredItem<?> VODKA_BOTTLE = ModItems.register("vodka_bottle", Item::new, new Item.Properties()
+			.food(new FoodProperties.Builder().alwaysEdible().nutrition(-3).saturationModifier(-1f).build()).usingConvertsTo(Items.GLASS_BOTTLE));
+		
 
 	public static void generate() {
 	}

@@ -8,6 +8,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ModShapes {
     public static void generate() {}
+
+    //for chair!!!!!!!!
+    public static final VoxelShape CHAIR_SHAPE = (VoxelShape)Util.make(() -> {
+        return Shapes.join(
+            Block.column(14, 0, 11),
+            Block.box(1, 11, 1, 15, 24, 3),
+            BooleanOp.OR
+        );
+    });
+
     // private static final VoxelShape SHAPE_INSIDE = Block.column((double)12.0F, (double)4.0F, (double)16.0F);
     // protected static final VoxelShape SHAPE = (VoxelShape)Util.make(() -> {
     //     return Shapes.join(
@@ -18,11 +28,5 @@ public class ModShapes {
     //         BooleanOp.ONLY_FIRST
     //     );
     // });
-    public static final VoxelShape CHAIR_SHAPE = (VoxelShape)Util.make(() -> {
-        return Shapes.join(
-            Block.column(14, 0, 11),
-            Block.box(1, 11, 1, 15, 24, 3),
-            BooleanOp.OR
-        );
-    });
+
 }
