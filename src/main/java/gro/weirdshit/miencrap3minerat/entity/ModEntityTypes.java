@@ -18,13 +18,13 @@ class GenericEntity {
 public class ModEntityTypes {
 	public static final EntityType<Notjuan> NOTJUAN = register(
 			"notjuan",
-			EntityType.Builder.<Notjuan>of(Notjuan::new, MobCategory.MISC)
+			EntityType.Builder.<Notjuan>of(Notjuan::new, MobCategory.CREATURE)
 					.fireImmune()
 					.sized(0.75f, 1.75f)
 	);
 	public static final EntityType<Dolphin> DOLPHIN = register(
 			"dolphin",
-			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MISC)
+			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f)
 	);
 	public static final EntityType<Psycho> PSYCHO = register(
@@ -34,7 +34,7 @@ public class ModEntityTypes {
 	);
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",
-			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.MISC)
+			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.CREATURE)
 					.sized(0.7f, 0.7f)
 	);
 	public static final EntityType<Float> FLOAT = register(
@@ -44,7 +44,7 @@ public class ModEntityTypes {
 	);
 	public static final EntityType<Puffercopter> PUFFERCOPTER = register(
 			"puffercopter",
-			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.MISC)
+			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.CREATURE)
 					.sized(0.8f, 0.8f)
 	);
 	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
