@@ -29,7 +29,7 @@ public class ModEntityTypes {
 	);
 	public static final EntityType<Psycho> PSYCHO = register(
 			"psycho",
-			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.MISC)
+			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.CREATURE)
 					.sized(1.4f, 0.7f)
 	);
 	public static final EntityType<Repeer> REPEER = register(
@@ -39,7 +39,7 @@ public class ModEntityTypes {
 	);
 	public static final EntityType<Float> FLOAT = register(
 			"float",
-			EntityType.Builder.<Float>of(Float::new, MobCategory.MISC)
+			EntityType.Builder.<Float>of(Float::new, MobCategory.CREATURE)
 					.sized(1.4f, 0.7f)
 	);
 	public static final EntityType<Puffercopter> PUFFERCOPTER = register(
