@@ -18,6 +18,15 @@ public class ModShapes {
         );
     });
 
+    public static final VoxelShape WEDGE = (VoxelShape)Util.make(() -> {
+        return Shapes.or(
+            Block.box(0, 0, 0, 16, 16, 4),
+            Block.box(0, 0, 0, 16, 12, 8),
+            Block.box(0, 0, 0, 16, 8, 12),
+            Block.box(0, 0, 0, 16, 4, 16)
+        );
+    });
+
     // private static final VoxelShape SHAPE_INSIDE = Block.column((double)12.0F, (double)4.0F, (double)16.0F);
     // protected static final VoxelShape SHAPE = (VoxelShape)Util.make(() -> {
     //     return Shapes.join(
