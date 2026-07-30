@@ -45,7 +45,7 @@ public class MbSkybox extends Skybox {
             Window win = Minecraft.getInstance().getWindow();
             Vec2 cam = Minecraft.getInstance().getCameraEntity().getRotationVector();
 
-            MIENCRAP3MINERAT.LOGGER.info(String.valueOf(cam.y));
+            // MIENCRAP3MINERAT.LOGGER.info(String.valueOf(cam.y));
 
             Std140Builder.intoBuffer(view.data())
                 .putFloat(win.getWidth()).putFloat(win.getHeight())

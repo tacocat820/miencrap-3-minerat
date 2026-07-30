@@ -143,7 +143,7 @@ public class CTableMenu extends AbstractContainerMenu {
 		this.craftGrid.setItem(item, slotIndex);
 		
 		ItemsGrid optimizedGrid = craftGrid.getOptimized();
-		optimizedGrid.display(); //==
+		// optimizedGrid.display(); //==
 		ItemsSet itemset = optimizedGrid.toItemsSet();
 		MIENCRAP3MINERAT.LOGGER.warn("hash :::: "+itemset.hashCode());
 		//---//

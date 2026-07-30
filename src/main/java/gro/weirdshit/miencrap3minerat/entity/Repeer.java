@@ -49,7 +49,8 @@ class RepeerBuildGoal extends Goal {
 	public boolean canUse() {
 
 		if (this.repeer.level() instanceof ServerLevel serverLevel){
-			MIENCRAP3MINERAT.LOGGER.info(String.valueOf(this.repeer.getTUB()));
+			// MIENCRAP3MINERAT.LOGGER.info(String.valueOf(this.repeer.getTUB()));
+			// вот где гад прятался ^ который логи засорял
 
 			return (this.repeer.hasCustomName() || this.repeer.getTUB() <= 0 || serverLevel.getNearestPlayer(this.repeer, 3) != null) && this.repeer.getBuilding() == 0;
 		}
