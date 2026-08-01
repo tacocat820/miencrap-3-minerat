@@ -49,6 +49,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModItems.generate();
 		ModRegister.generate();
 		ModSounds.generate();
+		ModCommands.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}

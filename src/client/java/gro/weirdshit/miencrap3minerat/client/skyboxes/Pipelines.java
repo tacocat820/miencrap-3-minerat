@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap3minerat.client.skyboxes;
 
+import com.mojang.blaze3d.pipeline.BlendFunction;
+import com.mojang.blaze3d.pipeline.ColorTargetState;
 import com.mojang.blaze3d.pipeline.DepthStencilState;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.CompareOp;
@@ -41,6 +43,17 @@ public class Pipelines {
         .withDepthStencilState(new DepthStencilState(CompareOp.LESS_THAN_OR_EQUAL, true, -3.0f, -3.0f))
         .withUniform("Whatever", UniformType.UNIFORM_BUFFER)
         .withCull(false)
+        .build()
+    );
+
+    // TODO: put this into a different class
+    public static final RenderPipeline RED_LIGHTNING_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
+		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/red_lightning"))
+        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/red_lightning"))
+        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/red_lightning"))
+        .withColorTargetState(new ColorTargetState(BlendFunction.LIGHTNING))
+        .withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
+        .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
     

@@ -24,7 +24,11 @@ void main(){
 
     vec4 outColor;
     if (avg > 0.4) {
-        outColor = vec4(1.0, 1.0, 1.0, 0.0);
+        if (diffuseColor.x > 0.9) {
+            outColor = vec4(1.0, 0.0, 0.0, 0.0);
+        } else {
+            outColor = vec4(1.0, 1.0, 1.0, 0.0);
+        }
     } else {
         outColor = vec4(0.0, 0.0, 0.0, 0.0);
     }

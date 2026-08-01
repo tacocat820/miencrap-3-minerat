@@ -27,6 +27,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<ActualFish> ACTUAL_FISH = register(
+			"actual_fish",
+			EntityType.Builder.<ActualFish>of(ActualFish::new, MobCategory.CREATURE)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<Psycho> PSYCHO = register(
 			"psycho",
 			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.CREATURE)
@@ -51,6 +56,10 @@ public class ModEntityTypes {
 			"notjuan_spit",
 			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune()
 	);
+	public static final EntityType<RedLightningBolt> RED_LIGHTNING_BOLT = register(
+			"red_lightning_bolt",
+			EntityType.Builder.<RedLightningBolt>of(RedLightningBolt::new, MobCategory.MISC).noLootTable().noSave().sized(0.0F, 0.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE)
+	);
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
 		ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name));
@@ -64,6 +73,7 @@ public class ModEntityTypes {
 	public static void registerAttributes() {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(ACTUAL_FISH, ActualFish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
