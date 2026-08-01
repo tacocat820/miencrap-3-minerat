@@ -77,7 +77,8 @@ public class Music {
                     MusicSounds.STAL,
                     MusicSounds.MINERAT,
                     MusicSounds.CREDITS,
-                    MusicSounds.EXCUSE,
+                    MusicSounds.EPIK,
+                    MusicSounds.BORING,
                 });
             case PEACEFUL:
                 return Choose(new SoundEvent[]{
@@ -98,6 +99,7 @@ public class Music {
                     MusicSounds.GROMADJI,
                     MusicSounds.BLOCKS_AND_SHIT,
                     MusicSounds.EXCUSE,
+                    MusicSounds.BOOG_CITY,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

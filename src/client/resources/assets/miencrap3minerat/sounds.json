@@ -199,6 +199,12 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blocks_and_shit","stream": true}]},
 	"ost.excuse":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/excuse","stream": true}]},
+	"ost.boring":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/boring","stream": true}]},
+	"ost.epik":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/epik","stream": true}]},
+	"ost.boog_city":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/boog_city","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"bee_alt":

@@ -59,6 +59,9 @@ public class MusicSounds {
     public static final SoundEvent BILL_GATES_BATTLE_THEME = registerSound("ost.bgb");
     public static final SoundEvent BLOCKS_AND_SHIT = registerSound("ost.blocks_and_shit");
     public static final SoundEvent EXCUSE = registerSound("ost.excuse");
+    public static final SoundEvent BORING = registerSound("ost.boring");
+    public static final SoundEvent EPIK = registerSound("ost.epik");
+    public static final SoundEvent BOOG_CITY = registerSound("ost.boog_city");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);
