@@ -18,6 +18,8 @@ import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
+import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -50,6 +52,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModRegister.generate();
 		ModSounds.generate();
 		ModCommands.generate();
+		ModPackets.generate();
+		ModMenuType.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}

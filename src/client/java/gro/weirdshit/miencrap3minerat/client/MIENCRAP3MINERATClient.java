@@ -45,10 +45,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		MusicSounds.generate();
-		ModPackets.generate();
 		Pipelines.generate();
-		ModPackets.clientGenerate();
-		ModMenuType.generate();
 
 		ModEntityModelLayers.registerModelLayers();
 

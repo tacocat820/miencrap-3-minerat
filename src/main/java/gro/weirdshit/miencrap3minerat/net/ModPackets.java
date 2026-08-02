@@ -8,11 +8,13 @@ import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerUsePayload;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.vehicle.minecart.Minecart;
 import net.minecraft.world.inventory.BeaconMenu;
 
 public class ModPackets {
