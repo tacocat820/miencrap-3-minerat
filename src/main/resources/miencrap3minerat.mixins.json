@@ -4,7 +4,8 @@
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"ExampleMixin",
-		"PlayerMixin"
+		"PlayerMixin",
+		"CatMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

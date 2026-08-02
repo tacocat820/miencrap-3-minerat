@@ -27,6 +27,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<Crish> CRISH = register(
+			"crish",
+			EntityType.Builder.<Crish>of(Crish::new, MobCategory.MONSTER)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<ActualFish> ACTUAL_FISH = register(
 			"actual_fish",
 			EntityType.Builder.<ActualFish>of(ActualFish::new, MobCategory.CREATURE)
@@ -73,6 +78,7 @@ public class ModEntityTypes {
 	public static void registerAttributes() {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(CRISH, Crish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ACTUAL_FISH, ActualFish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());

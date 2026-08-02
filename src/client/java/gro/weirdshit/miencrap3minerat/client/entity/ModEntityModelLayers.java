@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.client.entity;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
@@ -21,6 +22,7 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
 	public static final ModelLayerLocation PSYCHO = createMain("psycho");
 	public static final ModelLayerLocation FLOAT = createMain("float");
@@ -36,6 +38,7 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);
 		PsychoRenderer.register(PSYCHO);
 		FloatRenderer.register(FLOAT);

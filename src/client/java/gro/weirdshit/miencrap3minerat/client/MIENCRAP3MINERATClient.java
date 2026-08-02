@@ -60,9 +60,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 				postEffect.miencrap3minerat$setPostEffect(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "boom"));
 				--flashTime;
 
-				if (flashTime == 0) {
-					Minecraft.getInstance().gameRenderer.clearPostEffect();
-				}
+				if (flashTime == 0) Minecraft.getInstance().gameRenderer.clearPostEffect();
 			}
 		}); 
 
