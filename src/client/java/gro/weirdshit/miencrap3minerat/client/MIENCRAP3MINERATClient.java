@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
@@ -110,6 +111,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		
 		ClientPlayNetworking.registerGlobalReceiver(FlashPayload.TYPE, (payload, context) -> {
 			flashTime = 5;
+		});
+		ClientPlayNetworking.registerGlobalReceiver(PlayerHitTensionPayload.TYPE, (payload, context) -> {
+			Music.hit();
 		});
 
 		LevelRenderEvents.END_EXTRACTION.register(Skyboxes::extractSkyboxState);

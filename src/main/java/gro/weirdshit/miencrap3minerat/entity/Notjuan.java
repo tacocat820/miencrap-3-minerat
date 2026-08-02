@@ -35,6 +35,7 @@ import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.animal.turtle.Turtle;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.zombie.Zombie;
@@ -73,7 +74,7 @@ class NotjuanAttackGoal extends MeleeAttackGoal {
 }
 
 
-public class Notjuan extends PathfinderMob {
+public class Notjuan extends PathfinderMob implements Enemy {
    
 	private static final EntityDataAccessor<Integer> DATA_ID_COOLD = SynchedEntityData.defineId(Notjuan.class, EntityDataSerializers.INT);
 

@@ -138,15 +138,15 @@ public class Music {
         return false;
     }
 
-    /*static void onDamage(Minecraft minecraft) {
+    public static void hit() {
 
-        if (
+        tense += 5;
+        /*if (
             event.getEntity().getUUID().equals(minecraft.player.getLivingEntity().getUUID()) 
             && event.getSource().getEntity() instanceof Enemy) 
         { 
-            tense += 5;
-        }
+        }*/
 
-    } */
+    } 
     
 }

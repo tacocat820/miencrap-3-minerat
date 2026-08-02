@@ -16,6 +16,7 @@ public class PlayerDamageMixin {
 
 	@Inject(at = @At("HEAD"), method = "tick")
 	private void init(CallbackInfo info) {
+        /*
         Player player = (Player)(Object)this;
 
         if (player.level().isClientSide() && player == Minecraft.getInstance().player) {
@@ -29,7 +30,7 @@ public class PlayerDamageMixin {
 
             lastHealth = health;
         }
-		// This code is injected into the start of Minecraft.run()V
+		// This code is injected into the start of Minecraft.run()V */
 	}
     
 }

@@ -3,7 +3,8 @@
 	"package": "gro.weirdshit.miencrap3minerat.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"PlayerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

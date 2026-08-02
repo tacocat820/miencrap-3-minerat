@@ -20,15 +20,3 @@ public record FlashPayload(int length) implements CustomPacketPayload {
 		return TYPE;
 	}
 }
-
-//TODO: finnish
-
-/*
-
-
-					if (serverLevel.getNearestPlayer(this, 20) != null) {
-						FlashPayload payload = new FlashPayload(3);
-						for (ServerPlayer player : PlayerLookup.level((ServerLevel) serverLevel)) {
-							ServerPlayNetworking.send(player, payload);
-						}
-					} */
