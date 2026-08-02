@@ -13,6 +13,8 @@ public class ModMenuType {
 	public static final MenuType<WatercoolerMenu> WATERCOOLER = register("watercooler", WatercoolerMenu::new);
 	public static final MenuType<CTableMenu> CRAFTING_TABLE_2 = register("crafting_table_2", CTableMenu::new);
 
+	public static void generate() {}
+
 	public static <T extends AbstractContainerMenu> MenuType<T> register(
 					String name,
 					MenuType.MenuSupplier<T> constructor

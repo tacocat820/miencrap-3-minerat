@@ -22,6 +22,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> FLASH_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(FlashPayload.TYPE, FlashPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> PLAYER_HIT_TENSION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(PlayerHitTensionPayload.TYPE, PlayerHitTensionPayload.CODEC);
 
+    public static void clientGenerate() {}
     public static void generate() {
         ServerPlayNetworking.registerGlobalReceiver(WatercoolerPutPayload.TYPE, (payload, context) -> {
             if (context.player().containerMenu instanceof WatercoolerMenu menu) {
