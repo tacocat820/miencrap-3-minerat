@@ -8,21 +8,25 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.block.Block;
 
 public class HorizontallyRotShapeBlock extends HorizontallyRotatingBlock {
-    private static RotableShape SHAPES;
+    public RotableShape SHAPES = RotableShape.single( Block.cube(16.0) );
 
-    public HorizontallyRotShapeBlock(Properties properties, VoxelShape shape) {
-        super(properties);
-        SHAPES = RotableShape.horiz(shape);
+    @Override
+    public HorizontallyRotShapeBlock shape(VoxelShape shape) {
+        this.SHAPES = RotableShape.horiz(shape);
+        // this.SHAPE = shape;
+        return this;
     }
-    
+
     @Override
     protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
-        //MIENCRAP3MINERAT.LOGGER.warn("yuyuyu "+FACING + "  " + FACING.getName()+ "  " + FACING.getValue(FACING.getName()));
-        VoxelShape shape = SHAPES.get( //палучаем направенье!
-            state.getValue(FACING)
-        );
-        return shape;
+        return this.SHAPES.get( state.getValue(FACING) );
+    }
+
+    //------//
+    public HorizontallyRotShapeBlock(Properties properties) {
+        super(properties);
     }
 }

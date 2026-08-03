@@ -29,13 +29,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SpecificVlcBlock extends FaceRotatingBlock {
+public class SpecificVlcBlock extends FaceRotShapeBlock {
     public static final MapCodec<HorizontallyRotatingBlock> CODEC = simpleCodec(HorizontallyRotatingBlock::new);
-    private static final VoxelShape SHAPE = Block.column(10.0, 0.0, 8.0);
-    @Override
-    protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
-        return SHAPE; // make it better later
-    }
+    // private static final VoxelShape SHAPE = Block.column(10.0, 0.0, 8.0);
+    // @Override
+    // protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
+    //     return SHAPE; // make it better later
+    // }
 
     public SpecificVlcBlock(BlockBehaviour.Properties properties) {
         super(properties);

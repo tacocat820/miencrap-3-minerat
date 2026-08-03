@@ -27,6 +27,8 @@ public class ModShapes {
         );
     });
 
+    public static final VoxelShape VLC_SHAPE = Block.column(10.0, 0.0, 8.0);
+
     // private static final VoxelShape SHAPE_INSIDE = Block.column((double)12.0F, (double)4.0F, (double)16.0F);
     // protected static final VoxelShape SHAPE = (VoxelShape)Util.make(() -> {
     //     return Shapes.join(
