@@ -88,6 +88,18 @@ public class ModItems {
 			.food(new FoodProperties.Builder().alwaysEdible().nutrition(-3).saturationModifier(-1f).build()).usingConvertsTo(Items.GLASS_BOTTLE));
 		
 
+	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WRENCH = ModItems.register("wrench", Item::new, new Item.Properties());
+	public static RegisteredItem<?> TOMATO = ModItems.register("tomato", Item::new, new Item.Properties());
+	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());
+	public static RegisteredItem<?> DVD = ModItems.register("dvd", Item::new, new Item.Properties());
+	public static RegisteredItem<?> DVD_FULL = ModItems.register("dvd_full", Item::new, new Item.Properties());
+	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
+	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties());
+	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties());
+
 	public static void generate() {
 	}
 }
