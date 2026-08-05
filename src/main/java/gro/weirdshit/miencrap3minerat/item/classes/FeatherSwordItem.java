@@ -4,6 +4,7 @@ import java.rmi.registry.Registry;
 import java.util.Set;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -51,11 +52,13 @@ public class FeatherSwordItem extends Item {
         player.setDeltaMovement(direction.x * 1.4, direction.y * 1.4, direction.z * 1.4);
         ItemStack itemStack = player.getItemInHand(hand);
 
+        player.playSound(ModSounds.WING);
+
         if (level.isClientSide()) {
             return InteractionResult.PASS;
         } else {
             EquipmentSlot slot = hand.asEquipmentSlot();
-            ItemStack result = itemStack.hurtAndConvertOnBreak(1, ModItems.FEATHER_SWORD.item, player, slot);
+            ItemStack result = itemStack.hurtAndConvertOnBreak(1, Items.AIR, player, slot);
             return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(result);
         }
     }

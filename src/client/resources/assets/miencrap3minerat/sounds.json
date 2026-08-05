@@ -207,6 +207,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/boog_city","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
+	"wing":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:wing","stream": false}]},
 	"bee_alt":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee_alt","stream": false}]},
 

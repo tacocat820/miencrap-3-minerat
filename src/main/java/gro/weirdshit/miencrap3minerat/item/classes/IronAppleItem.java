@@ -40,15 +40,17 @@ public class IronAppleItem extends Item {
     }
     
     public ItemStack finishUsingItem(final ItemStack itemStack, final Level level, final LivingEntity entity) {
+
+        entity.playSound(SoundEvents.ANVIL_DESTROY);
+
         if (level instanceof ServerLevel serverLevel && !level.isClientSide()) {
             DamageSource damageSource = new DamageSource(
 					level.registryAccess()
 							.lookupOrThrow(Registries.DAMAGE_TYPE)
 							.get(IRON_APPLE_DAMAGE.identifier()).orElseThrow());
 
-            entity.playSound(SoundEvents.PILLAGER_DEATH);
-			entity.hurtServer(serverLevel, damageSource, 6.0f);
-
+            entity.hurtServer(serverLevel, damageSource, 6.0f);
+            
             ItemEntity n = new ItemEntity(serverLevel, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(ModItems.TOOTH.item, 6));
             n.setDefaultPickUpDelay();
             serverLevel.addFreshEntity(n);

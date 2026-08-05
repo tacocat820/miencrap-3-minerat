@@ -15,6 +15,7 @@ public class ModSounds {
 
     public static final SoundEvent FARD = registerSound("fard");
     public static final SoundEvent STATIC = registerSound("static");
+    public static final SoundEvent WING = registerSound("wing");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);
