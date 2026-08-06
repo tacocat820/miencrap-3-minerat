@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
@@ -64,6 +65,10 @@ class GenericBlock {
     }
     public GenericBlock noCollision() {
 		properties = properties.noCollision();
+        return this;
+    }
+    public GenericBlock replaceable() {
+		properties = properties.replaceable();
         return this;
     }
 
@@ -132,11 +137,14 @@ public class ModBlocks {
     public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
-    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", RotatedPillarBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
+    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", Block::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
 	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", DustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).reg();
     public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
-
+	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", Block::new, SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
+	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
