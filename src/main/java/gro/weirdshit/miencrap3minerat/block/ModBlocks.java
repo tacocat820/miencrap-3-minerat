@@ -46,7 +46,7 @@ class GenericBlock {
 		this.properties = properties;
     }
 
-	public GenericBlock ignited_by_lava() {
+	public GenericBlock ignitedByLava() {
 		properties = properties.ignitedByLava();
         return this;
     }
@@ -128,11 +128,11 @@ public class ModBlocks {
 	public static RegisteredBlock HELL_STONE_WEDGE = new GenericBlock("hell_stone_wedge", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.WEDGE), SoundType.STONE,-1f, -1f).reg();
     public static RegisteredBlock DRIED_GHAST = new GenericBlock("dried_ghast", p -> new HorizontallyRotatingBlock(p).shape(Block.column(9.0, 0.0, 11.0)), SoundType.CROP,1.0f,1.5f).noOcclusion().reg();
     public static RegisteredBlock PLASTIC_BLOCK = new GenericBlock("plastic_block", Block::new, SoundType.MUD,3.0f,1.5f).reg();
-    public static RegisteredBlock ORANGE_WOOD = new GenericBlock("orange_wood", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignited_by_lava().reg();
-    public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignited_by_lava().reg();
-    public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignited_by_lava().reg();
-    public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignited_by_lava().reg();
-    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", RotatedPillarBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignited_by_lava().reg();
+    public static RegisteredBlock ORANGE_WOOD = new GenericBlock("orange_wood", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", RotatedPillarBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
 	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", DustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).reg();
     public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
