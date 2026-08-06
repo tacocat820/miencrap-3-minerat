@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 2
+    },
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "state": {
+        "Name": "minecraft:water"
+      },
+      "entries": [
+        {
+          "weight": 10,
+          "data": {
+            "Name": "minecraft:moss_block"
+          }
+        },
+        {
+          "weight": 10,
+          "data": {
+            "Name": "minecraft:water"
+          }
+        },
+        {
+          "weight": 10,
+          "data": {
+            "Name": "miencrap3minerat:strange_dirt"
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:dirt",
+        "minecraft:clay",
+        "minecraft:sand",
+        "minecraft:stone"
+      ]
+    }
+  }
+}
