@@ -133,6 +133,10 @@ public class ModBlocks {
     public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignited_by_lava().reg();
     public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignited_by_lava().reg();
     public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", RotatedPillarBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignited_by_lava().reg();
+	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
+	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", DustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).reg();
+    public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).noCollision().reg();
+
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

@@ -22,7 +22,7 @@ read -r -p "> Enter texture(s) name(s) for ${modeltype}(s), space as splitter : 
 
 for tex_name in $textures_names; do
   if [ "$modeltype" = "item" ]; then
-    jq -n --arg texture "miencrap3minerat:item/$tex_name" '{
+    jq -n --arg texture "miencrap3minerat:$modeltype/$tex_name" '{
       "parent": "item/generated",
       "textures": {
         "layer0": $texture
@@ -30,7 +30,7 @@ for tex_name in $textures_names; do
     }' > "$resources_PATH/assets/miencrap3minerat/models/item/$tex_name.json"
   fi
   if [ "$modeltype" = "block" ]; then
-    jq -n --arg texture "miencrap3minerat:item/$tex_name" '{
+    jq -n --arg texture "miencrap3minerat:$modeltype/$tex_name" '{
       "parent": "block/cube_all",
       "textures": {
       "all": $texture
