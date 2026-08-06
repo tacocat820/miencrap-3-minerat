@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 2
+    },
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "state": {
+        "Name": "minecraft:water"
+      },
+      "entries": [
+        {
+          "weight": 10,
+          "data": {
+            "Name": "minecraft:mud"
+          }
+        },
+        {
+          "weight": 5,
+          "data": {
+            "Name": "miencrap3minerat:piss"
+          }
+        },
+        {
+          "weight": 7,
+          "data": {
+            "Name": "minecraft:dirt_path"
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:dirt",
+        "minecraft:grass_block"
+      ]
+    }
+  }
+}

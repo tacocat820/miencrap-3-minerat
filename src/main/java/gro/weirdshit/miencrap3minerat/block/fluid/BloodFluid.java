@@ -153,7 +153,7 @@ public abstract class BloodFluid extends FlowingFluid {
 
 		@Override
 		public @NonNull Item getBucket() {
-			return ModItems.TEST_ITEM.item;
+			return ModFluids.BLOOD_BUCKET.item;
 			//throw new UnsupportedOperationException("Unimplemented method 'getBucket'");
 		}
 	}

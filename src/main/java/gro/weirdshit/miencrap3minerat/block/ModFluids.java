@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.block.fluid.AcidFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.PissFluid;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
@@ -79,6 +80,11 @@ public class ModFluids {
 	public static final FlowingFluid BLOOD_STILL = register("blood", new BloodFluid.Source());
     public static RegisteredBlock BLOOD = new GenericFluid("blood",(props) -> new LiquidBlock(ModFluids.BLOOD_STILL, props)).reg();
 	public static RegisteredItem<?> BLOOD_BUCKET = ModItems.register("blood_bucket", p -> new BucketItem(ModFluids.BLOOD_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
+	public static final FlowingFluid PISS_FLOWING = register("flowing_piss", new PissFluid.Flowing());
+	public static final FlowingFluid PISS_STILL = register("piss", new PissFluid.Source());
+    public static RegisteredBlock PISS = new GenericFluid("piss",(props) -> new LiquidBlock(ModFluids.PISS_STILL, props)).reg();
+	public static RegisteredItem<?> PISS_BUCKET = ModItems.register("piss_bucket", p -> new BucketItem(ModFluids.PISS_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 	public static final FlowingFluid EARS_FLOWING = register("flowing_ears", new EarsFluid.Flowing());
 	public static final FlowingFluid EARS_STILL = register("ears", new EarsFluid.Source());

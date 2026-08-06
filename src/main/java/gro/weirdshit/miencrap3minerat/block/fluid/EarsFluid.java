@@ -160,7 +160,7 @@ public abstract class EarsFluid extends FlowingFluid {
 
 		@Override
 		public @NonNull Item getBucket() {
-			return ModItems.TEST_ITEM.item;
+			return ModFluids.EARS_BUCKET.item;
 			//throw new UnsupportedOperationException("Unimplemented method 'getBucket'");
 		}
 	}
