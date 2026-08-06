@@ -135,7 +135,7 @@ public abstract class OilFluid extends FlowingFluid {
 
 	@Override
 	public Item getBucket() {
-		return ModItems.TEST_ITEM.item;
+		return ModFluids.OIL_BUCKET.item;
 		//throw new UnsupportedOperationException("Unimplemented method 'getBucket'");
 	}
 }

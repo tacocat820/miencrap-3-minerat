@@ -4,6 +4,8 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,6 +33,7 @@ public class BreadSwordItem extends Item {
     @Override
 	public void hurtEnemy(final ItemStack itemStack, final LivingEntity mob, final LivingEntity attacker) {
         // MIENCRAP3MINERAT.LOGGER.info("ATTTTACKKKK "+mob);
+        mob.playSound(SoundEvents.MULE_EAT);
         if (mob.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(breakParticle, attacker.getX(), attacker.getY(0.5)+1, attacker.getZ(), 20, 0.5, 0.5, 0.5, 0.1);
 

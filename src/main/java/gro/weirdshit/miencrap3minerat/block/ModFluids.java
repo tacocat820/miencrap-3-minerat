@@ -8,6 +8,8 @@ import gro.weirdshit.miencrap3minerat.block.fluid.AcidFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
+import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -15,7 +17,9 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -64,18 +68,22 @@ public class ModFluids {
 	public static final FlowingFluid ACID_FLOWING = register("flowing_acid", new AcidFluid.Flowing());
 	public static final FlowingFluid ACID_STILL = register("acid", new AcidFluid.Source());
     public static RegisteredBlock ACID = new GenericFluid("acid",(props) -> new LiquidBlock(ModFluids.ACID_STILL, props.noCollision())).reg();
+	// public static RegisteredItem<?> ACID_BUCKET = ModItems.register("acid_bucket", p -> new BucketItem(ModFluids.ACID_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 	public static final FlowingFluid OIL_FLOWING = register("flowing_oil", new OilFluid.Flowing());
 	public static final FlowingFluid OIL_STILL = register("oil", new OilFluid.Source());
     public static RegisteredBlock OIL = new GenericFluid("oil",(props) -> new LiquidBlock(ModFluids.OIL_STILL, props.noCollision())).reg();
+	public static RegisteredItem<?> OIL_BUCKET = ModItems.register("oil_bucket", p -> new BucketItem(ModFluids.OIL_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 	public static final FlowingFluid BLOOD_FLOWING = register("flowing_blood", new BloodFluid.Flowing());
 	public static final FlowingFluid BLOOD_STILL = register("blood", new BloodFluid.Source());
     public static RegisteredBlock BLOOD = new GenericFluid("blood",(props) -> new LiquidBlock(ModFluids.BLOOD_STILL, props)).reg();
+	public static RegisteredItem<?> BLOOD_BUCKET = ModItems.register("blood_bucket", p -> new BucketItem(ModFluids.BLOOD_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 	public static final FlowingFluid EARS_FLOWING = register("flowing_ears", new EarsFluid.Flowing());
 	public static final FlowingFluid EARS_STILL = register("ears", new EarsFluid.Source());
     public static RegisteredBlock EARS = new GenericFluid("ears",(props) -> new SpecificEarsFluidBlock(ModFluids.EARS_STILL, props)).reg();
+	public static RegisteredItem<?> EARS_BUCKET = ModItems.register("ears_bucket", p -> new BucketItem(ModFluids.EARS_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
     public static void generate() {}
 }

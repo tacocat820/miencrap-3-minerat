@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.item;
 import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
@@ -107,6 +109,7 @@ public class ModItems {
 	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().alwaysEdible().build()));
 	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties());
+
 
 	public static void generate() {
 		// Items.IRON_SWORD
