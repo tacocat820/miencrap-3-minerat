@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.item;
 import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
@@ -89,7 +90,9 @@ public class ModItems {
 			.food(new FoodProperties.Builder().alwaysEdible().nutrition(-3).saturationModifier(-1f).build()).usingConvertsTo(Items.GLASS_BOTTLE));
 		
 
-	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties());
+	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties()
+		.sword(ToolMaterial.WOOD, 2.0F, -1.2F)
+	);
 	
 	public static RegisteredItem<?> WRENCH = ModItems.register("wrench", Item::new, new Item.Properties());
 	public static RegisteredItem<?> FRENCH = ModItems.register("french", Item::new, new Item.Properties());
@@ -99,11 +102,13 @@ public class ModItems {
 	public static RegisteredItem<?> DVD = ModItems.register("dvd", Item::new, new Item.Properties());
 	public static RegisteredItem<?> DVD_FULL = ModItems.register("dvd_full", Item::new, new Item.Properties());
 	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", FeatherSwordItem::new, new FeatherSwordItem.Properties().useCooldown(0.4f).durability(6));
-	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", BreadSwordItem::new, new Item.Properties().useCooldown(0.2f).durability(256));
 	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
-	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties());
+	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().alwaysEdible().build()));
 	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties());
 
 	public static void generate() {
+		// Items.IRON_SWORD
 	}
 }
