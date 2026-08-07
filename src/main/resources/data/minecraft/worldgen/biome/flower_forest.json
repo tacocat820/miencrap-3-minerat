@@ -71,9 +71,6 @@
     ],
     [
       "minecraft:glow_lichen",
-      "miencrap3minerat:fall_tree_litter",
-      "miencrap3minerat:fall_tree_fancy",
-      "miencrap3minerat:fall_mud",
       "minecraft:patch_bush",
       "minecraft:flower_default",
       "minecraft:patch_grass_forest",
@@ -81,6 +78,7 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
+      "miencrap3minerat:fall_mud",
       "minecraft:patch_firefly_bush_near_water"
     ],
     [

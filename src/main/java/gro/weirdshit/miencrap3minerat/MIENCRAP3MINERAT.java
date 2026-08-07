@@ -5,6 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 //import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.CreativeModeTab;
 
 import org.slf4j.Logger;
@@ -14,16 +15,22 @@ import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
+import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
 
 public class MIENCRAP3MINERAT implements ModInitializer {
@@ -54,6 +61,12 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModCommands.generate();
 		ModPackets.generate();
 		ModMenuType.generate();
+
+		BiomeModifications.addFeature(
+			BiomeSelectors.includeByKey(Biomes.FLOWER_FOREST),
+			GenerationStep.Decoration.VEGETAL_DECORATION,
+			ModPlacedFeatures.FALL_TREE_PLACED_KEY
+		);
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}

@@ -1,42 +1,17 @@
 {
-  "feature": "miencrap3minerat:fall_tree_litter",
+  "feature": "minecraft:trees_flower_forest",
   "placement": [
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:matching_blocks",
-        "predicate": {
-          "type": "minecraft:matching_blocks",
-          "offset": [
-            0,
-            0,
-            0
-          ],
-          "blocks": [
-            "miencrap3minerat:fall_leaves"
-          ]
-        },
-        "offset": [
-          0,
-          -3,
-          0
-        ],
-        "blocks": [
-          "minecraft:dirt"
-        ]
-      }
-    },
     {
       "type": "minecraft:count",
       "count": {
         "type": "minecraft:weighted_list",
         "distribution": [
           {
-            "data": 10,
+            "data": 6,
             "weight": 9
           },
           {
-            "data": 11,
+            "data": 7,
             "weight": 1
           }
         ]

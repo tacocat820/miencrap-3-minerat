@@ -22,7 +22,8 @@
 			"gro.weirdshit.miencrap3minerat.client.MIENCRAP3MINERATClient"
 		],
 		"fabric-datagen": [
-			"gro.weirdshit.miencrap3minerat.client.MIENCRAP3MINERATDataGenerator"
+			"gro.weirdshit.miencrap3minerat.client.MIENCRAP3MINERATDataGenerator",
+			"gro.weirdshit.miencrap3minerat.datagen.ModDatagen"
 		]
 	},
 	"mixins": [
