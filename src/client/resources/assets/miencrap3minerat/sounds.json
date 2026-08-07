@@ -53,6 +53,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:ohmypc","stream": false}]},
 	"puff":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:puff","stream": false}]},
+	"wrench":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:wrench","stream": false}]},
 	"tetris_mono":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:tetris_mono","stream": true}]},
 	"tetris_stereo":

@@ -5,9 +5,13 @@ import java.util.function.Function;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
+import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
+import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
+import gro.weirdshit.miencrap3minerat.item.classes.UraniumLollipopItem;
+import gro.weirdshit.miencrap3minerat.item.classes.WrenchItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -100,19 +104,22 @@ public class ModItems {
 		.sword(ToolMaterial.WOOD, 2.0F, -1.2F)
 	);
 	
-	public static RegisteredItem<?> WRENCH = ModItems.register("wrench", Item::new, new Item.Properties());
-	public static RegisteredItem<?> FRENCH = ModItems.register("french", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WRENCH = ModItems.register("wrench", WrenchItem::new, new Item.Properties());
+	public static RegisteredItem<?> FRENCH = ModItems.register("french", WrenchItem::new, new Item.Properties());
 
-	public static RegisteredItem<?> TOMATO = ModItems.register("tomato", Item::new, new Item.Properties());
+	public static RegisteredItem<?> TOMATO = ModItems.register("tomato", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(3.99f).build())
+	);
+
 	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());
-	public static RegisteredItem<?> DVD = ModItems.register("dvd", Item::new, new Item.Properties());
+	public static RegisteredItem<?> DVD = ModItems.register("dvd", DvdItem::new, new Item.Properties().stacksTo(1));
 	public static RegisteredItem<?> DVD_FULL = ModItems.register("dvd_full", Item::new, new Item.Properties());
 	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", FeatherSwordItem::new, new FeatherSwordItem.Properties().useCooldown(0.4f).durability(6));
 	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", BreadSwordItem::new, new Item.Properties().useCooldown(0.2f).durability(256));
 	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
-	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties()
+	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", UraniumLollipopItem::new, new Item.Properties()
 		.food(new FoodProperties.Builder().alwaysEdible().build()));
-	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties()
+	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", LavaPotionItem::new, new Item.Properties()
 		.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
 		.stacksTo(44)
 		.usingConvertsTo(Items.GLASS_BOTTLE)
