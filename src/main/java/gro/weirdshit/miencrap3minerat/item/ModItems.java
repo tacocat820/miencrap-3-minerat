@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -22,6 +23,7 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -89,10 +91,12 @@ public class ModItems {
 	public static RegisteredItem<?> CUP_OF_OBSIDIAN = ModItems.register("cup_of_obsidian", Item::new, new Item.Properties());
 
 	public static RegisteredItem<?> VODKA_BOTTLE = ModItems.register("vodka_bottle", Item::new, new Item.Properties()
-			.food(new FoodProperties.Builder().alwaysEdible().nutrition(-3).saturationModifier(-1f).build()).usingConvertsTo(Items.GLASS_BOTTLE));
+		.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
+		.food(new FoodProperties.Builder().alwaysEdible().nutrition(-3).saturationModifier(-1f).build()).usingConvertsTo(Items.GLASS_BOTTLE)
+	);
 		
-
 	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(3f).build())
 		.sword(ToolMaterial.WOOD, 2.0F, -1.2F)
 	);
 	
@@ -108,7 +112,11 @@ public class ModItems {
 	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().alwaysEdible().build()));
-	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties());
+	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
+		.stacksTo(44)
+		.usingConvertsTo(Items.GLASS_BOTTLE)
+	);
 
 
 	public static void generate() {
