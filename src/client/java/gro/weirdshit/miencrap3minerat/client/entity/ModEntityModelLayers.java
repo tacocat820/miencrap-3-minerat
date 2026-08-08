@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.client.entity;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
@@ -26,6 +27,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
+	public static final ModelLayerLocation DAMN = createMain("damn");
 	public static final ModelLayerLocation PSYCHO = createMain("psycho");
 	public static final ModelLayerLocation FLOAT = createMain("float");
 	public static final ModelLayerLocation REPEER = createMain("repeer");
@@ -43,6 +45,7 @@ public class ModEntityModelLayers {
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);
+		DamnRenderer.register(DAMN);
 		PsychoRenderer.register(PSYCHO);
 		FloatRenderer.register(FLOAT);
 		RepeerRenderer.register(REPEER);
