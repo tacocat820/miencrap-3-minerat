@@ -30,7 +30,7 @@ public class ModEntityTypes {
 	public static final EntityType<Ptl> PTL = register(
 			"ptl",
 			EntityType.Builder.<Ptl>of(Ptl::new, MobCategory.CREATURE)
-					.sized(1.4f, 0.7f)
+					.sized(11.4f, 40.7f)
 	);
 	public static final EntityType<Crish> CRISH = register(
 			"crish",
