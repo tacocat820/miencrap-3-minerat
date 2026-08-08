@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap3minerat.datagen;
 
+import java.util.Arrays;
+
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
@@ -35,8 +37,10 @@ public class ModConfiguredFeatures {
             BlockStateProvider.simple(ModBlocks.FALL_LEAVES.block),
             new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 5),
 
-            new TwoLayersFeatureSize(5, 3, 4)
-        ).build();
+            new TwoLayersFeatureSize(5, 3, 6)
+        ).decorators(Arrays.asList(
+            new PlaceOnGroundDecorator(153, 12, 4, BlockStateProvider.simple(ModBlocks.FALL_LEAF_LITTER.block))
+        )).build();
 
         context.register(FALL_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, fallTree));
 	}

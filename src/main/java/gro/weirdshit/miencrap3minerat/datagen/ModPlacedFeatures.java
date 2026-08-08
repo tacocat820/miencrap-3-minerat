@@ -3,19 +3,31 @@ package gro.weirdshit.miencrap3minerat.datagen;
 import java.util.List;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FALL_TREE_PLACED_KEY =
@@ -29,11 +41,11 @@ public class ModPlacedFeatures {
 
         
 		List<PlacementModifier> fallTreeModifiers = List.of(
-				RarityFilter.onAverageOnceEvery(1), // spawns once every 10 chunks on average
 				BiomeFilter.biome(),
 				InSquarePlacement.spread(),
-				PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-				CountPlacement.of(23)
+				SurfaceWaterDepthFilter.forMaxDepth(0),
+				PlacementUtils.HEIGHTMAP_NO_LEAVES,
+				CountOnEveryLayerPlacement.of(7)
 
 		);
 		context.register(

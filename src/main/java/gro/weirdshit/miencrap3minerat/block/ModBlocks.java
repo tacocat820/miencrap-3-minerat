@@ -18,6 +18,8 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -28,8 +30,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate;
+import net.minecraft.world.level.material.PushReaction;
 
 class GenericBlock {
 	private String name;
@@ -65,6 +70,18 @@ class GenericBlock {
     }
     public GenericBlock noCollision() {
 		properties = properties.noCollision();
+        return this;
+    }
+    public GenericBlock isSuffocating(StatePredicate statePredicate) {
+		properties = properties.isSuffocating(statePredicate);
+        return this;
+    }
+    public GenericBlock isViewBlocking(StatePredicate statePredicate) {
+		properties = properties.isViewBlocking(statePredicate);
+        return this;
+    }
+    public GenericBlock pushReaction(PushReaction pushReaction) {
+		properties = properties.pushReaction(pushReaction);
         return this;
     }
     public GenericBlock replaceable() {
@@ -143,7 +160,7 @@ public class ModBlocks {
     public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
 	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
 	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
-    public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", Block::new, SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
+    public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
