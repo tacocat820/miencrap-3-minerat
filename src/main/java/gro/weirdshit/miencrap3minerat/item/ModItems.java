@@ -29,6 +29,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
@@ -112,7 +113,7 @@ public class ModItems {
 	);
 
 	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());
-	public static RegisteredItem<?> DVD = ModItems.register("dvd", DvdItem::new, new Item.Properties().stacksTo(1));
+	public static RegisteredItem<?> DVD = ModItems.register("dvd", DvdItem::new, new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 	public static RegisteredItem<?> DVD_FULL = ModItems.register("dvd_full", Item::new, new Item.Properties());
 	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", FeatherSwordItem::new, new FeatherSwordItem.Properties().useCooldown(0.4f).durability(6));
 	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", BreadSwordItem::new, new Item.Properties().useCooldown(0.2f).durability(256));
@@ -127,6 +128,6 @@ public class ModItems {
 
 
 	public static void generate() {
-		// Items.IRON_SWORD
+		// Items.CHEST
 	}
 }
