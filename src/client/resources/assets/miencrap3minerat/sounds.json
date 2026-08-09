@@ -211,6 +211,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:wing","stream": false}]},
+	"bounce":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:bounce","stream": false}]},
 	"bee_alt":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee_alt","stream": false}]},
 

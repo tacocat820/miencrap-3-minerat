@@ -124,13 +124,27 @@ public class DamnRenderer extends MobRenderInterface {
             float limbSwingAnimationProgress = state.walkAnimationPos * 3.0f;
             this.head.xRot = state.xRot * (float) (Math.PI / 180.0);
             this.head.yRot = state.yRot * (float) (Math.PI / 180.0);
-            float jumpShit = Mth.abs(Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 3.4f * limbSwingAmplitude);
+            float jumpShit = Mth.abs(Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 5.4f * limbSwingAmplitude);
 
             this.leg1.xRot = Mth.abs(Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 1.4f * limbSwingAmplitude);
             this.leg2.xRot = Mth.abs(Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 1.4f * limbSwingAmplitude);
             
             this.body.xRot = Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 0.9f * limbSwingAmplitude;
-            this.body.setPos(-4.0F, 19.0f - jumpShit, -3.0F);
+
+            this.leg1.visible = state.legCount > 0;
+            this.leg2.visible = state.legCount > 1;
+
+            if (state.legCount > 0) {
+                this.body.y = 19.0F - jumpShit;
+            } else {
+                this.body.y = 36.0F;
+            }
+
+            if (state.legCount > 1) {
+                this.leg1.x = 2.0F;
+            } else {
+                this.leg1.x = 0.0F;
+            }
 
                     
         }
@@ -150,7 +164,7 @@ public class DamnRenderer extends MobRenderInterface {
         @Override
         public void extractRenderState(Damn entity, RenderState state, float tickProgress) {
             super.extractRenderState(entity, state, tickProgress);
-            state.walkingAnimationState.copyFrom(entity.walkingAnimationState); 
+            state.legCount = entity.getLegCount();
         }
 
         @Override
@@ -160,7 +174,7 @@ public class DamnRenderer extends MobRenderInterface {
     }
 
     public static class RenderState extends LivingEntityRenderState {
-        public final AnimationState walkingAnimationState = new AnimationState();
+        public int legCount;
         
     }
 

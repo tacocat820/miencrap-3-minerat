@@ -101,7 +101,7 @@ public class ModItems {
 	);
 		
 	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties()
-		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(3f).build())
+		.food(new FoodProperties.Builder().nutrition(3).saturationModifier(3f).build())
 		.sword(ToolMaterial.WOOD, 2.0F, -1.2F)
 	);
 	
@@ -109,7 +109,7 @@ public class ModItems {
 	public static RegisteredItem<?> FRENCH = ModItems.register("french", WrenchItem::new, new Item.Properties());
 
 	public static RegisteredItem<?> TOMATO = ModItems.register("tomato", Item::new, new Item.Properties()
-		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(3.99f).build())
+		.food(new FoodProperties.Builder().alwaysEdible().nutrition(7).saturationModifier(4.99f).build())
 	);
 
 	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());
@@ -126,6 +126,9 @@ public class ModItems {
 		.usingConvertsTo(Items.GLASS_BOTTLE)
 	);
 
+	public static RegisteredItem<?> DAMN_LEG = ModItems.register("damn_leg", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().nutrition(3).saturationModifier(3f).build())
+	);
 
 	public static void generate() {
 		// Items.CHEST
