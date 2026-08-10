@@ -162,6 +162,9 @@ public class ModBlocks {
 	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
+	public static RegisteredBlock DIAMOND_BLOCK_2 = new GenericBlock("diamond_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
+	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
+	public static RegisteredBlock GOLD_BLOCK_2 = new GenericBlock("gold_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
