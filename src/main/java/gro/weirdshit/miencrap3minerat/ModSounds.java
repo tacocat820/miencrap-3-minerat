@@ -16,6 +16,7 @@ public class ModSounds {
     public static final SoundEvent FARD = registerSound("fard");
     public static final SoundEvent STATIC = registerSound("static");
     public static final SoundEvent WING = registerSound("wing");
+    public static final SoundEvent BITE = registerSound("bite");
     public static final SoundEvent BOUNCE = registerSound("bounce");
     public static final SoundEvent WRENCH = registerSound("wrench");
 

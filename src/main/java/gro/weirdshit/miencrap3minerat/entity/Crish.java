@@ -349,23 +349,23 @@ public class Crish extends Monster {
 		if (this.isAlive()) {
 			this.oldSwell = this.swell;
 			if (this.isIgnited()) {
-			this.setSwellDir(1);
+				this.setSwellDir(1);
 			}
 
 			int swellDir = this.getSwellDir();
 			if (swellDir > 0 && this.swell == 0) {
-			this.playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.5F);
-			this.gameEvent(GameEvent.PRIME_FUSE);
+				this.playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.5F);
+				this.gameEvent(GameEvent.PRIME_FUSE);
 			}
 
 			this.swell += swellDir;
 			if (this.swell < 0) {
-			this.swell = 0;
+				this.swell = 0;
 			}
 
 			if (this.swell >= this.maxSwell) {
-			this.swell = this.maxSwell;
-			this.explodeCreeper();
+				this.swell = this.maxSwell;
+				this.explodeCreeper();
 			}
 		}
 

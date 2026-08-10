@@ -544,7 +544,7 @@ public class PtlRenderer extends MobRenderInterface {
         private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/ptl.png");
 
         public EntityRenderer(EntityRendererProvider.Context context) {
-            super(context, new Model(context.bakeLayer(ModEntityModelLayers.PTL)), 0.375f); // 0.375 shadow radius
+            super(context, new Model(context.bakeLayer(ModEntityModelLayers.PTL)), 20.0f); // big shadow radius
         }
 
         @Override

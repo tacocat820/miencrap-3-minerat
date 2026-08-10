@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.client.entity;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
@@ -13,6 +14,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.PsychoRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PuffercopterRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RedLightningBoltRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RepeerRenderer;
+import gro.weirdshit.miencrap3minerat.entity.Anglerfish;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.NotjuanSpit;
 import gro.weirdshit.miencrap3minerat.entity.RedLightningBolt;
@@ -27,6 +29,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
+	public static final ModelLayerLocation ANGLERFISH = createMain("anglerfish");
 	public static final ModelLayerLocation DAMN = createMain("damn");
 	public static final ModelLayerLocation PSYCHO = createMain("psycho");
 	public static final ModelLayerLocation FLOAT = createMain("float");
@@ -45,6 +48,7 @@ public class ModEntityModelLayers {
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);
+		AnglerfishRenderer.register(ANGLERFISH);
 		DamnRenderer.register(DAMN);
 		PsychoRenderer.register(PSYCHO);
 		FloatRenderer.register(FLOAT);
