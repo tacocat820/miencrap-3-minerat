@@ -23,6 +23,7 @@ import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
+import gro.weirdshit.miencrap3minerat.worldgen.trunk.ModWorldgenTrunk;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
@@ -56,6 +57,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModEntityTypes.registerAttributes();
 		ModEntitySpawning.generate();
 		ModWorldgenFoliage.generate();
+		ModWorldgenTrunk.generate();
 		ModFluids.generate();
 		ModItems.generate();
 		ModRegister.generate();

@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.mixin.MakeFoliagePlacerTypePublicMixin;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.classes.BigcityTreeFoliagePlacer;
+import gro.weirdshit.miencrap3minerat.worldgen.foliage.classes.Tree3FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
@@ -20,10 +21,12 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePl
 
 public class ModWorldgenFoliage {
     public static final FoliagePlacerType<BigcityTreeFoliagePlacer> BIGCITY_TREE_FOLIAGE_PLACER;
+    public static final FoliagePlacerType<Tree3FoliagePlacer> TREE_3_FOLIAGE_PLACER;
    
     public static void generate() {}
 
     static {
         BIGCITY_TREE_FOLIAGE_PLACER = MakeFoliagePlacerTypePublicMixin.register("bigcity_tree_foliage_placer", BigcityTreeFoliagePlacer.CODEC);
+        TREE_3_FOLIAGE_PLACER = MakeFoliagePlacerTypePublicMixin.register("tree_3_foliage_placer", Tree3FoliagePlacer.CODEC);
     }
 }

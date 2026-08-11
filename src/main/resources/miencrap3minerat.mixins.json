@@ -5,6 +5,7 @@
 	"mixins": [
 		"ExampleMixin",
 		"MakeFoliagePlacerTypePublicMixin",
+		"MakeTrunkPlacerTypePublicMixin",
 		"PlayerMixin",
 		"CatMixin"
 	],
