@@ -129,7 +129,18 @@ public class ModItems {
 	public static RegisteredItem<?> DAMN_LEG = ModItems.register("damn_leg", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().nutrition(3).saturationModifier(3f).build())
 	);
-
+	public static RegisteredItem<?> CROISSANT = ModItems.register("croissant", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(4.99f).build())
+	);
+	public static RegisteredItem<?> STAPLER = ModItems.register("stapler", Item::new, new Item.Properties());
+	public static RegisteredItem<?> STAPLE = ModItems.register("staple", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CARAMEL = ModItems.register("caramel", Item::new, new Item.Properties());
+	public static RegisteredItem<?> RICKROLL = ModItems.register("rickroll", Item::new, new Item.Properties());
+	public static RegisteredItem<?> PLASTIC_SWORD = ModItems.register("plastic_sword", Item::new, new Item.Properties()
+		.sword(ToolMaterial.WOOD, 1.11F, -1.2F).durability(1000)
+	);
+	public static RegisteredItem<?> PEN = ModItems.register("pen", Item::new, new Item.Properties());
+	public static RegisteredItem<?> METH = ModItems.register("meth", Item::new, new Item.Properties());
 	public static void generate() {
 		// Items.CHEST
 	}

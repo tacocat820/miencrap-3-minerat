@@ -52,7 +52,7 @@ public class DustFallingBlock extends FallingBlock {
     @Override
     protected void tick(final BlockState state, final ServerLevel level, final BlockPos pos, final RandomSource random) {
         if (isFree(level.getBlockState(pos.below())) && pos.getY() >= level.getMinY()) {
-            if (! isFree(level.getBlockState(pos.below().below()))) {
+            if (! isFree(level.getBlockState(pos.below()))) {
                 level.removeBlock(pos, false);
                 level.setBlock(pos.below(), state, UPDATE_ALL);
             } else {

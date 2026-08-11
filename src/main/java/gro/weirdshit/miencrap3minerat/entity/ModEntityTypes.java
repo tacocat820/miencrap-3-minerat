@@ -55,7 +55,7 @@ public class ModEntityTypes {
 	public static final EntityType<Psycho> PSYCHO = register(
 			"psycho",
 			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.CREATURE)
-					.sized(1.4f, 0.7f)
+					.sized(0.7f, 1.7f)
 	);
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",

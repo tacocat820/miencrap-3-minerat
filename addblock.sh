@@ -57,6 +57,8 @@ for blockname in $blocks_names; do
     }' > "$server_resources_PATH/data/miencrap3minerat/loot_table/blocks/$blockname.json"
   fi
   
-  echo "УРРАААААА: $blockname"
+  upperReg=$(echo "$blockname" | tr '[:lower:]' '[:upper:]')
+
+  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$blockname\", Block::new, SoundType.STONE, 1.0f,1.0f).reg();"
 done
 echo "[!] now add blocks in java (if you doesn't)."
