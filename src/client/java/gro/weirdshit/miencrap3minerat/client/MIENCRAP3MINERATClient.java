@@ -35,6 +35,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LightningBolt;
 
@@ -116,6 +117,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			)
 		);
 		
+		// Blocks.RED_STAINED_GLASS
+
 		ClientPlayNetworking.registerGlobalReceiver(FlashPayload.TYPE, (payload, context) -> {
 			flashTime = 5;
 		});

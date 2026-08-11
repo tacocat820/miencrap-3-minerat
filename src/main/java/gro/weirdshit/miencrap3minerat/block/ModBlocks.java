@@ -16,6 +16,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ColorParticleOption;
@@ -28,8 +29,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -94,6 +97,10 @@ class GenericBlock {
         return this;
     }
 
+	public GenericBlock isNotViewBlocking() {
+		properties = properties.isViewBlocking(Blocks::never);
+		return this;
+	}
 
 	private static ResourceKey<Block> keyOfBlock(String name) {
 		return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name));
@@ -122,7 +129,7 @@ public class ModBlocks {
 
 	public static RegisteredBlock VLC = new GenericBlock("vlc", p -> new SpecificVlcBlock(p).shape(ModShapes.VLC_SHAPE), SoundType.STONE,2.0f, 0.5f).noCollision().noOcclusion().reg();    
 	public static RegisteredBlock GLOBE = new GenericBlock("globe", HorizontallyRotatingBlock::new, SoundType.STONE,0.3f, 0.5f).noCollision().noOcclusion().reg();
-	public static RegisteredBlock RTX = new GenericBlock("rtx", HorizontallyRotatingBlock::new, SoundType.STONE,0.3f, 0.5f).noCollision().noOcclusion().reg(); 
+	public static RegisteredBlock RTX = new GenericBlock("rtx", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.RTX_SHAPE), SoundType.STONE,0.3f, 0.5f).noCollision().noOcclusion().reg(); 
 	public static RegisteredBlock GRAVE = new GenericBlock("grave", HorizontallyRotatingBlock::new, SoundType.STONE,0.3f, 0.5f).noCollision().noOcclusion().reg(); 
 	public static RegisteredBlock LEGO = new GenericBlock("lego", SpecificLegoBlock::new, SoundType.STONE,0.0f, 0.5f).noCollision().noOcclusion().reg();    
 	public static RegisteredBlock URANIUM_BLOCK = new GenericBlock("uranium_block", Block::new, SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering().reg();
@@ -135,7 +142,7 @@ public class ModBlocks {
     public static RegisteredBlock DIRT = new GenericBlock("dirt", SpecificDirtBlock::new, SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
     public static RegisteredBlock CHAIR = new GenericBlock("chair", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.CHAIR_SHAPE), SoundType.STONE,0.5f,0.5f).reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
-    public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", Block::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
+    public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", TransparentBlock::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", NormalFallingBlock::new, SoundType.CROP,3.0f,0.5f).reg();
     public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
 	public static RegisteredBlock WATERCOOLER = new GenericBlock("watercooler", SpecificWatercoolerBlock::new, SoundType.STONE,0.0f,0.5f).noCollision().reg();
@@ -154,9 +161,9 @@ public class ModBlocks {
     public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
-    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", Block::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
+    public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", HalfTransparentBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
-	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", DustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).reg();
+	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", TransparentDustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).noOcclusion().reg();
     public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
 	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
 	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
@@ -167,7 +174,7 @@ public class ModBlocks {
 	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 	public static RegisteredBlock GOLD_BLOCK_2 = new GenericBlock("gold_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 
-	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", Block::new, SoundType.AMETHYST, 1.0f,1.0f).reg();
+	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
 	
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));

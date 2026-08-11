@@ -37,15 +37,16 @@ public class DustFallingBlock extends FallingBlock {
         BlockPos belowPos = pos.below();
 
         for (Direction direction : Direction.values()) {
-            if (direction != Direction.UP || direction != Direction.DOWN) {
-                BlockPos checkPos = belowPos.relative(direction);
-                BlockState blockState = level.getBlockState(checkPos);
-                if (blockState.isAir()) {
-                    return checkPos;
-                }
+            if (direction == Direction.UP || direction == Direction.DOWN) {
+                continue;
+            }
+            BlockPos checkPos = belowPos.relative(direction);
+            BlockState blockState = level.getBlockState(checkPos);
+            if (blockState.isAir()) {
+                // MIENCRAP3MINERAT.LOGGER.info("pppppp "+direction);
+                return checkPos;
             }
         }
-
         return null;
     }
 
@@ -66,7 +67,11 @@ public class DustFallingBlock extends FallingBlock {
                 //     level, fallpos, state
                 // ); //падает!!
                 // this.falling(entity);
+                final BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, state);
+                level.sendParticles(breakParticle, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 25, 0.4, 0.4, 0.4, 0.11);
+            
                 level.removeBlock(pos, false);
+
                 level.setBlock(fallpos, state, UPDATE_ALL);
                 ParticleUtils.spawnParticleBelow(level, pos, random, new BlockParticleOption(ParticleTypes.FALLING_DUST, state));
                 //level.destroyBlock(pos, false);

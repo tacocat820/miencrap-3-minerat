@@ -36,6 +36,8 @@ public class DvdItem extends Item {
         if (level instanceof ServerLevel serverLevel) {
             // level.setBlock(pos, Blocks.CHEST.defaultBlockState(), 0);
 
+            // Blocks.CHEST
+
             BlockEntity blockent = serverLevel.getBlockEntity(pos);
             if (blockent instanceof ChestBlockEntity) {
                 ItemContainerContents contents = blockent.components().get(DataComponents.CONTAINER);
