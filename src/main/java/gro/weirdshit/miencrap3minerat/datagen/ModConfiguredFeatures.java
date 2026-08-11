@@ -5,6 +5,7 @@ import java.util.Arrays;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.classes.BigcityTreeFoliagePlacer;
+import gro.weirdshit.miencrap3minerat.worldgen.foliage.classes.Tree3FoliagePlacer;
 import gro.weirdshit.miencrap3minerat.worldgen.trunk.classes.Tree3TrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -84,7 +85,7 @@ public class ModConfiguredFeatures {
             new Tree3TrunkPlacer(20, 3, 4),
             // Leaves
             BlockStateProvider.simple(Blocks.OAK_LEAVES),
-            new BlobFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0), 10),
+            new Tree3FoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)),
 
             new TwoLayersFeatureSize(10, 3, 12)
         ).build();
