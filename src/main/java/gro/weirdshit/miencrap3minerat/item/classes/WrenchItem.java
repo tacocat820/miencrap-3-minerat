@@ -4,6 +4,7 @@ import java.util.Random;
 
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -46,7 +47,9 @@ public class WrenchItem extends Item {
 
         if (level instanceof ServerLevel serverLevel) {
             // context.getPlayer().playSound(SoundEvents.ANVIL_DESTROY);
-            serverLevel.sendParticles(particle, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 20, 0.4, 0.4, 0.4, 0.12);
+            final BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, level.getBlockState(pos));
+            serverLevel.sendParticles(breakParticle, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 20, 0.4, 0.4, 0.4, 0.12);
+            // serverLevel.sendParticles(particle, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 20, 0.4, 0.4, 0.4, 0.12);
             
             ItemStack itemstack_breaked = getBreakedItem(1, context.getPlayer(), context.getItemInHand());
             return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo( itemstack_breaked );

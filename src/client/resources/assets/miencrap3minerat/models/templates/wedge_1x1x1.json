@@ -4,7 +4,7 @@
 	"parent": "miencrap3minerat:templates/display_as_block",
 	"texture_size": [32, 32],
 	"textures": {
-		"block": "item/etc/hell_stone_wedge"
+		"particle": "#block"
 	},
 	"elements": [
 		{
