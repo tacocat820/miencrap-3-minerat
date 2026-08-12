@@ -94,12 +94,13 @@ public class ModConfiguredFeatures {
         WeightedList.Builder<BlockState> builder = new WeightedList.Builder<BlockState>();
         builder.add(Blocks.OAK_LEAVES.defaultBlockState(), 4);
         builder.add(Blocks.AIR.defaultBlockState(), 1);
+        builder.add(Blocks.OAK_FENCE.defaultBlockState(), 1);
         WeightedList<BlockState> maybeOakLeaves = builder.build();
 
         TreeConfiguration bigcityTree = new TreeConfiguration.TreeConfigurationBuilder(
             // Trunk / Logs
             BlockStateProvider.simple(Blocks.OAK_LOG),
-            new StraightTrunkPlacer(13, 3, 4),
+            new StraightTrunkPlacer(7, 3, 4),
             // Leaves
             new WeightedStateProvider(maybeOakLeaves),
             new BigcityTreeFoliagePlacer(ConstantInt.of(10), ConstantInt.of(0)),

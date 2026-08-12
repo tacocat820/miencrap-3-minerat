@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "miencrap3minerat:block/fall_slab"
+    },
+    "type=double": {
+      "model": "miencrap3minerat:block/fall_planks"
+    },
+    "type=top": {
+      "model": "miencrap3minerat:block/fall_slab_top"
+    }
+  }
+}

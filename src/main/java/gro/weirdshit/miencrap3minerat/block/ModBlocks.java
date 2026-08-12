@@ -32,7 +32,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -56,6 +58,10 @@ class GenericBlock {
 		this.properties = properties;
     }
 
+	public GenericBlock copyOf(Block base) {
+		properties = Properties.ofFullCopy(base);
+        return this;
+	}
 	public GenericBlock ignitedByLava() {
 		properties = properties.ignitedByLava();
         return this;
@@ -170,7 +176,11 @@ public class ModBlocks {
 	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
-	
+	public static RegisteredBlock FALL_PLANKS = new GenericBlock("fall_planks", Block::new, SoundType.WOOD,1.5f,2.0f).ignitedByLava().reg();
+    
+	public static RegisteredBlock FALL_STAIRS = new GenericBlock("fall_stairs", p -> new StairBlock(FALL_PLANKS.block.defaultBlockState(), p), SoundType.WOOD,1.5f,2.0f).copyOf(FALL_PLANKS.block).ignitedByLava().reg();
+	public static RegisteredBlock FALL_SLAB = new GenericBlock("fall_slab", SlabBlock::new, SoundType.WOOD,1.5f,2.0f).copyOf(FALL_PLANKS.block).ignitedByLava().reg();
+
 	public static RegisteredBlock DIAMOND_BLOCK_2 = new GenericBlock("diamond_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 	public static RegisteredBlock GOLD_BLOCK_2 = new GenericBlock("gold_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
@@ -182,7 +192,8 @@ public class ModBlocks {
 
 	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
-	
+	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", Block::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
+
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
