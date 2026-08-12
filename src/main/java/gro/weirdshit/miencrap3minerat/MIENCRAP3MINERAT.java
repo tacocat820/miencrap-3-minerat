@@ -22,6 +22,7 @@ import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.worldgen.RegisterBiomeModifications;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
 import gro.weirdshit.miencrap3minerat.worldgen.trunk.ModWorldgenTrunk;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -65,12 +66,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModCommands.generate();
 		ModPackets.generate();
 		ModMenuType.generate();
-
-		BiomeModifications.addFeature(
-			BiomeSelectors.includeByKey(Biomes.FLOWER_FOREST),
-			GenerationStep.Decoration.VEGETAL_DECORATION,
-			ModPlacedFeatures.FALL_TREE_PLACED_KEY
-		);
+		RegisterBiomeModifications.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}

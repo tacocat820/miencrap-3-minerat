@@ -76,6 +76,11 @@ public class ModEntityTypes {
 			"notjuan_spit",
 			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune()
 	);
+	public static final EntityType<PcEntity> PC = register(
+			"pc",
+			EntityType.Builder.<PcEntity>of(PcEntity::new, MobCategory.MISC)
+			.noLootTable().sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(20)
+	);
 	public static final EntityType<RedLightningBolt> RED_LIGHTNING_BOLT = register(
 			"red_lightning_bolt",
 			EntityType.Builder.<RedLightningBolt>of(RedLightningBolt::new, MobCategory.MISC).noLootTable().noSave().sized(0.0F, 0.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE)

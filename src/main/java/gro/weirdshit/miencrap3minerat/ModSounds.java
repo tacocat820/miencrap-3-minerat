@@ -19,6 +19,7 @@ public class ModSounds {
     public static final SoundEvent BITE = registerSound("bite");
     public static final SoundEvent BOUNCE = registerSound("bounce");
     public static final SoundEvent WRENCH = registerSound("wrench");
+    public static final SoundEvent OHMYPC = registerSound("ohmypc");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

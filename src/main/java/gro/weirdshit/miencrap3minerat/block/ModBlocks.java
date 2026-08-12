@@ -14,6 +14,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
@@ -193,6 +194,9 @@ public class ModBlocks {
 	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
 	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", Block::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
+	public static RegisteredBlock BULLSHITTIUM = new GenericBlock("bullshittium", Block::new, SoundType.STONE, 3.0f,2.0f).light(5).emissiveRendering().reg();
+	public static RegisteredBlock PC = new GenericBlock("pc", SpecificPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock PC_ON = new GenericBlock("pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
