@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "miencrap3minerat:block/bullshittium_slab"
+    },
+    "type=double": {
+      "model": "miencrap3minerat:block/bullshittium"
+    },
+    "type=top": {
+      "model": "miencrap3minerat:block/bullshittium_slab_top"
+    }
+  }
+}
