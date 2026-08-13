@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "miencrap3minerat:block/pc",
+    "side": "miencrap3minerat:block/pc",
+    "top": "miencrap3minerat:block/pc"
+  }
+}

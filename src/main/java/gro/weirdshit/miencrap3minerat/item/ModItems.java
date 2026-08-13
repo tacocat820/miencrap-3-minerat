@@ -7,6 +7,7 @@ import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
+import gro.weirdshit.miencrap3minerat.item.classes.FireExtinguisherItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
@@ -26,6 +27,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -49,14 +51,14 @@ public class ModItems {
 
 	public static RegisteredItem<?> TEST_ITEM = ModItems.register("test_item", Item::new, new Item.Properties());
 	public static RegisteredItem<?> TOOTH = ModItems.register("tooth", Item::new, new Item.Properties());
-	public static RegisteredItem<?> BEDIAN = ModItems.register("bedian", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BEDIAN = ModItems.register("bedian", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
 	public static RegisteredItem<?> BAGUETTE = ModItems.register("baguette", Item::new, new Item.Properties()
 		.sword(ToolMaterial.WOOD, 1.0F, -1.4F).attributes(ItemAttributeModifiers.builder()
 		.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0, Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build())
 	);
 	public static RegisteredItem<?> IRON_APPLE = ModItems.register("iron_apple", IronAppleItem::new, new Item.Properties());
 	public static RegisteredItem<?> SOAP = ModItems.register("soap", Item::new, new Item.Properties());
-	public static RegisteredItem<?> ESTROGEN = ModItems.register("estrogen", Item::new, new Item.Properties());
+	public static RegisteredItem<?> ESTROGEN = ModItems.register("estrogen", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
 	public static RegisteredItem<?> TETO_EARS = ModItems.register("teto_ears", Item::new, new Item.Properties());
 	
 	public static RegisteredItem<?> VILLAGER_MEAT = ModItems.register("villager_meat", Item::new, 
@@ -77,7 +79,7 @@ public class ModItems {
 	);
 	
 	public static RegisteredItem<?> NETHER_PORTAL = ModItems.register("nether_portal", NetherPortalItem::new, new Item.Properties()
-	.sword(ToolMaterial.COPPER, 0.1F, -30.4F).attributes(ItemAttributeModifiers.builder()
+	.stacksTo(1).rarity(Rarity.EPIC).sword(ToolMaterial.COPPER, 0.1F, -30.4F).attributes(ItemAttributeModifiers.builder()
 	.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0, Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build())
 	
 	.fireResistant().useCooldown(5.12f)
@@ -115,7 +117,7 @@ public class ModItems {
 	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());
 	public static RegisteredItem<?> DVD = ModItems.register("dvd", DvdItem::new, new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 	public static RegisteredItem<?> DVD_FULL = ModItems.register("dvd_full", Item::new, new Item.Properties());
-	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", FeatherSwordItem::new, new FeatherSwordItem.Properties().useCooldown(0.4f).durability(6));
+	public static RegisteredItem<?> FEATHER_SWORD = ModItems.register("feather_sword", FeatherSwordItem::new, new FeatherSwordItem.Properties().rarity(Rarity.UNCOMMON).useCooldown(0.4f).durability(6));
 	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", BreadSwordItem::new, new Item.Properties().useCooldown(0.2f).durability(256));
 	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", UraniumLollipopItem::new, new Item.Properties()
@@ -129,7 +131,7 @@ public class ModItems {
 	public static RegisteredItem<?> DAMN_LEG = ModItems.register("damn_leg", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().nutrition(3).saturationModifier(3f).build())
 	);
-	public static RegisteredItem<?> CROISSANT = ModItems.register("croissant", Item::new, new Item.Properties()
+	public static RegisteredItem<?> CROISSANT = ModItems.register("croissant", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON)
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(4.99f).build())
 	);
 	public static RegisteredItem<?> STAPLER = ModItems.register("stapler", Item::new, new Item.Properties());
@@ -141,6 +143,13 @@ public class ModItems {
 	);
 	public static RegisteredItem<?> PEN = ModItems.register("pen", Item::new, new Item.Properties());
 	public static RegisteredItem<?> METH = ModItems.register("meth", Item::new, new Item.Properties());
+	
+	public static RegisteredItem<?> FIRE = ModItems.register("fire", Item::new, new Item.Properties());
+	public static RegisteredItem<?> FIRE_EXTINGUISHER = ModItems.register("fire_extinguisher", FireExtinguisherItem::new, new Item.Properties());
+	public static RegisteredItem<?> CREATOR = ModItems.register("creator", Item::new, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).jukeboxPlayable(JukeboxSongs.CREATOR));
+	public static RegisteredItem<?> IRON_STICK = ModItems.register("iron_stick", Item::new, new Item.Properties());
+
+	
 	public static void generate() {
 		// Items.CHEST
 	}

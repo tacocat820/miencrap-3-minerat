@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NormalFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleLeavesBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
@@ -200,9 +201,11 @@ public class ModBlocks {
 
 	public static RegisteredBlock PC = new GenericBlock("pc", SpecificPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock PC_ON = new GenericBlock("pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	
-	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f).reg();
+	public static RegisteredBlock PC_STAIRS = new GenericBlock("pc_stairs", p -> new StairBlock(PC.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_SLAB = new GenericBlock("pc_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(PC.block).reg();
 
+	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f).reg();
+	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.STONE, 0.0f,0.0f).noCollision().noOcclusion().reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

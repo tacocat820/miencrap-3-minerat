@@ -17,7 +17,7 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:static","stream": false}]},
     "nokia":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:nokia","stream": false}]},
-    "destroyer":
+    "creator":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:creator","stream": true}]},
     "otherside":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:otherside","stream": true}]},
