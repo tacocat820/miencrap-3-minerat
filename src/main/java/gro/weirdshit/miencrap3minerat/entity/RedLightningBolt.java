@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.Sets;
 
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 
 import java.util.Collection;
 import java.util.List;
@@ -179,6 +180,8 @@ public class RedLightningBolt extends Entity {
          Collection<ServerPlayer> players = PlayerLookup.around(level, this.getPosition(0.0f), 30.0);
          for (ServerPlayer player : players) {
             ServerPlayNetworking.send(player, payload);
+            ScreenshakePayload screenshake = new ScreenshakePayload(Math.max(0.0f, 2.0f - player.distanceTo(this) / 30.0f));
+            ServerPlayNetworking.send(player, screenshake);
          }
          this.level().explode(this, this.getX(), this.getY(), this.getZ(), 3.0f, ExplosionInteraction.BLOCK);
 

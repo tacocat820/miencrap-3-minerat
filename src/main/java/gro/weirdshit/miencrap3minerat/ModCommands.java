@@ -1,6 +1,7 @@
 package gro.weirdshit.miencrap3minerat;
 
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -28,6 +29,20 @@ public class ModCommands {
                         
 
                         FlashPayload payload = new FlashPayload(3);
+						if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+							ServerPlayNetworking.send(player, payload);
+                        }
+                        return 1;
+                    }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("shake")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+
+                        ScreenshakePayload payload = new ScreenshakePayload(1.0f);
 						if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
 							ServerPlayNetworking.send(player, payload);
                         }

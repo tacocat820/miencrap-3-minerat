@@ -1,7 +1,12 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
+import java.util.Collection;
+
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -14,6 +19,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 import net.minecraft.world.BossEvent.BossBarColor;
 import net.minecraft.world.BossEvent.BossBarOverlay;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -48,7 +54,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 
 
-public class Ptl extends Monster {
+public class Ptl extends PathfinderMob {
 	
 	public Ptl(Level world) {
 		this(ModEntityTypes.PTL, world);
@@ -64,6 +70,20 @@ public class Ptl extends Monster {
 				.add(Attributes.TEMPT_RANGE, 10)
 				.add(Attributes.MOVEMENT_SPEED, 0.6)
 				.add(Attributes.ATTACK_DAMAGE, 4.0);
+	}
+
+	public boolean causeFallDamage(final double fallDistance, final float damageModifier, final DamageSource damageSource) {
+		
+		if (this.level() instanceof ServerLevel level) {
+			Collection<ServerPlayer> players = PlayerLookup.around(level, this.getPosition(0.0f), 60.0);
+			for (ServerPlayer player : players) {
+				ScreenshakePayload screenshake = new ScreenshakePayload(Math.max(0.0f, 3.0f - player.distanceTo(this) / 30.0f));
+				ServerPlayNetworking.send(player, screenshake);
+			}
+		}
+		
+		
+		return false;
 	}
 
     @Override
