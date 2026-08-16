@@ -20,6 +20,8 @@ public class ModSounds {
     public static final SoundEvent BOUNCE = registerSound("bounce");
     public static final SoundEvent WRENCH = registerSound("wrench");
     public static final SoundEvent OHMYPC = registerSound("ohmypc");
+    public static final SoundEvent BOOM = registerSound("boom");
+    public static final SoundEvent CREAK = registerSound("creak");
     public static final SoundEvent SCREAM = registerSound("scream");
 
     private static SoundEvent registerSound(String id) {

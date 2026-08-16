@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "miencrap3minerat:block/cold_slab"
+    },
+    "type=double": {
+      "model": "miencrap3minerat:block/cold_planks"
+    },
+    "type=top": {
+      "model": "miencrap3minerat:block/cold_slab_top"
+    }
+  }
+}

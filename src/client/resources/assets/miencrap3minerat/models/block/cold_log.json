@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+	   "north": "miencrap3minerat:block/cold_log",
+	   "east": "miencrap3minerat:block/cold_log",
+	   "south": "miencrap3minerat:block/cold_log",
+	   "west": "miencrap3minerat:block/cold_log",
+	   "up": "miencrap3minerat:block/cold_log_top",
+	   "down": "miencrap3minerat:block/cold_log_top"
+    }
+}

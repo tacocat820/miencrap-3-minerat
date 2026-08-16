@@ -213,6 +213,10 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:wing","stream": false}]},
 	"bounce":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bounce","stream": false}]},
+	"creak":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:creak","stream": false}]},
+	"boom":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:boom","stream": false}]},
 	"bee_alt":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee_alt","stream": false}]},
 

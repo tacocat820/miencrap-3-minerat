@@ -66,6 +66,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModCommands.generate();
 		ModPackets.generate();
 		ModMenuType.generate();
+		ModParticles.generate();
 		RegisterBiomeModifications.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
