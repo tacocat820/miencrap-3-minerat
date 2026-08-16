@@ -15,9 +15,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class HangingFallingBlock extends FallingBlock {
-    public static final MapCodec<DustFallingBlock> CODEC = simpleCodec(DustFallingBlock::new);
-    @Override protected MapCodec<? extends DustFallingBlock> codec() { return CODEC; }
+public class HangingFallingBlock extends NormalFallingBlock {
+    public static final MapCodec<NormalFallingBlock> CODEC = simpleCodec(NormalFallingBlock::new);
+    @Override protected MapCodec<? extends NormalFallingBlock> codec() { return CODEC; }
 
     private VoxelShape SHAPE = Block.cube(16.0);
     public HangingFallingBlock shape(VoxelShape shape) {
@@ -60,11 +60,6 @@ public class HangingFallingBlock extends FallingBlock {
             }
         }
 
-    }
-
-    @Override
-    public int getDustColor(BlockState blockState, BlockGetter level, BlockPos pos) {
-        return 12345;
     }
     
 }
