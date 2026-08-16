@@ -20,19 +20,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class DustFallingBlock extends FallingBlock {
+public class DustFallingBlock extends NormalFallingBlock {
     public static final MapCodec<DustFallingBlock> CODEC = simpleCodec(DustFallingBlock::new);
     @Override protected MapCodec<? extends DustFallingBlock> codec() { return CODEC; }
 
     public DustFallingBlock(Properties properties) {
         super(properties);
     }
-
-    @Override
-    public int getDustColor(BlockState blockState, BlockGetter level, BlockPos pos) {
-        return 1234; //LATER.
-    }
-
+    
     public BlockPos getFallPos(final BlockGetter level, final BlockPos pos) {
         BlockPos belowPos = pos.below();
 
