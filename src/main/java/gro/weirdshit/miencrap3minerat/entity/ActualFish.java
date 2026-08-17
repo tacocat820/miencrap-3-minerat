@@ -82,6 +82,10 @@ public class ActualFish extends Animal {
 		return baby;
 	}
 
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
 	@Override
 	public boolean isFood(final ItemStack itemStack) {
 		return itemStack.is(ItemTags.PIG_FOOD);

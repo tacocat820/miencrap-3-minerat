@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
+import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -38,9 +39,12 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.state.level.SkyRenderState;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LightningBolt;
@@ -70,6 +74,19 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 				if (flashTime == 0) Minecraft.getInstance().gameRenderer.clearPostEffect();
 			}
 		}); 
+		ClientTickEvents.START_CLIENT_TICK.register(m -> {	
+			// TODO: optimize?
+			if (Minecraft.getInstance().player != null) {
+				Holder<Biome> biome = Minecraft.getInstance().level.getBiome(Minecraft.getInstance().player.getOnPos());
+
+				if (biome.is(Biomes.BIRCH_FOREST)) {
+					if (InverseForestTilt.inverseForestTilt < 100) ++InverseForestTilt.inverseForestTilt;
+				} else if (InverseForestTilt.inverseForestTilt > 0) --InverseForestTilt.inverseForestTilt; 
+			}
+		}); 
+
+
+
 
 		//BlockRenderLayerMap.putBlock(ModBlocks.red, ChunkSectionLayer.CUTOUT);
 		FluidRenderingRegistry.register(

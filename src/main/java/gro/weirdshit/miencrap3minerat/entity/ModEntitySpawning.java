@@ -26,19 +26,38 @@ public class ModEntitySpawning {
 
     public static void generate() {
         SpawnPlacements.register(ModEntityTypes.NOTJUAN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.NOTJUAN, 30, 1, 1);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.NOTJUAN, 3, 1, 1);
 
         SpawnPlacements.register(ModEntityTypes.REPEER, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.REPEER, 80, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.REPEER, 5, 1, 2);
 
-        SpawnPlacements.register(ModEntityTypes.PUFFERCOPTER, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
+        // TODO: fix
+        //SpawnPlacements.register(ModEntityTypes.PUFFERCOPTER, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        //BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
+        //BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
 
         SpawnPlacements.register(ModEntityTypes.DOLPHIN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.DOLPHIN, 100, 1, 2);
 
+        // TODO: add biome tags
+        /* 
+
         SpawnPlacements.register(ModEntityTypes.FLOAT, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.FLOAT, 100, 1, 4);
+
+        SpawnPlacements.register(ModEntityTypes.DAMN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.DAMN, 100, 4, 20);
+
+        SpawnPlacements.register(ModEntityTypes.PSYCHO, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.PSYCHO, 120, 1, 2);
+
+        SpawnPlacements.register(ModEntityTypes.PTL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.PTL, 100, 1, 1);
+
+        SpawnPlacements.register(ModEntityTypes.ACTUAL_FISH, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.ACTUAL_FISH, 100, 1, 4);
+        
+        SpawnPlacements.register(ModEntityTypes.HOOORSE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.HOOORSE, 100, 1, 2); */
     }
 }

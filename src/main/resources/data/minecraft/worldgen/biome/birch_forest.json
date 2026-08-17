@@ -93,31 +93,31 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "minecraft:sheep",
-        "maxCount": 4,
+        "type": "miencrap3minerat:damn",
+        "maxCount": 30,
         "minCount": 4,
         "weight": 12
       },
       {
-        "type": "minecraft:pig",
+        "type": "miencrap3minerat:actual_fish",
+        "maxCount": 5,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "miencrap3minerat:psycho",
         "maxCount": 4,
         "minCount": 4,
         "weight": 10
       },
       {
-        "type": "minecraft:chicken",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 10
-      },
-      {
-        "type": "minecraft:cow",
-        "maxCount": 4,
-        "minCount": 4,
+        "type": "miencrap3minerat:ptl",
+        "maxCount": 1,
+        "minCount": 1,
         "weight": 8
       },
       {
-        "type": "minecraft:horse",
+        "type": "miencrap3minerat:hooorse",
         "maxCount": 6,
         "minCount": 2,
         "weight": 5

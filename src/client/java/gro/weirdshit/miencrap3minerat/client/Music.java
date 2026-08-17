@@ -102,6 +102,7 @@ public class Music {
                     MusicSounds.BOOG_CITY,
                     MusicSounds.DROOPY,
                     MusicSounds.TASWELL,
+                    MusicSounds.STEVE_LOVES_PEEPEE,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

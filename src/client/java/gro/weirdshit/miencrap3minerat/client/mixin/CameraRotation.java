@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 import gro.weirdshit.miencrap3minerat.client.Screenshake;
+import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import net.minecraft.client.Camera;
 
 @Mixin(Camera.class)
@@ -57,7 +58,10 @@ public abstract class CameraRotation {
 
         this.setXRot(xRot);
         this.setYRot(yRot);
-        this.getRotation().rotationYXZ((float) Math.PI - yRot * (float) (Math.PI / 180.0), -xRot * (float) (Math.PI / 180.0), diff * 0.005f + ssh);
+        this.getRotation().rotationYXZ((float) Math.PI - yRot * (float) (Math.PI / 180.0), 
+            -xRot * (float) (Math.PI / 180.0), 
+            diff * 0.005f + ssh + 0.002f * (float)InverseForestTilt.inverseForestTilt);
+        
         FORWARDS.rotate(this.getRotation(), this.getForwards());
         UP.rotate(this.getRotation(), this.getUp());
         LEFT.rotate(this.getRotation(), this.getLeft());

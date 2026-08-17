@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -60,6 +61,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -98,6 +100,10 @@ public class Damn extends Animal {
 		this.setLegCount(input.getIntOr("legCount", 2));
 	}
 
+	@Override
+	protected void checkFallDamage(final double ya, final boolean onGround, final BlockState onState, final BlockPos pos) {
+	}
+
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)
@@ -115,6 +121,10 @@ public class Damn extends Animal {
 	@Override
 	public boolean isFood(final ItemStack itemStack) {
 		return itemStack.is(ItemTags.PIG_FOOD);
+	}
+
+	public boolean isPersistenceRequired() {
+		return true;
 	}
 
 

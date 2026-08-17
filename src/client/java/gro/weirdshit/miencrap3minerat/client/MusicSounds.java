@@ -64,6 +64,7 @@ public class MusicSounds {
     public static final SoundEvent BOOG_CITY = registerSound("ost.boog_city");
     public static final SoundEvent TASWELL = registerSound("ost.taswell");
     public static final SoundEvent DROOPY = registerSound("ost.droopy");
+    public static final SoundEvent STEVE_LOVES_PEEPEE = registerSound("ost.steve_loves_peepee");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);
