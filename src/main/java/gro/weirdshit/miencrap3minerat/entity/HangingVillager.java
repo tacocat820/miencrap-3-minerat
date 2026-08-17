@@ -74,6 +74,10 @@ public class HangingVillager extends PathfinderMob {
 	public boolean isPushable() {
 		return false;
 	}
+	
+	public boolean isPersistenceRequired() {
+		return true;
+	}
 
 	public HangingVillager(EntityType<? extends HangingVillager> entityType, Level world) {
 		super(entityType, world);

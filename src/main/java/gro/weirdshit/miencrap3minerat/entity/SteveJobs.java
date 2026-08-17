@@ -67,6 +67,10 @@ public class SteveJobs extends PathfinderMob {
 	public SteveJobs(EntityType<? extends SteveJobs> entityType, Level world) {
 		super(entityType, world);
 	}
+	
+	public boolean isPersistenceRequired() {
+		return true;
+	}
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()

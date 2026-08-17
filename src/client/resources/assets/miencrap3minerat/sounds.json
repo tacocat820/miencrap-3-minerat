@@ -207,6 +207,10 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/epik","stream": true}]},
 	"ost.boog_city":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/boog_city","stream": true}]},
+	"ost.taswell":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/taswell","stream": true}]},
+	"ost.droopy":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/droopy","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

@@ -1,0 +1,11 @@
+{
+	"parent": "miencrap3minerat:templates/inverted_block_6s",
+	 "textures": {
+		"0": "block/dirt",
+		"1": "block/dirt",
+		"2": "block/dirt",
+		"3": "block/dirt",
+		"4": "block/dirt",
+		"5": "block/dirt"
+	 }
+ }

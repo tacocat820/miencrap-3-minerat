@@ -215,6 +215,7 @@ public class ModBlocks {
 	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f).reg();
 	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.STONE, 0.0f,0.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock ICICLE = new GenericBlock("icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(255), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
+	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f).noOcclusion().reg();
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

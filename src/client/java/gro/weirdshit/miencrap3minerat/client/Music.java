@@ -100,6 +100,8 @@ public class Music {
                     MusicSounds.BLOCKS_AND_SHIT,
                     MusicSounds.EXCUSE,
                     MusicSounds.BOOG_CITY,
+                    MusicSounds.DROOPY,
+                    MusicSounds.TASWELL,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

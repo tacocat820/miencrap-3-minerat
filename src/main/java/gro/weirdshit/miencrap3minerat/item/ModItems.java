@@ -148,6 +148,7 @@ public class ModItems {
 	public static RegisteredItem<?> FIRE_EXTINGUISHER = ModItems.register("fire_extinguisher", FireExtinguisherItem::new, new Item.Properties());
 	public static RegisteredItem<?> CREATOR = ModItems.register("creator", Item::new, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).jukeboxPlayable(JukeboxSongs.CREATOR));
 	public static RegisteredItem<?> IRON_STICK = ModItems.register("iron_stick", Item::new, new Item.Properties());
+	public static RegisteredItem<?> IPHONE = ModItems.register("iphone", Item::new, new Item.Properties());
 
 	
 	public static void generate() {

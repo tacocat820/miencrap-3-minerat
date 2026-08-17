@@ -21,5 +21,11 @@ public class RegisterBiomeModifications {
 			GenerationStep.Decoration.VEGETAL_DECORATION,
 			ModPlacedFeatures.BIGCITY_TREE_PLACED_KEY
 		);
+
+		BiomeModifications.addFeature(
+			BiomeSelectors.includeByKey(Biomes.BIRCH_FOREST),
+			GenerationStep.Decoration.VEGETAL_DECORATION,
+			ModPlacedFeatures.EERT_PLACED_KEY
+		);
     }
 }

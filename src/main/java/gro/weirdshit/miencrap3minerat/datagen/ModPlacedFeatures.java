@@ -40,6 +40,11 @@ public class ModPlacedFeatures {
             Registries.PLACED_FEATURE,
             Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bigcity_tree_placed")
         );
+    public static final ResourceKey<PlacedFeature> EERT_PLACED_KEY =
+        ResourceKey.create(
+            Registries.PLACED_FEATURE,
+            Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "eert_placed")
+        );
         
     public static void configure(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -65,13 +70,28 @@ public class ModPlacedFeatures {
 				InSquarePlacement.spread(),
 				SurfaceWaterDepthFilter.forMaxDepth(0),
 				PlacementUtils.HEIGHTMAP_NO_LEAVES,
-				CountOnEveryLayerPlacement.of(2)
+				CountOnEveryLayerPlacement.of(6)
 		);
 		context.register(
 				BIGCITY_TREE_PLACED_KEY,
 				new PlacedFeature(
 					configuredFeatures.getOrThrow(ModConfiguredFeatures.BIGCITY_TREE_CONFIGURED_KEY),
-					fallTreeModifiers
+					bigcityTreeModifiers
+				)
+		);
+        
+		List<PlacementModifier> eertModifiers = List.of(
+				BiomeFilter.biome(),
+				InSquarePlacement.spread(),
+				SurfaceWaterDepthFilter.forMaxDepth(0),
+				PlacementUtils.HEIGHTMAP_NO_LEAVES,
+				CountOnEveryLayerPlacement.of(2)
+		);
+		context.register(
+				EERT_PLACED_KEY,
+				new PlacedFeature(
+					configuredFeatures.getOrThrow(ModConfiguredFeatures.EERT_CONFIGURED_KEY),
+					eertModifiers
 				)
 		);
 	}
