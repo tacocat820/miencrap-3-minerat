@@ -87,6 +87,36 @@ public class HappyGhastRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
+
+            // developmen't
+
+            this.leg.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg2.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg2.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg2.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg3.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg3.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg3.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg4.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg4.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg4.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg5.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg5.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg5.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg6.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg6.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg6.zRot = state.yRot * Mth.RAD_TO_DEG;
+
+            this.leg7.xRot = state.xRot * Mth.RAD_TO_DEG;
+            this.leg7.yRot = state.yRot * Mth.RAD_TO_DEG;
+            this.leg7.zRot = state.yRot * Mth.RAD_TO_DEG;
         }
     }
     public static class EntityRenderer extends MobRenderer<HappyGhast, RenderState, Model> {

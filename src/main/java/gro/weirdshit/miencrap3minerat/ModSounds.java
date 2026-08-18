@@ -23,6 +23,7 @@ public class ModSounds {
     public static final SoundEvent BOOM = registerSound("boom");
     public static final SoundEvent CREAK = registerSound("creak");
     public static final SoundEvent SCREAM = registerSound("scream");
+    public static final SoundEvent HAIRDRYER = registerSound("hairdryer");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

@@ -31,6 +31,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HalfTransparentBlock;
@@ -133,6 +134,21 @@ class GenericBlock {
 
 		return new RegisteredBlock(Registry.register(BuiltInRegistries.BLOCK, blockKey, block), blockItem);
 	}
+
+	public RegisteredBlock reg(net.minecraft.world.item.Item.Properties itemProperties) {
+		// Create a registry key for the block
+		ResourceKey<Block> blockKey = keyOfBlock(name);
+		// Create the block instance
+		Block block = blockFactory.apply(properties.setId(blockKey));
+
+		// Sometimes, you may not want to register an item for the block.
+		// Eg: if it's a technical block like `minecraft:moving_piston` or `minecraft:end_gateway`
+		ResourceKey<Item> itemKey = keyOfItem(name);
+		BlockItem blockItem = new BlockItem(block, itemProperties.setId(itemKey).useBlockDescriptionPrefix());
+		Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
+
+		return new RegisteredBlock(Registry.register(BuiltInRegistries.BLOCK, blockKey, block), blockItem);
+	}
 }
 
 public class ModBlocks {
@@ -217,6 +233,9 @@ public class ModBlocks {
 	public static RegisteredBlock ICICLE = new GenericBlock("icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(255), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock EPIC_LEAVES = new GenericBlock("epic_leaves", Block::new, SoundType.GRASS, 0.5f,0.5f).noOcclusion().reg();
+	
+	public static RegisteredBlock PAN = new GenericBlock("pan", Block::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
+		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

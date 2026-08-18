@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FireExtinguisherItem;
+import gro.weirdshit.miencrap3minerat.item.classes.HairdryerItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
@@ -149,7 +150,7 @@ public class ModItems {
 	public static RegisteredItem<?> CREATOR = ModItems.register("creator", Item::new, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).jukeboxPlayable(JukeboxSongs.CREATOR));
 	public static RegisteredItem<?> IRON_STICK = ModItems.register("iron_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> IPHONE = ModItems.register("iphone", Item::new, new Item.Properties());
-
+	public static RegisteredItem<?> HAIRDRYER = ModItems.register("hairdryer", HairdryerItem::new, new Item.Properties().useCooldown(1.4f));
 	
 	public static void generate() {
 		// Items.CHEST
