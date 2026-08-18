@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
+import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
@@ -77,9 +78,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		ClientTickEvents.START_CLIENT_TICK.register(m -> {	
 			// TODO: optimize?
 			if (Minecraft.getInstance().player != null) {
-				Holder<Biome> biome = Minecraft.getInstance().level.getBiome(Minecraft.getInstance().player.getOnPos());
-
-				if (biome.is(Biomes.BIRCH_FOREST)) {
+				CurrentBiome.biome = Minecraft.getInstance().level.getBiome(Minecraft.getInstance().player.getOnPos());
+				
+				if (CurrentBiome.is(Biomes.BIRCH_FOREST)) {
 					if (InverseForestTilt.inverseForestTilt < 100) ++InverseForestTilt.inverseForestTilt;
 				} else if (InverseForestTilt.inverseForestTilt > 0) --InverseForestTilt.inverseForestTilt; 
 			}

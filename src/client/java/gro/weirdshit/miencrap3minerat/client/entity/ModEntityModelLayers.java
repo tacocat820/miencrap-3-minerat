@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
@@ -33,6 +34,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
+	public static final ModelLayerLocation HAPPY_GHAST = createMain("happy_ghast");
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
 	public static final ModelLayerLocation STEVE_JOBS = createMain("steve_jobs");
@@ -56,6 +58,7 @@ public class ModEntityModelLayers {
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);
+		HappyGhastRenderer.register(HAPPY_GHAST);
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
 		SteveJobsRenderer.register(STEVE_JOBS);

@@ -45,6 +45,11 @@ public class ModPlacedFeatures {
             Registries.PLACED_FEATURE,
             Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "eert_placed")
         );
+    public static final ResourceKey<PlacedFeature> TREE3_PLACED_KEY =
+        ResourceKey.create(
+            Registries.PLACED_FEATURE,
+            Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "tree3_placed")
+        );
         
     public static void configure(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -92,6 +97,21 @@ public class ModPlacedFeatures {
 				new PlacedFeature(
 					configuredFeatures.getOrThrow(ModConfiguredFeatures.EERT_CONFIGURED_KEY),
 					eertModifiers
+				)
+		);
+        
+		List<PlacementModifier> tree3Modifiers = List.of(
+				BiomeFilter.biome(),
+				InSquarePlacement.spread(),
+				SurfaceWaterDepthFilter.forMaxDepth(0),
+				PlacementUtils.HEIGHTMAP_NO_LEAVES,
+				RarityFilter.onAverageOnceEvery(2)
+		);
+		context.register(
+				TREE3_PLACED_KEY,
+				new PlacedFeature(
+					configuredFeatures.getOrThrow(ModConfiguredFeatures.TREE_3_CONFIGURED_KEY),
+					tree3Modifiers
 				)
 		);
 	}

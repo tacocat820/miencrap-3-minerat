@@ -30,12 +30,7 @@
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:oak_leaves",
-        "Properties": {
-          "distance": "7",
-          "persistent": "false",
-          "waterlogged": "false"
-        }
+        "Name": "miencrap3minerat:epic_leaves"
       }
     },
     "ignore_vines": false,

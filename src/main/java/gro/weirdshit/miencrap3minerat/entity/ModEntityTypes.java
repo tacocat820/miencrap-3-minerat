@@ -42,6 +42,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<ActualFish>of(ActualFish::new, MobCategory.CREATURE)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<HappyGhast> HAPPY_GHAST = register(
+			"happy_ghast",
+			EntityType.Builder.<HappyGhast>of(HappyGhast::new, MobCategory.CREATURE)
+					.sized(1.0f, 1.0f)
+	);
 	public static final EntityType<Hooorse> HOOORSE = register(
 			"hooorse",
 			EntityType.Builder.<Hooorse>of(Hooorse::new, MobCategory.CREATURE)
@@ -116,6 +121,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(PTL, Ptl.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CRISH, Crish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ACTUAL_FISH, ActualFish.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(HAPPY_GHAST, HappyGhast.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(STEVE_JOBS, SteveJobs.createCubeAttributes());

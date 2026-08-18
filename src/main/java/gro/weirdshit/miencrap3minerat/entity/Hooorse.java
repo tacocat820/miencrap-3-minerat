@@ -109,10 +109,12 @@ public class Hooorse extends PathfinderMob implements PlayerRideable {
 
     @Override
     protected void registerGoals() {
-      this.goalSelector.addGoal(0, new FloatGoal(this));
-      this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
-      this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-      this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-      this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, Ptl.class, 60, 1.0, 1.0));
+		this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, Notjuan.class, 60, 1.0, 1.0));
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 }

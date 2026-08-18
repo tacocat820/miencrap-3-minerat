@@ -84,7 +84,7 @@ public class ModConfiguredFeatures {
             BlockStateProvider.simple(Blocks.OAK_WOOD),
             new Tree3TrunkPlacer(20, 3, 4),
             // Leaves
-            BlockStateProvider.simple(Blocks.OAK_LEAVES),
+            BlockStateProvider.simple(ModBlocks.EPIC_LEAVES.block),
             new Tree3FoliagePlacer(ConstantInt.of(1), ConstantInt.of(1)),
 
             new TwoLayersFeatureSize(10, 3, 12)

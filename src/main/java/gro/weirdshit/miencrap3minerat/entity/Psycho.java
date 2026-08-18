@@ -46,7 +46,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 
-public class Psycho extends Monster {
+public class Psycho extends PathfinderMob {
 	
 	
 	public Psycho(Level world) {

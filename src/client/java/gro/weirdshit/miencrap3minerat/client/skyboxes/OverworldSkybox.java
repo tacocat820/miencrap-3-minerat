@@ -10,13 +10,43 @@ import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MappableRingBuffer;
 import net.minecraft.client.renderer.texture.AbstractTexture;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 
-enum Transition {
-    NIGHT_TO_DAY, DAY_TO_EVENING, EVENING_TO_NIGHT;
+class SkyboxTexture {
+    private final Identifier textureIdentifier;
+    private AbstractTexture texture;
+
+    public SkyboxTexture(String path) {
+        this.textureIdentifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, path);
+    }
+
+    public AbstractTexture getTexture() {
+        if (this.texture == null)  texture = Minecraft.getInstance().getTextureManager().getTexture(textureIdentifier);
+        return this.texture;
+    }
+}
+
+enum Sky {
+    DAY_1(new SkyboxTexture("textures/sky/overworld_day_1.png")),
+    DAY_2(new SkyboxTexture("textures/sky/overworld_day_2.png")),
+    DAY_INVERTED(new SkyboxTexture("textures/sky/overworld_day_inverted.png")),
+    DAY_PURPLE(new SkyboxTexture("textures/sky/overworld_day_purple.png")),
+    EVENING(new SkyboxTexture("textures/sky/overworld_evening.png")),
+    NIGHT(new SkyboxTexture("textures/sky/overworld_night.png"));
+
+    public SkyboxTexture texture;
+    private Sky(SkyboxTexture texture) {
+        this.texture = texture;
+    }
 }
 
 public class OverworldSkybox extends Skybox {
@@ -24,20 +54,15 @@ public class OverworldSkybox extends Skybox {
     private static final int UBO_SIZE = new Std140SizeCalculator().putFloat().get();
     private final MappableRingBuffer ubo = new MappableRingBuffer(() -> "OW Skybox UBO", 130, UBO_SIZE);
    
-    private final Identifier textureIdentifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/sky.png");
-    private AbstractTexture texture;
-
-    private final Identifier textureIdentifier2 = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/sky2.png");
-    private AbstractTexture texture2;
-
-    private final Identifier textureIdentifier3 = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/sky3.png");
-    private AbstractTexture texture3;
+    //textures/sky.png
+    private final SkyboxTexture skyDay_1 = new SkyboxTexture("textures/sky/overworld_day_1.png");
     
     private Vector4f colorModulator = new Vector4f(1f, 1f, 1f, 1f);
 
     private int brightness = 5;
     private int process = 0;
-    private Transition transition = Transition.NIGHT_TO_DAY;
+    Sky transitionFrom = Sky.NIGHT;
+    Sky transitionTo   = Sky.DAY_1;
 
     public OverworldSkybox() {
         super(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/sky.png"));
@@ -46,13 +71,19 @@ public class OverworldSkybox extends Skybox {
         return Pipelines.SKYBOX_OVERWORLD_PIPELINE;
     }
     public AbstractTexture getTexture() {
-        return this.texture;
+        return this.skyDay_1.getTexture();
     }
-    public void tick() {
-        if (this.texture == null)  texture = Minecraft.getInstance().getTextureManager().getTexture(textureIdentifier);
-        if (this.texture2 == null) texture2 = Minecraft.getInstance().getTextureManager().getTexture(textureIdentifier2);
-        if (this.texture3 == null) texture3 = Minecraft.getInstance().getTextureManager().getTexture(textureIdentifier3);
+
+    public void transition(Sky to) {
+        if (process != 100 && process != 0) return;
+
+        if (!transitionTo.equals(to)) {
+            transitionFrom = transitionTo;
+            transitionTo = to; process = 0;
+        }
     }
+
+    TagKey<Biome> SKY_2_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_sky2"));
 
     public void preRenderPass() {
 
@@ -60,18 +91,18 @@ public class OverworldSkybox extends Skybox {
 
         float dt = Minecraft.getInstance().level.getOverworldClockTime() % 24000;
         if (dt < 10_000) {
-            if (!transition.equals(Transition.NIGHT_TO_DAY)) {
-                transition = Transition.NIGHT_TO_DAY; process = 0;
-            }
+            if (CurrentBiome.is(Biomes.BIRCH_FOREST)) transition(Sky.DAY_INVERTED);
+            else if (CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_PURPLE);
+            else if (CurrentBiome.is(SKY_2_BIOME)) transition(Sky.DAY_2);
+            else transition(Sky.DAY_1);
         } else if (dt < 14_000) {
-            if (!transition.equals(Transition.DAY_TO_EVENING)) {
-                transition = Transition.DAY_TO_EVENING; process = 0;
-            }
+            transition(Sky.EVENING);
         } else {
-            if (!transition.equals(Transition.EVENING_TO_NIGHT)) {
-                transition = Transition.EVENING_TO_NIGHT; process = 0;
-            }
+            transition(Sky.NIGHT);
         }
+
+        transitionFrom.texture.getTexture();
+        transitionTo.texture.getTexture();
 
         if (process < 100) process += 1;
 
@@ -90,20 +121,8 @@ public class OverworldSkybox extends Skybox {
         
         renderPass.setUniform("Whatever", this.ubo.currentBuffer());
 
-        switch (transition) {
-            case Transition.NIGHT_TO_DAY:        
-                renderPass.bindTexture("Sampler0", texture3.getTextureView(), texture3.getSampler());
-                renderPass.bindTexture("Sampler1", texture.getTextureView(), texture.getSampler());
-                break;
-            case Transition.DAY_TO_EVENING:
-                renderPass.bindTexture("Sampler0", texture.getTextureView(), texture.getSampler());
-                renderPass.bindTexture("Sampler1", texture2.getTextureView(), texture2.getSampler());
-                break;
-            case Transition.EVENING_TO_NIGHT:
-                renderPass.bindTexture("Sampler0", texture2.getTextureView(), texture2.getSampler());
-                renderPass.bindTexture("Sampler1", texture3.getTextureView(), texture3.getSampler());
-                break;
-        }
+        renderPass.bindTexture("Sampler0", transitionFrom.texture.getTexture().getTextureView(), transitionFrom.texture.getTexture().getSampler());
+        renderPass.bindTexture("Sampler1", transitionTo.texture.getTexture().getTextureView(), transitionTo.texture.getTexture().getSampler());
     }
     public Vector4f getColorModulator() {
         this.colorModulator.x = 0.1f * brightness;
