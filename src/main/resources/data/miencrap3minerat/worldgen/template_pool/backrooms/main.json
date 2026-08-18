@@ -1,0 +1,43 @@
+{
+  "name": "miencrap3minerat:backrooms/main",
+  "fallback": "miencrap3minerat:backrooms/fallback",
+  "elements": [
+
+    {
+      "weight": 50,
+      "element": {
+        "location": "miencrap3minerat:backrooms/x",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "miencrap3minerat:backrooms/t",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "miencrap3minerat:backrooms/l",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "miencrap3minerat:backrooms/r",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}
