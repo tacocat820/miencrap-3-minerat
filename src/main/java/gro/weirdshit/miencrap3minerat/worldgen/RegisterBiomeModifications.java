@@ -33,5 +33,11 @@ public class RegisterBiomeModifications {
 			GenerationStep.Decoration.VEGETAL_DECORATION,
 			ModPlacedFeatures.TREE3_PLACED_KEY
 		);
+
+		BiomeModifications.addFeature(
+			BiomeSelectors.includeByKey(Biomes.DARK_FOREST),
+			GenerationStep.Decoration.VEGETAL_DECORATION,
+			ModPlacedFeatures.DARK_TREE_PLACED_KEY
+		);
     }
 }

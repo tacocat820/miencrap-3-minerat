@@ -84,6 +84,7 @@ public class OverworldSkybox extends Skybox {
     }
 
     TagKey<Biome> SKY_2_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_sky2"));
+    TagKey<Biome> INVERTED_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_inverted_sky"));
 
     public void preRenderPass() {
 
@@ -91,7 +92,7 @@ public class OverworldSkybox extends Skybox {
 
         float dt = Minecraft.getInstance().level.getOverworldClockTime() % 24000;
         if (dt < 10_000) {
-            if (CurrentBiome.is(Biomes.BIRCH_FOREST)) transition(Sky.DAY_INVERTED);
+            if (CurrentBiome.is(INVERTED_SKY_BIOME)) transition(Sky.DAY_INVERTED);
             else if (CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_PURPLE);
             else if (CurrentBiome.is(SKY_2_BIOME)) transition(Sky.DAY_2);
             else transition(Sky.DAY_1);

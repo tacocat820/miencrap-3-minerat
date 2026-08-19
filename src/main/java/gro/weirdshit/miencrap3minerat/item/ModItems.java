@@ -151,7 +151,9 @@ public class ModItems {
 	public static RegisteredItem<?> IRON_STICK = ModItems.register("iron_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> IPHONE = ModItems.register("iphone", Item::new, new Item.Properties());
 	public static RegisteredItem<?> HAIRDRYER = ModItems.register("hairdryer", HairdryerItem::new, new Item.Properties().useCooldown(1.4f));
-	
+	public static RegisteredItem<?> FRIED_GHAST = ModItems.register("fried_ghast", Item::new, new Item.Properties()
+		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()));
+
 	public static void generate() {
 		// Items.CHEST
 	}

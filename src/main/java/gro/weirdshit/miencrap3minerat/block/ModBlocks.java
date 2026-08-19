@@ -16,12 +16,16 @@ import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanFriedGhastBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -29,6 +33,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
@@ -234,8 +239,13 @@ public class ModBlocks {
 	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock EPIC_LEAVES = new GenericBlock("epic_leaves", Block::new, SoundType.GRASS, 0.5f,0.5f).noOcclusion().reg();
 	
-	public static RegisteredBlock PAN = new GenericBlock("pan", Block::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
+	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
+	public static RegisteredBlock PAN_GHAST = new GenericBlock("pan_ghast", SpecificPanGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()
+		.reg(new Item.Properties().sword(ToolMaterial.IRON, 13.0F, -3.5F));
+	public static RegisteredBlock PAN_FRIED_GHAST = new GenericBlock("pan_fried_ghast", SpecificPanFriedGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()
+		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.3F, -2.9F)
+		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item));
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

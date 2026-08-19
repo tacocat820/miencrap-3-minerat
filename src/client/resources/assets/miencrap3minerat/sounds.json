@@ -213,6 +213,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/droopy","stream": true}]},
 	"ost.steve_loves_peepee":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/steve_loves_peepee","stream": true}]},
+	"ost.die":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/steve_loves_peepee","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

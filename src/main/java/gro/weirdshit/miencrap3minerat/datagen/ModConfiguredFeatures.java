@@ -54,6 +54,12 @@ public class ModConfiguredFeatures {
             Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bigcity_tree")
         );
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_TREE_CONFIGURED_KEY =
+        ResourceKey.create(
+            Registries.CONFIGURED_FEATURE,
+            Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "dark_tree")
+        );
+
     public static void configure(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         TreeConfiguration fallTree = new TreeConfiguration.TreeConfigurationBuilder(
             // Trunk / Logs
@@ -108,9 +114,21 @@ public class ModConfiguredFeatures {
             new TwoLayersFeatureSize(10, 3, 3)
         ).build();
 
+        TreeConfiguration darkTree = new TreeConfiguration.TreeConfigurationBuilder(
+            // Trunk / Logs
+            BlockStateProvider.simple(ModBlocks.BLACKSCREEN.block),
+            new StraightTrunkPlacer(6, 3, 0),
+            // Leaves
+            BlockStateProvider.simple(ModBlocks.BLACKSCREEN.block),
+            new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+
+            new TwoLayersFeatureSize(5, 3, 6)
+        ).build();
+
         context.register(FALL_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, fallTree));
         context.register(EERT_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, eerTeerT));
         context.register(TREE_3_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, Tree3));
         context.register(BIGCITY_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, bigcityTree));
+        context.register(DARK_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, darkTree));
 	}
 }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "miencrap3minerat:block/pan_fried_ghast"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/pan_fried_ghast",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/pan_fried_ghast",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/pan_fried_ghast",
+      "y": 270
+    }
+  }
+}
