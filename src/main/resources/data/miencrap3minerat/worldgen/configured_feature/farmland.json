@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "half_height": 1,
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 2
+    },
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 50,
+          "data": {
+            "Name": "minecraft:farmland",
+            "Properties": {
+              "moisture": "7"
+            }
+          }
+        },
+        {
+          "weight": 10,
+          "data": {
+            "Name": "minecraft:water"
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:dirt",
+        "minecraft:clay",
+        "minecraft:sand",
+        "minecraft:stone",
+        "minecraft:grass_block"
+      ]
+    }
+  }
+}

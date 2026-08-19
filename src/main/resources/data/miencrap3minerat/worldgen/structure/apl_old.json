@@ -2,7 +2,6 @@
   "type": "minecraft:jigsaw",
   "biomes": [
     "forest",
-    "meadow",
     "flower_forest",
     "birch_forest"
   ],

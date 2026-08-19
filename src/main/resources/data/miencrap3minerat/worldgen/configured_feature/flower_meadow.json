@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:dual_noise_provider",
+      "noise": {
+        "amplitudes": [
+          1
+        ],
+        "firstOctave": -3
+      },
+      "scale": 1,
+      "seed": 2345,
+      "slow_noise": {
+        "amplitudes": [
+          1
+        ],
+        "firstOctave": -10
+      },
+      "slow_scale": 1,
+      "states": [
+        {
+          "Name": "minecraft:tall_grass",
+          "Properties": {
+            "half": "lower"
+          }
+        },
+        {
+          "Name": "miencrap3minerat:die"
+        },
+        {
+          "Name": "miencrap3minerat:die"
+        },
+        {
+          "Name": "miencrap3minerat:die"
+        },
+        {
+          "Name": "miencrap3minerat:die"
+        },
+        {
+          "Name": "minecraft:oxeye_daisy"
+        },
+        {
+          "Name": "minecraft:short_grass"
+        }
+      ],
+      "variety": [
+        1,
+        3
+      ]
+    }
+  }
+}

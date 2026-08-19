@@ -65,6 +65,9 @@ public class MusicSounds {
     public static final SoundEvent TASWELL = registerSound("ost.taswell");
     public static final SoundEvent DROOPY = registerSound("ost.droopy");
     public static final SoundEvent STEVE_LOVES_PEEPEE = registerSound("ost.steve_loves_peepee");
+    public static final SoundEvent DIE = registerSound("ost.die");
+    public static final SoundEvent KR = registerSound("ost.kr");
+    public static final SoundEvent TFARCENIM = registerSound("ost.tfarcenim");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

@@ -72,7 +72,8 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_firefly_bush_near_water"
+      "minecraft:patch_firefly_bush_near_water",
+      "miencrap3minerat:farmland"
     ],
     [
       "minecraft:freeze_top_layer"

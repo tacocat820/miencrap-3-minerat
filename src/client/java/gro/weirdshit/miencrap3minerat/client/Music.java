@@ -3,21 +3,31 @@ package gro.weirdshit.miencrap3minerat.client;
 import java.util.List;
 import java.util.Random;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
-
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.TagKey;
 
 enum MusicType {
     MENU, PEACEFUL, BATTLE;
 }
 
 public class Music {
+
+    private static TagKey<Biome> SCARY = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "scary"));
+    private static TagKey<Biome> WEIRD = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "weird"));
+
 
     static Random rand = new Random();
     private static SoundInstance music = null;
@@ -81,13 +91,29 @@ public class Music {
                     MusicSounds.BORING,
                 });
             case PEACEFUL:
-                return Choose(new SoundEvent[]{
+
+                if (CurrentBiome.is(SCARY)) return Choose(new SoundEvent[]{
+                    MusicSounds.DIE,
+                    MusicSounds.TASWELL,
+                });
+                else if (CurrentBiome.is(WEIRD)) return Choose(new SoundEvent[]{
+                    MusicSounds.GREECE,
+                    MusicSounds.STEVE_LOVES_PEEPEE,
+                    MusicSounds.FUCKING_PIG,
+                    MusicSounds.STAL,
+                    MusicSounds.STRAD,
+                    MusicSounds.PYRAMIDS,
+                    MusicSounds.PUPEPUPE,
+                    MusicSounds.MINERAT,
+                    MusicSounds.DROOPY,
+                    MusicSounds.TFARCENIM,
+                });
+                else return Choose(new SoundEvent[]{
                     MusicSounds.GREECE,
                     MusicSounds.RAT,
                     MusicSounds.FUCKING_PIG,
                     MusicSounds.SJTOC,
                     MusicSounds.FUCKING_PIG,
-                    MusicSounds.IDRINKGLUE,
                     MusicSounds.STAL,
                     MusicSounds.STRAD,
                     MusicSounds.PYRAMIDS,
@@ -95,12 +121,10 @@ public class Music {
                     MusicSounds.MINERAT,
                     MusicSounds.DRUMS,
                     MusicSounds.STAL,
-                    MusicSounds.TWEETER_ALARM,
                     MusicSounds.GROMADJI,
                     MusicSounds.BLOCKS_AND_SHIT,
                     MusicSounds.EXCUSE,
                     MusicSounds.BOOG_CITY,
-                    MusicSounds.DROOPY,
                     MusicSounds.TASWELL,
                     MusicSounds.STEVE_LOVES_PEEPEE,
                 });

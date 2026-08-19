@@ -214,7 +214,11 @@
 	"ost.steve_loves_peepee":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/steve_loves_peepee","stream": true}]},
 	"ost.die":
-	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/steve_loves_peepee","stream": true}]},
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/die","stream": true}]},
+	"ost.kr":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/kr","stream": true}]},
+	"ost.tfarcenim":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tfarcenim","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

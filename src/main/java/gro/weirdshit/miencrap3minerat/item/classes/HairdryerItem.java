@@ -120,6 +120,7 @@ public class HairdryerItem extends Item {
                             else if (state.is(Blocks.WATER_CAULDRON)) level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
                             else if (state.is(Blocks.GRASS_BLOCK)) level.setBlockAndUpdate(blockPos, Blocks.DIRT.defaultBlockState());
                             else if (state.is(BlockTags.LEAVES)) level.setBlockAndUpdate(blockPos, Blocks.MANGROVE_ROOTS.defaultBlockState());
+                            else if (state.is(Blocks.FARMLAND)) level.setBlockAndUpdate(blockPos, Blocks.DIRT_PATH.defaultBlockState());
 
                         }
                     }
