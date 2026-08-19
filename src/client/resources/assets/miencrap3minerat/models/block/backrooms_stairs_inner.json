@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "miencrap3minerat:block/backrooms",
+    "side": "miencrap3minerat:block/backrooms",
+    "top": "miencrap3minerat:block/backrooms"
+  }
+}

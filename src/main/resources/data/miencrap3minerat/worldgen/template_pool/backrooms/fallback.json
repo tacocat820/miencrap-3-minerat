@@ -12,6 +12,15 @@
       }
     },
     {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "miencrap3minerat:backrooms/fallback_small",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
       "weight": 100,
       "element": {
         "element_type": "minecraft:single_pool_element",
