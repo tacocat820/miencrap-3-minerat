@@ -8,13 +8,16 @@ import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotShapeBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NormalFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleLeavesBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.PrismarineLampBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.BlockWithoutTexture;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificObamiumBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
@@ -114,6 +117,11 @@ class GenericBlock {
         return this;
     }
 
+    public GenericBlock randomTicks() {
+		properties = properties.randomTicks();
+        return this;
+    }
+
 	public GenericBlock isNotViewBlocking() {
 		properties = properties.isViewBlocking(Blocks::never);
 		return this;
@@ -184,7 +192,7 @@ public class ModBlocks {
     public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
 	public static RegisteredBlock WATERCOOLER = new GenericBlock("watercooler", SpecificWatercoolerBlock::new, SoundType.STONE,0.0f,0.5f).noCollision().reg();
 	public static RegisteredBlock DUST_BLOCK = new GenericBlock("dust_block", DustFallingBlock::new, SoundType.CROP, 0.1f,0.0f).reg();
-	public static RegisteredBlock DUST_CARPET = new GenericBlock("dust_carpet", DustFallingBlock::new, SoundType.CROP, 0.01f,0.0f).noOcclusion().noCollision().reg();
+	public static RegisteredBlock DUST_CARPET = new GenericBlock("dust_carpet", p -> new DustFallingBlock(p).shape(ModShapes.CARPET_SHAPE), SoundType.CROP, 0.01f,0.0f).noOcclusion().noCollision().reg();
 	public static RegisteredBlock CRAFTING_TABLE_2 = new GenericBlock("crafting_table_2", SpecificCTable2Block::new, SoundType.IRON,0.1f,0.1f).reg();
 	public static RegisteredBlock OBAMA = new GenericBlock("obama", Block::new, SoundType.STONE,2.0f, 1.0f).reg();
 	public static RegisteredBlock SAND = new GenericBlock("sand", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
@@ -249,6 +257,14 @@ public class ModBlocks {
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock STATIC = new GenericBlock("static", BlockWithoutTexture::new, SoundType.STONE ,2.0f,1.5f).reg();
+	public static RegisteredBlock KEBAB_COOKED = new GenericBlock("kebab_cooked", RotatedPillarBlock::new, SoundType.CREAKING_HEART, 1.0f,1.0f).reg(
+		new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(5f).build())
+	);
+	public static RegisteredBlock KEBAB = new GenericBlock("kebab", SpecificKebabBlock::new, SoundType.CREAKING_HEART, 1.2f,1.2f).randomTicks().reg(
+		new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(1f).build())
+	);
+
 
 	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
@@ -257,6 +273,9 @@ public class ModBlocks {
 	public static RegisteredBlock PAN_FRIED_GHAST = new GenericBlock("pan_fried_ghast", SpecificPanFriedGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.3F, -2.9F)
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item));
+
+	public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
+
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));

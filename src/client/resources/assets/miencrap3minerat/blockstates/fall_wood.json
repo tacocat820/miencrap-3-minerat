@@ -1,7 +1,15 @@
 {
   "variants": {
-    "": {
+    "axis=y": {
       "model": "miencrap3minerat:block/fall_wood"
+    },
+    "axis=z": {
+      "model": "miencrap3minerat:block/fall_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "miencrap3minerat:block/fall_wood",
+      "z": 90
     }
   }
 }

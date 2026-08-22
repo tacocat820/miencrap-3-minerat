@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "miencrap3minerat:block/kebab_cooked"
+    },
+    "axis=z": {
+      "model": "miencrap3minerat:block/kebab_cooked",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "miencrap3minerat:block/kebab_cooked",
+      "z": 90
+    }
+  }
+}

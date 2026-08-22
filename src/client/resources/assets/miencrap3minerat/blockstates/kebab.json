@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "miencrap3minerat:block/kebab"
+    },
+    "axis=z": {
+      "model": "miencrap3minerat:block/kebab",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "miencrap3minerat:block/kebab",
+      "z": 90
+    }
+  }
+}

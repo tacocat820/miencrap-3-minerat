@@ -19,11 +19,23 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DustFallingBlock extends NormalFallingBlock {
     public static final MapCodec<DustFallingBlock> CODEC = simpleCodec(DustFallingBlock::new);
     @Override protected MapCodec<? extends DustFallingBlock> codec() { return CODEC; }
 
+    private VoxelShape SHAPE = Block.cube(16.0);
+    public DustFallingBlock shape(VoxelShape shape) {
+        SHAPE = shape;
+        return this;
+    }
+    @Override
+    protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
+        return SHAPE;
+    }
+    
     public DustFallingBlock(Properties properties) {
         super(properties);
     }
@@ -36,9 +48,12 @@ public class DustFallingBlock extends NormalFallingBlock {
                 continue;
             }
             BlockPos checkPos = belowPos.relative(direction);
+            BlockPos checkPosAbove = pos.relative(direction);
+
             BlockState blockState = level.getBlockState(checkPos);
-            if (blockState.isAir()) {
-                // MIENCRAP3MINERAT.LOGGER.info("pppppp "+direction);
+            BlockState blockStateAbove = level.getBlockState(checkPosAbove);
+
+            if (blockState.isAir() && blockStateAbove.isAir()) {
                 return checkPos;
             }
         }
