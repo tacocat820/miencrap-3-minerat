@@ -46,7 +46,7 @@ public class ModItems {
 
 		// Register the item.
 		
-		MIENCRAP3MINERAT.LOGGER.warn("ITEM GENERATED: "+item.toString());
+		// MIENCRAP3MINERAT.LOGGER.warn("ITEM GENERATED: "+item.toString());
 		return new RegisteredItem<T>( Registry.register(BuiltInRegistries.ITEM, itemKey, item) );
 	}
 

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "miencrap3minerat:block/kebab_top2",
+    "side": "miencrap3minerat:block/kebab2"
+  }
+}
