@@ -50,7 +50,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class Skyboxes {
 
-    private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky.png"));
+    private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky/overworld_day_2.png"));
     private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
 	private static final Skybox MB_SKYBOX = new MbSkybox();
 

@@ -25,6 +25,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanFriedGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
@@ -252,20 +253,21 @@ public class ModBlocks {
 	public static RegisteredBlock ICICLE = new GenericBlock("icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(255), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock EPIC_LEAVES = new GenericBlock("epic_leaves", Block::new, SoundType.GRASS, 0.5f,0.5f).noOcclusion().reg();
-	public static RegisteredBlock BRAZIL = new GenericBlock("brazil", Block::new, SoundType.GLASS, 0.5f,1.0f).reg();
+	public static RegisteredBlock BRAZIL = new GenericBlock("brazil", RotatedPillarBlock::new, SoundType.GLASS, 0.5f,1.0f).reg();
 	public static RegisteredBlock TRASH_BAG = new GenericBlock("trash_bag", DustFallingBlock::new, SoundType.AZALEA_LEAVES, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock BLISSFUL_GRASS = new GenericBlock("blissful_grass", Block::new, SoundType.GRASS, 0.0f,0.0f).noOcclusion().noCollision().reg();
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock STATIC = new GenericBlock("static", BlockWithoutTexture::new, SoundType.STONE ,2.0f,1.5f).reg();
+	public static RegisteredBlock STATIC = new GenericBlock("static", SpecificStaticBlock::new, SoundType.STONE ,2.0f,1.5f).reg();
 	public static RegisteredBlock KEBAB_COOKED = new GenericBlock("kebab_cooked", RotatedPillarBlock::new, SoundType.CREAKING_HEART, 1.0f,1.0f).reg(
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(5f).build())
 	);
 	public static RegisteredBlock KEBAB = new GenericBlock("kebab", SpecificKebabBlock::new, SoundType.CREAKING_HEART, 1.2f,1.2f).randomTicks().reg(
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(1f).build())
 	);
-
-
+	public static RegisteredBlock BING_CHILLING = new GenericBlock("bing_chilling", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	
 	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
 	public static RegisteredBlock PAN_GHAST = new GenericBlock("pan_ghast", SpecificPanGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()

@@ -6,7 +6,8 @@
 		"ExampleClientMixin",
 		"PlayerDamageMixin",
 		"MakeSetPostEffectPublicMixin",
-		"CameraRotation"
+		"CameraRotation",
+		"StfuAskForBackup"
 	],
 	"injectors": {
 		"defaultRequire": 1

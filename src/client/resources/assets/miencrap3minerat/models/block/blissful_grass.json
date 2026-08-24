@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "miencrap3minerat:block/blissful_grass"
+  }
+}

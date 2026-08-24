@@ -1,0 +1,17 @@
+{
+    "feature": "miencrap3minerat:bliss_water",
+    "placement": [
+      {
+        "type": "minecraft:count_on_every_layer",
+        "count": 2
+      },
+      {
+        "type": "minecraft:heightmap",
+        "heightmap": "WORLD_SURFACE"
+      },
+      {
+        "type": "minecraft:biome"
+      }
+    ]
+  }
+  

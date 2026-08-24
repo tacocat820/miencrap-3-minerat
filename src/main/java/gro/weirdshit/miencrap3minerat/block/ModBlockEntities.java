@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.block;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2BlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.world.level.block.Block;
@@ -18,6 +19,9 @@ public class ModBlockEntities {
 
   public static final BlockEntityType<SpecificPanGhastBlockEntity> PAN_GHAST_ENTITY_TYPE =
   register("pan_ghast", SpecificPanGhastBlockEntity::new, ModBlocks.PAN_GHAST.block);
+
+  public static final BlockEntityType<SpecificStaticBlockEntity> STATIC_ENTITY_TYPE =
+  register("static", SpecificStaticBlockEntity::new, ModBlocks.STATIC.block);
 
   public static final BlockEntityType<SpecificCTable2BlockEntity> CRAFTING_TABLE_2_ENTITY =
   register("crafting_table_2", SpecificCTable2BlockEntity::new, ModBlocks.CRAFTING_TABLE_2.block);

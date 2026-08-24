@@ -15,6 +15,7 @@ import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
+import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -29,11 +30,13 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.CampfireSmokeParticle.CosyProvider;
+import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.renderer.block.FluidModel;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.DisplayRenderer.BlockDisplayRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -152,6 +155,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(PlayerHitTensionPayload.TYPE, (payload, context) -> {
 			Music.hit();
 		});
+
+		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 

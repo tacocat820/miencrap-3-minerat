@@ -56,6 +56,14 @@ public class Pipelines {
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
+    public static final RenderPipeline STATIC_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
+		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/static"))
+        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/static"))
+        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/static"))
+        .withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
+        .withDepthStencilState(DepthStencilState.DEFAULT)
+        .build()
+    );
     
     public static void generate() {}
 }
