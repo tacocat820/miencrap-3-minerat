@@ -219,6 +219,14 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/kr","stream": true}]},
 	"ost.tfarcenim":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tfarcenim","stream": true}]},
+	"ost.laugh":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/laugh","stream": true}]},
+	"ost.mxac":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/mxac","stream": true}]},
+	"ost.pupepupe2":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/pupepupe2","stream": true}]},
+	"ost.sj":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/sj","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

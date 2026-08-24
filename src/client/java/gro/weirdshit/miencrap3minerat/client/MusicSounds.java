@@ -68,6 +68,11 @@ public class MusicSounds {
     public static final SoundEvent DIE = registerSound("ost.die");
     public static final SoundEvent KR = registerSound("ost.kr");
     public static final SoundEvent TFARCENIM = registerSound("ost.tfarcenim");
+    public static final SoundEvent LAUGH = registerSound("ost.laugh");
+    public static final SoundEvent MXAC = registerSound("ost.mxac");
+    public static final SoundEvent MINERAT2 = registerSound("ost.minerat2");
+    public static final SoundEvent PUPEPUPE2 = registerSound("ost.pupepupe2");
+    public static final SoundEvent SJ = registerSound("ost.sj");
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

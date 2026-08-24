@@ -27,6 +27,7 @@ public class Music {
 
     private static TagKey<Biome> SCARY = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "scary"));
     private static TagKey<Biome> WEIRD = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "weird"));
+    private static TagKey<Biome> HOT = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "hot"));
 
 
     static Random rand = new Random();
@@ -95,6 +96,7 @@ public class Music {
                 if (CurrentBiome.is(SCARY)) return Choose(new SoundEvent[]{
                     MusicSounds.DIE,
                     MusicSounds.TASWELL,
+                    MusicSounds.POOM,
                 });
                 else if (CurrentBiome.is(WEIRD)) return Choose(new SoundEvent[]{
                     MusicSounds.GREECE,
@@ -107,6 +109,19 @@ public class Music {
                     MusicSounds.MINERAT,
                     MusicSounds.DROOPY,
                     MusicSounds.TFARCENIM,
+                    MusicSounds.SJTOC,
+                    MusicSounds.LAUGH,
+                    MusicSounds.KR,
+                });
+                else if (CurrentBiome.is(HOT)) return Choose(new SoundEvent[]{
+                    MusicSounds.STEVE_LOVES_PEEPEE,
+                    MusicSounds.PUPEPUPE2,
+                    MusicSounds.PUPEPUPE2,
+                    MusicSounds.PUPEPUPE2,
+                    MusicSounds.DROOPY,
+                    MusicSounds.LAUGH,
+                    MusicSounds.POOM,
+                    MusicSounds.SJ,
                 });
                 else return Choose(new SoundEvent[]{
                     MusicSounds.GREECE,
@@ -127,6 +142,9 @@ public class Music {
                     MusicSounds.BOOG_CITY,
                     MusicSounds.TASWELL,
                     MusicSounds.STEVE_LOVES_PEEPEE,
+                    MusicSounds.KR,
+                    MusicSounds.MXAC,
+                    MusicSounds.SJ,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

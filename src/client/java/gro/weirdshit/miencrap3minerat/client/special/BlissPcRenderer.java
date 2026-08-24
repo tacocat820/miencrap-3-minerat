@@ -157,7 +157,6 @@ public class BlissPcRenderer {
             Vector3f[] things = vectorFromDirection(state.direction);
 
             queue.submitCustomGeometry(matrices, RenderTypes.endGateway(), (pose, buffer) -> {
-
                 for (Vector3f vector : things) {
                     buffer.addVertex(pose, vector).setColor(0.01f * (float)(Minecraft.getInstance().level.getGameTime() % 100), 1.0f, 1.0f, 1.0f);
                 }
