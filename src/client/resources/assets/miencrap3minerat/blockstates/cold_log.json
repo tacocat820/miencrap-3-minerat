@@ -1,7 +1,15 @@
 {
   "variants": {
-    "": {
+    "axis=y": {
       "model": "miencrap3minerat:block/cold_log"
+    },
+    "axis=z": {
+      "model": "miencrap3minerat:block/cold_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "miencrap3minerat:block/cold_log",
+      "z": 90
     }
   }
 }

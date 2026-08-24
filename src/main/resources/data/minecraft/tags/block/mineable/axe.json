@@ -1,0 +1,18 @@
+{
+    "replace": false,
+    "values": [
+        "miencrap3minerat:kebab",
+        "miencrap3minerat:kebab_cooked",
+        "miencrap3minerat:cold_log",
+        "miencrap3minerat:cold_stairs",
+        "miencrap3minerat:cold_planks",
+        "miencrap3minerat:fall_log",
+        "miencrap3minerat:fall_planks",
+        "miencrap3minerat:maple_log",
+        "miencrap3minerat:table",
+        "miencrap3minerat:stool",
+        "miencrap3minerat:chair",
+        "miencrap3minerat:maple_planks",
+        "miencrap3minerat:orange_planks"
+    ]
+}

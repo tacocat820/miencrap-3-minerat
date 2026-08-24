@@ -1,15 +1,58 @@
 {
   "variants": {
-    "axis=y": {
-      "model": "miencrap3minerat:block/kebab"
+    "" : {
+      "model": "miencrap3minerat:block/kebab_0"
     },
-    "axis=z": {
-      "model": "miencrap3minerat:block/kebab",
+    "axis=y,cooking=0": {
+      "model": "miencrap3minerat:block/kebab_0"
+    },
+    "axis=z,cooking=0": {
+      "model": "miencrap3minerat:block/kebab_0",
       "x": 90
     },
-    "axis=x": {
-      "model": "miencrap3minerat:block/kebab",
+    "axis=x,cooking=0": {
+      "model": "miencrap3minerat:block/kebab_0",
+      "z": 90
+    },
+
+
+    "axis=y,cooking=1": {
+      "model": "miencrap3minerat:block/kebab_1"
+    },
+    "axis=z,cooking=1": {
+      "model": "miencrap3minerat:block/kebab_1",
+      "x": 90
+    },
+    "axis=x,cooking=1": {
+      "model": "miencrap3minerat:block/kebab_1",
+      "z": 90
+    },
+    
+
+    "axis=y,cooking=2": {
+      "model": "miencrap3minerat:block/kebab_2"
+    },
+    "axis=z,cooking=2": {
+      "model": "miencrap3minerat:block/kebab_2",
+      "x": 90
+    },
+    "axis=x,cooking=2": {
+      "model": "miencrap3minerat:block/kebab_2",
+      "z": 90
+    },
+    
+
+    "axis=y,cooking=3": {
+      "model": "miencrap3minerat:block/kebab_3"
+    },
+    "axis=z,cooking=3": {
+      "model": "miencrap3minerat:block/kebab_3",
+      "x": 90
+    },
+    "axis=x,cooking=3": {
+      "model": "miencrap3minerat:block/kebab_3",
       "z": 90
     }
+
   }
 }
