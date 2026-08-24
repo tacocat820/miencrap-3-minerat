@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NormalFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleLeavesBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.PrismarineLampBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
@@ -256,6 +257,7 @@ public class ModBlocks {
 	public static RegisteredBlock BRAZIL = new GenericBlock("brazil", RotatedPillarBlock::new, SoundType.GLASS, 0.5f,1.0f).reg();
 	public static RegisteredBlock TRASH_BAG = new GenericBlock("trash_bag", DustFallingBlock::new, SoundType.AZALEA_LEAVES, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock BLISSFUL_GRASS = new GenericBlock("blissful_grass", Block::new, SoundType.GRASS, 0.0f,0.0f).noOcclusion().noCollision().reg();
+	public static RegisteredBlock BLISS_PC = new GenericBlock("bliss_pc", SpecificBlissPcBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();

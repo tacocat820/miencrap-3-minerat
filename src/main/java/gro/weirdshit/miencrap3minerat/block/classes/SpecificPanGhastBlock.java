@@ -108,8 +108,8 @@ public class SpecificPanGhastBlock extends BaseEntityBlock {
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
 		
-		level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 10.0f, ExplosionInteraction.BLOCK);
-
+		
+        //TODO
 		return InteractionResult.SUCCESS;
 	}
     

@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
+import gro.weirdshit.miencrap3minerat.client.special.BlissPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
@@ -157,6 +158,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 
 		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);
+		BlockEntityRenderers.register(ModBlockEntities.BLISS_PC_ENTITY_TYPE, BlissPcRenderer.Renderer::new);
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 

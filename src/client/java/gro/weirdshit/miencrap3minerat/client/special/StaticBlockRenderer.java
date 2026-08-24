@@ -43,7 +43,7 @@ public class StaticBlockRenderer {
         public Renderer(BlockEntityRendererProvider.Context context) {
 	    }
 
-        private static final RenderType STATIC_RENDER_TYPE = RenderType.create("static", 
+        public static final RenderType STATIC_RENDER_TYPE = RenderType.create("static", 
             RenderSetup.builder(Pipelines.STATIC_PIPELINE)
             .createRenderSetup());
 
