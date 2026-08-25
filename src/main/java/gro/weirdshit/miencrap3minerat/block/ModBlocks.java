@@ -74,6 +74,13 @@ class GenericBlock {
 		this.properties = properties;
     }
 
+	public GenericBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory) {
+        this.name = name; this.blockFactory = blockFactory;
+
+		Properties properties = BlockBehaviour.Properties.of();
+		this.properties = properties;
+    }
+
 	public GenericBlock copyOf(Block base) {
 		properties = Properties.ofFullCopy(base);
         return this;
@@ -191,6 +198,7 @@ public class ModBlocks {
     public static RegisteredBlock CHAIR = new GenericBlock("chair", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.CHAIR_SHAPE), SoundType.STONE,0.5f,0.5f).reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
     public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", TransparentBlock::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
+	public static RegisteredBlock XP_GLASS_MINIBLOCKS = new GenericBlock("xp_glass_miniblocks", MiniBlocksBlock::new).copyOf(XP_GLASS.block).reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", NormalFallingBlock::new, SoundType.CROP,3.0f,0.5f).reg();
     public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
 	public static RegisteredBlock WATERCOOLER = new GenericBlock("watercooler", SpecificWatercoolerBlock::new, SoundType.STONE,0.0f,0.5f).noCollision().reg();
@@ -207,10 +215,14 @@ public class ModBlocks {
     public static RegisteredBlock PLASTIC_BLOCK = new GenericBlock("plastic_block", Block::new, SoundType.MUD,3.0f,1.5f).reg();
     public static RegisteredBlock ORANGE_WOOD = new GenericBlock("orange_wood", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
-    public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock ORANGE_PLANKS_MINIBLOCKS = new GenericBlock("orange_planks_miniblocks", MiniBlocksBlock::new).copyOf(ORANGE_PLANKS.block).reg();
+	public static RegisteredBlock ORANGE_LEAVES = new GenericBlock("orange_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 16753480), p), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
+	public static RegisteredBlock MAPLE_PLANKS_MINIBLOCKS = new GenericBlock("maple_planks_miniblocks", MiniBlocksBlock::new).copyOf(MAPLE_PLANKS.block).reg();
     public static RegisteredBlock MAPLE_LEAVES = new GenericBlock("maple_leaves", HalfTransparentBlock::new, SoundType.WOOL,0.5f,0.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
+	public static RegisteredBlock RUST_MINIBLOCKS = new GenericBlock("rust_miniblocks", MiniBlocksBlock::new).copyOf(RUST_BLOCK.block).reg();
 	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", TransparentDustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).noOcclusion().reg();
     public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
 	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
@@ -218,6 +230,7 @@ public class ModBlocks {
     public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
 	public static RegisteredBlock FALL_PLANKS = new GenericBlock("fall_planks", Block::new, SoundType.WOOD,1.5f,2.0f).ignitedByLava().reg();
+	public static RegisteredBlock FALL_PLANKS_MINIBLOCKS = new GenericBlock("fall_planks_miniblocks", MiniBlocksBlock::new).copyOf(FALL_PLANKS.block).reg();
 	
 	public static RegisteredBlock FALL_STAIRS = new GenericBlock("fall_stairs", p -> new StairBlock(FALL_PLANKS.block.defaultBlockState(), p), SoundType.WOOD,1.5f,2.0f).copyOf(FALL_PLANKS.block).ignitedByLava().reg();
 	public static RegisteredBlock FALL_SLAB = new GenericBlock("fall_slab", SlabBlock::new, SoundType.WOOD,1.5f,2.0f).copyOf(FALL_PLANKS.block).ignitedByLava().reg();
@@ -226,8 +239,9 @@ public class ModBlocks {
 	public static RegisteredBlock COLD_LOG = new GenericBlock("cold_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock COLD_LEAVES = new GenericBlock("cold_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 1274293), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock COLD_PLANKS = new GenericBlock("cold_planks", Block::new, SoundType.WOOD,1.5f,2.0f).ignitedByLava().reg();
-	public static RegisteredBlock COLD_STAIRS = new GenericBlock("cold_stairs", p -> new StairBlock(COLD_PLANKS.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(COLD_PLANKS.block).reg();
-	public static RegisteredBlock COLD_SLAB = new GenericBlock("cold_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(COLD_PLANKS.block).reg();
+	public static RegisteredBlock COLD_PLANKS_MINIBLOCKS = new GenericBlock("cold_planks_miniblocks", MiniBlocksBlock::new).copyOf(COLD_PLANKS.block).reg();
+	public static RegisteredBlock COLD_STAIRS = new GenericBlock("cold_stairs", p -> new StairBlock(COLD_PLANKS.block.defaultBlockState(), p)).copyOf(COLD_PLANKS.block).reg();
+	public static RegisteredBlock COLD_SLAB = new GenericBlock("cold_slab", SlabBlock::new).copyOf(COLD_PLANKS.block).reg();
 
 	public static RegisteredBlock DIAMOND_BLOCK_2 = new GenericBlock("diamond_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
 	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
@@ -241,15 +255,16 @@ public class ModBlocks {
 	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
 	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", Block::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
+	public static RegisteredBlock JELLY_MINIBLOCKS = new GenericBlock("jelly_miniblocks", MiniBlocksBlock::new).copyOf(JELLY_BLOCK.block).reg();
 	public static RegisteredBlock BULLSHITTIUM = new GenericBlock("bullshittium", Block::new, SoundType.STONE, 3.0f,2.0f).light(5).emissiveRendering().reg();
-	public static RegisteredBlock BULLSHITTIUM_STAIRS = new GenericBlock("bullshittium_stairs", p -> new StairBlock(BULLSHITTIUM.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(BULLSHITTIUM.block).reg();
-	public static RegisteredBlock BULLSHITTIUM_SLAB = new GenericBlock("bullshittium_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(BULLSHITTIUM.block).reg();
+	public static RegisteredBlock BULLSHITTIUM_STAIRS = new GenericBlock("bullshittium_stairs", p -> new StairBlock(BULLSHITTIUM.block.defaultBlockState(), p)).copyOf(BULLSHITTIUM.block).reg();
+	public static RegisteredBlock BULLSHITTIUM_SLAB = new GenericBlock("bullshittium_slab", SlabBlock::new).copyOf(BULLSHITTIUM.block).reg();
 
 	public static RegisteredBlock PC = new GenericBlock("pc", SpecificPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock PC_ON = new GenericBlock("pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock PC_STAIRS = new GenericBlock("pc_stairs", p -> new StairBlock(PC.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(PC.block).reg();
-	public static RegisteredBlock PC_SLAB = new GenericBlock("pc_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(PC.block).reg();
-	public static RegisteredBlock PC_MINIBLOCKS = new GenericBlock("pc_miniblocks", p -> new MiniBlocksBlock(p), SoundType.STONE, 1.0f,1.0f).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_STAIRS = new GenericBlock("pc_stairs", p -> new StairBlock(PC.block.defaultBlockState(), p)).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_SLAB = new GenericBlock("pc_slab", SlabBlock::new).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_MINIBLOCKS = new GenericBlock("pc_miniblocks", p -> new MiniBlocksBlock(p)).copyOf(PC.block).reg();
 
 	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f).reg();
 	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.STONE, 0.0f,0.0f).noCollision().noOcclusion().reg();
@@ -262,6 +277,7 @@ public class ModBlocks {
 	public static RegisteredBlock BLISS_PC = new GenericBlock("bliss_pc", SpecificBlissPcBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock SOLID_DUST_MINIBLOCKS = new GenericBlock("solid_dust_miniblocks", MiniBlocksBlock::new).copyOf(SOLID_DUST.block).reg();
 	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock STATIC = new GenericBlock("static", SpecificStaticBlock::new, SoundType.STONE ,2.0f,1.5f).reg();
 	public static RegisteredBlock KEBAB_COOKED = new GenericBlock("kebab_cooked", RotatedPillarBlock::new, SoundType.CREAKING_HEART, 1.0f,1.0f).reg(
@@ -272,6 +288,7 @@ public class ModBlocks {
 	);
 	public static RegisteredBlock BING_CHILLING = new GenericBlock("bing_chilling", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SULFUR_BLOCK = new GenericBlock("sulfur_block", Block::new, SoundType.AZALEA_LEAVES, 1.5f,1.0f).reg();
+	public static RegisteredBlock SULFUR_BLOCK_MINIBLOCKS = new GenericBlock("sulfur_block_miniblocks", MiniBlocksBlock::new).copyOf(SULFUR_BLOCK.block).reg();
 	public static RegisteredBlock PACKAGE = new GenericBlock("package", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.PACKAGE_SHAPE), SoundType.WOOD, 0.3f,0.3f).noOcclusion().noCollision().reg();
 
 	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
@@ -283,9 +300,14 @@ public class ModBlocks {
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item));
 
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
-	public static RegisteredBlock ORANGE_LEAVES = new GenericBlock("orange_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 16753480), p), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock XP_GLASS_MINIBLOCKS = new GenericBlock("xp_glass_miniblocks", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(XP_GLASS.block).reg();
-	public static RegisteredBlock SULFUR_BLOCK_MINIBLOCKS = new GenericBlock("sulfur_block_miniblocks", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(SULFUR_BLOCK.block).reg();
+
+	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DIRT).reg();
+	public static RegisteredBlock STONE_MINIBLOCKS = new GenericBlock("stone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.STONE).reg();
+	public static RegisteredBlock COBBLESTONE_MINIBLOCKS = new GenericBlock("cobblestone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.COBBLESTONE).reg();
+	public static RegisteredBlock OAK_PLANKS_MINIBLOCKS = new GenericBlock("oak_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
+	public static RegisteredBlock IRON_MINIBLOCKS = new GenericBlock("iron_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.IRON_BLOCK).reg();
+	public static RegisteredBlock QUARTZ_MINIBLOCKS = new GenericBlock("quartz_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.QUARTZ_BLOCK).reg();
+
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));

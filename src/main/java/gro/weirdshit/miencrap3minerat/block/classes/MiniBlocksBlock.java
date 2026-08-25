@@ -1,11 +1,13 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,6 +34,7 @@ public class MiniBlocksBlock extends Block {
 	public static final BooleanProperty X1_Z1_Y1 = BooleanProperty.create("blk_111");
 
     public static final Map<Integer, VoxelShape> SHAPES = createVariants(); //ну и чё, что их 256 штук будет?
+    public static final Map< List<Integer>, BooleanProperty > MINIBLOCKS_PROPS = definePropsMap();
 
     // private final Block base;
 
@@ -48,6 +51,22 @@ public class MiniBlocksBlock extends Block {
 		builder.add(X1_Z1_Y1);
 
 	}
+
+    private static Map< List<Integer>, BooleanProperty > definePropsMap() {
+        Map< List<Integer>, BooleanProperty > map = new HashMap<>();
+
+        map.put(List.of(0,0,0), MiniBlocksBlock.X0_Z0_Y0);
+        map.put(List.of(1,0,0), MiniBlocksBlock.X1_Z0_Y0);
+        map.put(List.of(0,0,1), MiniBlocksBlock.X0_Z1_Y0);
+        map.put(List.of(1,0,1), MiniBlocksBlock.X1_Z1_Y0);
+
+        map.put(List.of(0,1,0), MiniBlocksBlock.X0_Z0_Y1);
+        map.put(List.of(1,1,0), MiniBlocksBlock.X1_Z0_Y1);
+        map.put(List.of(0,1,1), MiniBlocksBlock.X0_Z1_Y1);
+        map.put(List.of(1,1,1), MiniBlocksBlock.X1_Z1_Y1);
+        
+        return map;
+    }
 
     static int create_bitmask(boolean[] flags) {
         int mask = 0;
@@ -95,7 +114,19 @@ public class MiniBlocksBlock extends Block {
         return shapes;
     }
 
-    private boolean[] getBooleans(final BlockState state) {
+    static public void removeOneMiniblock(ServerLevel serverLevel, BlockState blockState, BlockPos blockPos, int x, int y, int z) {
+        BooleanProperty prop = MINIBLOCKS_PROPS.get(List.of(x, y, z));
+
+        BlockState newBlockState = blockState.setValue(prop, false);
+
+        if ( create_bitmask(getBooleans(newBlockState)) == 0 ) {
+            serverLevel.destroyBlock(blockPos, true);
+        } else {
+            serverLevel.setBlock(blockPos, newBlockState, UPDATE_ALL_IMMEDIATE);
+        }
+    }
+
+    static public boolean[] getBooleans(final BlockState state) {
         boolean[] combination = {
 		    state.getValue(X0_Z0_Y0),
 		    state.getValue(X1_Z0_Y0),

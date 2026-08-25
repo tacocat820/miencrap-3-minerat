@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 public class ChiselItem extends Item {
     public static final Map< List<Integer>, BooleanProperty > MINIBLOCKS_PROPS = defineMap();
 
-    static Map< List<Integer>, BooleanProperty > defineMap() {
+    private static Map< List<Integer>, BooleanProperty > defineMap() {
         Map< List<Integer>, BooleanProperty > map = new HashMap<>();
 
         map.put(List.of(0,0,0), MiniBlocksBlock.X0_Z0_Y0);
@@ -59,19 +59,13 @@ public class ChiselItem extends Item {
             double y = clickloc.y - pos.getY();
             double z = clickloc.z - pos.getZ();
 
-            int bX = Math.clamp((int)Math.ceil(x*2)-1, 0, 1);
-            int bY = Math.clamp((int)Math.ceil(y*2)-1, 0, 1);
-            int bZ = Math.clamp((int)Math.ceil(z*2)-1, 0, 1);
+            int bX = Math.clamp((int)Math.ceil(x*1.99)-1, 0, 1);
+            int bY = Math.clamp((int)Math.ceil(y*1.99)-1, 0, 1);
+            int bZ = Math.clamp((int)Math.ceil(z*1.99)-1, 0, 1);
 
-            System.out.println(""+
-                bX + " " +
-                bY + " " +
-                bZ + " "
-            );
+            MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
 
-            BooleanProperty prop = MINIBLOCKS_PROPS.get(List.of(bX, bY, bZ));
-
-            serverLevel.setBlock(pos, bstate.setValue(prop, false), 3);
+            MiniBlocksBlock.removeOneMiniblock(serverLevel, bstate, pos, bX, bY, bZ);
 
             return InteractionResult.SUCCESS_SERVER;
         }

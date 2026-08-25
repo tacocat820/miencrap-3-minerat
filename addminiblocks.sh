@@ -1,13 +1,19 @@
-#cat src/main/resources/assets/miencrap3minerat/blockstates/backrooms.json
+#cat src/main/resources/assets/$namespace/blockstates/backrooms.json
 
 #blockname="name"
 #read -r -p "> Enter block name: " blockname
 
 echo "[?] run with -t to create loot tables too."
+echo "[?] run with -v to create for vanilla blocks."
 ltable=0
+vanilla=0
 
-while getopts "t" opt; do
+while getopts "t v" opt; do
   case ${opt} in
+    v )
+      echo "| Vanilla: ON"
+      vanilla=1
+      ;;
     t )
       echo "| Loot table: ON"
       ltable=1
@@ -23,10 +29,17 @@ read -r -p "> Enter block(s) to make miniblocks for, space as splitter: " blocks
 client_resources_PATH="src/client/resources"
 server_resources_PATH="src/main/resources"
 
+namespace="miencrap3minerat"
+textures_namespace=$namespace
+if [ "$vanilla" = "1" ]; then
+  textures_namespace="minecraft"
+fi
+
 for blockname in $blocks_names; do
-  miniblocks="${blockname}_miniblocks"
+  _blockname_reduced=$(echo "$blockname" | sed 's/_block//') #'_block' suffic deleting
+  miniblocks="${_blockname_reduced}_miniblocks"
   #registering blockstates
-  jq -n --arg model "miencrap3minerat:block/$miniblocks" '{
+  jq -n --arg model "$namespace:block/$miniblocks" '{
     "multipart": [
       {
         "apply": {"uvlock": true, "model":$model},
@@ -37,7 +50,7 @@ for blockname in $blocks_names; do
         "when": {"blk_001": "true"}
       },
       {
-        "apply": {"uvlock": true, "model":$model, "x":90},
+        "apply": {"uvlock": true, "model":$model, "y":-90},
         "when": {"blk_010": "true"}
       },
       {
@@ -61,27 +74,27 @@ for blockname in $blocks_names; do
         "apply": {"uvlock": true, "model":$model, "x": 90, "z": 180}
       }
     ]
-  }' > "$client_resources_PATH/assets/miencrap3minerat/blockstates/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/blockstates/$miniblocks.json"
 
   #item model
-  jq -n --arg model "miencrap3minerat:block/$miniblocks" '{
+  jq -n --arg model "$namespace:block/$miniblocks" '{
     "model": {
       "type":"model",
       "model": $model
     }
-  }' > "$client_resources_PATH/assets/miencrap3minerat/items/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/items/$miniblocks.json"
 
   #block model too
-  jq -n --arg original_block_model "miencrap3minerat:block/$blockname" '{
-    "parent": "miencrap3minerat:templates/miniblocks",
+  jq -n --arg original_block_model "$textures_namespace:block/$blockname" --arg parent "$namespace:templates/miniblocks" '{
+    "parent": $parent,
     "textures": {
       "block": $original_block_model
     }
-  }' > "$client_resources_PATH/assets/miencrap3minerat/models/block/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/models/block/$miniblocks.json"
 
   #loot table
   if [ "$ltable" = "1" ]; then
-    jq --compact-output -n --arg item_id "miencrap3minerat:$miniblocks" '{
+    jq --compact-output -n --arg item_id "$namespace:$miniblocks" '{
       "pools": [
         {
           "rolls": 1,
@@ -93,13 +106,18 @@ for blockname in $blocks_names; do
           ]
         }
       ]
-    }' > "$server_resources_PATH/data/miencrap3minerat/loot_table/blocks/$miniblocks.json"
+    }' > "$server_resources_PATH/data/$namespace/loot_table/blocks/$miniblocks.json"
   fi
   
   upperReg=$(echo "$miniblocks" | tr '[:lower:]' '[:upper:]')
   originalUpperReg=$(echo "$blockname" | tr '[:lower:]' '[:upper:]')
 
   #put into java!!!
-  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$miniblocks\", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf($originalUpperReg.block).reg();"
+  block_statement="$originalUpperReg.block"
+  if [ "$vanilla" = "1" ]; then
+    block_statement="Blocks.$originalUpperReg"
+  fi
+
+  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$miniblocks\", MiniBlocksBlock::new).copyOf($block_statement).reg();"
 done
 echo "[!] now add blocks in java (if you doesn't)."

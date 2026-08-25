@@ -23,7 +23,7 @@
       "apply": {
         "uvlock": true,
         "model": "miencrap3minerat:block/xp_glass_miniblocks",
-        "x": 90
+        "y": -90
       },
       "when": {
         "blk_010": "true"

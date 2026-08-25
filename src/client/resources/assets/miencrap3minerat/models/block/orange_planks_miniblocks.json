@@ -1,0 +1,6 @@
+{
+  "parent": "miencrap3minerat:templates/miniblocks",
+  "textures": {
+    "block": "miencrap3minerat:block/orange_planks"
+  }
+}
