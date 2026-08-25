@@ -5,6 +5,7 @@ import java.util.function.Function;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
+import gro.weirdshit.miencrap3minerat.item.classes.ChiselItem;
 import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FireExtinguisherItem;
@@ -122,7 +123,8 @@ public class ModItems {
 	public static RegisteredItem<?> BREAD_SWORD = ModItems.register("bread_sword", BreadSwordItem::new, new Item.Properties().useCooldown(0.2f).durability(256));
 	public static RegisteredItem<?> WATER_STICK = ModItems.register("water_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> URANIUM_LOLLIPOP = ModItems.register("uranium_lollipop", UraniumLollipopItem::new, new Item.Properties()
-		.food(new FoodProperties.Builder().alwaysEdible().build()));
+		.food(new FoodProperties.Builder().alwaysEdible().build())
+	);
 	public static RegisteredItem<?> LAVA_POTION = ModItems.register("lava_potion", LavaPotionItem::new, new Item.Properties()
 		.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
 		.stacksTo(44)
@@ -152,7 +154,14 @@ public class ModItems {
 	public static RegisteredItem<?> IPHONE = ModItems.register("iphone", Item::new, new Item.Properties());
 	public static RegisteredItem<?> HAIRDRYER = ModItems.register("hairdryer", HairdryerItem::new, new Item.Properties().useCooldown(1.4f));
 	public static RegisteredItem<?> FRIED_GHAST = ModItems.register("fried_ghast", Item::new, new Item.Properties()
-		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()));
+		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build())
+	);
+
+	public static RegisteredItem<?> CHISEL = ModItems.register("chisel", ChiselItem::new, new Item.Properties());
+
+
+
+
 
 	public static void generate() {
 		// Items.CHEST

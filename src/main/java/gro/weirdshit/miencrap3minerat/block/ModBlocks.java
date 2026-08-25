@@ -284,7 +284,8 @@ public class ModBlocks {
 
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock ORANGE_LEAVES = new GenericBlock("orange_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 16753480), p), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-
+	public static RegisteredBlock XP_GLASS_MINIBLOCKS = new GenericBlock("xp_glass_miniblocks", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(XP_GLASS.block).reg();
+	public static RegisteredBlock SULFUR_BLOCK_MINIBLOCKS = new GenericBlock("sulfur_block_miniblocks", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(SULFUR_BLOCK.block).reg();
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
@@ -292,6 +293,6 @@ public class ModBlocks {
     
 	public static void generate() {
 		ModShapes.generate();
-		// Blocks.ACACIA_BUTTON
+		// Blocks.ACACIA_BUTTON //SULFUR_BLOCK
 	}
 }

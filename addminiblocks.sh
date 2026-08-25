@@ -24,9 +24,9 @@ client_resources_PATH="src/client/resources"
 server_resources_PATH="src/main/resources"
 
 for blockname in $blocks_names; do
-
+  miniblocks="${blockname}_miniblocks"
   #registering blockstates
-  jq -n --arg model "miencrap3minerat:block/$(blockname)_miniblocks" '{
+  jq -n --arg model "miencrap3minerat:block/$miniblocks" '{
     "multipart": [
       {
         "apply": {"uvlock": true, "model":$model},
@@ -61,27 +61,27 @@ for blockname in $blocks_names; do
         "apply": {"uvlock": true, "model":$model, "x": 90, "z": 180}
       }
     ]
-  }' > "$client_resources_PATH/assets/miencrap3minerat/blockstates/$(blockname)_miniblocks.json"
+  }' > "$client_resources_PATH/assets/miencrap3minerat/blockstates/$miniblocks.json"
 
   #item model
-  jq -n --arg model "miencrap3minerat:block/$(blockname)_miniblocks" '{
+  jq -n --arg model "miencrap3minerat:block/$miniblocks" '{
     "model": {
       "type":"model",
       "model": $model
     }
-  }' > "$client_resources_PATH/assets/miencrap3minerat/items/$(blockname)_miniblocks.json"
+  }' > "$client_resources_PATH/assets/miencrap3minerat/items/$miniblocks.json"
 
   #block model too
-  jq -n --arg original_block_model "miencrap3minerat:block/$(blockname)" '{
+  jq -n --arg original_block_model "miencrap3minerat:block/$blockname" '{
     "parent": "miencrap3minerat:templates/miniblocks",
     "textures": {
       "block": $original_block_model
     }
-  }' > "$client_resources_PATH/assets/miencrap3minerat/items/$(blockname)_miniblocks.json"
+  }' > "$client_resources_PATH/assets/miencrap3minerat/models/block/$miniblocks.json"
 
   #loot table
   if [ "$ltable" = "1" ]; then
-    jq --compact-output -n --arg item_id "miencrap3minerat:$(blockname)_miniblocks" '{
+    jq --compact-output -n --arg item_id "miencrap3minerat:$miniblocks" '{
       "pools": [
         {
           "rolls": 1,
@@ -93,12 +93,13 @@ for blockname in $blocks_names; do
           ]
         }
       ]
-    }' > "$server_resources_PATH/data/miencrap3minerat/loot_table/blocks/$(blockname)_miniblocks.json"
+    }' > "$server_resources_PATH/data/miencrap3minerat/loot_table/blocks/$miniblocks.json"
   fi
   
-  upperReg=$(echo "$(blockname)_miniblocks" | tr '[:lower:]' '[:upper:]')
+  upperReg=$(echo "$miniblocks" | tr '[:lower:]' '[:upper:]')
+  originalUpperReg=$(echo "$blockname" | tr '[:lower:]' '[:upper:]')
 
   #put into java!!!
-  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$(blockname)_miniblocks\", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).reg();"
+  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$miniblocks\", MiniBlocksBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf($originalUpperReg.block).reg();"
 done
 echo "[!] now add blocks in java (if you doesn't)."

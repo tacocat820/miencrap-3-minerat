@@ -21,15 +21,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class MiniBlocksBlock extends Block {
     public static final MapCodec<MiniBlocksBlock> CODEC = simpleCodec(MiniBlocksBlock::new);
 
-	public static final BooleanProperty X0_Y0_Z0 = BooleanProperty.create("blk_000");
-	public static final BooleanProperty X1_Y0_Z0 = BooleanProperty.create("blk_100");
-	public static final BooleanProperty X0_Y0_Z1 = BooleanProperty.create("blk_001");
-	public static final BooleanProperty X1_Y0_Z1 = BooleanProperty.create("blk_101");
+	public static final BooleanProperty X0_Z0_Y0 = BooleanProperty.create("blk_000");
+	public static final BooleanProperty X1_Z0_Y0 = BooleanProperty.create("blk_100");
+	public static final BooleanProperty X0_Z0_Y1 = BooleanProperty.create("blk_001");
+	public static final BooleanProperty X1_Z0_Y1 = BooleanProperty.create("blk_101");
 
-	public static final BooleanProperty X0_Y1_Z0 = BooleanProperty.create("blk_010");
-	public static final BooleanProperty X1_Y1_Z0 = BooleanProperty.create("blk_110");
-	public static final BooleanProperty X0_Y1_Z1 = BooleanProperty.create("blk_011");
-	public static final BooleanProperty X1_Y1_Z1 = BooleanProperty.create("blk_111");
+	public static final BooleanProperty X0_Z1_Y0 = BooleanProperty.create("blk_010");
+	public static final BooleanProperty X1_Z1_Y0 = BooleanProperty.create("blk_110");
+	public static final BooleanProperty X0_Z1_Y1 = BooleanProperty.create("blk_011");
+	public static final BooleanProperty X1_Z1_Y1 = BooleanProperty.create("blk_111");
 
     public static final Map<Integer, VoxelShape> SHAPES = createVariants(); //ну и чё, что их 256 штук будет?
 
@@ -37,15 +37,15 @@ public class MiniBlocksBlock extends Block {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(X0_Y0_Z0);
-		builder.add(X1_Y0_Z0);
-		builder.add(X0_Y0_Z1);
-		builder.add(X1_Y0_Z1);
+		builder.add(X0_Z0_Y0);
+		builder.add(X1_Z0_Y0);
+		builder.add(X0_Z0_Y1);
+		builder.add(X1_Z0_Y1);
 
-		builder.add(X0_Y1_Z0);
-		builder.add(X1_Y1_Z0);
-		builder.add(X0_Y1_Z1);
-		builder.add(X1_Y1_Z1);
+		builder.add(X0_Z1_Y0);
+		builder.add(X1_Z1_Y0);
+		builder.add(X0_Z1_Y1);
+		builder.add(X1_Z1_Y1);
 
 	}
 
@@ -97,15 +97,15 @@ public class MiniBlocksBlock extends Block {
 
     private boolean[] getBooleans(final BlockState state) {
         boolean[] combination = {
-		    state.getValue(X0_Y0_Z0),
-		    state.getValue(X1_Y0_Z0),
-		    state.getValue(X0_Y0_Z1),
-		    state.getValue(X1_Y0_Z1),
+		    state.getValue(X0_Z0_Y0),
+		    state.getValue(X1_Z0_Y0),
+		    state.getValue(X0_Z0_Y1),
+		    state.getValue(X1_Z0_Y1),
 
-		    state.getValue(X0_Y1_Z0),
-            state.getValue(X1_Y1_Z0),
-            state.getValue(X0_Y1_Z1),
-            state.getValue(X1_Y1_Z1),
+		    state.getValue(X0_Z1_Y0),
+            state.getValue(X1_Z1_Y0),
+            state.getValue(X0_Z1_Y1),
+            state.getValue(X1_Z1_Y1),
         };
 
         return combination;
@@ -128,15 +128,15 @@ public class MiniBlocksBlock extends Block {
 
         registerDefaultState(
             defaultBlockState()
-                .setValue(X0_Y0_Z0, true)
-                .setValue(X1_Y0_Z0, true)
-                .setValue(X0_Y0_Z1, true)
-                .setValue(X1_Y0_Z1, true)
+                .setValue(X0_Z0_Y0, true)
+                .setValue(X1_Z0_Y0, true)
+                .setValue(X0_Z0_Y1, true)
+                .setValue(X1_Z0_Y1, true)
 
-                .setValue(X0_Y1_Z0, true)
-                .setValue(X1_Y1_Z0, true)
-                .setValue(X0_Y1_Z1, true)
-                .setValue(X1_Y1_Z1, true)
+                .setValue(X0_Z1_Y0, true)
+                .setValue(X1_Z1_Y0, true)
+                .setValue(X0_Z1_Y1, true)
+                .setValue(X1_Z1_Y1, true)
         );
     }
 

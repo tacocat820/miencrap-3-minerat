@@ -1,0 +1,84 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks"
+      },
+      "when": {
+        "blk_000": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "z": 90
+      },
+      "when": {
+        "blk_001": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "x": 90
+      },
+      "when": {
+        "blk_010": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "x": 180
+      },
+      "when": {
+        "blk_011": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "y": 90
+      },
+      "when": {
+        "blk_100": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "z": 180
+      },
+      "when": {
+        "blk_101": "true"
+      }
+    },
+    {
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "y": 180
+      },
+      "when": {
+        "blk_110": "true"
+      }
+    },
+    {
+      "when": {
+        "blk_111": "true"
+      },
+      "apply": {
+        "uvlock": true,
+        "model": "miencrap3minerat:block/sulfur_block_miniblocks",
+        "x": 90,
+        "z": 180
+      }
+    }
+  ]
+}
