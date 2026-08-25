@@ -271,7 +271,9 @@ public class ModBlocks {
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(1f).build())
 	);
 	public static RegisteredBlock BING_CHILLING = new GenericBlock("bing_chilling", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
-	
+	public static RegisteredBlock SULFUR_BLOCK = new GenericBlock("sulfur_block", Block::new, SoundType.AZALEA_LEAVES, 1.5f,1.0f).reg();
+	public static RegisteredBlock PACKAGE = new GenericBlock("package", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.PACKAGE_SHAPE), SoundType.WOOD, 0.3f,0.3f).noOcclusion().noCollision().reg();
+
 	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
 	public static RegisteredBlock PAN_GHAST = new GenericBlock("pan_ghast", SpecificPanGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()

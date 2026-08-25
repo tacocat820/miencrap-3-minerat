@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.PissFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.SulfuricAcidFluid;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
@@ -90,6 +91,11 @@ public class ModFluids {
 	public static final FlowingFluid EARS_STILL = register("ears", new EarsFluid.Source());
     public static RegisteredBlock EARS = new GenericFluid("ears",(props) -> new SpecificEarsFluidBlock(ModFluids.EARS_STILL, props)).reg();
 	public static RegisteredItem<?> EARS_BUCKET = ModItems.register("ears_bucket", p -> new BucketItem(ModFluids.EARS_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
+	public static final FlowingFluid SULFURIC_ACID_FLOWING = register("flowing_sulfuric_acid", new SulfuricAcidFluid.Flowing());
+	public static final FlowingFluid SULFURIC_ACID_STILL = register("sulfuric_acid", new SulfuricAcidFluid.Source());
+    public static RegisteredBlock SULFURIC_ACID = new GenericFluid("sulfuric_acid",(props) -> new LiquidBlock(ModFluids.SULFURIC_ACID_STILL, props)).reg();
+	public static RegisteredItem<?> SULFURIC_ACID_BUCKET = ModItems.register("sulfuric_acid_bucket", p -> new BucketItem(ModFluids.SULFURIC_ACID_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
     public static void generate() {}
 }

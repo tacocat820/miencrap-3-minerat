@@ -32,6 +32,7 @@ public class ModShapes {
     });
 
     public static final VoxelShape VLC_SHAPE = Block.column(10.0, 0.0, 8.0);
+    public static final VoxelShape PACKAGE_SHAPE = Block.column(10.0, 0.0, 8.0);
     public static final VoxelShape RTX_SHAPE = Block.box(-4, 0, 3, 20, 4, 14);
     public static final VoxelShape ICICLE_SHAPE = Block.box(4, 0, 4, 12, 16, 12);
 

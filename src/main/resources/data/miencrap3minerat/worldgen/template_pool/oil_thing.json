@@ -1,0 +1,15 @@
+{
+  "name": "miencrap3minerat:oil_thing",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "miencrap3minerat:oil_thing",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

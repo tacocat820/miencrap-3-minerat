@@ -38,6 +38,7 @@ public class Music {
 
     private static int tense = 0;
     private static boolean battle = false;
+    private static int welcome = 2;
 
     static void onClientTick(Minecraft minecraft) {
 
@@ -81,12 +82,16 @@ public class Music {
         
         switch (type) {
             case MENU:
+                if (welcome > 0) {
+                    --welcome; return MusicSounds.MINERAT2;
+                }
+
                 return Choose(new SoundEvent[]{
                     MusicSounds.SJTOC,
                     MusicSounds.BACKROOMS,
                     MusicSounds.DRUMS,
                     MusicSounds.STAL,
-                    MusicSounds.MINERAT,
+                    MusicSounds.MINERAT2,
                     MusicSounds.CREDITS,
                     MusicSounds.EPIK,
                     MusicSounds.BORING,

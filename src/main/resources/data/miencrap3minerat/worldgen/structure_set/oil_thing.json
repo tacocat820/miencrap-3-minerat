@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:oil_thing",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 10014558,
+    "spacing": 9,
+    "separation": 6
+  }
+}

@@ -144,6 +144,16 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.white(0))
 			)
 		);
+		FluidRenderingRegistry.register(
+			ModFluids.SULFURIC_ACID_STILL,
+			ModFluids.SULFURIC_ACID_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/sulfuric_acid")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/sulfuric_acid")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/sulfuric_acid")),
+					BlockTintSources.constant(ARGB.opaque(0xf9e52f))
+			)
+		);
 		
 		// Blocks.RED_STAINED_GLASS
 
