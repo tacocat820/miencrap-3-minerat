@@ -1,0 +1,6 @@
+{
+  "parent": "miencrap3minerat:templates/miniblocks",
+  "textures": {
+    "block": "minecraft:block/mud"
+  }
+}

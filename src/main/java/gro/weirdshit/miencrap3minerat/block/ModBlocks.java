@@ -308,6 +308,23 @@ public class ModBlocks {
 	public static RegisteredBlock IRON_MINIBLOCKS = new GenericBlock("iron_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.IRON_BLOCK).reg();
 	public static RegisteredBlock QUARTZ_MINIBLOCKS = new GenericBlock("quartz_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.QUARTZ_BLOCK).reg();
 
+	public static RegisteredBlock BEDROCK_MINIBLOCKS = new GenericBlock("bedrock_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.BEDROCK).reg();
+	public static RegisteredBlock BRICKS_MINIBLOCKS = new GenericBlock("bricks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.BRICKS).reg();
+	public static RegisteredBlock MUD_BRICKS_MINIBLOCKS = new GenericBlock("mud_bricks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MUD_BRICKS).reg();
+	public static RegisteredBlock MUD_MINIBLOCKS = new GenericBlock("mud_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MUD).reg();
+	public static RegisteredBlock GRASS_MINIBLOCKS = new GenericBlock("grass_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
+	public static RegisteredBlock TUFF_MINIBLOCKS = new GenericBlock("tuff_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.TUFF).reg();
+	public static RegisteredBlock MELON_MINIBLOCKS = new GenericBlock("melon_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MELON).reg();
+	public static RegisteredBlock FIREFLY_BUSH_MINIBLOCKS = new GenericBlock("firefly_bush_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.FIREFLY_BUSH).reg();
+	public static RegisteredBlock ANDESITE_MINIBLOCKS = new GenericBlock("andesite_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.ANDESITE).reg();
+	public static RegisteredBlock CLAY_MINIBLOCKS = new GenericBlock("clay_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.CLAY).reg();
+	public static RegisteredBlock DRAGON_EGG_MINIBLOCKS = new GenericBlock("dragon_egg_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DRAGON_EGG).reg();
+	public static RegisteredBlock GLASS_MINIBLOCKS = new GenericBlock("glass_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GLASS).reg();
+	public static RegisteredBlock GRANITE_MINIBLOCKS = new GenericBlock("granite_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GRANITE).reg();
+	public static RegisteredBlock GRAVEL_MINIBLOCKS = new GenericBlock("gravel_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GRAVEL).reg();
+	public static RegisteredBlock MOSS_MINIBLOCKS = new GenericBlock("moss_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MOSS_BLOCK).reg();
+	public static RegisteredBlock OBSIDIAN_MINIBLOCKS = new GenericBlock("obsidian_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OBSIDIAN).reg();
+	
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
