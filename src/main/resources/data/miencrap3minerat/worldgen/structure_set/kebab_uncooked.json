@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:kebab_uncooked",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 10024448,
+    "spacing": 4,
+    "separation": 2
+  }
+}

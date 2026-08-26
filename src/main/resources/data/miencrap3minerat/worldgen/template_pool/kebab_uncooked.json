@@ -1,0 +1,15 @@
+{
+  "name": "miencrap3minerat:kebab_uncooked",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "miencrap3minerat:kebab_uncooked",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}
