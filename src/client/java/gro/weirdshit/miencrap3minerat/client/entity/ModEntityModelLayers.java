@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
@@ -31,6 +32,7 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
@@ -55,6 +57,7 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		GigachickenRenderer.register(GIGACHICKEN);
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);

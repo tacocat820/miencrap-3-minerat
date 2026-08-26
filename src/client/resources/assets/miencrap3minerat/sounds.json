@@ -229,6 +229,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/sj","stream": true}]},
 	"ost.minerat2":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/minerat2","stream": true}]},
+	"ost.stallat":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/stallat","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":
