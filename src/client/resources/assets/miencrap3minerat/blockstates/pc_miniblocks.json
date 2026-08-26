@@ -6,11 +6,11 @@
     },
     {
       "apply": {"uvlock": true, "model": "miencrap3minerat:block/pc_miniblocks", "z":90},
-      "when": {"blk_001": "true"}
+      "when": {"blk_010" : "true"}
     },
     {
       "apply": {"uvlock": true, "model": "miencrap3minerat:block/pc_miniblocks", "x":90},
-      "when": {"blk_010": "true"}
+      "when": {"blk_001" : "true"}
     },
     {
       "apply": {"uvlock": true, "model": "miencrap3minerat:block/pc_miniblocks", "x":180},
@@ -22,11 +22,11 @@
     },
     {
       "apply": {"uvlock": true, "model": "miencrap3minerat:block/pc_miniblocks", "z":180},
-      "when": {"blk_101": "true"}
+      "when": {"blk_110" : "true"}
     },
     {
       "apply": {"uvlock": true, "model": "miencrap3minerat:block/pc_miniblocks", "y":180},
-      "when": {"blk_110": "true"}
+      "when": {"blk_101" : "true"}
     },
     {
       "when": {"blk_111": "true"},

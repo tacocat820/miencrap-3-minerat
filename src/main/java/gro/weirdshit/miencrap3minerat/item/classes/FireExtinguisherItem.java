@@ -59,7 +59,6 @@ public class FireExtinguisherItem extends Item {
     @Override
     public InteractionResult use(final Level level, final Player player, final InteractionHand hand) { 
 
-
         float xr = player.getXRot();
         float yr = player.getYRot();
         Vec3 direction = Vec3.directionFromRotation(xr, yr);
@@ -68,7 +67,7 @@ public class FireExtinguisherItem extends Item {
 
         level.playSound(null, 
             player.getX(), player.getY(), player.getZ(), 
-            SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS);
+            SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS);
 
         Random rand = new Random();
         
@@ -109,6 +108,9 @@ public class FireExtinguisherItem extends Item {
             for (LivingEntity i : entities) {
                 i.setRemainingFireTicks(0);
             }
+
+            ItemStack itemstack_broken = WrenchItem.getBreakedItem(1, player, player.getItemInHand(hand));
+            return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(itemstack_broken);
         }
         for (int i = 0; i < 20; ++i) {
             level.addParticle(ParticleTypes.CLOUD, 

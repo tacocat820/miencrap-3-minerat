@@ -23,7 +23,7 @@ public class BreadSwordItem extends Item {
         super(properties);
     }
     
-    private void breakitem(int damage, LivingEntity mob, ItemStack itemStack) {
+    public static void breakitem(int damage, LivingEntity mob, ItemStack itemStack) {
         InteractionHand hand = mob.getUsedItemHand();
         EquipmentSlot slot = hand.asEquipmentSlot();
         ItemStack result = itemStack.hurtAndConvertOnBreak(damage, Items.AIR, mob, slot);

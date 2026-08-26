@@ -3,12 +3,15 @@ package gro.weirdshit.miencrap3minerat.item.classes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.joml.Math;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -19,24 +22,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 
 public class ChiselItem extends Item {
-    public static final Map< List<Integer>, BooleanProperty > MINIBLOCKS_PROPS = defineMap();
-
-    private static Map< List<Integer>, BooleanProperty > defineMap() {
-        Map< List<Integer>, BooleanProperty > map = new HashMap<>();
-
-        map.put(List.of(0,0,0), MiniBlocksBlock.X0_Z0_Y0);
-        map.put(List.of(1,0,0), MiniBlocksBlock.X1_Z0_Y0);
-        map.put(List.of(0,0,1), MiniBlocksBlock.X0_Z1_Y0);
-        map.put(List.of(1,0,1), MiniBlocksBlock.X1_Z1_Y0);
-
-        map.put(List.of(0,1,0), MiniBlocksBlock.X0_Z0_Y1);
-        map.put(List.of(1,1,0), MiniBlocksBlock.X1_Z0_Y1);
-        map.put(List.of(0,1,1), MiniBlocksBlock.X0_Z1_Y1);
-        map.put(List.of(1,1,1), MiniBlocksBlock.X1_Z1_Y1);
-        
-        return map;
-    }
-
     public ChiselItem(Properties properties) {
         super(properties);
     }
@@ -49,27 +34,40 @@ public class ChiselItem extends Item {
         // Level level = context.;
         Vec3 clickloc = context.getClickLocation();
 
-        if (level instanceof ServerLevel serverLevel) {
-            BlockState bstate = serverLevel.getBlockState(pos);
-            if (!(bstate.getBlock() instanceof MiniBlocksBlock)) {
-                return InteractionResult.PASS;
-            }
+        BlockState bstate = level.getBlockState(pos);
 
+        if (!(bstate.getBlock() instanceof MiniBlocksBlock)) {
+            return InteractionResult.PASS;
+        }
+
+        if (level instanceof ServerLevel serverLevel) {
             double x = clickloc.x - pos.getX();
             double y = clickloc.y - pos.getY();
             double z = clickloc.z - pos.getZ();
 
-            int bX = Math.clamp((int)Math.ceil(x*1.99)-1, 0, 1);
-            int bY = Math.clamp((int)Math.ceil(y*1.99)-1, 0, 1);
-            int bZ = Math.clamp((int)Math.ceil(z*1.99)-1, 0, 1);
+            int bX = Math.clamp((int)Math.ceil(x*1.7)-1, 0, 1);
+            int bY = Math.clamp((int)Math.ceil(y*1.7)-1, 0, 1);
+            int bZ = Math.clamp((int)Math.ceil(z*1.7)-1, 0, 1);
 
             MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
 
-            MiniBlocksBlock.removeOneMiniblock(serverLevel, bstate, pos, bX, bY, bZ);
-
-            return InteractionResult.SUCCESS_SERVER;
+            return (
+                MiniBlocksBlock.removeOneMiniblock(serverLevel, bstate, pos, bX, bY, bZ) ? InteractionResult.SUCCESS_SERVER : InteractionResult.FAIL
+            );
+        } else {
+            BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bstate);
+            
+            for (int i = 0; i < 10; i++) {
+                level.addParticle(breakParticle, clickloc.x+getParticlePosA(), clickloc.y+getParticlePosA(), clickloc.z+getParticlePosA(), 10, 10, 10);
+            }
+            // MIENCRAP3MINERAT.LOGGER.info("wjdwjdjwojdo");
         }
 		return InteractionResult.PASS;
 	}
+
+    static double getParticlePosA() {
+        Random rand = new Random();
+        return (rand.nextDouble()-0.5) / 6 ;
+    }
 
 }

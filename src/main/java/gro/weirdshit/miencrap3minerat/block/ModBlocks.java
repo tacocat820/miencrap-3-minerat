@@ -16,6 +16,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.BlockWithoutTexture;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
@@ -305,6 +306,13 @@ public class ModBlocks {
 	public static RegisteredBlock STONE_MINIBLOCKS = new GenericBlock("stone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.STONE).reg();
 	public static RegisteredBlock COBBLESTONE_MINIBLOCKS = new GenericBlock("cobblestone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.COBBLESTONE).reg();
 	public static RegisteredBlock OAK_PLANKS_MINIBLOCKS = new GenericBlock("oak_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
+	public static RegisteredBlock SPRUCE_PLANKS_MINIBLOCKS = new GenericBlock("spruce_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.SPRUCE_PLANKS).reg();
+	public static RegisteredBlock BIRCH_PLANKS_MINIBLOCKS = new GenericBlock("birch_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.BIRCH_PLANKS).reg();
+	public static RegisteredBlock JUNGLE_PLANKS_MINIBLOCKS = new GenericBlock("jungle_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.JUNGLE_PLANKS).reg();
+	public static RegisteredBlock ACACIA_PLANKS_MINIBLOCKS = new GenericBlock("acacia_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.ACACIA_PLANKS).reg();
+	public static RegisteredBlock DARK_OAK_PLANKS_MINIBLOCKS = new GenericBlock("dark_oak_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DARK_OAK_PLANKS).reg();
+	public static RegisteredBlock WARPED_PLANKS_MINIBLOCKS = new GenericBlock("warped_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.WARPED_PLANKS).reg();
+	public static RegisteredBlock CRIMSON_PLANKS_MINIBLOCKS = new GenericBlock("crimson_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.CRIMSON_PLANKS).reg();
 	public static RegisteredBlock IRON_MINIBLOCKS = new GenericBlock("iron_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.IRON_BLOCK).reg();
 	public static RegisteredBlock QUARTZ_MINIBLOCKS = new GenericBlock("quartz_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.QUARTZ_BLOCK).reg();
 
@@ -321,10 +329,10 @@ public class ModBlocks {
 	public static RegisteredBlock DRAGON_EGG_MINIBLOCKS = new GenericBlock("dragon_egg_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DRAGON_EGG).reg();
 	public static RegisteredBlock GLASS_MINIBLOCKS = new GenericBlock("glass_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GLASS).reg();
 	public static RegisteredBlock GRANITE_MINIBLOCKS = new GenericBlock("granite_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GRANITE).reg();
-	public static RegisteredBlock GRAVEL_MINIBLOCKS = new GenericBlock("gravel_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.GRAVEL).reg();
+	public static RegisteredBlock GRAVEL_MINIBLOCKS = new GenericBlock("gravel_miniblocks", FallingMiniBlocksBlock::new).copyOf(Blocks.GRAVEL).reg();
 	public static RegisteredBlock MOSS_MINIBLOCKS = new GenericBlock("moss_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MOSS_BLOCK).reg();
 	public static RegisteredBlock OBSIDIAN_MINIBLOCKS = new GenericBlock("obsidian_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OBSIDIAN).reg();
-	
+
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));

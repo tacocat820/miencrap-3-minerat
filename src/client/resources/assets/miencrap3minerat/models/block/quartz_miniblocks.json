@@ -1,6 +1,6 @@
 {
   "parent": "miencrap3minerat:templates/miniblocks",
   "textures": {
-    "block": "minecraft:block/quartz_block"
+    "block": "minecraft:block/quartz_block_side"
   }
 }

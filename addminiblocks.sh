@@ -42,36 +42,84 @@ for blockname in $blocks_names; do
   jq -n --arg model "$namespace:block/$miniblocks" '{
     "multipart": [
       {
-        "apply": {"uvlock": true, "model":$model},
-        "when": {"blk_000": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model
+        },
+        "when": {
+          "blk_000": "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "z":90},
-        "when": {"blk_001": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "z": 90
+        },
+        "when": {
+          "blk_010" : "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "y":-90},
-        "when": {"blk_010": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "y": -90
+        },
+        "when": {
+          "blk_001" : "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "x":180},
-        "when": {"blk_011": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "x": 180
+        },
+        "when": {
+          "blk_011": "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "y":90},
-        "when": {"blk_100": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "y": 90
+        },
+        "when": {
+          "blk_100": "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "z":180},
-        "when": {"blk_101": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "z": 180
+        },
+        "when": {
+          "blk_110" : "true"
+        }
       },
       {
-        "apply": {"uvlock": true, "model":$model, "y":180},
-        "when": {"blk_110": "true"}
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "y": 180
+        },
+        "when": {
+          "blk_101" : "true"
+        }
       },
       {
-        "when": {"blk_111": "true"},
-        "apply": {"uvlock": true, "model":$model, "x": 90, "z": 180}
+        "when": {
+          "blk_111": "true"
+        },
+        "apply": {
+          "uvlock": true,
+          "model": $model,
+          "x": 90,
+          "z": 180
+        }
       }
     ]
   }' > "$client_resources_PATH/assets/$namespace/blockstates/$miniblocks.json"
