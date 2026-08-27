@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
@@ -135,7 +136,7 @@ public class MiniBlocksBlock extends Block {
         return shapes;
     }
 
-    static public boolean removeOneMiniblock(ServerLevel serverLevel, BlockState blockState, BlockPos blockPos, int x, int y, int z) {
+    static public boolean removeOneMiniblock(Level level, BlockState blockState, BlockPos blockPos, int x, int y, int z) {
         BooleanProperty prop = MINIBLOCKS_POSES.get(new Point3i(x, y, z));
 
         if (!blockState.getValue(prop)) {
@@ -145,9 +146,9 @@ public class MiniBlocksBlock extends Block {
         BlockState newBlockState = blockState.setValue(prop, false);
 
         if ( create_bitmask(getBooleans(newBlockState)) == 0 ) {
-            serverLevel.destroyBlock(blockPos, true);
+            level.destroyBlock(blockPos, true);
         } else {
-            serverLevel.setBlockAndUpdate(blockPos, newBlockState);
+            level.setBlockAndUpdate(blockPos, newBlockState);
         }
         return true;
     }

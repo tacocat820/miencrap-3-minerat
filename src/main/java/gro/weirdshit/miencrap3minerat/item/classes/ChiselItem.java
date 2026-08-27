@@ -40,29 +40,29 @@ public class ChiselItem extends Item {
             return InteractionResult.PASS;
         }
 
-        if (level instanceof ServerLevel serverLevel) {
-            double x = clickloc.x - pos.getX();
-            double y = clickloc.y - pos.getY();
-            double z = clickloc.z - pos.getZ();
+        double x = clickloc.x - pos.getX();
+        double y = clickloc.y - pos.getY();
+        double z = clickloc.z - pos.getZ();
 
-            int bX = Math.clamp((int)Math.ceil(x*1.7)-1, 0, 1);
-            int bY = Math.clamp((int)Math.ceil(y*1.7)-1, 0, 1);
-            int bZ = Math.clamp((int)Math.ceil(z*1.7)-1, 0, 1);
+        int bX = Math.clamp((int)Math.ceil(x*1.7)-1, 0, 1);
+        int bY = Math.clamp((int)Math.ceil(y*1.7)-1, 0, 1);
+        int bZ = Math.clamp((int)Math.ceil(z*1.7)-1, 0, 1);
 
-            MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
+        MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
 
-            return (
-                MiniBlocksBlock.removeOneMiniblock(serverLevel, bstate, pos, bX, bY, bZ) ? InteractionResult.SUCCESS_SERVER : InteractionResult.FAIL
-            );
-        } else {
+        boolean success = MiniBlocksBlock.removeOneMiniblock(level, bstate, pos, bX, bY, bZ);
+        if (level.isClientSide() && success) {
             BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bstate);
             
             for (int i = 0; i < 10; i++) {
+                context.getPlayer().playSound(bstate.getSoundType().getBreakSound(), 0.125f, 1.2f);
                 level.addParticle(breakParticle, clickloc.x+getParticlePosA(), clickloc.y+getParticlePosA(), clickloc.z+getParticlePosA(), 10, 10, 10);
             }
-            // MIENCRAP3MINERAT.LOGGER.info("wjdwjdjwojdo");
+
         }
-		return InteractionResult.PASS;
+        return (
+            success ? (level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.SUCCESS_SERVER) : InteractionResult.FAIL
+        );
 	}
 
     static double getParticlePosA() {

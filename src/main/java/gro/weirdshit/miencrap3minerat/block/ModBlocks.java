@@ -332,7 +332,7 @@ public class ModBlocks {
 	public static RegisteredBlock GRAVEL_MINIBLOCKS = new GenericBlock("gravel_miniblocks", FallingMiniBlocksBlock::new).copyOf(Blocks.GRAVEL).reg();
 	public static RegisteredBlock MOSS_MINIBLOCKS = new GenericBlock("moss_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MOSS_BLOCK).reg();
 	public static RegisteredBlock OBSIDIAN_MINIBLOCKS = new GenericBlock("obsidian_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OBSIDIAN).reg();
-
+	public static RegisteredBlock OAK_LEAVES_MINIBLOCKS = new GenericBlock("oak_leaves_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OAK_LEAVES).reg();
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));

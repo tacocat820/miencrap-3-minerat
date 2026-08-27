@@ -46,7 +46,9 @@ public class WrenchItem extends Item {
         Level level = context.getLevel();
         BlockState bs = level.getBlockState(pos);
         
-        context.getPlayer().playSound(bs.getSoundType().getPlaceSound(), 1.1f, rand.nextFloat(0.7f, 1.3f));
+        if (level.isClientSide()) {
+            context.getPlayer().playSound(bs.getSoundType().getPlaceSound(), 1.1f, rand.nextFloat(0.7f, 1.3f));
+        }
 
         if (level instanceof ServerLevel serverLevel) {
             final BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bs);
