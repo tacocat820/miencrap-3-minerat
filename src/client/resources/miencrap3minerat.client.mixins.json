@@ -7,7 +7,9 @@
 		"PlayerDamageMixin",
 		"MakeSetPostEffectPublicMixin",
 		"CameraRotation",
-		"StfuAskForBackup"
+		"StfuAskForBackup",
+		"GetNowPlayingMixin",
+		"RemoveVanillaMusicMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -36,6 +36,7 @@ public class Music {
     private static MusicType type = MusicType.MENU;
     private static final int INTERVAL = 20;
 
+    public static String nowPlaying = "";
     private static int tense = 0;
     private static boolean battle = false;
     private static int welcome = 2;
@@ -64,7 +65,12 @@ public class Music {
         Stop();
         
         type = getMusicType(minecraft);
-        music = SimpleSoundInstance.forMusic(chooseSong());
+        SoundEvent chosen = chooseSong();
+        nowPlaying = chosen.location().getPath();
+        music = SimpleSoundInstance.forMusic(chosen);
+
+        minecraft.getToastManager().showNowPlayingToast();
+        MIENCRAP3MINERAT.LOGGER.info("bread");
         minecraft.getSoundManager().play(music);
     }
     
@@ -127,6 +133,7 @@ public class Music {
                     MusicSounds.LAUGH,
                     MusicSounds.POOM,
                     MusicSounds.SJ,
+                    MusicSounds.BR,
                 });
                 else return Choose(new SoundEvent[]{
                     MusicSounds.GREECE,
@@ -149,6 +156,7 @@ public class Music {
                     MusicSounds.KR,
                     MusicSounds.MXAC,
                     MusicSounds.SJ,
+                    MusicSounds.BR,
                 });
             case BATTLE:
                 return Choose(new SoundEvent[]{

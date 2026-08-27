@@ -40,6 +40,11 @@ public class ModPlacedFeatures {
             Registries.PLACED_FEATURE,
             Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bigcity_tree_placed")
         );
+    public static final ResourceKey<PlacedFeature> BALD_TREE_PLACED_KEY =
+        ResourceKey.create(
+            Registries.PLACED_FEATURE,
+            Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bald_tree_placed")
+        );
     public static final ResourceKey<PlacedFeature> EERT_PLACED_KEY =
         ResourceKey.create(
             Registries.PLACED_FEATURE,
@@ -87,6 +92,22 @@ public class ModPlacedFeatures {
 				new PlacedFeature(
 					configuredFeatures.getOrThrow(ModConfiguredFeatures.BIGCITY_TREE_CONFIGURED_KEY),
 					bigcityTreeModifiers
+				)
+		);
+        
+		List<PlacementModifier> baldTreeModifiers = List.of(
+				BiomeFilter.biome(),
+				InSquarePlacement.spread(),
+				SurfaceWaterDepthFilter.forMaxDepth(0),
+				PlacementUtils.HEIGHTMAP_NO_LEAVES,
+				CountOnEveryLayerPlacement.of(79),
+				RarityFilter.onAverageOnceEvery(1)
+		);
+		context.register(
+				BALD_TREE_PLACED_KEY,
+				new PlacedFeature(
+					configuredFeatures.getOrThrow(ModConfiguredFeatures.BALD_TREE_CONFIGURED_KEY),
+					baldTreeModifiers
 				)
 		);
         
