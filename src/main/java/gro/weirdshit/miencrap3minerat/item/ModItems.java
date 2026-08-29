@@ -157,7 +157,7 @@ public class ModItems {
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build())
 	);
 
-	public static RegisteredItem<?> CHISEL = ModItems.register("chisel", ChiselItem::new, new Item.Properties());
+	public static RegisteredItem<?> CHISEL = ModItems.register("chisel", ChiselItem::new, new Item.Properties().sword(ToolMaterial.WOOD, 0.5f, -2f).durability(2048));
 
 
 

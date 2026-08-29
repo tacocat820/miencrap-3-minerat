@@ -22,6 +22,7 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -31,7 +32,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class MiniBlocksBlock extends Block {
+public class MiniBlocksBlock extends WaterloggedTransparentBlock {
     public static final MapCodec<MiniBlocksBlock> CODEC = simpleCodec(MiniBlocksBlock::new);
 
 	public static final BooleanProperty BLK_000 = BooleanProperty.create("blk_000");
@@ -66,6 +67,7 @@ public class MiniBlocksBlock extends Block {
 		builder.add(BLK_101);
 		builder.add(BLK_110);
 		builder.add(BLK_111);
+		builder.add(WATERLOGGED);
 
 	}
 

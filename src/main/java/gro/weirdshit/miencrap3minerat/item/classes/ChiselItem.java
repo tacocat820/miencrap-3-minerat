@@ -15,6 +15,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -51,18 +52,28 @@ public class ChiselItem extends Item {
         MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
 
         boolean success = MiniBlocksBlock.removeOneMiniblock(level, bstate, pos, bX, bY, bZ);
-        if (level.isClientSide() && success) {
-            BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bstate);
-            
-            for (int i = 0; i < 10; i++) {
-                context.getPlayer().playSound(bstate.getSoundType().getBreakSound(), 0.125f, 1.2f);
-                level.addParticle(breakParticle, clickloc.x+getParticlePosA(), clickloc.y+getParticlePosA(), clickloc.z+getParticlePosA(), 10, 10, 10);
+        if (success) {
+            if (level.isClientSide()) {
+                BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bstate);
+                
+                for (int i = 0; i < 10; i++) {
+                    context.getPlayer().playSound(bstate.getSoundType().getBreakSound(), 0.125f, 1.2f);
+                    level.addParticle(breakParticle, clickloc.x+getParticlePosA(), clickloc.y+getParticlePosA(), clickloc.z+getParticlePosA(), 10, 10, 10);
+                }
+                return InteractionResult.SUCCESS;
             }
-
+            else {
+                int damage = 1; //bstate.getBlock().s
+                ItemStack broken = WrenchItem.getBreakedItem(damage, context.getPlayer(), context.getItemInHand());
+                return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo( broken );
+            }       
         }
-        return (
-            success ? (level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.SUCCESS_SERVER) : InteractionResult.FAIL
-        );
+        else {
+            return InteractionResult.FAIL;
+        }
+        // return (
+        //     success ? (level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.SUCCESS_SERVER.heldItemTransformedTo( WrenchItem.getBreakedItem(1, context.getPlayer(), context.getItemInHand()) )) : InteractionResult.FAIL
+        // );
 	}
 
     static double getParticlePosA() {
