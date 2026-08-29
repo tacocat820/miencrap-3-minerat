@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block_pile",
+  "config": {
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "miencrap3minerat:red_ice"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "minecraft:blue_ice"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "minecraft:packed_ice"
+          },
+          "weight": 5
+        }
+      ]
+    }
+  }
+}

@@ -41,6 +41,7 @@ enum Sky {
     DAY_PINK(new SkyboxTexture("textures/sky/overworld_day_pink.png")),
     DAY_INVERTED(new SkyboxTexture("textures/sky/overworld_day_inverted.png")),
     DAY_PURPLE(new SkyboxTexture("textures/sky/overworld_day_purple.png")),
+    DAY_BLACK(new SkyboxTexture("textures/sky/overworld_day_black.png")),
     EVENING(new SkyboxTexture("textures/sky/overworld_evening.png")),
     NIGHT(new SkyboxTexture("textures/sky/overworld_night.png"));
 
@@ -87,6 +88,7 @@ public class OverworldSkybox extends Skybox {
     TagKey<Biome> SKY_2_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_sky2"));
     TagKey<Biome> INVERTED_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_inverted_sky"));
     TagKey<Biome> PINK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_pink_sky"));
+    TagKey<Biome> BLACK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_black_sky"));
 
     public void preRenderPass() {
 
@@ -97,6 +99,7 @@ public class OverworldSkybox extends Skybox {
             if (CurrentBiome.is(INVERTED_SKY_BIOME)) transition(Sky.DAY_INVERTED);
             else if (CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_PURPLE);
             else if (CurrentBiome.is(PINK_SKY_BIOME)) transition(Sky.DAY_PINK);
+            else if (CurrentBiome.is(BLACK_SKY_BIOME)) transition(Sky.DAY_BLACK);
             else if (CurrentBiome.is(SKY_2_BIOME)) transition(Sky.DAY_2);
             else transition(Sky.DAY_1);
         } else if (dt < 14_000) {
