@@ -30,7 +30,7 @@ public class ModEntityTypes {
 	public static final EntityType<Gigachicken> GIGACHICKEN = register(
 			"gigachicken",
 			EntityType.Builder.<Gigachicken>of(Gigachicken::new, MobCategory.MONSTER)
-					.sized(2.4f, 4.7f)
+					.sized(2.4f, 3.7f)
 	);
 	public static final EntityType<Ptl> PTL = register(
 			"ptl",
@@ -66,6 +66,11 @@ public class ModEntityTypes {
 			"steve_jobs",
 			EntityType.Builder.<SteveJobs>of(SteveJobs::new, MobCategory.CREATURE)
 					.sized(0.7f, 3.0f)
+	);
+	public static final EntityType<Teto> TETO = register(
+			"teto",
+			EntityType.Builder.<Teto>of(Teto::new, MobCategory.CREATURE)
+					.sized(0.7f, 2.0f)
 	);
 	public static final EntityType<Anglerfish> ANGLERFISH = register(
 			"anglerfish",
@@ -131,6 +136,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(STEVE_JOBS, SteveJobs.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(TETO, Teto.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ANGLERFISH, Anglerfish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DAMN, Damn.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());

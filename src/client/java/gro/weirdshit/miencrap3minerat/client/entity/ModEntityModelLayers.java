@@ -20,6 +20,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.PuffercopterRenderer
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RedLightningBoltRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RepeerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
 import gro.weirdshit.miencrap3minerat.entity.Anglerfish;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.NotjuanSpit;
@@ -40,6 +41,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
 	public static final ModelLayerLocation STEVE_JOBS = createMain("steve_jobs");
+	public static final ModelLayerLocation TETO = createMain("teto");
 	public static final ModelLayerLocation ANGLERFISH = createMain("anglerfish");
 	public static final ModelLayerLocation DAMN = createMain("damn");
 	public static final ModelLayerLocation PSYCHO = createMain("psycho");
@@ -65,6 +67,7 @@ public class ModEntityModelLayers {
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
 		SteveJobsRenderer.register(STEVE_JOBS);
+		TetoRenderer.register(TETO);
 		AnglerfishRenderer.register(ANGLERFISH);
 		DamnRenderer.register(DAMN);
 		PsychoRenderer.register(PSYCHO);
