@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,opened=false": {
       "model": "miencrap3minerat:block/package"
     },
-    "facing=south": {
+    "facing=south,opened=false": {
       "model": "miencrap3minerat:block/package",
       "y": 180
     },
-    "facing=east": {
+    "facing=east,opened=false": {
       "model": "miencrap3minerat:block/package",
       "y": 90
     },
-    "facing=west": {
+    "facing=west,opened=false": {
       "model": "miencrap3minerat:block/package",
+      "y": 270
+    },
+    "facing=north,opened=true": {
+      "model": "miencrap3minerat:block/package_opened"
+    },
+    "facing=south,opened=true": {
+      "model": "miencrap3minerat:block/package_opened",
+      "y": 180
+    },
+    "facing=east,opened=true": {
+      "model": "miencrap3minerat:block/package_opened",
+      "y": 90
+    },
+    "facing=west,opened=true": {
+      "model": "miencrap3minerat:block/package_opened",
       "y": 270
     }
   }
