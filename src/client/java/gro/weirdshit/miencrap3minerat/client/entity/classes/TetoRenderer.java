@@ -15,6 +15,7 @@ import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.HumanoidModel.ArmPose;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -25,12 +26,17 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.SwingAnimationType;
+import net.minecraft.world.item.component.SwingAnimation;
 
 public class TetoRenderer extends MobRenderInterface {
 
@@ -56,10 +62,6 @@ public class TetoRenderer extends MobRenderInterface {
             //this.dr = this.head.getChild("dr");
             //this.dr2 = this.head.getChild("dr2");
             //this.body = this.waist.getChild("body");
-            //this.right_arm = this.waist.getChild("right_arm");
-            //this.left_arm = this.waist.getChild("left_arm");
-            //this.right_leg = root.getChild("right_leg");
-            //this.left_leg = root.getChild("left_leg");
         }
 
         public static LayerDefinition getTexturedModelData() {
@@ -100,9 +102,10 @@ public class TetoRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(final T state) {
             super.setupAnim(state);
+            this.leftArm.zRot = -0.005F;
         }
     }
-    public static class EntityRenderer extends MobRenderer<Teto, RenderState, Model<RenderState>> {
+    public static class EntityRenderer extends HumanoidMobRenderer<Teto, RenderState, Model<RenderState>> {
         private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/teto.png");
 
         public EntityRenderer(EntityRendererProvider.Context context) {
@@ -117,6 +120,11 @@ public class TetoRenderer extends MobRenderInterface {
         @Override
         public void extractRenderState(Teto entity, RenderState state, float tickProgress) {
             super.extractRenderState(entity, state, tickProgress);
+        }
+
+        protected ArmPose getArmPose(final Teto mob, final HumanoidArm arm) {
+            SwingAnimation otherAnim = (SwingAnimation)mob.getItemHeldByArm(arm.getOpposite()).get(DataComponents.SWING_ANIMATION);
+            return otherAnim != null && otherAnim.type() == SwingAnimationType.STAB ? ArmPose.SPEAR : super.getArmPose(mob, arm);
         }
 
         @Override

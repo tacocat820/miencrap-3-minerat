@@ -1,12 +1,14 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableSet;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -16,9 +18,14 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
+import net.minecraft.util.profiling.Profiler;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.util.random.Weighted;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.BossEvent.BossBarColor;
 import net.minecraft.world.BossEvent.BossBarOverlay;
 import net.minecraft.world.attribute.EnvironmentAttributes;
@@ -31,6 +38,7 @@ import net.minecraft.world.entity.ai.ActivityData;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.VillagerGoalPackages;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
@@ -67,6 +75,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
@@ -75,42 +86,96 @@ import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.entity.ai.Brain.Provider;
 import com.mojang.datafixers.util.Pair;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.entity.ai.InnovationalBehavior;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.DoNothing;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoAttack;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoJumpOnBed;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoKillBadGuys;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoPlayTag;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoPlayTagTagging;
 import net.minecraft.world.entity.ai.Brain.Packed;
 
 public class Teto extends PathfinderMob {
 
-	private static final Provider<Teto> BRAIN_PROVIDER = Brain.provider(
-		List.of(
-		),
-		body -> {
-			List<ActivityData<Teto>> activities = new ArrayList<ActivityData<Teto>>();
-			activities.add(ActivityData.create(Activity.PLAY, TetoGoalPackages.getPlayPackage(0.5F)));
-
-			return activities;
-		}
+	private static final List<InnovationalBehavior<Teto>> BEHAVIORS = Arrays.asList(
+		new TetoJumpOnBed(),
+		new TetoPlayTag(),
+		new TetoKillBadGuys(),
+		new DoNothing<Teto>()
 	);
+	public InnovationalBehavior<Teto> currentBehavior = null;
 
-	public Brain<Teto> getBrain() {
-		return (Brain<Teto>)super.getBrain();
+	int i = 0; long behaviorTime = 0;
+	BlockPos lastFoundBed = null;
+
+	private boolean checkBed(final ServerLevel level) {
+		BlockState blockState = level.getBlockState(lastFoundBed);
+
+		if (blockState.is(BlockTags.BEDS)) return true;
+		else {
+			this.lastFoundBed = null;
+			return false;
+		}
 	}
 
-	protected Brain<Teto> makeBrain(final Packed packedBrain) {
-		Brain<Teto> brain = BRAIN_PROVIDER.makeBrain(this, packedBrain);
-		this.registerBrainGoals(brain);
-		return brain;
+
+	public BlockPos findABed(ServerLevel level) {
+		if (this.lastFoundBed != null && checkBed(level)) return lastFoundBed;
+		for (int dx = -8; dx <= 8; ++dx) {
+			for (int dz = -8; dz <= 8; ++dz) {
+				for (int dy = -2; dy <= 2; ++dy) {
+					BlockPos p = BlockPos.containing(this.getX() + dx, this.getY() + dy, this.getZ() + dz);
+					if (level.getBlockState(p).is(BlockTags.BEDS)) {
+						this.lastFoundBed = p;
+						return p;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
-	public void refreshBrain(final ServerLevel level) {
-		Brain<Teto> oldBrain = this.getBrain();
-		oldBrain.stopAll(level, this);
-		this.brain = BRAIN_PROVIDER.makeBrain(this, oldBrain.pack());
-		this.registerBrainGoals(this.getBrain());
+	private InnovationalBehavior<Teto> getNextAction() {
+		if (i >= BEHAVIORS.size()) i = 0;
+		return BEHAVIORS.get(i++);
 	}
 
-	private void registerBrainGoals(final Brain<Teto> brain) {
-		brain.setSchedule(EnvironmentAttributes.BABY_VILLAGER_ACTIVITY);
+	public boolean canPlayTag() {
+		return currentBehavior == null || !(currentBehavior.isImportant()) || currentBehavior instanceof TetoPlayTag;
+	}
+	public void letsPlayTag(final ServerLevel level, Teto with) {
+		if (canPlayTag()) {
+			MIENCRAP3MINERAT.LOGGER.info("yay tag with teto");
+			this.currentBehavior = new TetoPlayTagTagging(with);
+		}
+	}
+	public void letsKillBadGuys(final ServerLevel level, Monster who) {
+		if (currentBehavior == null || !currentBehavior.isAbsolutelyImportant()) {
+			this.currentBehavior.stop(level, this);
+			this.currentBehavior = new TetoAttack(who);
+		}
+	}
 
-		brain.updateActivityFromSchedule(this.level().environmentAttributes(), this.level().getGameTime(), this.position());
+	private void behaviors(final ServerLevel level) {
+
+		if (currentBehavior == null) {
+			currentBehavior = getNextAction();
+
+			if (!currentBehavior.start(level, this)) {
+				currentBehavior = null; behaviorTime = 0; return;
+			}
+		}
+		if (!currentBehavior.tick(level, this, ++behaviorTime)) {
+			currentBehavior = null; behaviorTime = 0; return;
+		}
+		
+	}
+
+	protected void customServerAiStep(final ServerLevel level) {
+		behaviors(level);
+		
+		super.customServerAiStep(level); 
 	}
 	
 	public Teto(Level world) {
@@ -119,6 +184,9 @@ public class Teto extends PathfinderMob {
 
 	public Teto(EntityType<? extends Teto> entityType, Level world) {
 		super(entityType, world);
+		this.setPathfindingMalus(PathType.WATER, 1.0f);
+		this.setPathfindingMalus(PathType.FIRE, -1.0f);
+		this.setPathfindingMalus(PathType.FIRE_IN_NEIGHBOR, 1.0f);
 	}
 	
 	public boolean isPersistenceRequired() {
