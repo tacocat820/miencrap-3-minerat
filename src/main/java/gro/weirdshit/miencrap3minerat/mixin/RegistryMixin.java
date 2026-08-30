@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import gro.weirdshit.miencrap3minerat.block.classes.SpecificStonedSandBlock;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +30,7 @@ public class RegistryMixin {
         if (id != "stone" && id != "sand") return;
 
         Block replaced = (id == "stone") ?
-            register(vanillaBlockId(id), p -> new SpecificStonedSandBlock(new ColorRGBA(14406560), p), properties) : 
+            register(vanillaBlockId(id), p -> new SandBlock(new ColorRGBA(14406560), p), properties) : 
             register(vanillaBlockId(id), p -> new Block(p), properties);
         cir.setReturnValue(replaced);
     }
