@@ -15,7 +15,7 @@ public class SpecificStonedSandBlock extends SandBlock {
         super(dustColor, properties);
     }
     
-    //TODO: THAT IS LAGGING AF
+    //no it's not laggy
 
     @Override
     protected BlockState updateShape(final BlockState state, final LevelReader level, final ScheduledTickAccess ticks, final BlockPos pos, final Direction directionToNeighbour, final BlockPos neighbourPos, final BlockState neighbourState, final RandomSource random) {
