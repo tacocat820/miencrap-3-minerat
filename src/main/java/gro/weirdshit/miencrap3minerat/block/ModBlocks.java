@@ -23,6 +23,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificObamiumBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPackageBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanFriedGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlock;
@@ -290,7 +291,7 @@ public class ModBlocks {
 	public static RegisteredBlock BING_CHILLING = new GenericBlock("bing_chilling", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SULFUR_BLOCK = new GenericBlock("sulfur_block", Block::new, SoundType.AZALEA_LEAVES, 1.5f,1.0f).reg();
 	public static RegisteredBlock SULFUR_BLOCK_MINIBLOCKS = new GenericBlock("sulfur_block_miniblocks", MiniBlocksBlock::new).copyOf(SULFUR_BLOCK.block).reg();
-	public static RegisteredBlock PACKAGE = new GenericBlock("package", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.PACKAGE_SHAPE), SoundType.WOOD, 0.3f,0.3f).noOcclusion().noCollision().reg();
+	public static RegisteredBlock PACKAGE = new GenericBlock("package", SpecificPackageBlock::new, SoundType.WOOD, 0.3f,0.3f).noOcclusion().noCollision().reg();
 
 	public static RegisteredBlock PAN = new GenericBlock("pan", SpecificPanBlock::new, SoundType.STONE, 0.3f,2.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.0F, -2.9F));
@@ -303,7 +304,7 @@ public class ModBlocks {
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DIRT).reg();
-	public static RegisteredBlock STONE_MINIBLOCKS = new GenericBlock("stone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.STONE).reg();
+	public static RegisteredBlock STONE_MINIBLOCKS = new GenericBlock("stone_miniblocks", FallingMiniBlocksBlock::new).copyOf(Blocks.STONE).reg();
 	public static RegisteredBlock COBBLESTONE_MINIBLOCKS = new GenericBlock("cobblestone_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.COBBLESTONE).reg();
 	public static RegisteredBlock OAK_PLANKS_MINIBLOCKS = new GenericBlock("oak_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
 	public static RegisteredBlock SPRUCE_PLANKS_MINIBLOCKS = new GenericBlock("spruce_planks_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.SPRUCE_PLANKS).reg();
@@ -333,6 +334,8 @@ public class ModBlocks {
 	public static RegisteredBlock MOSS_MINIBLOCKS = new GenericBlock("moss_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.MOSS_BLOCK).reg();
 	public static RegisteredBlock OBSIDIAN_MINIBLOCKS = new GenericBlock("obsidian_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OBSIDIAN).reg();
 	public static RegisteredBlock OAK_LEAVES_MINIBLOCKS = new GenericBlock("oak_leaves_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.OAK_LEAVES).reg();
+	public static RegisteredBlock NETHERRACK_MINIBLOCKS = new GenericBlock("netherrack_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.NETHERRACK).reg();
+	public static RegisteredBlock SAND_MINIBLOCKS = new GenericBlock("sand_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.SAND).reg();
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));

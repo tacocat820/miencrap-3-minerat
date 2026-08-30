@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap3minerat.client;
 
+import java.util.List;
+
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
@@ -23,9 +25,11 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderingRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintSource;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -36,6 +40,7 @@ import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
@@ -52,6 +57,7 @@ import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LightningBolt;
 
@@ -154,7 +160,27 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.opaque(0xf9e52f))
 			)
 		);
-		
+		BlockColorRegistry.register(List.of(new BlockTintSource() {
+
+			@Override
+			public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
+				BlockState stateBelow = level.getBlockState(pos.below());
+
+				if (stateBelow.is(Blocks.GRASS_BLOCK)) {
+					return ARGB.opaque(0x98FB98); // Color code in hex format
+				}
+
+				return ARGB.opaque(0xFFDAB9); // Color code in hex format
+			}
+
+			@Override
+			public int color(BlockState state) {
+				return ARGB.opaque(0xFFDAB9); // Color code in hex format
+			}
+
+		}), ModBlocks.BLISSFUL_GRASS.block);
+
+
 		// Blocks.RED_STAINED_GLASS
 
 		ClientPlayNetworking.registerGlobalReceiver(FlashPayload.TYPE, (payload, context) -> {
