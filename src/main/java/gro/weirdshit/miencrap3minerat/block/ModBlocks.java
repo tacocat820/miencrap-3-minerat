@@ -32,6 +32,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
@@ -199,7 +200,7 @@ public class ModBlocks {
     public static RegisteredBlock DIRT = new GenericBlock("dirt", SpecificDirtBlock::new, SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
     public static RegisteredBlock CHAIR = new GenericBlock("chair", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.CHAIR_SHAPE), SoundType.STONE,0.5f,0.5f).reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
-    public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", TransparentBlock::new, SoundType.GLASS,3.0f,1.5f).noOcclusion().reg();
+    public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", TransparentBlock::new, SoundType.GLASS,1.0f,1.5f).noOcclusion().reg();
 	public static RegisteredBlock XP_GLASS_MINIBLOCKS = new GenericBlock("xp_glass_miniblocks", MiniBlocksBlock::new).copyOf(XP_GLASS.block).reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", NormalFallingBlock::new, SoundType.CROP,3.0f,0.5f).reg();
     public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
@@ -300,6 +301,10 @@ public class ModBlocks {
 	public static RegisteredBlock PAN_FRIED_GHAST = new GenericBlock("pan_fried_ghast", SpecificPanFriedGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.3F, -2.9F)
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item));
+
+
+    public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TransparentConnectedTextureBlock::new).copyOf(XP_GLASS.block).reg();
+
 
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
