@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
+import java.util.Random;
+
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -21,12 +23,17 @@ import net.minecraft.world.level.levelgen.Heightmap;
 
 public class ModEntitySpawning {
 
+    Random rand = new Random();
+
     public static boolean checkNotjuanSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
         return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON);
     }
 
     public static boolean checkPuffercopterSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
-        return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && WtfLevel.getWtfForServer(level.getServer()) > 600.0f;
+        float wtf = Math.max(0.0f, WtfLevel.getWtfForServer(level.getServer()) - 600.0f);
+
+        
+        return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && random.nextFloat() < wtf;
     }
 
     public static void generate() {

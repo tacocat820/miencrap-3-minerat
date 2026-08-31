@@ -24,14 +24,17 @@ public class ModCommands {
         });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(Commands.literal("getwtf").executes(context -> {
-                WtfLevel wtf = WtfLevel.getSavedBlockData(context.getSource().getServer());
-                context.getSource().sendSuccess(() -> Component.literal(
-                    String.valueOf(wtf.getWtf(context.getSource().getLevel()))
-                ), false);
-                return 1;
-            }));
+            dispatcher.register(Commands.literal("getwtf")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        WtfLevel wtf = WtfLevel.getSavedBlockData(ctx.getSource().getServer());
+                        ctx.getSource().sendSuccess(() -> Component.literal(
+                            String.valueOf(wtf.getWtf(ctx.getSource().getLevel()))
+                        ), false);
+                        return 1;
+                    }));
         });
+
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("flash")

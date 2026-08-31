@@ -8,6 +8,7 @@
 		"MakeTrunkPlacerTypePublicMixin",
 		"PlayerMixin",
 		"RegistryMixin",
+		"ThirstMixin",
 		"CatMixin"
 	],
 	"injectors": {

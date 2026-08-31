@@ -58,6 +58,10 @@ public class WtfLevel extends SavedData {
         return wtf.getWtf(server.getLevel(OVERWORLD_KEY));
     }
 
+    public void setWtf(int set) {
+        this.to = set; this.from = set;
+    }
+
     public int getFrom() { return this.from; }
     public int getTo() { return this.to; }
 
