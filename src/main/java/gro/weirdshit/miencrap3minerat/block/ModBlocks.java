@@ -346,6 +346,8 @@ public class ModBlocks {
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
     
+	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.BIG_DRIPLEAF, 1.0f,1.0f).reg();
+
 	public static void generate() {
 		ModShapes.generate();
 		// Blocks.ACACIA_BUTTON //SULFUR_BLOCK

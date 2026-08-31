@@ -211,7 +211,7 @@
   "ost.br": "Biased Research",
 
   "entity.miencrap3minerat.hooorse.ionlydatetallguys": "You should probably be a bit higher to sit on it",
-
+  
   "msg.miencrap3minerat.repeer": "<Repeer> hey check dis out",
 
   "miencrap3minerat.configuration.title": "MEINCRAP 3 MINERAT Configs",
@@ -220,5 +220,7 @@
   "miencrap3minerat.configuration.items": "Item List",
   "miencrap3minerat.configuration.logDirtBlock": "Log Dirt Block",
   "miencrap3minerat.configuration.magicNumberIntroduction": "Magic Number Text",
-  "miencrap3minerat.configuration.magicNumber": "Magic Number"
+  "miencrap3minerat.configuration.magicNumber": "Magic Number",
+
+  "title.credits": "MIENCRAP 3 MINERAT"
 }
