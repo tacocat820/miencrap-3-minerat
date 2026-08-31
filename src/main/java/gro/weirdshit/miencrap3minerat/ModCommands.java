@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat;
 
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -18,6 +19,16 @@ public class ModCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("gex").executes(context -> {
                 context.getSource().sendSuccess(() -> Component.literal("gex"), false);
+                return 1;
+            }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("getwtf").executes(context -> {
+                WtfLevel wtf = WtfLevel.getSavedBlockData(context.getSource().getServer());
+                context.getSource().sendSuccess(() -> Component.literal(
+                    String.valueOf(wtf.getWtf(context.getSource().getLevel()))
+                ), false);
                 return 1;
             }));
         });

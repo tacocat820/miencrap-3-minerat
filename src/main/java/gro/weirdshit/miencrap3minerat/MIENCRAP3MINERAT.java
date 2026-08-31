@@ -22,12 +22,14 @@ import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import gro.weirdshit.miencrap3minerat.worldgen.RegisterBiomeModifications;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
 import gro.weirdshit.miencrap3minerat.worldgen.trunk.ModWorldgenTrunk;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -49,8 +51,14 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		// ok
 
 		LOGGER.info("Hello Fabric world & MIENCRAP 3 MINERAT!!");
+
+		ServerTickEvents.END_SERVER_TICK.register(m -> {			
+			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
+			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
+		});
 
 		ModBlocks.generate();
 		ModBlockEntities.generate();

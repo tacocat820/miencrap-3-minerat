@@ -53,7 +53,7 @@ public class TetoPlayTag implements InnovationalBehavior<Teto> {
                 }
             }
                 
-            return time < 1000;
+            return time < 4000;
         }
     
         if (t <= 0 || this.pos == null) { 

@@ -28,8 +28,7 @@ public class TetoKillBadGuys implements InnovationalBehavior<Teto> {
             
         teto.currentBehavior = new TetoAttack(near);
         if (!teto.currentBehavior.start(level, teto)) {
-            teto.currentBehavior.stop(level, teto);
-            teto.currentBehavior = null;
+            teto.stopBehavior(level);
             return false;
         }
 

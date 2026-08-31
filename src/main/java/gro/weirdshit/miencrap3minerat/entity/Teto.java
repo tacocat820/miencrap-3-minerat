@@ -92,6 +92,7 @@ import gro.weirdshit.miencrap3minerat.entity.ai.classes.DoNothing;
 import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoAttack;
 import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoJumpOnBed;
 import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoKillBadGuys;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoKissing;
 import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoPlayTag;
 import gro.weirdshit.miencrap3minerat.entity.ai.classes.TetoPlayTagTagging;
 import net.minecraft.world.entity.ai.Brain.Packed;
@@ -101,6 +102,7 @@ public class Teto extends PathfinderMob {
 	private static final List<InnovationalBehavior<Teto>> BEHAVIORS = Arrays.asList(
 		new TetoJumpOnBed(),
 		new TetoPlayTag(),
+		new TetoKissing(),
 		new TetoKillBadGuys(),
 		new DoNothing<Teto>()
 	);
@@ -119,6 +121,14 @@ public class Teto extends PathfinderMob {
 		}
 	}
 
+	public void stopBehavior(ServerLevel level) {
+		if (currentBehavior != null) currentBehavior.stop(level, this);
+		currentBehavior = null;
+	}
+	public void setBehavior(ServerLevel level, InnovationalBehavior<Teto> to) {
+		if (currentBehavior != null) currentBehavior.stop(level, this);
+		currentBehavior = to;
+	}
 
 	public BlockPos findABed(ServerLevel level) {
 		if (this.lastFoundBed != null && checkBed(level)) return lastFoundBed;
@@ -144,16 +154,23 @@ public class Teto extends PathfinderMob {
 	public boolean canPlayTag() {
 		return currentBehavior == null || !(currentBehavior.isImportant()) || currentBehavior instanceof TetoPlayTag;
 	}
+	public boolean canKiss() {
+		return currentBehavior == null || !(currentBehavior.isImportant());
+	}
 	public void letsPlayTag(final ServerLevel level, Teto with) {
 		if (canPlayTag()) {
 			MIENCRAP3MINERAT.LOGGER.info("yay tag with teto");
-			this.currentBehavior = new TetoPlayTagTagging(with);
+			this.setBehavior(level, new TetoPlayTagTagging(with));
+		}
+	}
+	public void letsKiss(final ServerLevel level, Teto with) {
+		if (canPlayTag()) {
+			this.setBehavior(level, new TetoKissing(with));
 		}
 	}
 	public void letsKillBadGuys(final ServerLevel level, Monster who) {
 		if (currentBehavior == null || !currentBehavior.isAbsolutelyImportant()) {
-			this.currentBehavior.stop(level, this);
-			this.currentBehavior = new TetoAttack(who);
+			this.setBehavior(level, new TetoAttack(who));
 		}
 	}
 

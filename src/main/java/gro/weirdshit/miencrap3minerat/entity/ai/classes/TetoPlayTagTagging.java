@@ -11,7 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class TetoPlayTagTagging implements InnovationalBehavior<Teto> {
 
     Teto chase;
-    int cooldown = 50;
+    int cooldown = 100;
 
     public TetoPlayTagTagging(Teto chase) {
         this.chase = chase;
@@ -33,7 +33,7 @@ public class TetoPlayTagTagging implements InnovationalBehavior<Teto> {
         teto.getNavigation().moveTo(chase.getX(), chase.getY(), chase.getZ(), 1.3f);
 
         if (cooldown > 0) --cooldown;
-        return time < 2000;
+        return time < 4000;
     }
     public boolean isImportant() { return true; }
     public boolean isAbsolutelyImportant() { return false; }
