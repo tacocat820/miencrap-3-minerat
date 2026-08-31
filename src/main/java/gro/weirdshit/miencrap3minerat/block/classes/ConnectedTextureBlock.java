@@ -58,7 +58,7 @@ public class ConnectedTextureBlock extends Block {
         BlockState newState = state;
         for (Direction direction : Direction.values()) {
             // System.out.println("wtf&& "+direction);
-            if ( level.getBlockState(pos.relative(direction)).getBlock().getClass().equals( this.getClass() ) ) {
+            if ( level.getBlockState(pos.relative(direction)).is(this) ) {
                 // System.out.println("YEEEAHHHH! "+direction);
                 BooleanProperty prop = DIRECTIONS_MAP.get(direction);
                 newState = newState.setValue(prop, true);
