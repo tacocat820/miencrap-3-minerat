@@ -82,7 +82,6 @@ public class AnglerfishRenderer extends MobRenderInterface {
             float limbSwingAnimationProgress = state.walkAnimationPos;
 
             if (!(state.attackTime <= 0.0F)) {
-                MIENCRAP3MINERAT.LOGGER.info(String.valueOf(state.attackTime));
                 this.jaw.xRot = Mth.sin((double)(Mth.sqrt(state.attackTime) * ((float)Math.PI * 2F)));
                 this.top.xRot = 0.0f - this.jaw.xRot;
             }

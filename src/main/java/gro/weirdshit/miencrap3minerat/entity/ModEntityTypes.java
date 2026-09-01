@@ -52,6 +52,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<HappyGhast>of(HappyGhast::new, MobCategory.CREATURE)
 					.sized(1.0f, 1.0f)
 	);
+	public static final EntityType<EnderDragon> ENDER_DRAGON = register(
+			"ender_dragon",
+			EntityType.Builder.<EnderDragon>of(EnderDragon::new, MobCategory.CREATURE)
+					.sized(1.0f, 1.0f)
+	);
 	public static final EntityType<Hooorse> HOOORSE = register(
 			"hooorse",
 			EntityType.Builder.<Hooorse>of(Hooorse::new, MobCategory.CREATURE)
@@ -65,6 +70,16 @@ public class ModEntityTypes {
 	public static final EntityType<SteveJobs> STEVE_JOBS = register(
 			"steve_jobs",
 			EntityType.Builder.<SteveJobs>of(SteveJobs::new, MobCategory.CREATURE)
+					.sized(0.7f, 3.0f)
+	);
+	public static final EntityType<Slave> SLAVE = register(
+			"slave",
+			EntityType.Builder.<Slave>of(Slave::new, MobCategory.CREATURE)
+					.sized(0.7f, 2.0f)
+	);
+	public static final EntityType<PolPot> POL_POT = register(
+			"pol_pot",
+			EntityType.Builder.<PolPot>of(PolPot::new, MobCategory.CREATURE)
 					.sized(0.7f, 3.0f)
 	);
 	public static final EntityType<Teto> TETO = register(
@@ -136,6 +151,9 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(STEVE_JOBS, SteveJobs.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(POL_POT, PolPot.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(ENDER_DRAGON, EnderDragon.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(SLAVE, Slave.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(TETO, Teto.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ANGLERFISH, Anglerfish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DAMN, Damn.createCubeAttributes());

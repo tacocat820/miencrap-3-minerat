@@ -1,7 +1,13 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": [
-    "meadow"
+    "meadow",
+    "birch_forest",
+    "old_growth_birch_forest",
+    "desert",
+    "savanna",
+    "savanna_plateau",
+    "windswept_savanna"
   ],
   "step": "surface_structures",
   "spawn_overrides": {},

@@ -53,6 +53,9 @@ public class ModEntitySpawning {
         
         SpawnPlacements.register(ModEntityTypes.GIGACHICKEN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.GIGACHICKEN, 100, 1, 3);
+        
+        SpawnPlacements.register(ModEntityTypes.ENDER_DRAGON, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.ENDER_DRAGON, 100, 1, 2);
 
         // TODO: add biome tags
         /* 
