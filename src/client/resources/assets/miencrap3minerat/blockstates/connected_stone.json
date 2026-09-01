@@ -1,0 +1,62 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/connected_stone"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default"
+      },
+      "when": {
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default",
+        "y": -90
+      },
+      "when": {
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default",
+        "y": 90
+      },
+      "when": {
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default",
+        "y": 180
+      },
+      "when": {
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default",
+        "x": 90
+      },
+      "when": {
+        "down": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "miencrap3minerat:block/decoration/default",
+        "x": -90
+      },
+      "when": {
+        "up": "false"
+      }
+    }
+  ]
+}

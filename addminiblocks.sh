@@ -37,9 +37,9 @@ fi
 
 for blockname in $blocks_names; do
   _blockname_reduced=$(echo "$blockname" | sed 's/_block//') #'_block' suffic deleting
-  miniblocks="${_blockname_reduced}_miniblocks"
+  new_block_name="${_blockname_reduced}_miniblocks"
   #registering blockstates
-  jq -n --arg model "$namespace:block/$miniblocks" '{
+  jq -n --arg model "$namespace:block/$new_block_name" '{
     "multipart": [
       {
         "apply": {
@@ -122,27 +122,27 @@ for blockname in $blocks_names; do
         }
       }
     ]
-  }' > "$client_resources_PATH/assets/$namespace/blockstates/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/blockstates/$new_block_name.json"
 
   #item model
-  jq -n --arg model "$namespace:block/$miniblocks" '{
+  jq -n --arg model "$namespace:block/$new_block_name" '{
     "model": {
       "type":"model",
       "model": $model
     }
-  }' > "$client_resources_PATH/assets/$namespace/items/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/items/$new_block_name.json"
 
   #block model too
-  jq -n --arg original_block_model "$textures_namespace:block/$blockname" --arg parent "$namespace:templates/miniblocks" '{
+  jq -n --arg original_block_texture "$textures_namespace:block/$blockname" --arg parent "$namespace:templates/miniblocks" '{
     "parent": $parent,
     "textures": {
-      "block": $original_block_model
+      "block": $original_block_texture
     }
-  }' > "$client_resources_PATH/assets/$namespace/models/block/$miniblocks.json"
+  }' > "$client_resources_PATH/assets/$namespace/models/block/$new_block_name.json"
 
   #loot table
   if [ "$ltable" = "1" ]; then
-    jq --compact-output -n --arg item_id "$namespace:$miniblocks" '{
+    jq --compact-output -n --arg item_id "$namespace:$new_block_name" '{
       "pools": [
         {
           "rolls": 1,
@@ -154,10 +154,10 @@ for blockname in $blocks_names; do
           ]
         }
       ]
-    }' > "$server_resources_PATH/data/$namespace/loot_table/blocks/$miniblocks.json"
+    }' > "$server_resources_PATH/data/$namespace/loot_table/blocks/$new_block_name.json"
   fi
   
-  upperReg=$(echo "$miniblocks" | tr '[:lower:]' '[:upper:]')
+  upperReg=$(echo "$new_block_name" | tr '[:lower:]' '[:upper:]')
   originalUpperReg=$(echo "$blockname" | tr '[:lower:]' '[:upper:]')
 
   #put into java!!!
@@ -166,6 +166,6 @@ for blockname in $blocks_names; do
     block_statement="Blocks.$originalUpperReg"
   fi
 
-  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$miniblocks\", MiniBlocksBlock::new).copyOf($block_statement).reg();"
+  echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$new_block_name\", MiniBlocksBlock::new).copyOf($block_statement).reg();"
 done
 echo "[!] now add blocks in java (if you doesn't)."

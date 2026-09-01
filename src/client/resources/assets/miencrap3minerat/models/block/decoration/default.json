@@ -1,0 +1,6 @@
+{
+	"parent": "miencrap3minerat:block/decoration/north",
+	"textures": {
+		"all": "miencrap3minerat:block/decoration/default"
+	}
+}

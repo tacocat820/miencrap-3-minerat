@@ -16,6 +16,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.BlockWithoutTexture;
+import gro.weirdshit.miencrap3minerat.block.classes.ConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
@@ -301,11 +302,13 @@ public class ModBlocks {
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 13.0F, -3.5F));
 	public static RegisteredBlock PAN_FRIED_GHAST = new GenericBlock("pan_fried_ghast", SpecificPanFriedGhastBlock::new, SoundType.STONE, 0.3f,1.0f).noOcclusion().noCollision()
 		.reg(new Item.Properties().sword(ToolMaterial.IRON, 9.3F, -2.9F)
-		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item));
-
+		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item)
+	);
 
     public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TransparentConnectedTextureBlock::new).copyOf(XP_GLASS.block).reg();
-
+	public static RegisteredBlock CONNECTED_STONE = new GenericBlock("connected_stone", ConnectedTextureBlock::new).copyOf(Blocks.STONE).reg();
+	public static RegisteredBlock CONNECTED_OAK_PLANKS = new GenericBlock("connected_oak_planks", ConnectedTextureBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
+	
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.BIG_DRIPLEAF, 1.0f,1.0f).reg();
@@ -353,6 +356,6 @@ public class ModBlocks {
 
 	public static void generate() {
 		ModShapes.generate();
-		// Blocks.ACACIA_BUTTON //SULFUR_BLOCK
+		// Blocks.OAK_FENCE//SULFUR_BLOCK
 	}
 }
