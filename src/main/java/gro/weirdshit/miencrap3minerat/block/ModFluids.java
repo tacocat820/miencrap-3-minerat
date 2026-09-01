@@ -7,6 +7,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificEarsFluidBlock;
 import gro.weirdshit.miencrap3minerat.block.fluid.AcidFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.NuclearWasteFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.PissFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.SulfuricAcidFluid;
@@ -96,6 +97,12 @@ public class ModFluids {
 	public static final FlowingFluid SULFURIC_ACID_STILL = register("sulfuric_acid", new SulfuricAcidFluid.Source());
     public static RegisteredBlock SULFURIC_ACID = new GenericFluid("sulfuric_acid",(props) -> new LiquidBlock(ModFluids.SULFURIC_ACID_STILL, props)).reg();
 	public static RegisteredItem<?> SULFURIC_ACID_BUCKET = ModItems.register("sulfuric_acid_bucket", p -> new BucketItem(ModFluids.SULFURIC_ACID_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
+	public static final FlowingFluid NUCLEAR_WASTE_FLOWING = register("flowing_nuclear_waste", new NuclearWasteFluid.Flowing());
+	public static final FlowingFluid NUCLEAR_WASTE_STILL = register("nuclear_waste", new NuclearWasteFluid.Source());
+    public static RegisteredBlock NUCLEAR_WASTE = new GenericFluid("nuclear_waste",(props) -> new LiquidBlock(ModFluids.NUCLEAR_WASTE_STILL, props)).reg();
+	public static RegisteredItem<?> NUCLEAR_WASTE_BUCKET = ModItems.register("nuclear_waste_bucket", p -> new BucketItem(ModFluids.NUCLEAR_WASTE_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
 
     public static void generate() {}
 }

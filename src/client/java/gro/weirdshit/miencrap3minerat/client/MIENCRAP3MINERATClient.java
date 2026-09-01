@@ -134,10 +134,10 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			ModFluids.OIL_STILL,
 			ModFluids.OIL_FLOWING,
 			new FluidModel.Unbaked(
-					new Material(Identifier.withDefaultNamespace("block/water_still")),
-					new Material(Identifier.withDefaultNamespace("block/water_flow")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/oil_still")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/oil_flow")),
 					new Material(Identifier.withDefaultNamespace("block/water_overlay")),
-					BlockTintSources.constant(ARGB.opaque(0x000000))
+					BlockTintSources.constant(ARGB.opaque(0xffffff))
 			)
 		);
 		FluidRenderingRegistry.register(
@@ -160,6 +160,18 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.opaque(0xf9e52f))
 			)
 		);
+
+		FluidRenderingRegistry.register(
+			ModFluids.NUCLEAR_WASTE_STILL,
+			ModFluids.NUCLEAR_WASTE_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/nuclear_waste_still")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/nuclear_waste")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/nuclear_waste")),
+					BlockTintSources.constant(ARGB.opaque(0xffffff))
+			)
+		);
+
 		BlockColorRegistry.register(List.of(new BlockTintSource() {
 
 			@Override

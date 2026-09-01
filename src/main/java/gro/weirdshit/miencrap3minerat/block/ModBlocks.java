@@ -12,6 +12,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleL
 import gro.weirdshit.miencrap3minerat.block.classes.PrismarineLampBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.BlockWithoutTexture;
@@ -305,7 +306,10 @@ public class ModBlocks {
 
     public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TransparentConnectedTextureBlock::new).copyOf(XP_GLASS.block).reg();
 
-
+	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
+	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.BIG_DRIPLEAF, 1.0f,1.0f).reg();
+	
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DIRT).reg();
@@ -346,7 +350,6 @@ public class ModBlocks {
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
     
-	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.BIG_DRIPLEAF, 1.0f,1.0f).reg();
 
 	public static void generate() {
 		ModShapes.generate();

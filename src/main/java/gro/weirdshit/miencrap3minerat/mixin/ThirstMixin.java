@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.mixin;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -29,6 +30,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -48,6 +50,9 @@ public abstract class ThirstMixin {
 
     @Shadow
     public abstract boolean hurtServer(ServerLevel level, DamageSource source, float damage);
+
+    @Shadow
+    public abstract @Nullable GameType gameMode();
 
     @Inject(at = @At("HEAD"), method = "defineSynchedData")
     protected void defineSynchedData(final SynchedEntityData.Builder entityData, CallbackInfo cir) {
@@ -102,7 +107,12 @@ public abstract class ThirstMixin {
 	private static TagKey<Block> DRINKABLE = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "drinkable"));
 
     @Inject(at = @At("HEAD"), method = "tick")
-    public void tick(CallbackInfo cir) { 
+    public void tick(CallbackInfo cir) {
+        GameType gmode = gameMode();
+        if ( gmode == GameType.CREATIVE || gmode == GameType.SPECTATOR ) { //tsssssssss
+            return;
+        }
+
         ++timer;
         if (timer >= 40) {
             if (this.m3m$isAlive()) {

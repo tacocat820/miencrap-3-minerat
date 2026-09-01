@@ -1,11 +1,6 @@
 {
-   "parent": "miencrap3minerat:templates/block_6s",
-    "textures": {
-       "north": "miencrap3minerat:block/nuclear_waste",
-	   "east": "miencrap3minerat:block/nuclear_waste",
-	   "south": "miencrap3minerat:block/nuclear_waste",
-	   "west": "miencrap3minerat:block/nuclear_waste",
-	   "up": "miencrap3minerat:block/nuclear_waste_still",
-	   "down": "miencrap3minerat:block/nuclear_waste_still"
-    }
+  "parent": "miencrap3minerat:templates/block",
+  "textures": {
+    "b": "miencrap3minerat:block/sulfuric_acid"
+  }
 }
