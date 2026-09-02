@@ -22,6 +22,7 @@ public class ModSounds {
     public static final SoundEvent OHMYPC = registerSound("ohmypc");
     public static final SoundEvent BOOM = registerSound("boom");
     public static final SoundEvent CREAK = registerSound("creak");
+    public static final SoundEvent SQUISH = registerSound("squish");
     public static final SoundEvent SCREAM = registerSound("scream");
     public static final SoundEvent HAIRDRYER = registerSound("hairdryer");
 

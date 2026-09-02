@@ -245,6 +245,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:boom","stream": false}]},
 	"bee_alt":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee_alt","stream": false}]},
+	"squish":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:squish","stream": false}]},
 
 
 	"ed2_scream": {

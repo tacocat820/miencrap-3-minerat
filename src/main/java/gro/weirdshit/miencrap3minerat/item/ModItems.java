@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.HairdryerItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
+import gro.weirdshit.miencrap3minerat.item.classes.SteeringWheelItem;
 import gro.weirdshit.miencrap3minerat.item.classes.UraniumLollipopItem;
 import gro.weirdshit.miencrap3minerat.item.classes.WrenchItem;
 import net.minecraft.core.Registry;
@@ -162,7 +163,7 @@ public class ModItems {
 	public static RegisteredItem<?> EPSTEIN_FILE = ModItems.register("epstein_file", Item::new, new Item.Properties());
 	public static RegisteredItem<?> COTTON_SWAB = ModItems.register("cotton_swab", Item::new, new Item.Properties());
 	public static RegisteredItem<?> THE_AXE = ModItems.register("the_axe", Item::new, new Item.Properties());
-	public static RegisteredItem<?> WHEEL = ModItems.register("wheel", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WHEEL = ModItems.register("wheel", SteeringWheelItem::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST
