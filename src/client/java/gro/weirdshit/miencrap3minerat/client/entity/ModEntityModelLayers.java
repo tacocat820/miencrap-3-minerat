@@ -10,7 +10,9 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.FishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.FundyRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.GamingChairRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
@@ -33,6 +35,8 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation FUNDY = createMain("fundy");
+	public static final ModelLayerLocation FISH = createMain("fish");
 	public static final ModelLayerLocation GAMING_CHAIR = createMain("gaming_chair");
 	public static final ModelLayerLocation BAA = createMain("baa");
 	public static final ModelLayerLocation CABLE = createMain("cable");
@@ -65,6 +69,8 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		FundyRenderer.register(FUNDY);
+		FishRenderer.register(FISH);
 		GamingChairRenderer.register(GAMING_CHAIR);
 		BaaRenderer.register(BAA);
 		CableRenderer.register(CABLE);

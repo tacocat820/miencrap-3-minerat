@@ -24,6 +24,7 @@ public class ModSounds {
     public static final SoundEvent CREAK = registerSound("creak");
     public static final SoundEvent SQUISH = registerSound("squish");
     public static final SoundEvent SCREAM = registerSound("scream");
+    public static final SoundEvent FUNDY = registerSound("fundy");
     public static final SoundEvent HAIRDRYER = registerSound("hairdryer");
 
     private static SoundEvent registerSound(String id) {
