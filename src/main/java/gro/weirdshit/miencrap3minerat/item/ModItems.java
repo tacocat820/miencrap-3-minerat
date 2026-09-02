@@ -164,6 +164,10 @@ public class ModItems {
 	public static RegisteredItem<?> COTTON_SWAB = ModItems.register("cotton_swab", Item::new, new Item.Properties());
 	public static RegisteredItem<?> THE_AXE = ModItems.register("the_axe", Item::new, new Item.Properties());
 	public static RegisteredItem<?> WHEEL = ModItems.register("wheel", SteeringWheelItem::new, new Item.Properties());
+	public static RegisteredItem<?> SAND_INGOT = ModItems.register("sand_ingot", Item::new, new Item.Properties());
+
+	public static RegisteredItem<?> CHEESEBURGER = ModItems.register("cheeseburger", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CHEESEBURGER_CRUMBS = ModItems.register("cheeseburger_crumbs", Item::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.registries.Registries;
@@ -95,6 +96,12 @@ public class Ptl extends PathfinderMob {
 		if (this.jumpTimer <= 0) {
 			
 			if (!level().isClientSide()) {
+
+				float wtf = WtfLevel.getWtfForLevel(level());
+				if (wtf < 100.0f || wtf > 995.0f) {
+					this.jumpTimer = 100;
+					return;
+				} 
 
 				if (this.level() instanceof ServerLevel level) {
 					Collection<ServerPlayer> players = PlayerLookup.around(level, this.getPosition(0.0f), 100.0);

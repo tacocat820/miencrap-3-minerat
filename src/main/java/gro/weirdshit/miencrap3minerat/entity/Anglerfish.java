@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -17,6 +18,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Util;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.BossEvent.BossBarColor;
@@ -75,6 +77,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -201,6 +204,16 @@ public class Anglerfish extends WaterAnimal {
 
 	protected SoundEvent getSwimSound() {
 		return SoundEvents.FISH_SWIM;
+	}
+
+	public static boolean checkAnglerfishSpawnRules(
+		final EntityType<Anglerfish> type, final ServerLevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random
+	) {
+		if (!level.getFluidState(pos.below()).is(FluidTags.WATER) && !EntitySpawnReason.isSpawner(spawnReason)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override

@@ -17,8 +17,10 @@ import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.fish.WaterAnimal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 public class ModEntitySpawning {
@@ -27,6 +29,10 @@ public class ModEntitySpawning {
 
     public static boolean checkNotjuanSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
         return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON);
+    }
+
+    public static boolean checkCrishSpawnRules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
+        return level.getBlockState(pos.below()).is(Blocks.WATER);
     }
 
     public static boolean checkPuffercopterSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
@@ -59,6 +65,12 @@ public class ModEntitySpawning {
 
         SpawnPlacements.register(ModEntityTypes.BAA, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.SPAWNS_COLD_VARIANT_FARM_ANIMALS), MobCategory.MONSTER, ModEntityTypes.BAA, 150, 1, 4);
+
+        SpawnPlacements.register(ModEntityTypes.CRISH, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Crish::checkCrishSpawnRules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.CRISH, 30, 1, 2);
+
+        SpawnPlacements.register(ModEntityTypes.ANGLERFISH, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Anglerfish::checkAnglerfishSpawnRules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.WATER_CREATURE, ModEntityTypes.ANGLERFISH, 1, 1, 2);
 
         // TODO: add biome tags
         /* 
