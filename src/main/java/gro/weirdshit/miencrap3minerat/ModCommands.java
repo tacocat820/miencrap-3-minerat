@@ -1,5 +1,7 @@
 package gro.weirdshit.miencrap3minerat;
 
+import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
+import gro.weirdshit.miencrap3minerat.mixin.ThirstMixin;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
@@ -45,6 +47,19 @@ public class ModCommands {
                         FlashPayload payload = new FlashPayload(3);
 						if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
 							ServerPlayNetworking.send(player, payload);
+                        }
+                        return 1;
+                    }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("welcom")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        if (ctx.getSource().getEntityOrException() instanceof Player player) {
+                            MIENCRAP3MINERAT.LOGGER.info("asd");
+                            ((ThirstMixinInterface)(Object)player).setThirst(0);
                         }
                         return 1;
                     }));

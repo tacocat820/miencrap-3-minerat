@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -40,7 +41,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 @Mixin(Player.class)
-public abstract class ThirstMixin {
+public abstract class ThirstMixin implements ThirstMixinInterface {
 
 
     private static final ResourceKey<DamageType> BLOOD_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "blood"));

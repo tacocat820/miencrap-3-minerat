@@ -169,6 +169,13 @@ public class ModItems {
 	public static RegisteredItem<?> CHEESEBURGER = ModItems.register("cheeseburger", Item::new, new Item.Properties());
 	public static RegisteredItem<?> CHEESEBURGER_CRUMBS = ModItems.register("cheeseburger_crumbs", Item::new, new Item.Properties());
 
+	public static RegisteredItem<?> COW_NFT = ModItems.register("cow_nft", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CUBE_NFT = ModItems.register("cube_nft", Item::new, new Item.Properties());
+	public static RegisteredItem<?> DEATH_NFT = ModItems.register("death_nft", Item::new, new Item.Properties());
+	public static RegisteredItem<?> DEER_NFT = ModItems.register("deer_nft", Item::new, new Item.Properties());
+	public static RegisteredItem<?> NFT = ModItems.register("nft", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WHATEVER_NFT = ModItems.register("whatever_nft", Item::new, new Item.Properties());
+
 	public static void generate() {
 		// Items.CHEST
 	}
