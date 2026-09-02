@@ -77,6 +77,23 @@ class BaaAttackGoal extends MeleeAttackGoal {
 		if (baa.timer <= 0) return; 
 		super.tick();
 		this.baa.setAggressive(true);
+
+			if (this.mob.getTarget() == null) return;
+			if (this.mob.distanceTo(this.mob.getTarget()) < 10) {
+
+			Vec3 me    = this.mob.getPosition(0.0f);
+			Vec3 enemy = this.mob.getTarget().getPosition(0.0f);
+
+			Vec3 diff = new Vec3(
+				Math.max(-1.0, Math.min(enemy.x + 1.0 - me.x, 1.0)) * 3.4,
+				Math.max(-1.0, Math.min(enemy.y + 1.0 - me.y, 1.0)),
+				Math.max(-1.0, Math.min(enemy.z + 1.0 - me.z, 1.0)) * 3.4);
+
+			Vec3 direction = diff;
+			
+			this.mob.setDeltaMovement(direction.x * 0.1f, direction.y * 0.1f, direction.z * 0.1f);
+
+		}
 	}
 }
 
@@ -137,11 +154,41 @@ public class Baa extends Monster {
 			timer -= 30;
 		}
 
+		if (this.getTarget() != null && this.distanceTo(this.getTarget()) < 1.0 && this.timer < 600) {
+			timer -= 1000;
+
+			Vec3 me    = this.getPosition(0.0f);
+			Vec3 enemy = this.getTarget().getPosition(0.0f);
+
+			Vec3 diff = new Vec3(
+				Math.max(-1.0, Math.min(enemy.x + 1.0 - me.x, 1.0)) * 6.4,
+				Math.max(-1.0, Math.min(enemy.y + 1.0 - me.y, 1.0)) * 6.4,
+				Math.max(-1.0, Math.min(enemy.z + 1.0 - me.z, 1.0)) * 6.4);
+
+			Vec3 direction = diff;
+			
+			this.setDeltaMovement(direction.x * 0.1f, direction.y * 0.1f, direction.z * 0.1f);
+		}
+
 		if (timer > 0)
 			super.aiStep();
 		else {
 			super.aiStep();
-			this.setDeltaMovement(0.0, this.getDeltaMovement().y - 0.1, 0.0);
+
+			Vec3 diff = new Vec3(0.0, 0.0, 0.0);
+			if (this.getTarget() != null) {
+
+
+				Vec3 me    = this.getPosition(0.0f);
+				Vec3 enemy = this.getTarget().getPosition(0.0f);
+
+				diff = new Vec3(
+					Math.max(-1.0, Math.min(enemy.x + 1.0 - me.x, 1.0)) * 0.34,
+					Math.max(-1.0, Math.min(enemy.y + 1.0 - me.y, 1.0)) * 0.34,
+					Math.max(-1.0, Math.min(enemy.z + 1.0 - me.z, 1.0)) * 0.34);
+			}
+
+			this.setDeltaMovement(diff.x, this.getDeltaMovement().y - 0.1, diff.z);
 			if (!this.level().isClientSide() && this.level() instanceof ServerLevel serverLevel) {
 				int blockX = this.getBlockX();
 				int blockZ = this.getBlockZ();
@@ -188,8 +235,8 @@ public class Baa extends Monster {
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
       	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<AbstractVillager>(this, AbstractVillager.class, false));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Cow>(this, Cow.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, true));
     }
 }

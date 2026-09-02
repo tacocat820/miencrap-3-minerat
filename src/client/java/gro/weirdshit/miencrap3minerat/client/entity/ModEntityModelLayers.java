@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.GamingChairRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
@@ -26,18 +27,13 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.RepeerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SlaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
-import gro.weirdshit.miencrap3minerat.entity.Anglerfish;
-import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
-import gro.weirdshit.miencrap3minerat.entity.NotjuanSpit;
-import gro.weirdshit.miencrap3minerat.entity.RedLightningBolt;
-import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.Identifier;
 
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation GAMING_CHAIR = createMain("gaming_chair");
 	public static final ModelLayerLocation BAA = createMain("baa");
 	public static final ModelLayerLocation CABLE = createMain("cable");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
@@ -69,6 +65,7 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		GamingChairRenderer.register(GAMING_CHAIR);
 		BaaRenderer.register(BAA);
 		CableRenderer.register(CABLE);
 		GigachickenRenderer.register(GIGACHICKEN);

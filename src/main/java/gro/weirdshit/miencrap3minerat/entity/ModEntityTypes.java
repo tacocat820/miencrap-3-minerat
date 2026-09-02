@@ -27,6 +27,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<GamingChair> GAMING_CHAIR = register(
+			"gaming_chair",
+			EntityType.Builder.<GamingChair>of(GamingChair::new, MobCategory.MONSTER)
+					.sized(12.0f, 24.0f)
+	);
 	public static final EntityType<Baa> BAA = register(
 			"baa",
 			EntityType.Builder.<Baa>of(Baa::new, MobCategory.MONSTER)
@@ -153,6 +158,7 @@ public class ModEntityTypes {
 	public static void registerAttributes() {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(GAMING_CHAIR, GamingChair.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BAA, Baa.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CABLE, Cable.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GIGACHICKEN, Gigachicken.createCubeAttributes());
