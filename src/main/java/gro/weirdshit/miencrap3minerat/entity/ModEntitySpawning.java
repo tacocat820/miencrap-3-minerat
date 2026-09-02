@@ -57,6 +57,9 @@ public class ModEntitySpawning {
         SpawnPlacements.register(ModEntityTypes.ENDER_DRAGON, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.ENDER_DRAGON, 100, 1, 2);
 
+        SpawnPlacements.register(ModEntityTypes.BAA, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.SPAWNS_COLD_VARIANT_FARM_ANIMALS), MobCategory.MONSTER, ModEntityTypes.BAA, 150, 1, 4);
+
         // TODO: add biome tags
         /* 
 

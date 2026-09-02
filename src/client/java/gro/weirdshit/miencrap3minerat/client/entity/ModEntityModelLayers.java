@@ -3,6 +3,8 @@ package gro.weirdshit.miencrap3minerat.client.entity;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
@@ -36,6 +38,8 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation BAA = createMain("baa");
+	public static final ModelLayerLocation CABLE = createMain("cable");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
@@ -65,6 +69,8 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		BaaRenderer.register(BAA);
+		CableRenderer.register(CABLE);
 		GigachickenRenderer.register(GIGACHICKEN);
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
