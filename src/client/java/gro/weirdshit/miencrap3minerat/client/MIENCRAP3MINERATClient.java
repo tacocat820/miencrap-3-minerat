@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import it.unimi.dsi.fastutil.ints.IntList;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.client.mixin.CameraRotation;
 import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
@@ -26,6 +27,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockTintsFactory;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl;
 import net.minecraft.client.Minecraft;
@@ -35,11 +37,13 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.EndRodParticle;
 import net.minecraft.client.particle.CampfireSmokeParticle.CosyProvider;
+import net.minecraft.client.particle.FallingLeavesParticle.TintedLeavesProvider;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -57,6 +61,7 @@ import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LightningBolt;
@@ -69,6 +74,34 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		MusicSounds.generate();
 		Pipelines.generate();
+
+		// BIOME TINTED vvvvvv
+		BlockColorRegistry.register(List.of(new BlockTintSource() {
+			@Override
+			public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
+				BlockState stateBelow = level.getBlockState(pos.below());
+				return BiomeColors.getAverageFoliageColor(level, pos);
+			}
+			@Override
+			public int color(BlockState state) {
+				return ARGB.opaque(0xFFDAB9);
+			}
+		}), ModBlocks.OAK_LEAVES_MINIBLOCKS.block); 
+		// ====================
+		BlockColorRegistry.register(List.of(new BlockTintSource() {
+			@Override
+			public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
+				BlockState stateBelow = level.getBlockState(pos.below());
+				if (stateBelow.is(Blocks.GRASS_BLOCK)) {
+					return ARGB.opaque(0x98FB98); // Color code in hex format
+				}
+				return ARGB.opaque(0xFFDAB9); // Color code in hex format
+			}
+			@Override
+			public int color(BlockState state) {
+				return ARGB.opaque(0xFFDAB9); // Color code in hex format
+			}
+		}), ModBlocks.BLISSFUL_GRASS.block); //TEST
 
 		ModEntityModelLayers.registerModelLayers();
 
@@ -171,27 +204,6 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					BlockTintSources.constant(ARGB.opaque(0xffffff))
 			)
 		);
-
-		BlockColorRegistry.register(List.of(new BlockTintSource() {
-
-			@Override
-			public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
-				BlockState stateBelow = level.getBlockState(pos.below());
-
-				if (stateBelow.is(Blocks.GRASS_BLOCK)) {
-					return ARGB.opaque(0x98FB98); // Color code in hex format
-				}
-
-				return ARGB.opaque(0xFFDAB9); // Color code in hex format
-			}
-
-			@Override
-			public int color(BlockState state) {
-				return ARGB.opaque(0xFFDAB9); // Color code in hex format
-			}
-
-		}), ModBlocks.BLISSFUL_GRASS.block);
-
 
 		// Blocks.RED_STAINED_GLASS
 

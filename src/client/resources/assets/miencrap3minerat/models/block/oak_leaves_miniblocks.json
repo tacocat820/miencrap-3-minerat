@@ -1,5 +1,5 @@
 {
-  "parent": "miencrap3minerat:templates/miniblocks",
+  "parent": "miencrap3minerat:templates/miniblocks_tinted",
   "textures": {
     "block": "minecraft:block/oak_leaves"
   }

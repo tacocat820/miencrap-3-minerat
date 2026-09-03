@@ -15,9 +15,11 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -58,6 +60,16 @@ public class ChiselItem extends Item {
             else {
                 int damage = 1; //bstate.getBlock().s
                 ItemStack broken = WrenchItem.getBreakedItem(damage, context.getPlayer(), context.getItemInHand());
+                ItemStack drop = new ItemStack(bstate.getBlock().asItem(), 1);
+                // ServerLevel slevel = (ServerLevel)level;
+
+                GameType gamemode = context.getPlayer().gameMode();
+                if ( gamemode == GameType.SURVIVAL) { //tsssssssss
+                    ItemEntity itemEntity = new ItemEntity(level, clickloc.x, clickloc.y, clickloc.z, drop);
+                    level.addFreshEntity(itemEntity);
+                }
+                
+
                 return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo( broken );
             }       
         }

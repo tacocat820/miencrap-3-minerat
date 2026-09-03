@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -30,6 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -99,6 +102,18 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         return mask;
     }
 
+    //
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+        List<ItemStack> drops = super.getDrops(state, builder);
+        for (ItemStack drop : drops) {
+            drop.setCount(drop.count()*getMiniblocksCount(state));
+        }
+        // System.out.println("s "+drops+" "+getMiniblocksCount(state));
+        return drops;
+    }
+
+
     @Override
     protected BlockState updateShape(final BlockState state, final LevelReader level, final ScheduledTickAccess ticks, final BlockPos pos, final Direction directionToNeighbour, final BlockPos neighbourPos, final BlockState neighbourState, final RandomSource random) {
         return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
@@ -153,7 +168,7 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         BlockState newBlockState = blockState.setValue(prop, false);
 
         if ( create_bitmask(getBooleans(newBlockState)) == 0 ) {
-            level.destroyBlock(blockPos, true);
+            level.destroyBlock(blockPos, false);
         } else {
             level.setBlockAndUpdate(blockPos, newBlockState);
         }
@@ -174,6 +189,21 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         return new Vec3i(bX, bY, bZ);
     }
 
+    static public int getMiniblocksCount(final BlockState state) {
+        int combination =
+            (state.getValue(BLK_000) ? 1 : 0)+
+            (state.getValue(BLK_001) ? 1 : 0)+
+            (state.getValue(BLK_010) ? 1 : 0)+
+            (state.getValue(BLK_011) ? 1 : 0)+
+
+            (state.getValue(BLK_100) ? 1 : 0)+
+            (state.getValue(BLK_101) ? 1 : 0)+
+            (state.getValue(BLK_110) ? 1 : 0)+
+            (state.getValue(BLK_111) ? 1 : 0)
+            ;
+
+        return combination;
+    }
 
     static public boolean[] getBooleans(final BlockState state) {
         boolean[] combination = {
@@ -191,7 +221,6 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         return combination;
     }
 
-
     @Override
     protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
         return SHAPES.getOrDefault(
@@ -199,7 +228,6 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
             Block.cube(5)
         );
     }
-
 
     @Override
     protected BlockState rotate(final BlockState state, final Rotation rotation) {
@@ -219,20 +247,6 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
             Point3i key_pos = entry.getKey();
             BooleanProperty property = entry.getValue();
             Point3i new_key_pos = key_pos.rotateY_relative(rad, -0.5f, -0.5f);
-
-            // if (state.getValue(property)) {
-            //     MIENCRAP3MINERAT.LOGGER.info("\nБыло: "+key_pos+"\nСтало: "+new_key_pos+" странно: "+
-            //         "\n0> "+key_pos+
-            //         "\n1> "+key_pos.rotateY_relative(rad, -0.5f, -0.5f)+
-            //         "\n2> "+key_pos.rotateY_relative(rad, -0.5f, -0.5f).rotateY_relative(rad, -0.5f, -0.5f)+
-            //         "\n3> "+key_pos.rotateY_relative(rad, -0.5f, -0.5f).rotateY_relative(rad, -0.5f, -0.5f).rotateY_relative(rad, -0.5f, -0.5f)+
-            //         "\n"+
-            //         "\n0! "+key_pos+
-            //         "\n1! "+key_pos.rotateY(rad)+
-            //         "\n2! "+key_pos.rotateY(rad).rotateY(rad)+
-            //         "\n3! "+key_pos.rotateY(rad).rotateY(rad).rotateY(rad)
-            //     );
-            // }
 
             new_state = new_state.setValue(
                 MINIBLOCKS_POSES.get(new_key_pos),
@@ -267,6 +281,7 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
             .setValue(BLK_110, false)
             .setValue(BLK_111, false);
     }
+
 
     @Override
     public BlockState getStateForPlacement(final BlockPlaceContext context) {
