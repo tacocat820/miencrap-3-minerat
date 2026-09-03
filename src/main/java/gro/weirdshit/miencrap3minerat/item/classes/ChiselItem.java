@@ -10,6 +10,7 @@ import org.joml.Math;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -41,17 +42,9 @@ public class ChiselItem extends Item {
             return InteractionResult.PASS;
         }
 
-        double x = clickloc.x - pos.getX();
-        double y = clickloc.y - pos.getY();
-        double z = clickloc.z - pos.getZ();
+        Vec3i minipos = MiniBlocksBlock.getMiniXYZ(pos, clickloc, context.getClickedFace().getOpposite());
 
-        int bX = Math.clamp((int)Math.ceil(x*1.7)-1, 0, 1);
-        int bY = Math.clamp((int)Math.ceil(y*1.7)-1, 0, 1);
-        int bZ = Math.clamp((int)Math.ceil(z*1.7)-1, 0, 1);
-
-        MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ bX + " " + bY + " " + bZ + " ");
-
-        boolean success = MiniBlocksBlock.removeOneMiniblock(level, bstate, pos, bX, bY, bZ);
+        boolean success = MiniBlocksBlock.removeOneMiniblock(level, bstate, pos, minipos);
         if (success) {
             if (level.isClientSide()) {
                 BlockParticleOption breakParticle = new BlockParticleOption(ParticleTypes.BLOCK, bstate);

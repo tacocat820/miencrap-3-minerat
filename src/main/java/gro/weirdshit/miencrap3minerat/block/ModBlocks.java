@@ -310,9 +310,11 @@ public class ModBlocks {
 	public static RegisteredBlock CONNECTED_OAK_PLANKS = new GenericBlock("connected_oak_planks", ConnectedTextureBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
 	
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
+	public static RegisteredBlock CERAMIC_TILES_MINIBLOCKS = new GenericBlock("ceramic_tiles_miniblocks", MiniBlocksBlock::new).copyOf(CERAMIC_TILES.block).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.BIG_DRIPLEAF, 1.0f,1.0f).reg();
-	
+	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.IRON, 1.0f,1.0f).reg();
+	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", Block::new, SoundType.CALCITE, 1.0f,1.0f).reg();
+	public static RegisteredBlock CARAMEL_BRICKS_MINIBLOCKS = new GenericBlock("caramel_bricks_miniblocks", MiniBlocksBlock::new).copyOf(CARAMEL_BRICKS.block).reg();
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.DIRT).reg();

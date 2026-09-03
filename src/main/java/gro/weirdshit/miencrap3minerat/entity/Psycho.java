@@ -2,6 +2,8 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.EatSpecificBlockGoal;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -20,11 +22,15 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.EatBlockGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -71,11 +77,10 @@ public class Psycho extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, IronGolem.class, 20, 1.0, 1.0));
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Cow.class, 4));
-        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-      	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-      	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<AbstractVillager>(this, AbstractVillager.class, false));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
+      this.goalSelector.addGoal(0, new PanicGoal(this, 1.25));
+      this.goalSelector.addGoal(0, new EatSpecificBlockGoal(this, ModBlocks.CARAMEL_BRICKS.block));
+      this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+      this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+      this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 }

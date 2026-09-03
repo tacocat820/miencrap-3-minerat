@@ -7,6 +7,7 @@ import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
@@ -75,10 +76,18 @@ public class ConnectedTextureBlock extends Block {
         return newstate;
     }
 
+    // @Override
+    // protected void onPlace(final BlockState state, final Level level, final BlockPos pos, final BlockState oldState, final boolean movedByPiston) {
+    //     level.setBlock(pos, updateThatShape(state, level, pos), UPDATE_ALL);
+    // }
+
     @Override
-    protected void onPlace(final BlockState state, final Level level, final BlockPos pos, final BlockState oldState, final boolean movedByPiston) {
-        level.setBlock(pos, updateThatShape(state, level, pos), UPDATE_ALL);
+    public BlockState getStateForPlacement(final BlockPlaceContext context) {
+
+        return updateThatShape(defaultBlockState(), context.getLevel(), context.getClickedPos());
+
     }
+
 
     @Override
     protected BlockState updateShape(final BlockState state, final LevelReader level, final ScheduledTickAccess ticks, final BlockPos pos, final Direction directionToNeighbour, final BlockPos neighbourPos, final BlockState neighbourState, final RandomSource random) {

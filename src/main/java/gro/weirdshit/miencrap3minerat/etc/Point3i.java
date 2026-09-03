@@ -1,8 +1,13 @@
 package gro.weirdshit.miencrap3minerat.etc;
 
+import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 
 public record Point3i(int x, int y, int z) {
+    public static Point3i from(Vec3i vec) {
+        return new Point3i(vec.getX(), vec.getY(), vec.getZ());
+    }
+
     public Point3i rotateY(double rad) {
         float radCos = Mth.cos(rad);
         float radSin = Mth.sin(rad);

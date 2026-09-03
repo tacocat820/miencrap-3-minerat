@@ -15,6 +15,8 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -26,7 +28,9 @@ import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -138,8 +142,9 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         return shapes;
     }
 
-    static public boolean removeOneMiniblock(Level level, BlockState blockState, BlockPos blockPos, int x, int y, int z) {
-        BooleanProperty prop = MINIBLOCKS_POSES.get(new Point3i(x, y, z));
+    static public boolean removeOneMiniblock(Level level, BlockState blockState, BlockPos blockPos, Vec3i pos) {
+        BooleanProperty prop = MINIBLOCKS_POSES.get(Point3i.from(pos));
+        MIENCRAP3MINERAT.LOGGER.debug("chisel sub-pos "+ pos);
 
         if (!blockState.getValue(prop)) {
             return false;
@@ -154,6 +159,21 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         }
         return true;
     }
+    static public Vec3i getMiniXYZ(BlockPos clickedPos, Vec3 clickedLocation, Direction clickedFace) {
+        double x = clickedLocation.x - clickedPos.getX() + (double)clickedFace.getStepX()*0.1;
+        double y = clickedLocation.y - clickedPos.getY() + (double)clickedFace.getStepY()*0.1;
+        double z = clickedLocation.z - clickedPos.getZ() + (double)clickedFace.getStepZ()*0.1;
+        // int bX = Math.clamp((int)Math.ceil(x*2.0)-1, 0, 1);
+        // int bY = Math.clamp((int)Math.ceil(y*2.1)-1, 0, 1);
+        // int bZ = Math.clamp((int)Math.ceil(z*2.0)-1, 0, 1);
+        int bX = (x > 0.5 ? 1 : 0);
+        int bY = (y > 0.5 ? 1 : 0);
+        int bZ = (z > 0.5 ? 1 : 0);
+
+        System.err.println("\nx y z : "+x+" "+y+" "+z+" "+"\n"+"bx by bz : "+bX+" "+bY+" "+bZ+"\n");
+        return new Vec3i(bX, bY, bZ);
+    }
+
 
     static public boolean[] getBooleans(final BlockState state) {
         boolean[] combination = {
@@ -179,7 +199,6 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
             Block.cube(5)
         );
     }
-
 
 
     @Override
@@ -234,6 +253,50 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
 
         return rotate(state, rotation);
 
+    }
+
+    public BlockState emptyBlockState() {
+        return defaultBlockState()
+            .setValue(BLK_000, false)
+            .setValue(BLK_001, false)
+            .setValue(BLK_010, false)
+            .setValue(BLK_011, false)
+
+            .setValue(BLK_100, false)
+            .setValue(BLK_101, false)
+            .setValue(BLK_110, false)
+            .setValue(BLK_111, false);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(final BlockPlaceContext context) {
+        BlockPos pos = context.getClickedPos();
+        BlockState replacedBlockState = context.getLevel().getBlockState(pos);
+
+        BlockState state = (replacedBlockState.is(this) ? replacedBlockState : emptyBlockState());
+        // if empty => new blockstate else old
+
+        BooleanProperty property = MINIBLOCKS_POSES.get(Point3i.from( getMiniXYZ( pos, context.getClickLocation(), context.getClickedFace() ) ));
+
+        // if (state.getValue(property)) {
+        //     return null; //if already
+        // }
+
+        state = state.setValue(property, true);
+
+        return state;
+    }
+
+    @Override
+    protected boolean canBeReplaced(final BlockState state, final BlockPlaceContext context) {
+        ItemStack itemStack = context.getItemInHand();
+        if (! itemStack.is(this.asItem())) {
+            return false;
+        }
+
+        BooleanProperty property = MINIBLOCKS_POSES.get(Point3i.from( getMiniXYZ( context.getClickedPos(), context.getClickLocation(), context.getClickedFace() ) ));
+
+        return !(state.getValue(property)) ;
     }
 
     @Override

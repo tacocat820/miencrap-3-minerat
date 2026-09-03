@@ -48,6 +48,7 @@ public class WrenchItem extends Item {
         
         if (level.isClientSide()) {
             context.getPlayer().playSound(bs.getSoundType().getPlaceSound(), 1.1f, rand.nextFloat(0.7f, 1.3f));
+            context.getPlayer().playSound(ModSounds.WRENCH, 0.9f, rand.nextFloat(0.7f, 1.3f));
         }
 
         if (level instanceof ServerLevel serverLevel) {
