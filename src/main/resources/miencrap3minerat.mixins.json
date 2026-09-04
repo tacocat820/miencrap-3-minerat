@@ -9,7 +9,8 @@
 		"PlayerMixin",
 		"RegistryMixin",
 		"ThirstMixin",
-		"CatMixin"
+		"CatMixin",
+		"FartlandsMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -5,8 +5,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 //import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.players.PlayerList;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.CreativeModeTab;
+
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,8 @@ import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
+import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
+import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
@@ -30,7 +35,9 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
@@ -59,6 +66,21 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
 			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
 		});
+		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, boundChatType) -> {
+			String msg = message.removeSignature().signedContent();
+
+			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, TestChain.vocab);
+			int size = e.size();
+			while (e.getLast() != 0 && e.size() < size + 50) e.add(TestChain.chain.predictNext(e, TestChain.vocab));
+
+			MIENCRAP3MINERAT.LOGGER.info(e.toString());
+		
+			PlayerList playerList = sender.level().getServer().getPlayerList();
+			playerList.broadcastSystemMessage(Component.literal(
+				MarkovTokenizer.decode(e, TestChain.vocab)
+			), false);
+			TestChain.chain.train(MarkovTokenizer.encode(msg, TestChain.vocab));
+		});
 
 		ModBlocks.generate();
 		ModBlockEntities.generate();
@@ -76,6 +98,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModMenuType.generate();
 		ModParticles.generate();
 		RegisterBiomeModifications.generate();
+
+		TestChain.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}
