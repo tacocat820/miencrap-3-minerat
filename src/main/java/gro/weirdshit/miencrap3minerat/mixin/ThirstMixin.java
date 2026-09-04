@@ -110,58 +110,57 @@ public abstract class ThirstMixin implements ThirstMixinInterface {
     @Inject(at = @At("HEAD"), method = "tick")
     public void tick(CallbackInfo cir) {
         GameType gmode = gameMode();
-        if ( gmode == GameType.CREATIVE || gmode == GameType.SPECTATOR ) { //tsssssssss
-            return;
-        }
+        if ( gmode == GameType.SURVIVAL || gmode == GameType.ADVENTURE ) { //tsssssssss
+            ++timer;
 
-        ++timer;
-        if (timer >= 40) {
-            if (this.m3m$isAlive()) {
-                int thirst = this.getThirst();
+            if (timer >= 40) {
+                if (this.m3m$isAlive()) {
+                    int thirst = this.getThirst();
+                    System.err.println("thirst thirst" + thirst);
+                    if (thirst <= 0) {
+
+                        DamageSource damageSource = new DamageSource(
+                            this.m3m$level().registryAccess()
+                                .lookupOrThrow(Registries.DAMAGE_TYPE)
+                                .get(DamageTypes.DRY_OUT.identifier()).orElseThrow());
+
+                        if (this.m3m$level() instanceof ServerLevel serverLevel) {
+                            this.hurtServer(serverLevel, damageSource, 1.0f);
+                            serverLevel.sendParticles(ParticleTypes.LAVA, 
+                                this.m3m$getX(), this.m3m$getY() + 1.5, this.m3m$getZ(), 50, 0.3, 0.3, 0.3, 1.5);
+                        }
+                    } else this.setThirst(thirst - 1);
+                }
+                timer = 0;
+            }
+            if (!this.m3m$isAlive()) {
+                this.setThirst(500);
+                this.drankBlood = 0;
+            }
+
+            BlockState block = this.m3m$level().getBlockState(BlockPos.containing(this.m3m$getEyePosition()));
+            if (block.is(DRINKABLE)) {
+                Vec3 eyePos = this.m3m$getEyePosition();
                 
-                if (thirst <= 0) {
+                if (this.m3m$level() instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.WATER.defaultBlockState()), 
+                        eyePos.x, eyePos.y, eyePos.z, 10, 0.1, 0.1, 0.1, 1.5);
+                }
+                ((Player)(Object)this).playSound(SoundEvents.GENERIC_DRINK.value());
+                int thirst = this.getThirst();
+                if (thirst <= 1000) this.setThirst(thirst + 1);
 
-                    DamageSource damageSource = new DamageSource(
-                        this.m3m$level().registryAccess()
-                            .lookupOrThrow(Registries.DAMAGE_TYPE)
-                            .get(DamageTypes.DRY_OUT.identifier()).orElseThrow());
+                if (this.m3m$level() instanceof ServerLevel serverLevel && block.is(ModFluids.BLOOD.block)) {
+                    ++this.drankBlood;
+                    if (this.drankBlood > 30) {
 
-                    if (this.m3m$level() instanceof ServerLevel serverLevel) {
-                        this.hurtServer(serverLevel, damageSource, 1.0f);
-                        serverLevel.sendParticles(ParticleTypes.LAVA, 
-                            this.m3m$getX(), this.m3m$getY() + 1.5, this.m3m$getZ(), 50, 0.3, 0.3, 0.3, 1.5);
+                        DamageSource damageSource = new DamageSource(
+                            this.m3m$level().registryAccess()
+                                .lookupOrThrow(Registries.DAMAGE_TYPE)
+                                .get(BLOOD_DAMAGE.identifier()).orElseThrow());
+                        
+                        this.hurtServer(serverLevel, damageSource, 10000.0f);
                     }
-                } else this.setThirst(thirst - 1);
-            }
-            timer = 0;
-        }
-        if (!this.m3m$isAlive()) {
-            this.setThirst(500);
-            this.drankBlood = 0;
-        }
-
-        BlockState block = this.m3m$level().getBlockState(BlockPos.containing(this.m3m$getEyePosition()));
-        if (block.is(DRINKABLE)) {
-            Vec3 eyePos = this.m3m$getEyePosition();
-            
-            if (this.m3m$level() instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.WATER.defaultBlockState()), 
-                    eyePos.x, eyePos.y, eyePos.z, 10, 0.1, 0.1, 0.1, 1.5);
-            }
-            ((Player)(Object)this).playSound(SoundEvents.GENERIC_DRINK.value());
-            int thirst = this.getThirst();
-            if (thirst <= 1000) this.setThirst(thirst + 1);
-
-            if (this.m3m$level() instanceof ServerLevel serverLevel && block.is(ModFluids.BLOOD.block)) {
-                ++this.drankBlood;
-                if (this.drankBlood > 30) {
-
-                    DamageSource damageSource = new DamageSource(
-                        this.m3m$level().registryAccess()
-                            .lookupOrThrow(Registries.DAMAGE_TYPE)
-                            .get(BLOOD_DAMAGE.identifier()).orElseThrow());
-                    
-                    this.hurtServer(serverLevel, damageSource, 10000.0f);
                 }
             }
         }

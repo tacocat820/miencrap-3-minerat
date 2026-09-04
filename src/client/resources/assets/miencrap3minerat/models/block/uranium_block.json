@@ -1,6 +1,36 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "miencrap3minerat:block/uranium_block"
-  }
+	"parent": "miencrap3minerat:templates/display_as_block",
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "miencrap3minerat:block/uranium_block",
+		"1": "miencrap3minerat:block/uranium_overlay",
+		"particle": "miencrap3minerat:block/uranium_block"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"from": [16.2, 16.2, 16.2],
+			"to": [-0.2, -0.2, -0.2],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "south"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "west"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "north"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "east"},
+				"up": {"uv": [0, 0, 0, 16], "texture": "#1", "cullface": "down"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "up"}
+			}
+		}
+	]
 }

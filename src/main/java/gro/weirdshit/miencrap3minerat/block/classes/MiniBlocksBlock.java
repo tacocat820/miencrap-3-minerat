@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModRegister;
 import gro.weirdshit.miencrap3minerat.etc.Point3i;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -319,6 +320,24 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
     
     public MiniBlocksBlock(BlockBehaviour.Properties properties) {
         super(properties);
+
+        registerDefaultState(
+            defaultBlockState()
+            .setValue(BLK_000, true)
+            .setValue(BLK_001, true)
+            .setValue(BLK_010, true)
+            .setValue(BLK_011, true)
+
+            .setValue(BLK_100, true)
+            .setValue(BLK_101, true)
+            .setValue(BLK_110, true)
+            .setValue(BLK_111, true)
+        );
+    }
+
+    public MiniBlocksBlock(BlockBehaviour.Properties properties, Block original) {
+        super(properties);
+        ModRegister.MINIBLOCKS.set(original, this);
 
         registerDefaultState(
             defaultBlockState()

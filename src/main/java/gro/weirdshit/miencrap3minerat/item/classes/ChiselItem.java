@@ -3,11 +3,13 @@ package gro.weirdshit.miencrap3minerat.item.classes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import org.joml.Math;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModRegister;
 import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -21,6 +23,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
@@ -39,13 +43,20 @@ public class ChiselItem extends Item {
         Vec3 clickloc = context.getClickLocation();
 
         BlockState bstate = level.getBlockState(pos);
+        Block clickedBlock = bstate.getBlock();
 
-        if (!(bstate.getBlock() instanceof MiniBlocksBlock)) {
-            return InteractionResult.PASS;
+        if (!(clickedBlock instanceof MiniBlocksBlock)) {
+
+            Optional<Block> miniblocks = ModRegister.MINIBLOCKS.get(clickedBlock);
+            if (miniblocks.isPresent()) {
+                level.setBlock(pos, miniblocks.get().defaultBlockState(), MiniBlocksBlock.UPDATE_ALL);
+                bstate = level.getBlockState(pos); //update the blockstate
+            } else {
+                return InteractionResult.PASS;
+            }
         }
 
         Vec3i minipos = MiniBlocksBlock.getMiniXYZ(pos, clickloc, context.getClickedFace().getOpposite());
-
         boolean success = MiniBlocksBlock.removeOneMiniblock(level, bstate, pos, minipos);
         if (success) {
             if (level.isClientSide()) {
@@ -69,7 +80,6 @@ public class ChiselItem extends Item {
                     level.addFreshEntity(itemEntity);
                 }
                 
-
                 return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo( broken );
             }       
         }

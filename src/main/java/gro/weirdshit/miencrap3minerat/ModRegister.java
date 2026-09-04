@@ -2,24 +2,19 @@ package gro.weirdshit.miencrap3minerat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.rmi.registry.Registry;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.stream.Stream;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 import gro.weirdshit.miencrap3minerat.ModRegister.Recipe2_Registry;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
@@ -36,6 +31,7 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.feline.Cat;
+import net.minecraft.world.level.block.Block;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 
 record Pair<K, V>(K key, V value) {}
@@ -69,6 +65,7 @@ public class ModRegister {
 
     //public static ArrayList<CTableMenu.CraftRecipe> RECIPES_2 = new ArrayList<CTableMenu.CraftRecipe>();
     public static Recipe2_Registry RECIPES_2 = new Recipe2_Registry();
+    public static ConvertableToMiniblocks_Registry MINIBLOCKS = new ConvertableToMiniblocks_Registry();
 
     private static <T> T classFromResource(Resource res, Class<T> type) {
         try {
@@ -102,6 +99,24 @@ public class ModRegister {
 
     //     return null;
     // }
+
+    public static class ConvertableToMiniblocks_Registry {
+        private Map<Block, Block> reg = new HashMap<>();
+
+        public Optional<Block> get(Block original) {
+            Block result = reg.get(original);
+            if (result != null) {
+                return Optional.of(result);
+            } else {
+                return Optional.empty();
+            }
+        }
+        public void set(Block original, Block miniblocks) {
+            reg.put(original, miniblocks);
+        }
+
+        public ConvertableToMiniblocks_Registry() {}
+    }
 
     public static class Recipe2_Registry { //реестр
         private HashMap<Integer, ArrayList<CraftRecipe>> recipes = new HashMap<>();
@@ -154,7 +169,7 @@ public class ModRegister {
 
         public void addList(List<CraftRecipe> list) {
             for (CraftRecipe recipe : list) {
-                MIENCRAP3MINERAT.LOGGER.debug("111111 "+recipe);
+                // MIENCRAP3MINERAT.LOGGER.debug("111111 "+recipe);
                 add(recipe);
             }
         }
@@ -231,45 +246,5 @@ public class ModRegister {
                 }, reloadExecutor);
             }}
         );
-
-
-
-
-        // ResourceLoader.get(PackType.SERVER_DATA).registerReloadListener(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "recipes2"), new PreparableReloadListener() {
-
-        //     @Override
-        //     public CompletableFuture<Void> reload(SharedState currentReload, Executor taskExecutor, PreparationBarrier preparationBarrier, Executor reloadExecutor) {
-        //         CompletableFuture<List<CraftRecipe>> recipeList = CompletableFuture.supplyAsync(() -> {
-        //             var recipes = new ArrayList<CraftRecipe>();
-        //             var resources = currentReload.resourceManager().listResources("recipes2", path -> path.toString().endsWith(".json"));
-
-        //             MIENCRAP3MINERAT.LOGGER.info("shitty");
-
-        //             resources.forEach((i, resource) -> {
-        //                 CTableMenu.CraftRecipe registered = classFromResource(resource, CTableMenu.CraftRecipe.class);
-        //                 //MIENCRAP3MINERAT.LOGGER.info("resource " + registered.result.name);
-
-        //                 //TODO: vvvvvvvvvvvvvvvvvv
-        //                 recipes.add(registered);
-        //                 //TODO: ^^^^^^^^^^^^^^^^^^
-        //             });
-        //             MIENCRAP3MINERAT.LOGGER.info("addeded");
-
-        //             return recipes;
-        //         }, taskExecutor);
-
-        //         CompletableFuture<List<CraftRecipe>> applyFuture = recipeList.thenCompose(preparationBarrier::wait); 
-        //         /*
-        //         preparedCompletableFuture.thenAccept((data) -> {
-        //             RECIPES_2.add(data);
-        //         }); */
-
-        //         return applyFuture.thenRunAsync(() -> {
-        //             RECIPES_2.clear();
-        //             RECIPES_2.addAll(applyFuture.join());
-        //             MIENCRAP3MINERAT.LOGGER.info("loaded " + RECIPES_2.size() + " recipes");
-        //         }, reloadExecutor);
-        //     }}
-        // );
     }
 }
