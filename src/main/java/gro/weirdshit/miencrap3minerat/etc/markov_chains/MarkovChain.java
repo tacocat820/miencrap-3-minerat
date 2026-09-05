@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.etc.markov_chains;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -62,10 +63,23 @@ class DoubleMap implements Serializable {
         lookup.remove(inverse.get(val));
         inverse.remove(val);
     }
+    public static Integer getRandom(List<Integer> items) {
+        return items.get(new Random().nextInt(items.size()));
+    }
 
     TokenAndCount getFirstInInverse() {
-        for (Map.Entry<Integer,Integer> i : inverse.entrySet()) 
-            return new TokenAndCount(i.getValue(), i.getKey());
+        ArrayList<Integer> best = new ArrayList<>(); int bestCount = 0;
+        for (Map.Entry<Integer,Integer> i : inverse.entrySet()) {
+            if (i.getKey() >= bestCount) bestCount = i.getKey();
+            else break;
+
+            best.add(i.getValue());
+            //return new TokenAndCount(i.getValue(), i.getKey());
+        }
+
+        if (best.size() > 0) {
+            return new TokenAndCount(getRandom(best), bestCount);
+        }
         return null;
     }
 }

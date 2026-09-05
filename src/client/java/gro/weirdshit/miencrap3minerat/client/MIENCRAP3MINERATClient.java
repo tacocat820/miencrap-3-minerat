@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import it.unimi.dsi.fastutil.ints.IntList;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.client.mixin.CameraRotation;
@@ -215,6 +216,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(PlayerHitTensionPayload.TYPE, (payload, context) -> {
 			Music.hit();
+		});
+		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
+			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());
 		});
 
 		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);

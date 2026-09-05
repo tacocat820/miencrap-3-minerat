@@ -1,5 +1,10 @@
 package gro.weirdshit.miencrap3minerat;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.mixin.ThirstMixin;
@@ -10,11 +15,18 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.commands.Commands;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;
+import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.storage.LevelResource;
 
 public class ModCommands {
     public static void generate() {
@@ -86,7 +98,55 @@ public class ModCommands {
                     .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
                     .executes(ctx -> {
                         
-                        TestChain.save();
+                        MIENCRAP3MINERAT.LOGGER.info(ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).toString());
+                        Path path = ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).resolve("data").resolve("testchain.model");
+                        
+                        TestChain.save(path);
+                        return 1;
+                    }));
+        });
+
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("loadmarkov")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        MIENCRAP3MINERAT.LOGGER.info(ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).toString());
+                        Path path = ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).resolve("data").resolve("testchain.model");
+                        
+                        TestChain.load(path);
+                        return 1;
+                    }));
+        });
+
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("trainmarkov")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        MIENCRAP3MINERAT.LOGGER.info(ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).toString());
+                        Path path = ctx.getSource().getServer().getWorldPath(LevelResource.ROOT).resolve("train.txt");
+                        
+                        try {
+                            try (
+                                Stream<String> stream = Files.lines(path)
+                            ) {
+                                stream.forEach(l -> {
+                                    if (l.trim() != "") {
+                                        ctx.getSource().sendSystemMessage(Component.literal(l));                    
+                                        TestChain.model.train(TestChain.model.encode(l));
+                                    }
+                                });
+                            }
+                        } catch(Exception e) {
+		
+                            PlayerList playerList = ctx.getSource().getServer().getPlayerList();
+                            playerList.broadcastSystemMessage(Component.literal(e.toString()), false);
+
+                        }
+
                         return 1;
                     }));
         });

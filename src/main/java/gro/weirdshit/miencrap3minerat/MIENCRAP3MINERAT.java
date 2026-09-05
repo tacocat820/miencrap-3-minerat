@@ -5,6 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 //import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.CreativeModeTab;
@@ -28,6 +29,8 @@ import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import gro.weirdshit.miencrap3minerat.worldgen.RegisterBiomeModifications;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
@@ -37,6 +40,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
@@ -70,41 +74,49 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, boundChatType) -> {
 			String msg = message.removeSignature().signedContent();
 
-			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, TestChain.vocab);
+			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, TestChain.model.vocab);
 			int size = e.size();
 			
 			if (e.size() > 2 
-				&& e.get(0) == TestChain.vocab.getOrAdd("what")
-				&& e.get(1) == TestChain.vocab.getOrAdd("is")) 
+				&& e.get(0) == TestChain.model.vocab.getOrAdd("what")
+				&& e.get(1) == TestChain.model.vocab.getOrAdd("is")) 
 			{
 				ArrayList<Integer> what = new ArrayList<>(e.subList(2, e.size()));
-				what.add(TestChain.vocab.getOrAdd("is"));
+				what.add(TestChain.model.vocab.getOrAdd("is"));
 				
-				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.chain.predictNext(what, TestChain.vocab));
+				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.model.predictNext(what));
 
 				MIENCRAP3MINERAT.LOGGER.info(what.toString());
 		
 				PlayerList playerList = sender.level().getServer().getPlayerList();
 				playerList.broadcastSystemMessage(Component.literal(
-					MarkovTokenizer.decode(what, TestChain.vocab)
+					TestChain.model.decode(what)
 				), false);
 			}
-			else if (e.size() > 1 && e.get(0) == TestChain.vocab.getOrAdd("merl")) {
+			else if (e.size() > 1 && e.get(0) == TestChain.model.vocab.getOrAdd("merl")) {
 
 				ArrayList<Integer> what = new ArrayList<>(e.subList(1, e.size()));
 				
-				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.chain.predictNext(what, TestChain.vocab));
+				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.model.predictNext(what));
 
 				MIENCRAP3MINERAT.LOGGER.info(what.toString());
+
+				String decoded = TestChain.model.decode(what);
 		
 				PlayerList playerList = sender.level().getServer().getPlayerList();
 				playerList.broadcastSystemMessage(Component.literal(
-					MarkovTokenizer.decode(what, TestChain.vocab)
+					decoded
 				), false);
+
+
+				TtsPayload payload = new TtsPayload(decoded);
+				for (ServerPlayer player : playerList.getPlayers()) {
+					ServerPlayNetworking.send(player, payload);
+				}
 			}
 			else {
 
-				TestChain.chain.train(MarkovTokenizer.encode(msg, TestChain.vocab));
+				TestChain.model.train(TestChain.model.encode(msg));
 
 			}
 
