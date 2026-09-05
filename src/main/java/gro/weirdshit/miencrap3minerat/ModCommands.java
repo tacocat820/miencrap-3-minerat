@@ -1,6 +1,7 @@
 package gro.weirdshit.miencrap3minerat;
 
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
+import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.mixin.ThirstMixin;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
@@ -75,6 +76,17 @@ public class ModCommands {
 						if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
 							ServerPlayNetworking.send(player, payload);
                         }
+                        return 1;
+                    }));
+        });
+
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("savemarkov")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        TestChain.save();
                         return 1;
                     }));
         });

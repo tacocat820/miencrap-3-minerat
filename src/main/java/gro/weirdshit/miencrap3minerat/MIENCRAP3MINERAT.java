@@ -10,6 +10,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,15 +72,44 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, TestChain.vocab);
 			int size = e.size();
-			while (e.getLast() != 0 && e.size() < size + 50) e.add(TestChain.chain.predictNext(e, TestChain.vocab));
+			
+			if (e.size() > 2 
+				&& e.get(0) == TestChain.vocab.getOrAdd("what")
+				&& e.get(1) == TestChain.vocab.getOrAdd("is")) 
+			{
+				ArrayList<Integer> what = new ArrayList<>(e.subList(2, e.size()));
+				what.add(TestChain.vocab.getOrAdd("is"));
+				
+				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.chain.predictNext(what, TestChain.vocab));
 
-			MIENCRAP3MINERAT.LOGGER.info(e.toString());
+				MIENCRAP3MINERAT.LOGGER.info(what.toString());
 		
-			PlayerList playerList = sender.level().getServer().getPlayerList();
-			playerList.broadcastSystemMessage(Component.literal(
-				MarkovTokenizer.decode(e, TestChain.vocab)
-			), false);
-			TestChain.chain.train(MarkovTokenizer.encode(msg, TestChain.vocab));
+				PlayerList playerList = sender.level().getServer().getPlayerList();
+				playerList.broadcastSystemMessage(Component.literal(
+					MarkovTokenizer.decode(what, TestChain.vocab)
+				), false);
+			}
+			else if (e.size() > 1 && e.get(0) == TestChain.vocab.getOrAdd("merl")) {
+
+				ArrayList<Integer> what = new ArrayList<>(e.subList(1, e.size()));
+				
+				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.chain.predictNext(what, TestChain.vocab));
+
+				MIENCRAP3MINERAT.LOGGER.info(what.toString());
+		
+				PlayerList playerList = sender.level().getServer().getPlayerList();
+				playerList.broadcastSystemMessage(Component.literal(
+					MarkovTokenizer.decode(what, TestChain.vocab)
+				), false);
+			}
+			else {
+
+				TestChain.chain.train(MarkovTokenizer.encode(msg, TestChain.vocab));
+
+			}
+
+
+			
 		});
 
 		ModBlocks.generate();
