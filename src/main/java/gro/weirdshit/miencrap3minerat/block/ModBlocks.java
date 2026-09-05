@@ -3,20 +3,17 @@ package gro.weirdshit.miencrap3minerat.block;
 import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
-import gro.weirdshit.miencrap3minerat.ModRegister;
 // import gro.weirdshit.miencrap3minerat.block.classes.FaceRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotShapeBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NormalFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleLeavesBlock;
-import gro.weirdshit.miencrap3minerat.block.classes.PrismarineLampBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
-import gro.weirdshit.miencrap3minerat.block.classes.BlockWithoutTexture;
 import gro.weirdshit.miencrap3minerat.block.classes.ConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
@@ -38,7 +35,6 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
-import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -53,6 +49,7 @@ import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -306,10 +303,15 @@ public class ModBlocks {
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(5.0f).build()).usingConvertsTo(PAN.item)
 	);
 
+	// CONNECTED TEXTURES //
     public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TransparentConnectedTextureBlock::new).copyOf(XP_GLASS.block).reg();
 	public static RegisteredBlock CONNECTED_STONE = new GenericBlock("connected_stone", ConnectedTextureBlock::new).copyOf(Blocks.STONE).reg();
 	public static RegisteredBlock CONNECTED_OAK_PLANKS = new GenericBlock("connected_oak_planks", ConnectedTextureBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
+	// --- //
 	
+	public static RegisteredBlock PLASTIC_LADDER = new GenericBlock("plastic_ladder", LadderBlock::new).copyOf(Blocks.LADDER).reg();
+
+	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
 	public static RegisteredBlock CERAMIC_TILES_MINIBLOCKS = new GenericBlock("ceramic_tiles_miniblocks", p -> new MiniBlocksBlock(p, CERAMIC_TILES.block)).copyOf(CERAMIC_TILES.block).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
@@ -331,7 +333,8 @@ public class ModBlocks {
 	public static RegisteredBlock CRIMSON_PLANKS_MINIBLOCKS = new GenericBlock("crimson_planks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.CRIMSON_PLANKS)).copyOf(Blocks.CRIMSON_PLANKS).reg();
 	public static RegisteredBlock IRON_MINIBLOCKS = new GenericBlock("iron_miniblocks", p -> new MiniBlocksBlock(p, Blocks.IRON_BLOCK)).copyOf(Blocks.IRON_BLOCK).reg();
 	public static RegisteredBlock QUARTZ_MINIBLOCKS = new GenericBlock("quartz_miniblocks", p -> new MiniBlocksBlock(p, Blocks.QUARTZ_BLOCK)).copyOf(Blocks.QUARTZ_BLOCK).reg();
-
+	public static RegisteredBlock PUMPKIN_MINIBLOCKS = new GenericBlock("pumpkin_miniblocks", p -> new MiniBlocksBlock(p, Blocks.PUMPKIN)).copyOf(Blocks.PUMPKIN).reg();
+	
 	public static RegisteredBlock BEDROCK_MINIBLOCKS = new GenericBlock("bedrock_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.BEDROCK).reg();
 	public static RegisteredBlock BRICKS_MINIBLOCKS = new GenericBlock("bricks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.BRICKS)).copyOf(Blocks.BRICKS).reg();
 	public static RegisteredBlock MUD_BRICKS_MINIBLOCKS = new GenericBlock("mud_bricks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.MUD_BRICKS)).copyOf(Blocks.MUD_BRICKS).reg();
@@ -355,11 +358,12 @@ public class ModBlocks {
 	public static RegisteredBlock SHROOMLIGHT_MINIBLOCKS = new GenericBlock("shroomlight_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHROOMLIGHT)).copyOf(Blocks.SHROOMLIGHT).reg();
 	public static RegisteredBlock ICE_MINIBLOCKS = new GenericBlock("ice_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ICE)).copyOf(Blocks.ICE).reg();
 	public static RegisteredBlock END_STONE_MINIBLOCKS = new GenericBlock("end_stone_miniblocks", p -> new MiniBlocksBlock(p, Blocks.END_STONE)).copyOf(Blocks.END_STONE).reg();
+	// --- //
+
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock BACKROOMS = new GenericBlock("backrooms", Block::new, properties().sound(SoundType.GRASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
 	//public static GenericBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, properties().sound(SoundType.GLASS));
-    
 
 	public static void generate() {
 		ModShapes.generate();

@@ -1,0 +1,11 @@
+{
+  "parent": "miencrap3minerat:templates/miniblocks_6side",
+  "textures": {
+    "north": "minecraft:block/pumpkin_side",
+    "south": "minecraft:block/pumpkin_side",
+    "west": "minecraft:block/pumpkin_side",
+    "east": "minecraft:block/pumpkin_side",
+    "up": "minecraft:block/pumpkin_top",
+    "down": "minecraft:block/pumpkin_top"
+  }
+}

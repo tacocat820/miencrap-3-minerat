@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "miencrap3minerat:block/plastic_ladder",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "miencrap3minerat:block/plastic_ladder"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/plastic_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/plastic_ladder",
+      "y": 270
+    }
+  }
+}
