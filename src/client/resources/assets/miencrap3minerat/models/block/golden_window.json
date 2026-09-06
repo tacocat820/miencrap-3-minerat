@@ -1,7 +1,6 @@
 {
-  "parent": "miencrap3minerat:templates/block_with_marker",
+  "parent": "block/cube_all",
   "textures": {
-    "b": "miencrap3minerat:block/golden_window",
-    "marker": "marker/shine"
+    "all": "miencrap3minerat:block/golden_window"
   }
 }

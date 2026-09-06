@@ -1,7 +1,6 @@
 {
-	"parent": "miencrap3minerat:templates/block_with_marker",
-	"textures": {
-		"b": "miencrap3minerat:block/bubble_block",
-		"marker": "marker/bubble_shine"
-	 }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "miencrap3minerat:block/bubble_block"
+  }
 }

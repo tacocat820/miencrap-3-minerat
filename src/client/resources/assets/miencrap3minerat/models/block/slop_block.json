@@ -1,6 +1,6 @@
 {
   "parent": "miencrap3minerat:templates/block",
   "textures": {
-    "b": "miencrap3minerat:block/block_of_crumbs"
+    "b": "miencrap3minerat:block/slop_block"
   }
 }
