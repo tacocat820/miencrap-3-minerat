@@ -56,9 +56,11 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.PushReaction;
 
 class GenericBlock {
@@ -367,6 +369,13 @@ public class ModBlocks {
 	public static RegisteredBlock SHROOMLIGHT_MINIBLOCKS = new GenericBlock("shroomlight_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHROOMLIGHT)).copyOf(Blocks.SHROOMLIGHT).reg();
 	public static RegisteredBlock ICE_MINIBLOCKS = new GenericBlock("ice_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ICE)).copyOf(Blocks.ICE).reg();
 	public static RegisteredBlock END_STONE_MINIBLOCKS = new GenericBlock("end_stone_miniblocks", p -> new MiniBlocksBlock(p, Blocks.END_STONE)).copyOf(Blocks.END_STONE).reg();
+	
+	public static RegisteredBlock EXPOSED_COPPER_WALL = new GenericBlock("exposed_copper_wall", p -> new WallBlock(p)).copyOf(Blocks.WAXED_EXPOSED_COPPER).reg();
+	public static RegisteredBlock PALE_SAND = new GenericBlock("pale_sand", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
+	public static RegisteredBlock PALE_SAND_WITH_ROOTS = new GenericBlock("pale_sand_with_roots", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
+	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
+	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
