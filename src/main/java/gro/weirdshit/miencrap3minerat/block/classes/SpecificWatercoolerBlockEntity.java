@@ -82,7 +82,8 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
         WATER(0xA0345FDA, 0xA0344875, ModItems.CUP_OF_WATER.item, ModItems.CUP_OF_WATER.item), 
         LAVA(0xA0DF9033, 0xA0CA4D0D, ModItems.CUP_OF_LAVA.item, ModItems.CUP_OF_OBSIDIAN.item),
         BLOOD(0xA0D31E1D, 0xA0AD0606, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item),
-        EARS(0xA0C77966, 0xA0E4B1A4, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item);
+        EARS(0xA0C77966, 0xA0E4B1A4, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item),
+        OIL(0x00000FFF, 0x000000FF, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item);
         
 
         public int startColor, endColor;
@@ -91,15 +92,17 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
         public static <T extends Item> WaterType fromItem(T item) {
             if (item.equals(Items.WATER_BUCKET)) return WaterType.WATER;
             if (item.equals(Items.LAVA_BUCKET)) return WaterType.LAVA;
-            if (item.equals(ModFluids.BLOOD.item)) return WaterType.BLOOD;
-            if (item.equals(ModFluids.EARS.item)) return WaterType.EARS;
+            if (item.equals(ModFluids.BLOOD_BUCKET.item)) return WaterType.BLOOD;
+            if (item.equals(ModFluids.EARS_BUCKET.item)) return WaterType.EARS;
+            if (item.equals(ModFluids.OIL_BUCKET.item)) return WaterType.OIL;
             return WaterType.UNKNOWN;
         }
         public static WaterType fromItemStack(ItemStack item) {
             if (item.is(Items.WATER_BUCKET)) return WaterType.WATER;
             if (item.is(Items.LAVA_BUCKET)) return WaterType.LAVA;
-            if (item.is(ModFluids.BLOOD.item)) return WaterType.BLOOD;
-            if (item.is(ModFluids.EARS.item)) return WaterType.EARS;
+            if (item.is(ModFluids.BLOOD_BUCKET.item)) return WaterType.BLOOD;
+            if (item.is(ModFluids.EARS_BUCKET.item)) return WaterType.EARS;
+            if (item.is(ModFluids.OIL_BUCKET.item)) return WaterType.OIL;
             return WaterType.UNKNOWN;
         }
         private WaterType(int a, int b, Item hotItem, Item coldItem) {

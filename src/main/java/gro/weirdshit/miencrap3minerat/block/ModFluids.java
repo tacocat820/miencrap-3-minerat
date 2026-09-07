@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.block.fluid.NuclearWasteFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.PissFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.SulfuricAcidFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.WorldDeletingFluid;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
@@ -102,6 +103,11 @@ public class ModFluids {
 	public static final FlowingFluid NUCLEAR_WASTE_STILL = register("nuclear_waste", new NuclearWasteFluid.Source());
     public static RegisteredBlock NUCLEAR_WASTE = new GenericFluid("nuclear_waste",(props) -> new LiquidBlock(ModFluids.NUCLEAR_WASTE_STILL, props)).reg();
 	public static RegisteredItem<?> NUCLEAR_WASTE_BUCKET = ModItems.register("nuclear_waste_bucket", p -> new BucketItem(ModFluids.NUCLEAR_WASTE_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
+	public static final FlowingFluid WORLD_DELETING_FLUID_FLOWING = register("flowing_world_deleting_fluid", new WorldDeletingFluid.Flowing());
+	public static final FlowingFluid WORLD_DELETING_FLUID_STILL = register("world_deleting_fluid", new WorldDeletingFluid.Source());
+    public static RegisteredBlock WORLD_DELETING_FLUID = new GenericFluid("world_deleting_fluid",(props) -> new LiquidBlock(ModFluids.WORLD_DELETING_FLUID_STILL, props)).reg();
+	public static RegisteredItem<?> WORLD_DELETING_FLUID_BUCKET = ModItems.register("world_deleting_fluid_bucket", p -> new BucketItem(ModFluids.WORLD_DELETING_FLUID_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 
     public static void generate() {}

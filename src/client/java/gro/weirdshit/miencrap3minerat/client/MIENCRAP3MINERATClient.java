@@ -206,6 +206,17 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			)
 		);
 
+		FluidRenderingRegistry.register(
+			ModFluids.WORLD_DELETING_FLUID_STILL,
+			ModFluids.WORLD_DELETING_FLUID_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/world_deleting_fluid_still")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/world_deleting_fluid")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/world_deleting_fluid")),
+					BlockTintSources.constant(ARGB.opaque(0xffffff))
+			)
+		);
+
 		// Blocks.RED_STAINED_GLASS
 
 		ClientPlayNetworking.registerGlobalReceiver(FlashPayload.TYPE, (payload, context) -> {
