@@ -175,9 +175,6 @@ public class EnderDragon extends Monster {
 		return flyingPathNavigation;
 	}
 	
-	public boolean isPersistenceRequired() {
-		return true;
-	}
 	@Override
 	protected void checkFallDamage(final double ya, final boolean onGround, final BlockState onState, final BlockPos pos) {
 	}
