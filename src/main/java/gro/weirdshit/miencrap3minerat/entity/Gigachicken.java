@@ -91,7 +91,7 @@ public class Gigachicken extends Monster {
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 10)
+				.add(Attributes.MAX_HEALTH, 100)
 				.add(Attributes.TEMPT_RANGE, 10)
 				.add(Attributes.MOVEMENT_SPEED, 0.25)
 				.add(Attributes.ATTACK_KNOCKBACK, 50.5)

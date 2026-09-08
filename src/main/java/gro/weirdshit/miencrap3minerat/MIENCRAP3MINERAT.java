@@ -8,6 +8,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
@@ -39,6 +43,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.Registry;
@@ -70,6 +75,16 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
 			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
+		});
+		AttackEntityCallback.EVENT.register((p, l, i, e, ee) -> {
+			if (e instanceof Monster && p.gameMode().isSurvival()) {
+
+				PlayerHitTensionPayload payload = new PlayerHitTensionPayload(2);
+				if (p instanceof ServerPlayer serverPlayer) {
+					ServerPlayNetworking.send(serverPlayer, payload);
+				}
+			}
+			return InteractionResult.PASS;
 		});
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, boundChatType) -> {
 			String msg = message.removeSignature().signedContent();

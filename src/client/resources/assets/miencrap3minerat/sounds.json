@@ -233,6 +233,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/stallat","stream": true}]},
 	"ost.br":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/br","stream": true}]},
+	"ost.aria_chemistry":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/aria_chemistry","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

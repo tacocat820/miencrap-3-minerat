@@ -50,8 +50,8 @@ public class Music {
 
         if (minecraft.player != null) {
             if (tense > 10) { battle = true; }
-            if (tense > 40) { tense = 40; }
-            if (tense > 0) { tense -= 1; }
+            if (tense > 20) { tense = 20; }
+            if (tense > 0) { tense -= 3; }
             if (battle) {
                 if (
                     !enemyCheck(minecraft.player) 
@@ -162,6 +162,7 @@ public class Music {
                 return Choose(new SoundEvent[]{
                     MusicSounds.CALM5,
                     MusicSounds.FARD,
+                    MusicSounds.ARIA_CHEMISTRY,
                 });
         
             default:

@@ -18,6 +18,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PcEntityRenderer;
@@ -36,6 +37,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
 	public static final ModelLayerLocation FUNDY = createMain("fundy");
+	public static final ModelLayerLocation MERL = createMain("merl");
 	public static final ModelLayerLocation FISH = createMain("fish");
 	public static final ModelLayerLocation GAMING_CHAIR = createMain("gaming_chair");
 	public static final ModelLayerLocation BAA = createMain("baa");
@@ -70,6 +72,7 @@ public class ModEntityModelLayers {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
 		FundyRenderer.register(FUNDY);
+		MerlRenderer.register(MERL);
 		FishRenderer.register(FISH);
 		GamingChairRenderer.register(GAMING_CHAIR);
 		BaaRenderer.register(BAA);
