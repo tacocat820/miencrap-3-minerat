@@ -319,8 +319,16 @@ public class ModBlocks {
 	public static RegisteredBlock CRAPPY_COBBLESTONE = new GenericBlock("crappy_cobblestone", Block::new, SoundType.STONE, 2.0f,2.0f).reg();
 	public static RegisteredBlock CRAPPY_COBBLESTONE_MINIBLOCKS = new GenericBlock("crappy_cobblestone_miniblocks", p -> new MiniBlocksBlock(p, CRAPPY_COBBLESTONE.block)).copyOf(CRAPPY_COBBLESTONE.block).reg();
 	public static RegisteredBlock BUBBLE_BLOCK = new GenericBlock("bubble_block", Block::new, SoundType.EMPTY, 0.3f,0.3f).reg();
-
 	public static RegisteredBlock PLASTIC_LADDER = new GenericBlock("plastic_ladder", LadderBlock::new).copyOf(Blocks.LADDER).reg();
+	public static RegisteredBlock UNFURNACE = new GenericBlock("unfurnace", HorizontallyRotatingBlock::new, SoundType.STONE, 1.1f,1.1f).reg();
+	public static RegisteredBlock MICRO = new GenericBlock("micro", HorizontallyRotatingBlock::new, SoundType.IRON, 1.0f,1.0f).reg();
+	public static RegisteredBlock MICROWAVE = new GenericBlock("microwave", HorizontallyRotatingBlock::new, SoundType.IRON, 1.1f,1.1f).reg();
+	public static RegisteredBlock EXPOSED_COPPER_WALL = new GenericBlock("exposed_copper_wall", p -> new WallBlock(p)).copyOf(Blocks.WAXED_EXPOSED_COPPER).reg();
+	public static RegisteredBlock PALE_SAND = new GenericBlock("pale_sand", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
+	public static RegisteredBlock PALE_SAND_WITH_ROOTS = new GenericBlock("pale_sand_with_roots", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
+	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
+	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
@@ -369,13 +377,7 @@ public class ModBlocks {
 	public static RegisteredBlock SHROOMLIGHT_MINIBLOCKS = new GenericBlock("shroomlight_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHROOMLIGHT)).copyOf(Blocks.SHROOMLIGHT).reg();
 	public static RegisteredBlock ICE_MINIBLOCKS = new GenericBlock("ice_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ICE)).copyOf(Blocks.ICE).reg();
 	public static RegisteredBlock END_STONE_MINIBLOCKS = new GenericBlock("end_stone_miniblocks", p -> new MiniBlocksBlock(p, Blocks.END_STONE)).copyOf(Blocks.END_STONE).reg();
-	
-	public static RegisteredBlock EXPOSED_COPPER_WALL = new GenericBlock("exposed_copper_wall", p -> new WallBlock(p)).copyOf(Blocks.WAXED_EXPOSED_COPPER).reg();
-	public static RegisteredBlock PALE_SAND = new GenericBlock("pale_sand", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
-	public static RegisteredBlock PALE_SAND_WITH_ROOTS = new GenericBlock("pale_sand_with_roots", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
-	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
-	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
-	
+
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));

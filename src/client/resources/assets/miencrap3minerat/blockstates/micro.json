@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "miencrap3minerat:block/micro"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/micro",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/micro",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/micro",
+      "y": 270
+    }
+  }
+}
