@@ -54,6 +54,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.WallBlock;
@@ -328,6 +329,7 @@ public class ModBlocks {
 	public static RegisteredBlock PALE_SAND_WITH_ROOTS = new GenericBlock("pale_sand_with_roots", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
 	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock OAK_LEAVES_APPLES = new GenericBlock("oak_leaves_apples", p -> new TintedParticleLeavesBlock(0.01F, p), SoundType.GRASS, 1.0f,1.0f).reg();
 
 
 	// VANILLA MINIBLOCKS //

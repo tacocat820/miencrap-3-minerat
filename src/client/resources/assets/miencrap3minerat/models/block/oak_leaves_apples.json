@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "miencrap3minerat:block/oak_leaves_apples"
+  }
+}

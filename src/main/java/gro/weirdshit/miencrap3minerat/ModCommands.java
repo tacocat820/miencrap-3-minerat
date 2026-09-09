@@ -77,6 +77,18 @@ public class ModCommands {
                         return 1;
                     }));
         });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("unwelcom")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        if (ctx.getSource().getEntityOrException() instanceof Player player) {
+                            MIENCRAP3MINERAT.LOGGER.info("asd");
+                            ((ThirstMixinInterface)(Object)player).setThirst(10000);
+                        }
+                        return 1;
+                    }));
+        });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("shake")

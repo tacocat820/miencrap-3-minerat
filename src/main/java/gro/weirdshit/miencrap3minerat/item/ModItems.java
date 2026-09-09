@@ -76,6 +76,13 @@ public class ModItems {
 		new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(7).saturationModifier(3f).build())
 	);
+	public static RegisteredItem<?> BLUE_BANANA = ModItems.register("blue_banana", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(7).saturationModifier(3f).build()));
+	public static RegisteredItem<?> CHERRY_BANANA = ModItems.register("cherry_banana", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(7).saturationModifier(3f).build()));
+	public static RegisteredItem<?> TOMATO_BANANA = ModItems.register("tomato_banana", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(7).saturationModifier(3f).build()));
+
 	public static RegisteredItem<?> URANIUM = ModItems.register("uranium", Item::new, 
 		new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(100).saturationModifier(6f).build())
