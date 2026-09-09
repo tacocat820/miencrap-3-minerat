@@ -115,7 +115,8 @@ public class ModConfiguredFeatures {
 
         // TODO: separate function for builder
         WeightedList.Builder<BlockState> builder = new WeightedList.Builder<BlockState>();
-        builder.add(Blocks.OAK_LEAVES.defaultBlockState(), 4);
+        builder.add(Blocks.OAK_LEAVES.defaultBlockState(), 3);
+        builder.add(ModBlocks.OAK_LEAVES_APPLES.block.defaultBlockState(), 1);
         builder.add(Blocks.AIR.defaultBlockState(), 1);
         builder.add(Blocks.OAK_FENCE.defaultBlockState(), 1);
         WeightedList<BlockState> maybeOakLeaves = builder.build();

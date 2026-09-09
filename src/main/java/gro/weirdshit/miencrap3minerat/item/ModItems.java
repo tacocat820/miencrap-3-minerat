@@ -121,7 +121,7 @@ public class ModItems {
 	public static RegisteredItem<?> FRENCH = ModItems.register("french", WrenchItem::new, new Item.Properties());
 
 	public static RegisteredItem<?> TOMATO = ModItems.register("tomato", Item::new, new Item.Properties()
-		.food(new FoodProperties.Builder().alwaysEdible().nutrition(7).saturationModifier(4.99f).build())
+		.food(new FoodProperties.Builder().nutrition(7).saturationModifier(4.99f).build())
 	);
 
 	public static RegisteredItem<?> ICE_AND_STEEL = ModItems.register("ice_and_steel", Item::new, new Item.Properties());

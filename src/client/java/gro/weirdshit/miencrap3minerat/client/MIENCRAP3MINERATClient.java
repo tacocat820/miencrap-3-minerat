@@ -88,6 +88,17 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 				return ARGB.opaque(0xFFDAB9);
 			}
 		}), ModBlocks.OAK_LEAVES_MINIBLOCKS.block); 
+		BlockColorRegistry.register(List.of(new BlockTintSource() {
+			@Override
+			public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
+				BlockState stateBelow = level.getBlockState(pos.below());
+				return BiomeColors.getAverageFoliageColor(level, pos);
+			}
+			@Override
+			public int color(BlockState state) {
+				return ARGB.opaque(0xFFDAB9);
+			}
+		}), ModBlocks.OAK_LEAVES_APPLES.block); 
 		// ====================
 		BlockColorRegistry.register(List.of(new BlockTintSource() {
 			@Override
