@@ -31,6 +31,7 @@ import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.MbSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
@@ -53,6 +54,9 @@ public class Skyboxes {
     private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky/overworld_day_2.png"));
     private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
 	private static final Skybox MB_SKYBOX = new MbSkybox();
+	private static final Skybox META_SKYBOX = new MetaSkybox();
+	
+	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
@@ -64,6 +68,8 @@ public class Skyboxes {
 			return (T)OVERWORLD_SKYBOX;
 		} else if (dimension.equals(BuiltinDimensionTypes.END.identifier())) {
 			return (T)MB_SKYBOX;
+		} else if (dimension.equals(META_DIMENSION)) {
+			return (T)META_SKYBOX;
 		}
         return (T)TEST_SKYBOX;
     }
@@ -76,21 +82,13 @@ public class Skyboxes {
     private static BufferBuilder buffer;
     private static MappableRingBuffer vertexBuffer;
 
-    private record SkyboxState(
+    public record SkyboxState(
         double aX, double aY, double aZ,
         double bX, double bY, double bZ
     ) {}
 
     public static void extractSkyboxState(LevelExtractionContext context) {
-        Vec3 playerPos = context.levelState().cameraRenderState.pos;
-
-        double xzOffset = 350.0;
-        double yOffset = 256.0;
-
-        skyboxState = new SkyboxState(
-            playerPos.x - xzOffset, playerPos.y - yOffset, playerPos.z - xzOffset,
-            playerPos.x + xzOffset, playerPos.y + yOffset, playerPos.z + xzOffset
-        );
+		skyboxState = getCurrentSkybox().extractSkyboxState(context);
     }
 
     public static void renderAndDrawSkybox(LevelRenderContext context) {

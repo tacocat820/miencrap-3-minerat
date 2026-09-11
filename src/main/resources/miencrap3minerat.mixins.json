@@ -6,6 +6,7 @@
 		"ExampleMixin",
 		"MakeFoliagePlacerTypePublicMixin",
 		"MakeTrunkPlacerTypePublicMixin",
+		"MakeStructurePlacementTypePublicMixin",
 		"PlayerMixin",
 		"RegistryMixin",
 		"ThirstMixin",

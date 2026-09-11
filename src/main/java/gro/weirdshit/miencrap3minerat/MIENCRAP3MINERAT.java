@@ -27,6 +27,7 @@ import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
+import gro.weirdshit.miencrap3minerat.etc.markov_chains.MerlChain;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
@@ -35,9 +36,11 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
+import gro.weirdshit.miencrap3minerat.saved_data.MetMerl;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import gro.weirdshit.miencrap3minerat.worldgen.RegisterBiomeModifications;
 import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
+import gro.weirdshit.miencrap3minerat.worldgen.structure.placements.ModStructurePlacementType;
 import gro.weirdshit.miencrap3minerat.worldgen.trunk.ModWorldgenTrunk;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -62,6 +65,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static List<String> SCHEDULED_MESSAGES = new ArrayList<>();
 
 	@Override
 	public void onInitialize() {
@@ -76,6 +80,15 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
 			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
 		});
+		ServerTickEvents.END_SERVER_TICK.register(m -> {			
+			if (SCHEDULED_MESSAGES.size() > 0) {
+				PlayerList playerList = m.getPlayerList();
+				for (String s : SCHEDULED_MESSAGES) {
+					playerList.broadcastSystemMessage(Component.literal(s), false);
+				}
+				SCHEDULED_MESSAGES.clear();
+			}
+		});
 		AttackEntityCallback.EVENT.register((p, l, i, e, ee) -> {
 			if (e instanceof Monster && p.gameMode().isSurvival()) {
 
@@ -87,52 +100,68 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 			return InteractionResult.PASS;
 		});
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, boundChatType) -> {
+
+			// TODO: please put this in a different class
 			String msg = message.removeSignature().signedContent();
 
-			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, TestChain.model.vocab);
+			ArrayList<Integer> e = MarkovTokenizer.encodeNoEnd(msg, MerlChain.model.vocab);
 			int size = e.size();
 			
-			if (e.size() > 2 
-				&& e.get(0) == TestChain.model.vocab.getOrAdd("what")
-				&& e.get(1) == TestChain.model.vocab.getOrAdd("is")) 
-			{
-				ArrayList<Integer> what = new ArrayList<>(e.subList(2, e.size()));
-				what.add(TestChain.model.vocab.getOrAdd("is"));
-				
-				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.model.predictNext(what));
+			if (MetMerl.getMetMerl(sender.level().getServer()).getMet()) {
+				if (e.size() > 2 
+					&& (e.get(0) == MerlChain.model.vocab.getOrAdd("what") || e.get(0) == MerlChain.model.vocab.getOrAdd("who"))
+					&& e.get(1) == MerlChain.model.vocab.getOrAdd("is")) 
+				{
+					while (e.getLast() == MerlChain.model.vocab.getOrAdd("?")) e.removeLast();
+					
+					ArrayList<Integer> what = new ArrayList<>(e.subList(2, e.size()));
+					what.add(MerlChain.model.vocab.getOrAdd("is"));
 
-				MIENCRAP3MINERAT.LOGGER.info(what.toString());
-		
-				PlayerList playerList = sender.level().getServer().getPlayerList();
-				playerList.broadcastSystemMessage(Component.literal(
-					TestChain.model.decode(what)
-				), false);
-			}
-			else if (e.size() > 1 && e.get(0) == TestChain.model.vocab.getOrAdd("merl")) {
+					while (what.getLast() != 0 && what.size() < size + 50) what.add(MerlChain.model.predictNext(what));
 
-				ArrayList<Integer> what = new ArrayList<>(e.subList(1, e.size()));
-				
-				while (what.getLast() != 0 && what.size() < size + 50) what.add(TestChain.model.predictNext(what));
-
-				MIENCRAP3MINERAT.LOGGER.info(what.toString());
-
-				String decoded = TestChain.model.decode(what);
-		
-				PlayerList playerList = sender.level().getServer().getPlayerList();
-				playerList.broadcastSystemMessage(Component.literal(
-					decoded
-				), false);
-
-
-				TtsPayload payload = new TtsPayload(decoded);
-				for (ServerPlayer player : playerList.getPlayers()) {
-					ServerPlayNetworking.send(player, payload);
+					MIENCRAP3MINERAT.LOGGER.info(what.toString());
+			
+					SCHEDULED_MESSAGES.add(MerlChain.model.decode(what));
 				}
-			}
-			else {
+				else if (e.size() > 2 
+					&& (e.get(0) == MerlChain.model.vocab.getOrAdd("what") || e.get(0) == MerlChain.model.vocab.getOrAdd("who"))
+					&& e.get(1) == MerlChain.model.vocab.getOrAdd("are")) 
+				{
+					while (e.getLast() == MerlChain.model.vocab.getOrAdd("?")) e.removeLast();
 
-				TestChain.model.train(TestChain.model.encode(msg));
+					ArrayList<Integer> what = new ArrayList<>(e.subList(2, e.size()));
+					what.add(MerlChain.model.vocab.getOrAdd("are"));
+					
+					while (what.getLast() != 0 && what.size() < size + 50) what.add(MerlChain.model.predictNext(what));
 
+					MIENCRAP3MINERAT.LOGGER.info(what.toString());
+			
+					SCHEDULED_MESSAGES.add(MerlChain.model.decode(what));
+				}
+				else if (e.size() > 1 && e.get(0) == MerlChain.model.vocab.getOrAdd("merl")) {
+
+					ArrayList<Integer> what = new ArrayList<>(e.subList(1, e.size()));
+					
+					while (what.getLast() != 0 && what.size() < size + 50) what.add(MerlChain.model.predictNext(what));
+
+					MIENCRAP3MINERAT.LOGGER.info(what.toString());
+
+					String decoded = MerlChain.model.decode(what);
+			
+					SCHEDULED_MESSAGES.add(decoded);
+
+					PlayerList playerList = sender.level().getServer().getPlayerList();
+					TtsPayload payload = new TtsPayload(decoded);
+					for (ServerPlayer player : playerList.getPlayers()) {
+						ServerPlayNetworking.send(player, payload);
+					}
+				}
+				else {
+
+					// not yet
+					//TestChain.model.train(TestChain.model.encode(msg));
+
+				}
 			}
 
 
@@ -146,6 +175,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModEntitySpawning.generate();
 		ModWorldgenFoliage.generate();
 		ModWorldgenTrunk.generate();
+		ModStructurePlacementType.generate();
 		ModFluids.generate();
 		ModItems.generate();
 		ModRegister.generate();
@@ -157,6 +187,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		RegisterBiomeModifications.generate();
 
 		TestChain.generate();
+		MerlChain.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}

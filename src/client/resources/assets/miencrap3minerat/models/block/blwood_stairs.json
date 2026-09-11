@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "miencrap3minerat:block/blwood",
+    "side": "miencrap3minerat:block/blwood",
+    "top": "miencrap3minerat:block/blwood"
+  }
+}

@@ -330,7 +330,10 @@ public class ModBlocks {
 	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock OAK_LEAVES_APPLES = new GenericBlock("oak_leaves_apples", p -> new TintedParticleLeavesBlock(0.01F, p), SoundType.GRASS, 1.0f,1.0f).noOcclusion().reg();
-
+	public static RegisteredBlock BLWOOD = new GenericBlock("blwood", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock BLWOOD_STAIRS = new GenericBlock("blwood_stairs", p -> new StairBlock(BLWOOD.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();
+	public static RegisteredBlock BLWOOD_SLAB = new GenericBlock("blwood_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();
+	public static RegisteredBlock BLWOOD_MINIBLOCKS = new GenericBlock("blwood_miniblocks", p -> new MiniBlocksBlock(p, BLWOOD.block)).copyOf(BLWOOD.block).reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
@@ -379,7 +382,8 @@ public class ModBlocks {
 	public static RegisteredBlock SHROOMLIGHT_MINIBLOCKS = new GenericBlock("shroomlight_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHROOMLIGHT)).copyOf(Blocks.SHROOMLIGHT).reg();
 	public static RegisteredBlock ICE_MINIBLOCKS = new GenericBlock("ice_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ICE)).copyOf(Blocks.ICE).reg();
 	public static RegisteredBlock END_STONE_MINIBLOCKS = new GenericBlock("end_stone_miniblocks", p -> new MiniBlocksBlock(p, Blocks.END_STONE)).copyOf(Blocks.END_STONE).reg();
-
+	public static RegisteredBlock PALE_OAK_PLANKS_MINIBLOCKS = new GenericBlock("pale_oak_planks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.PALE_OAK_PLANKS)).copyOf(Blocks.PALE_OAK_PLANKS).reg();
+	
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));

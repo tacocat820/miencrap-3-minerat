@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:test2",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:specific_pos",
+    "salt": 0,
+    "pos_x": 10,
+    "pos_z": 10
+  }
+}

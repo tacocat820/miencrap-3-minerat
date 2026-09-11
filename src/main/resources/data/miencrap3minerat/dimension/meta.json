@@ -1,0 +1,11 @@
+{
+    "type": "miencrap3minerat:blank",
+    "generator": {
+      "type": "minecraft:flat",
+      "settings": {
+        "biome": "miencrap3minerat:meta",
+        "layers": []
+      }
+    }
+  }
+  

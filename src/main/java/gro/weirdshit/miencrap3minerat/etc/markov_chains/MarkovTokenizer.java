@@ -58,6 +58,7 @@ public class MarkovTokenizer implements Serializable {
 
         for (String i : txt.split(" ")) {
             for (String piece : splitWord(i)) {
+                if (piece.trim().isEmpty()) continue;
                 int id = vocab.getOrAdd(piece);
 
                 result.add(id);
