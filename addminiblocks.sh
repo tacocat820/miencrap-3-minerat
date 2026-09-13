@@ -169,4 +169,4 @@ for blockname in $blocks_names; do
   echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$new_block_name\", p -> new MiniBlocksBlock(p, $block_statement)).copyOf($block_statement).reg();" # new
   # echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$new_block_name\", MiniBlocksBlock::new).copyOf($block_statement).reg();" # old
 done
-echo "[!] now add blocks in java (if you doesn't)."
+echo "[!] now add blocks in java (if you haven't)."

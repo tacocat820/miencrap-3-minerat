@@ -18,7 +18,7 @@ done
 
 resources_PATH="src/client/resources"
 
-read -r -p "> Enter texture(s) name(s) for ${modeltype}(s), space as splitter : " textures_names
+read -r -p "> Enter texture name(s) for ${modeltype}(s), space as splitter : " textures_names
 
 for tex_name in $textures_names; do
   if [ "$modeltype" = "item" ]; then

@@ -39,11 +39,13 @@ enum Sky {
     DAY_1(new SkyboxTexture("textures/sky/overworld_day_1.png")),
     DAY_2(new SkyboxTexture("textures/sky/overworld_day_2.png")),
     DAY_PINK(new SkyboxTexture("textures/sky/overworld_day_pink.png")),
+    DAY_BIGCITY(new SkyboxTexture("textures/sky/overworld_day_bigcity.png")),
     DAY_INVERTED(new SkyboxTexture("textures/sky/overworld_day_inverted.png")),
     DAY_PURPLE(new SkyboxTexture("textures/sky/overworld_day_purple.png")),
     DAY_BLACK(new SkyboxTexture("textures/sky/overworld_day_black.png")),
     EVENING(new SkyboxTexture("textures/sky/overworld_evening.png")),
-    NIGHT(new SkyboxTexture("textures/sky/overworld_night.png"));
+    NIGHT(new SkyboxTexture("textures/sky/overworld_night.png")),
+    NIGHT_BIGCITY(new SkyboxTexture("textures/sky/overworld_night_bigcity.png"));
 
     public SkyboxTexture texture;
     private Sky(SkyboxTexture texture) {
@@ -86,6 +88,7 @@ public class OverworldSkybox extends Skybox {
     }
 
     TagKey<Biome> SKY_2_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_sky2"));
+    TagKey<Biome> BIGCITY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bigcity"));
     TagKey<Biome> INVERTED_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_inverted_sky"));
     TagKey<Biome> PINK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_pink_sky"));
     TagKey<Biome> BLACK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_black_sky"));
@@ -100,12 +103,14 @@ public class OverworldSkybox extends Skybox {
             else if (CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_PURPLE);
             else if (CurrentBiome.is(PINK_SKY_BIOME)) transition(Sky.DAY_PINK);
             else if (CurrentBiome.is(BLACK_SKY_BIOME)) transition(Sky.DAY_BLACK);
+            else if (CurrentBiome.is(BIGCITY_BIOME)) transition(Sky.DAY_BIGCITY);
             else if (CurrentBiome.is(SKY_2_BIOME)) transition(Sky.DAY_2);
             else transition(Sky.DAY_1);
         } else if (dt < 14_000) {
             transition(Sky.EVENING);
         } else {
-            transition(Sky.NIGHT);
+            if (CurrentBiome.is(BIGCITY_BIOME)) transition(Sky.NIGHT_BIGCITY);
+            else transition(Sky.NIGHT);
         }
 
         transitionFrom.texture.getTexture();

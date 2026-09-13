@@ -18,4 +18,4 @@ for itemname in $items_names; do
   echo "public static RegisteredItem<?> $upperReg = ModItems.register(\"$itemname\", Item::new, new Item.Properties());"
 done
 echo ""
-echo "[!] now add items in java (if you doesn't)."
+echo "[!] now add items in java (if you haven't)."

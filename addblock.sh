@@ -61,4 +61,4 @@ for blockname in $blocks_names; do
 
   echo "public static RegisteredBlock $upperReg = new GenericBlock(\"$blockname\", Block::new, SoundType.STONE, 1.0f,1.0f).reg();"
 done
-echo "[!] now add blocks in java (if you doesn't)."
+echo "[!] now add blocks in java (if you haven't)."

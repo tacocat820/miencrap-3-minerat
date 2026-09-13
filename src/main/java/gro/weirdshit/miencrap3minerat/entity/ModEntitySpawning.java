@@ -69,8 +69,8 @@ public class ModEntitySpawning {
         SpawnPlacements.register(ModEntityTypes.CRISH, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Crish::checkCrishSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.CRISH, 30, 1, 2);
 
-        SpawnPlacements.register(ModEntityTypes.ANGLERFISH, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Anglerfish::checkAnglerfishSpawnRules);
-        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.WATER_CREATURE, ModEntityTypes.ANGLERFISH, 1, 1, 2);
+        //SpawnPlacements.register(ModEntityTypes.ANGLERFISH, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Anglerfish::checkAnglerfishSpawnRules);
+        //BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.WATER_CREATURE, ModEntityTypes.ANGLERFISH, 1, 1, 2);
 
         // TODO: add biome tags
         /* 
