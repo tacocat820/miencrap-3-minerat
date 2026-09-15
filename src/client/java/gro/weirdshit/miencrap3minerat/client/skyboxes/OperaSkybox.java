@@ -59,7 +59,7 @@ public class OperaSkybox extends Skybox {
                 .putFloat(win.getWidth()).putFloat(win.getHeight())
                 .putFloat((float)camRot.x()).putFloat((float)camRot.y()).putFloat((float)camRot.z())
                 .putFloat((float)cam.x()).putFloat((float)cam.y()).putFloat((float)cam.z())
-                .putFloat(3.14f * (Minecraft.getInstance().level.getGameTime() % 400) / 100.0f);
+                .putFloat(3.14f * ((Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false)) % 400) / 100.0f);
         }
 
     }

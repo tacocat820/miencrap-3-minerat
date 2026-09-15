@@ -14,6 +14,11 @@ layout(std140) uniform Whatever {
 in vec2 texCoord0;
 out vec4 fragColor;
 
+float smin(float a, float b, float k) {
+    float h = clamp(0.5 + 0.5*(a-b)/k, 0.0, 1.0);
+    return mix(a, b, h) - k*h*(1.0-h);
+}
+
 // ray marching
 float sphere(in vec3 p, in vec3 c, float r) {
     return length(p - c) - r;
@@ -28,7 +33,7 @@ float spheres(in vec3 p, in vec3 c, float r) {
     return length(pp - c) - r;
 }
 
-float box(vec3 p, vec3 b) {
+float box(in vec3 p, in vec3 b) {
   vec3 q = abs(p) - b;
   return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
 }
@@ -38,24 +43,25 @@ float sun(in vec3 p, in vec3 c, float r) {
     return length(p - c) - r + offset;
 }
 
-float pyramid( vec3 p, float h ) {
-  float m2 = h*h + 0.25;
-    
-  p.xz = abs(p.xz);
-  p.xz = (p.z>p.x) ? p.zx : p.xz;
-  p.xz -= 0.5;
+float pyramid(in  vec3 p, float h ) {
+    float m2 = h*h + 0.25;
 
-  vec3 q = vec3( p.z, h*p.y - 0.5*p.x, h*p.x + 0.5*p.y);
-  float s = max(-q.x,0.0);
-  float t = clamp( (q.y-0.5*p.z)/(m2+0.25), 0.0, 1.0 );
-  float a = m2*(q.x+s)*(q.x+s) + q.y*q.y;
-  float b = m2*(q.x+0.5*t)*(q.x+0.5*t) + (q.y-m2*t)*(q.y-m2*t);
-    
-  float d2 = min(q.y,-q.x*m2-q.y*0.5) > 0.0 ? 0.0 : min(a,b);
-  return sqrt( (d2+q.z*q.z)/m2 ) * sign(max(q.z,-p.y));
+    p.y = 0.0 - p.y;
+    p.xz = abs(p.xz);
+    p.xz = (p.z>p.x) ? p.zx : p.xz;
+    p.xz -= 0.5;
+
+    vec3 q = vec3( p.z, h*p.y - 0.5*p.x, h*p.x + 0.5*p.y);
+    float s = max(-q.x,0.0);
+    float t = clamp( (q.y-0.5*p.z)/(m2+0.25), 0.0, 1.0 );
+    float a = m2*(q.x+s)*(q.x+s) + q.y*q.y;
+    float b = m2*(q.x+0.5*t)*(q.x+0.5*t) + (q.y-m2*t)*(q.y-m2*t);
+
+    float d2 = min(q.y,-q.x*m2-q.y*0.5) > 0.0 ? 0.0 : min(a,b);
+    return sqrt( (d2+q.z*q.z)/m2 ) * sign(max(q.z,-p.y));
 }
 
-float menger(vec3 p) {
+float menger(in vec3 p) {
     float d = box(p, vec3(1.0));
 
     float s = 1.0;
@@ -75,13 +81,18 @@ float menger(vec3 p) {
     return d;
 }
 
-float plane(vec3 p, float height) {
+float torus( vec3 p, vec2 t ) {
+    vec2 q = vec2(length(p.xz)-t.x,p.y);
+    return length(q)-t.y;
+}
+
+float plane(in vec3 p, float height) {
     return p.y - height;
 }
-float antiplane(vec3 p, float height) {
+float antiplane(in vec3 p, float height) {
     return height - p.y;
 }
-float wavy_plane(vec3 p) {
+float wavy_plane(in vec3 p) {
     float offset = (sin(p.x * 0.5)
         + sin(p.z * 0.3)
         + sin(p.x * 0.14) * 1.54
@@ -91,11 +102,39 @@ float wavy_plane(vec3 p) {
     return p.y - 0.5 + offset;
 }
 
+float floating_balls(in vec3 p) {
+    float ball_1 = sphere(p, vec3(sin(3.0 * GT) * 5.0, 0.0, cos(3.0 * GT) * 5.0), 2.0);
+    float ball_2 = sphere(p, vec3(cos(2.0 * GT) * 4.0, 0.0, sin(2.0 * GT) * 4.0), 2.0);
+    return smin(ball_1, ball_2, 6.3);
+}
+
+float map_the_hub_sky(in vec3 p) {
+
+
+    float v = smin(
+        floating_balls(p - vec3(6.0, 23.0, 6.0)),
+        torus(p - vec3(0.0, 35.0 - (1.0 + sin(GT)) * 12.0, 0.0), vec2(3.0 + (1.0 + sin(GT)) * 12.0, 1.5)),
+        5.5
+    );
+    if (sphere(p, vec3(-7.0, 24.0, -7.0), 6.0) <= 0.0) v = smin(v, menger(p - vec3(-7.0, 24.0 + sin(3.0 * GT) * 5.0, -7.0)), 2.0);
+    else v = min(v, sphere(p, vec3(-7.0, 24.0, -7.0), 5.0));
+
+    v = smin(v, sun(p, vec3(sin(0.5 * GT) * 25.0, 28.0, cos(0.5 * GT) * 25.0), 12.0), 0.9);
+
+
+    return v;
+
+}
+
 float map_the_world(in vec3 p) {
 
     if (p.y < 5.0) {
 
-        if (abs(p.x) < 6.0 && abs(p.z) < 6.0) {
+        float v = box(p - vec3(-11.0, 0.0, -11.0), vec3(3.0,30.0,3.0));
+        float plane = max(wavy_plane(p),-v);
+        return min(plane, antiplane(p, 6.0));
+
+        /*if (abs(p.x) < 6.0 && abs(p.z) < 6.0) {
 
             float box = box(p - vec3(-3.0, 0.0, 0.0), vec3(1.0,1.0,1.0));
             float ball = sphere(p, vec3(-3.0, 0.0, 0.0), 2.0);
@@ -110,15 +149,19 @@ float map_the_world(in vec3 p) {
 
             return min(min(wavy_plane(p), antiplane(p, 6.0)), box(p, vec3(5.9, 5.9, 5.9)));
 
-        }
-    } else {
+        }*/
+    } else if (p.y < 15.0) {
         //float tetrahedrom = mandelbulb(p - vec3(-3.0, 0.0, 0.0));
-        float balls = spheres(p, vec3(0.0, 10.0, 0.0), 0.5);
+        float balls = spheres(p, vec3(0.0, 6.0, 0.0), 0.5);
         
-        float sun = sun(p, vec3(0.0, 10.0, 0.0), 3.0);
+        float sun = sun(p, vec3(21.0, 6.0, 21.0), 3.0);
         
-        return min(min(balls, sun), plane(p, 4.0));
+        return min(min(min(balls, sun), plane(p, 4.0)), box(p - vec3(0.0, 35.1, 0.0), vec3(50.0, 20.0, 50.0)));
 
+    } else if (box(p - vec3(0.0, 35.0, 0.0), vec3(50.0, 20.0, 50.0)) <= 0.0) {
+        return min(map_the_hub_sky(p), plane(p, 9.5));
+    } else {
+        return min(box(p - vec3(0.0, 35.1, 0.0), vec3(50.0, 20.0, 50.0)), plane(p, 9.5));
     }
 }
 vec3 get_normal(vec3 position) {
@@ -168,7 +211,7 @@ void main() {
     vec2 screenPos = gl_FragCoord.xy / vec2(max(W,H), max(W,H));
     vec2 uv = screenPos * 2.0 - 1.0;
 
-    vec3 cam = vec3(CX, CY + 45.5, CZ);
+    vec3 cam = vec3(CX + 8.0, CY + 45.5, CZ + 8.0);
 
     float fov = 1.0;
     

@@ -235,6 +235,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/br","stream": true}]},
 	"ost.aria_chemistry":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/aria_chemistry","stream": true}]},
+	"ost.aria_math":
+	{"category": "music","sounds": [{"name": "minecraft:music/game/creative/aria_math","stream": true}]},
 	"bee":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:bee","stream": false}]},
 	"wing":

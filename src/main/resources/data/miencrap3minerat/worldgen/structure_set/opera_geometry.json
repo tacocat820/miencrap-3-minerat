@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:opera_geometry",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:specific_pos",
+    "salt": 0,
+    "pos_x": 1,
+    "pos_z": 1
+  }
+}

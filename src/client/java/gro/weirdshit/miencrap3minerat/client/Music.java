@@ -28,6 +28,8 @@ public class Music {
     private static TagKey<Biome> SCARY = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "scary"));
     private static TagKey<Biome> WEIRD = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "weird"));
     private static TagKey<Biome> HOT = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "hot"));
+    
+    private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
 
 
     static Random rand = new Random();
@@ -104,7 +106,11 @@ public class Music {
                 });
             case PEACEFUL:
 
-                if (CurrentBiome.is(SCARY)) return Choose(new SoundEvent[]{
+                if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
+                    MusicSounds.ARIA_MATH,
+                    MusicSounds.KI
+                });
+                else if (CurrentBiome.is(SCARY)) return Choose(new SoundEvent[]{
                     MusicSounds.DIE,
                     MusicSounds.TASWELL,
                     MusicSounds.POOM,
