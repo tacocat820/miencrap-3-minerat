@@ -30,11 +30,12 @@ import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
-import gro.weirdshit.miencrap3minerat.client.skyboxes.MbSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.EndSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.OperaSkybox;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.minecraft.client.Minecraft;
@@ -53,10 +54,12 @@ public class Skyboxes {
 
     private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky/overworld_day_2.png"));
     private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
-	private static final Skybox MB_SKYBOX = new MbSkybox();
+	private static final Skybox END_SKYBOX = new EndSkybox();
 	private static final Skybox META_SKYBOX = new MetaSkybox();
+	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
 	
-	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"); 
+	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
+	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
@@ -67,9 +70,11 @@ public class Skyboxes {
 		if (dimension.equals(BuiltinDimensionTypes.OVERWORLD.identifier())) {
 			return (T)OVERWORLD_SKYBOX;
 		} else if (dimension.equals(BuiltinDimensionTypes.END.identifier())) {
-			return (T)MB_SKYBOX;
+			return (T)END_SKYBOX;
 		} else if (dimension.equals(META_DIMENSION)) {
 			return (T)META_SKYBOX;
+		} else if (dimension.equals(OPERA_DIMENSION)) {
+			return (T)OPERA_SKYBOX;
 		}
         return (T)TEST_SKYBOX;
     }

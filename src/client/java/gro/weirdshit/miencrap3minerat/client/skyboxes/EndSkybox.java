@@ -18,7 +18,7 @@ import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec2;
 
-public class MbSkybox extends Skybox {
+public class EndSkybox extends Skybox {
 
     private float mod(float a, float b) {
         return ((a % b) + b) % b;
@@ -27,7 +27,7 @@ public class MbSkybox extends Skybox {
     private static final int UBO_SIZE = new Std140SizeCalculator().putFloat().putFloat().putFloat().putFloat().putFloat().get();
     private final MappableRingBuffer ubo = new MappableRingBuffer(() -> "MB Skybox UBO", 130, UBO_SIZE);
 
-    public MbSkybox() {
+    public EndSkybox() {
         super(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/sky.png"));
     }
     public RenderPipeline getPipeline() {

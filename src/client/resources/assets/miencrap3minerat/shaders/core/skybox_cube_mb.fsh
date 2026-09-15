@@ -54,7 +54,7 @@ void main() {
     vec2 screenPos = gl_FragCoord.xy / vec2(W, H);
 
     vec2 z = vec2(0.0, screenPos.x - 0.1); // vec2 z = vec2(0.0, screenPos.x);
-    vec2 e = vec2(2.0 + (GT - 1.0) * 0.5, 0.0); // 
+    vec2 e = vec2(2.0 + (1.0 + GT) * 3.0, 0.0); // 
     vec2 c = (gl_FragCoord.xy * vec2(2.0, 2.0) + vec2((CY - 300.0) * 30.0, -1500.0 - CX * 30.0)) / vec2(W, H);
 
     int it = 0;

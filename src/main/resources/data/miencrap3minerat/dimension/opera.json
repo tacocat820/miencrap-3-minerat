@@ -1,0 +1,18 @@
+{
+  "type": "miencrap3minerat:blank",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "miencrap3minerat:opera",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "height": 20,
+          "block": "minecraft:barrier"
+        }
+      ],
+      "structure_overrides": []
+    }
+  }
+}
