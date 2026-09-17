@@ -20,6 +20,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificObamiumBlock;
@@ -281,7 +282,7 @@ public class ModBlocks {
 	public static RegisteredBlock BRAZIL = new GenericBlock("brazil", RotatedPillarBlock::new, SoundType.GLASS, 0.5f,1.0f).reg();
 	public static RegisteredBlock TRASH_BAG = new GenericBlock("trash_bag", DustFallingBlock::new, SoundType.AZALEA_LEAVES, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock BLISSFUL_GRASS = new GenericBlock("blissful_grass", Block::new, SoundType.GRASS, 0.0f,0.0f).noOcclusion().noCollision().reg();
-	public static RegisteredBlock BLISS_PC = new GenericBlock("bliss_pc", SpecificBlissPcBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock BLISS_PC = new GenericBlock("bliss_pc", SpecificBlissPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SOLID_DUST_MINIBLOCKS = new GenericBlock("solid_dust_miniblocks", p -> new MiniBlocksBlock(p, SOLID_DUST.block)).copyOf(SOLID_DUST.block).reg();
@@ -334,6 +335,9 @@ public class ModBlocks {
 	public static RegisteredBlock BLWOOD_STAIRS = new GenericBlock("blwood_stairs", p -> new StairBlock(BLWOOD.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();
 	public static RegisteredBlock BLWOOD_SLAB = new GenericBlock("blwood_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();
 	public static RegisteredBlock BLWOOD_MINIBLOCKS = new GenericBlock("blwood_miniblocks", p -> new MiniBlocksBlock(p, BLWOOD.block)).copyOf(BLWOOD.block).reg();
+	public static RegisteredBlock REDWALL = new GenericBlock("redwall", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	
+	public static RegisteredBlock GEOMETRY_PC = new GenericBlock("geometry_pc", SpecificGeometryPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();

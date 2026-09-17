@@ -50,11 +50,6 @@ public class OperaSkybox extends Skybox {
 
             // MIENCRAP3MINERAT.LOGGER.info(String.valueOf(cam.y));
 
-            MIENCRAP3MINERAT.LOGGER.info(String.valueOf(camRot.x()));
-            MIENCRAP3MINERAT.LOGGER.info(String.valueOf(camRot.y()));
-            MIENCRAP3MINERAT.LOGGER.info(String.valueOf(camRot.z()));
-            MIENCRAP3MINERAT.LOGGER.info("---");
-
             Std140Builder.intoBuffer(view.data())
                 .putFloat(win.getWidth()).putFloat(win.getHeight())
                 .putFloat((float)camRot.x()).putFloat((float)camRot.y()).putFloat((float)camRot.z())

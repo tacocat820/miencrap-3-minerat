@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import it.unimi.dsi.fastutil.ints.IntList;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
@@ -19,8 +20,11 @@ import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.special.BlissPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import gro.weirdshit.miencrap3minerat.client.special.GeometryPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
+import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitionPipelines;
+import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -75,6 +79,8 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		MusicSounds.generate();
 		Pipelines.generate();
+		// what a looooooong name
+		BoxTransitionPipelines.generate();
 
 		// BIOME TINTED vvvvvv
 		BlockColorRegistry.register(List.of(new BlockTintSource() {
@@ -239,17 +245,24 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(PlayerHitTensionPayload.TYPE, (payload, context) -> {
 			Music.hit();
 		});
+		ClientPlayNetworking.registerGlobalReceiver(StartBoxTransitionPayload.TYPE, (payload, context) -> {
+			MIENCRAP3MINERAT.LOGGER.info("shit");
+			BoxTransitions.startBoxTransition(payload.pos(), Minecraft.getInstance().level.getGameTime());
+		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());
 		});
 
 		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.BLISS_PC_ENTITY_TYPE, BlissPcRenderer.Renderer::new);
+		BlockEntityRenderers.register(ModBlockEntities.GEOMETRY_PC_ENTITY_TYPE, GeometryPcRenderer.Renderer::new);
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 
 		LevelRenderEvents.END_EXTRACTION.register(Skyboxes::extractSkyboxState);
+		LevelRenderEvents.END_EXTRACTION.register(BoxTransitions::extractBoxTransitionState);
 		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(Skyboxes::renderAndDrawSkybox);
+		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(BoxTransitions::renderAndDraw);
 	}
 	
 }

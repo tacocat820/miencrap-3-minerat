@@ -74,6 +74,14 @@ public class Pipelines {
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
+    public static final RenderPipeline GEOMETRY_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
+		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/geometry_pc"))
+        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/geometry_pc"))
+        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/geometry_pc"))
+        .withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
+        .withDepthStencilState(DepthStencilState.DEFAULT)
+        .build()
+    );
     
     public static void generate() {}
 }

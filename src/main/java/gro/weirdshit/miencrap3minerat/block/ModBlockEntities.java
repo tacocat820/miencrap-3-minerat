@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.block;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2BlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
@@ -26,6 +27,9 @@ public class ModBlockEntities {
 
   public static final BlockEntityType<SpecificBlissPcBlockEntity> BLISS_PC_ENTITY_TYPE =
   register("bliss_pc", SpecificBlissPcBlockEntity::new, ModBlocks.BLISS_PC.block);
+
+  public static final BlockEntityType<SpecificGeometryPcBlockEntity> GEOMETRY_PC_ENTITY_TYPE =
+  register("geometry_pc", SpecificGeometryPcBlockEntity::new, ModBlocks.GEOMETRY_PC.block);
 
   public static final BlockEntityType<SpecificCTable2BlockEntity> CRAFTING_TABLE_2_ENTITY =
   register("crafting_table_2", SpecificCTable2BlockEntity::new, ModBlocks.CRAFTING_TABLE_2.block);

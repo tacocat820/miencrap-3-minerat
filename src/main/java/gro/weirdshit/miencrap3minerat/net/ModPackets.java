@@ -5,6 +5,7 @@ import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerUsePayload;
@@ -27,6 +28,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> SCREENSHAKE_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ScreenshakePayload.TYPE, ScreenshakePayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> PLAYER_HIT_TENSION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(PlayerHitTensionPayload.TYPE, PlayerHitTensionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> TTS_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(TtsPayload.TYPE, TtsPayload.CODEC);
+    public static CustomPacketPayload.TypeAndCodec<?, ?> BOX_TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartBoxTransitionPayload.TYPE, StartBoxTransitionPayload.CODEC);
 
     public static void clientGenerate() {}
     public static void generate() {
