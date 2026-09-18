@@ -23,6 +23,7 @@ import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.GeometryPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
+import gro.weirdshit.miencrap3minerat.client.special.XpGlassBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitionPipelines;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
@@ -256,6 +257,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.BLISS_PC_ENTITY_TYPE, BlissPcRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.GEOMETRY_PC_ENTITY_TYPE, GeometryPcRenderer.Renderer::new);
+		BlockEntityRenderers.register(ModBlockEntities.XP_GLASS_ENTITY_TYPE, XpGlassBlockRenderer.Renderer::new);
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 

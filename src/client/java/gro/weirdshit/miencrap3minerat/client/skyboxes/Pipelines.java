@@ -82,6 +82,14 @@ public class Pipelines {
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
-    
+    public static final RenderPipeline XP_GLASS_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
+		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/xp_glass"))
+        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
+        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
+        .withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
+        .withDepthStencilState(DepthStencilState.DEFAULT)
+        .build()
+    );
+
     public static void generate() {}
 }

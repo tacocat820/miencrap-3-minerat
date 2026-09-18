@@ -33,6 +33,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlass;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
@@ -204,7 +205,7 @@ public class ModBlocks {
     public static RegisteredBlock DIRT = new GenericBlock("dirt", SpecificDirtBlock::new, SoundType.GRAVEL,0.5f,0.5f).noCollision().reg();
     public static RegisteredBlock CHAIR = new GenericBlock("chair", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.CHAIR_SHAPE), SoundType.STONE,0.5f,0.5f).reg();
     public static RegisteredBlock RED_ICE = new GenericBlock("red_ice", SpecificRedIceBlock::new, SoundType.GLASS,3.0f,0.5f).noOcclusion().reg();
-    public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", TransparentBlock::new, SoundType.GLASS,1.0f,1.5f).noOcclusion().reg();
+	public static RegisteredBlock XP_GLASS = new GenericBlock("xp_glass", SpecificXpGlass::new, SoundType.GLASS,1.0f,1.5f).noOcclusion().reg();
 	public static RegisteredBlock XP_GLASS_MINIBLOCKS = new GenericBlock("xp_glass_miniblocks", p -> new MiniBlocksBlock(p, XP_GLASS.block)).copyOf(XP_GLASS.block).reg();
     public static RegisteredBlock WETWALL = new GenericBlock("wetwall", NormalFallingBlock::new, SoundType.CROP,3.0f,0.5f).reg();
     public static RegisteredBlock DRYWALL = new GenericBlock("drywall", p -> new SpecificDrywallBlock(WETWALL.block, p), SoundType.CROP,32000.0f,32000.0f).reg();
