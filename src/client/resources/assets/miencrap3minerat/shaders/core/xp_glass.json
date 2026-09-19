@@ -7,10 +7,12 @@
         "srcalpha": "one",
         "dstalpha": "zero"
     },
-    "vertex": "miencrap3minerat:blocks/xp_glass",
-    "fragment": "miencrap3minerat:blocks/xp_glass",
+    "vertex": "miencrap3minerat:core/blocks/xp_glass",
+    "fragment": "miencrap3minerat:core/blocks/xp_glass",
     "attributes": [ "Position", "Color", "UV0", "UV2", "Normal" ],
     "uniforms": [
+        { "name": "Light0_Direction", "type": "float", "count": 3, "values": [0.0, 0.0, 0.0] },
+        { "name": "Light1_Direction", "type": "float", "count": 3, "values": [0.0, 0.0, 0.0] },
         { "name": "ModelViewMat", "type": "matrix4x4", "count": 1, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
         { "name": "ProjMat", "type": "matrix4x4", "count": 1, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] }
     ]

@@ -14,14 +14,30 @@ out vec3 Pos;
 flat out int m3mType;
 
 uniform float GameTime;
+uniform vec3 Light0_Direction;
+uniform vec3 Light1_Direction;
+
 
 void main() {
-    gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
     sphericalVertexDistance = fog_spherical_distance(Position);
     cylindricalVertexDistance = fog_cylindrical_distance(Position);
     vertexColor = Color;
 
     m3mType = int(Color.g * 256);
+
+    vec3 CustomPosOffset = vec3(0,0,0);
+    if (m3mType == 2) { // wave block
+        // CustomPosOffset = vec3( sin(Position.x), sin(Position.y), sin(Position.z) );
+        CustomPosOffset = vec3(cos(Position.z)-1, sin(Position.x + Position.y + vertexColor.r*3.145*2), cos(Position.x)-1);
+        // 
+
+    }
+    else if (m3mType == 3) { // wtf block
+        CustomPosOffset = vec3(cos(Position.z)-1, sin(Position.y), cos(Position.x)-1);
+    }
+
+    gl_Position = ProjMat * ModelViewMat * vec4(Position + CustomPosOffset, 1.0);
+
     Pos = Position; 
 }

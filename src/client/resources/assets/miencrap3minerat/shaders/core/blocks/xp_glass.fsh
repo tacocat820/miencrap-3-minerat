@@ -4,6 +4,8 @@
 #moj_import <minecraft:dynamictransforms.glsl>
 
 uniform sampler2D Sampler0;
+uniform vec3 Light0_Direction;
+uniform vec3 Light1_Direction;
 
 in float sphericalVertexDistance;
 in float cylindricalVertexDistance;
@@ -34,11 +36,21 @@ void main() {
             color = vec4(0,0,0,0);
             discard;
         }
-
-        // color = vec4(mod(Pos.x, 1.0),mod(Pos.y, 1.0),mod(Pos.z, 1.0), 0.5);
     }
     else if (m3mType == 1) {
         color = vec4(mod(Pos.x, 1.0),mod(Pos.y, 1.0),mod(Pos.z, 1.0), 0.5);
+    }
+    else if (m3mType == 2) {
+        color = vec4(
+            vec3(0.2,0.2,0.9) + vec3( abs( sin(Pos.x + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) - 0.5 ),
+            0.5
+        );
+    }
+    else if (m3mType == 3) {
+        color = vec4(
+            vec3(1.0-mod(Pos.y, 1.0),1.0-mod(Pos.x, 1.0),1.0-mod(Pos.z, 1.0)),
+            1.0
+        );
     }
     else {
         discard;

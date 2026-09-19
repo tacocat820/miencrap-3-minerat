@@ -48,7 +48,9 @@ import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.renderer.BiomeColors;
@@ -260,7 +262,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntities.BLISS_PC_ENTITY_TYPE, BlissPcRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.GEOMETRY_PC_ENTITY_TYPE, ctx -> new GeometryPcRenderer.Renderer(ctx));
 		BlockEntityRenderers.register(ModBlockEntities.XP_GLASS_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<SpecificXpGlassBlockEntity>(ctx, "xp_glass", 1.0f / 256.0f));
-		BlockEntityRenderers.register(ModBlockEntities.MATRIX_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheMatrixBlock.BlockEntity>(ctx, "matrix_block", 2.0f / 256.0f, -0.01F));
+		BlockEntityRenderers.register(ModBlockEntities.MATRIX_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheMatrixBlock.BlockEntity>(ctx, "matrix_block", 2.0f / 256.0f, 0));
+		BlockEntityRenderers.register(ModBlockEntities.WAVE_BLOCK_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheWaveBlock.BlockEntity>(ctx, "wave_block", 3.0f / 256.0f, 0));
+		BlockEntityRenderers.register(ModBlockEntities.LIQUID_MATRIX_BLOCK_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheLiquidMatrix.BlockEntity>(ctx, "liquid_matrix", 4.0f / 256.0f, 0));
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 

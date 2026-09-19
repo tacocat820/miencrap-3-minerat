@@ -34,7 +34,9 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlass;
+import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
@@ -341,6 +343,8 @@ public class ModBlocks {
 	
 	public static RegisteredBlock GEOMETRY_PC = new GenericBlock("geometry_pc", SpecificGeometryPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock MATRIX_BLOCK = new GenericBlock("matrix_block", p -> new TheMatrixBlock.Block(p), SoundType.STONE, 32.0f,32000.0f).noOcclusion().reg();
+	public static RegisteredBlock WAVE_BLOCK = new GenericBlock("wave_block", TheWaveBlock.Block::new, SoundType.NYLIUM, 4.0f,4.0f).reg();
+	public static RegisteredBlock LIQUID_MATRIX = new GenericBlock("liquid_matrix", TheLiquidMatrix.Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
