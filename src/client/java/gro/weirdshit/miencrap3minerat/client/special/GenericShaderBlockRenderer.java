@@ -13,6 +13,7 @@ import org.joml.Vector3fc;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.block.classes.BlockEntityForShader;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
@@ -33,24 +34,38 @@ import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Util;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
-public class XpGlassBlockRenderer {
+public class GenericShaderBlockRenderer {
     public static class RenderState extends BlockEntityRenderState {        
         public final Set<Direction> facesToShow = EnumSet.noneOf(Direction.class);
     }
     
-    public static class Renderer implements BlockEntityRenderer<SpecificXpGlassBlockEntity, RenderState> {
-        public Renderer(BlockEntityRendererProvider.Context context) {
+    public static class Renderer<T extends BlockEntityForShader> implements BlockEntityRenderer<T, RenderState> {
+        private String name;
+        private float argument;
+        private float offset = 0.002F;
+
+        public Renderer(BlockEntityRendererProvider.Context context, String name, float argument) {
+            this.name = name;
+            this.argument = argument;
+            // System.out.println("RDADRARDRYADTYUGUI "+ this.offset);
+	    }
+        public Renderer(BlockEntityRendererProvider.Context context, String name, float argument, float offset) {
+            this.name = name;
+            this.argument = argument;
+            this.offset = offset;
+            // System.out.println("RDADRARDRYADTYUGUI "+ this.offset);
 	    }
 
-        public static final RenderType STATIC_RENDER_TYPE = RenderType.create("xp_glass", 
-            RenderSetup.builder(Pipelines.XP_GLASS_PIPELINE)
+        public RenderType RENDER_TYPE = RenderType.create(name, 
+            RenderSetup.builder(Pipelines.GENERIC_BLOCK_PIPELINE)
             .createRenderSetup());
 
-        private static final Vector3fc FROM = new Vector3f(0.01F, 0.01F, 0.01F);
-        private static final Vector3fc TO = new Vector3f(1.0F - 0.01F, 1.0F - 0.01F, 1.0F - 0.01F);
-        private static final Map<Direction, List<Vector3fc>> FACES = Util.makeEnumMap(
+        private Vector3fc FROM = new Vector3f(offset);
+        private Vector3fc TO = new Vector3f(1.0F - offset);
+        private Map<Direction, List<Vector3fc>> FACES = Util.makeEnumMap(
             Direction.class,
             direction -> {
                 FaceInfo faceInfo = FaceInfo.fromFacing(direction);
@@ -69,7 +84,7 @@ public class XpGlassBlockRenderer {
         }
 
         @Override
-        public void extractRenderState(SpecificXpGlassBlockEntity blockEntity, RenderState state, float tickProgress, Vec3 cameraPos, @Nullable ModelFeatureRenderer.CrumblingOverlay crumblingOverlay) {
+        public void extractRenderState(T blockEntity, RenderState state, float tickProgress, Vec3 cameraPos, @Nullable ModelFeatureRenderer.CrumblingOverlay crumblingOverlay) {
             
             BlockEntityRenderer.super.extractRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
             state.facesToShow.clear();
@@ -81,7 +96,7 @@ public class XpGlassBlockRenderer {
             }
         }
 
-        protected static void submitCube(
+        protected void submitCube(
             final Collection<Direction> facesToShow, final RenderType renderType, final PoseStack poseStack, final SubmitNodeCollector submitNodeCollector
         ) {
             if (!facesToShow.isEmpty()) {
@@ -89,10 +104,10 @@ public class XpGlassBlockRenderer {
                     for (Direction direction : facesToShow) {
                         for (Vector3fc faceVertex : FACES.get(direction)) {
                             buffer.addVertex(pose, faceVertex).setColor(
-                                0.01f * (float)(Minecraft.getInstance().level.getGameTime() % 100),
-                                1.0f,
-                                1.0f,
-                                0.5f
+                                /* R */ 0.01f * (float)(Minecraft.getInstance().level.getGameTime() % 100),
+                                /* G */ argument,
+                                /* B */ 1.0f,
+                                /* A */ 0.5f
                             );
                         }
                     }
@@ -104,7 +119,7 @@ public class XpGlassBlockRenderer {
         public void submit(
             RenderState state, PoseStack matrices, SubmitNodeCollector queue, CameraRenderState cameraState
         ) {
-            submitCube(state.facesToShow, STATIC_RENDER_TYPE, matrices, queue);
+            submitCube(state.facesToShow, RENDER_TYPE, matrices, queue);
         }
 
 

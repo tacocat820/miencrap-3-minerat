@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.Registry;
@@ -35,8 +36,8 @@ public class ModBlockEntities {
   public static final BlockEntityType<SpecificCTable2BlockEntity> CRAFTING_TABLE_2_ENTITY =
   register("crafting_table_2", SpecificCTable2BlockEntity::new, ModBlocks.CRAFTING_TABLE_2.block);
 
-  public static final BlockEntityType<SpecificXpGlassBlockEntity> XP_GLASS_ENTITY_TYPE =
-  register("xp_glass", SpecificXpGlassBlockEntity::new, ModBlocks.XP_GLASS.block);
+  public static final BlockEntityType<SpecificXpGlassBlockEntity> XP_GLASS_ENTITY_TYPE = register("xp_glass", SpecificXpGlassBlockEntity::new, ModBlocks.XP_GLASS.block);
+  public static final BlockEntityType<TheMatrixBlock.BlockEntity> MATRIX_ENTITY_TYPE = register("matrix_block", TheMatrixBlock.BlockEntity::new, ModBlocks.MATRIX_BLOCK.block);
 
   private static <T extends BlockEntity> BlockEntityType<T> register(
     String name,

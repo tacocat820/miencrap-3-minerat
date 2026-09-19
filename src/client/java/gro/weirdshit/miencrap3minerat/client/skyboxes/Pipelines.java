@@ -82,7 +82,7 @@ public class Pipelines {
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
-    public static final RenderPipeline XP_GLASS_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_PROJECTION_SNIPPET)
+    public static final RenderPipeline GENERIC_BLOCK_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_PROJECTION_SNIPPET)
 		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/xp_glass"))
         .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
         .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
