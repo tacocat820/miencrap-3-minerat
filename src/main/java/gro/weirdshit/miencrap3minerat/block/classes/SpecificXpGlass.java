@@ -28,10 +28,6 @@ public class SpecificXpGlass extends TransparentBlock implements EntityBlock {
         super(properties);
     }
 
-    protected RenderShape getRenderShape(final BlockState state) {
-        return RenderShape.INVISIBLE;
-    }
-
     @Override
     protected MapCodec<? extends SpecificXpGlass> codec() {
         return CODEC;

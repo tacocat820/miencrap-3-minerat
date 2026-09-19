@@ -150,7 +150,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		}); 
 
 		
-
+		
 		//BlockRenderLayerMap.putBlock(ModBlocks.red, ChunkSectionLayer.CUTOUT);
 		FluidRenderingRegistry.register(
 			ModFluids.ACID_STILL,

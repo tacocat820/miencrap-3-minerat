@@ -10,6 +10,8 @@ in vec4 Color;
 out float sphericalVertexDistance;
 out float cylindricalVertexDistance;
 out vec4 vertexColor;
+out vec3 Pos;
+
 uniform float GameTime;
 
 void main() {
@@ -18,4 +20,6 @@ void main() {
     sphericalVertexDistance = fog_spherical_distance(Position);
     cylindricalVertexDistance = fog_cylindrical_distance(Position);
     vertexColor = Color;
+
+    Pos = Position; 
 }

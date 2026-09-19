@@ -48,8 +48,8 @@ public class XpGlassBlockRenderer {
             RenderSetup.builder(Pipelines.XP_GLASS_PIPELINE)
             .createRenderSetup());
 
-        private static final Vector3fc FROM = new Vector3f(0.0F, 0.0F, 0.0F);
-        private static final Vector3fc TO = new Vector3f(1.0F, 1.0F, 1.0F);
+        private static final Vector3fc FROM = new Vector3f(-0.01F, -0.01F, -0.01F);
+        private static final Vector3fc TO = new Vector3f(1.01F, 1.01F, 1.01F);
         private static final Map<Direction, List<Vector3fc>> FACES = Util.makeEnumMap(
             Direction.class,
             direction -> {
@@ -88,7 +88,12 @@ public class XpGlassBlockRenderer {
                 submitNodeCollector.submitCustomGeometry(poseStack, renderType, (pose, buffer) -> {
                     for (Direction direction : facesToShow) {
                         for (Vector3fc faceVertex : FACES.get(direction)) {
-                            buffer.addVertex(pose, faceVertex).setColor(0.01f * (float)(Minecraft.getInstance().level.getGameTime() % 100), 1.0f, 1.0f, 1.0f);
+                            buffer.addVertex(pose, faceVertex).setColor(
+                                0.01f * (float)(Minecraft.getInstance().level.getGameTime() % 100),
+                                1.0f,
+                                1.0f,
+                                1.0f
+                            );
                         }
                     }
                 });

@@ -1,0 +1,17 @@
+{
+    "blend": {
+        "func": "add",
+        "srcrgb": "src_alpha",
+        "dstrgb": "one_minus_src_alpha",
+        "funcalpha": "add",
+        "srcalpha": "one",
+        "dstalpha": "zero"
+    },
+    "vertex": "miencrap3minerat:blocks/xp_glass",
+    "fragment": "miencrap3minerat:blocks/xp_glass",
+    "attributes": [ "Position", "Color", "UV0", "UV2", "Normal" ],
+    "uniforms": [
+        { "name": "ModelViewMat", "type": "matrix4x4", "count": 1, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ProjMat", "type": "matrix4x4", "count": 1, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] }
+    ]
+}
