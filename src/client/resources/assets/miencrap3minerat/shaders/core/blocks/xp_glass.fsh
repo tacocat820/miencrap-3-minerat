@@ -25,7 +25,7 @@ void main() {
     vec4 color;
 
     if ( pos2 > 4 ) {
-        color = vec4(vec3(1.0), 0.5);
+        color = vec4(vec3(1.0), 0.1);
     }
     else {
         color = vec4(0,0,0,0);
