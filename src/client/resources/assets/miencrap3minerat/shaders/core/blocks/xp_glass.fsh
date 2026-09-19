@@ -42,7 +42,7 @@ void main() {
     }
     else if (m3mType == 2) {
         color = vec4(
-            vec3(0.2,0.2,0.9) + vec3( abs( sin(Pos.x + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) - 0.5 ),
+            vec3(0.2,0.2,0.9) + vec3( abs( sin(Pos.x + Pos.z + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) * 0.5 - 0.5 ),
             0.5
         );
     }

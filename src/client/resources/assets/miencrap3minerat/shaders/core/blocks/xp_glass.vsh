@@ -29,12 +29,12 @@ void main() {
     vec3 CustomPosOffset = vec3(0,0,0);
     if (m3mType == 2) { // wave block
         // CustomPosOffset = vec3( sin(Position.x), sin(Position.y), sin(Position.z) );
-        CustomPosOffset = vec3(cos(Position.z)-1, sin(Position.x + Position.y + vertexColor.r*3.145*2), cos(Position.x)-1);
+        CustomPosOffset = vec3(0.0, sin(Position.x + Position.z + vertexColor.r*3.145*2) * 0.5 - 0.5, 0.0);
         // 
 
     }
     else if (m3mType == 3) { // wtf block
-        CustomPosOffset = vec3(cos(Position.z)-1, sin(Position.y), cos(Position.x)-1);
+        CustomPosOffset = vec3(cos(Position.z) * 0.3, sin(Position.y) * 0.3 , cos(Position.x) * 0.3);
     }
 
     gl_Position = ProjMat * ModelViewMat * vec4(Position + CustomPosOffset, 1.0);
