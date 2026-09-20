@@ -7,7 +7,9 @@ import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.CompareOp;
 import com.mojang.blaze3d.shaders.UniformType;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat.Mode;
+import com.mojang.blaze3d.vertex.VertexFormatElement;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -82,12 +84,22 @@ public class Pipelines {
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );
+
+    public static final VertexFormat FULL_VERTEX_FORMAT = VertexFormat.builder()
+        .add("Position", VertexFormatElement.POSITION)
+        .add("Color", VertexFormatElement.COLOR)
+        // .add("UV0", VertexFormatElement.UV0)
+        // .add("UV2", VertexFormatElement.UV2)
+        // .add("Normal", VertexFormatElement.NORMAL)
+    .build();
+
+
     public static final RenderPipeline GENERIC_BLOCK_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_PROJECTION_SNIPPET)
 		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/xp_glass"))
         .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
         .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
         .withColorTargetState(new ColorTargetState(BlendFunction.TRANSLUCENT))
-        .withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
+        .withVertexFormat(FULL_VERTEX_FORMAT, Mode.QUADS)
         .withDepthStencilState(DepthStencilState.DEFAULT)
         .build()
     );

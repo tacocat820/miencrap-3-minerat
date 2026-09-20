@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
@@ -45,38 +46,52 @@ public class GenericShaderBlockRenderer {
     public static class Renderer<T extends BlockEntityForShader> implements BlockEntityRenderer<T, RenderState> {
         private String name;
         private float argument;
-        private float offset = 0.002F;
+        private float offset = 0.002f;
 
         public Renderer(BlockEntityRendererProvider.Context context, String name, float argument) {
             this.name = name;
             this.argument = argument;
-            // System.out.println("RDADRARDRYADTYUGUI "+ this.offset);
+            init();
 	    }
         public Renderer(BlockEntityRendererProvider.Context context, String name, float argument, float offset) {
             this.name = name;
             this.argument = argument;
             this.offset = offset;
-            // System.out.println("RDADRARDRYADTYUGUI "+ this.offset);
+            init();
 	    }
 
-        public RenderType RENDER_TYPE = RenderType.create(name, 
+        public RenderType RENDER_TYPE = RenderType.create(
+            "name",
             RenderSetup.builder(Pipelines.GENERIC_BLOCK_PIPELINE)
+        .createRenderSetup());
+
+        private Map<Direction, List<Vector3fc>> FACES;
+
+
+
+        private void init() {
+            RENDER_TYPE = RenderType.create(
+                name, 
+                RenderSetup.builder(Pipelines.GENERIC_BLOCK_PIPELINE)
             .createRenderSetup());
 
-        private Vector3fc FROM = new Vector3f(offset);
-        private Vector3fc TO = new Vector3f(1.0F - offset);
-        private Map<Direction, List<Vector3fc>> FACES = Util.makeEnumMap(
-            Direction.class,
-            direction -> {
-                FaceInfo faceInfo = FaceInfo.fromFacing(direction);
-                return List.of(
-                    faceInfo.getVertexInfo(0).select(FROM, TO),
-                    faceInfo.getVertexInfo(1).select(FROM, TO),
-                    faceInfo.getVertexInfo(2).select(FROM, TO),
-                    faceInfo.getVertexInfo(3).select(FROM, TO)
-                );
-            }
-        );
+            Vector3fc FROM = new Vector3f(this.offset);
+            Vector3fc TO = new Vector3f(1.0F - this.offset);
+            FACES = Util.makeEnumMap(
+                Direction.class,
+                direction -> {
+                    FaceInfo faceInfo = FaceInfo.fromFacing(direction);
+                    return List.of(
+                        faceInfo.getVertexInfo(0).select(FROM, TO),
+                        faceInfo.getVertexInfo(1).select(FROM, TO),
+                        faceInfo.getVertexInfo(2).select(FROM, TO),
+                        faceInfo.getVertexInfo(3).select(FROM, TO)
+                    );
+                }
+            );
+        }
+
+
 
         @Override
         public RenderState createRenderState() {

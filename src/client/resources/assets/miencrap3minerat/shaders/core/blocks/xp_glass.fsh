@@ -13,9 +13,11 @@ in vec4 vertexColor;
 in vec4 texProj0;
 in vec2 texCoord;
 in vec2 texCoord2;
+in vec4 lightColor;
 
 flat in int m3mType;
 in vec3 Pos;
+in vec3 Norm;
 
 out vec4 fragColor;
 
@@ -45,6 +47,7 @@ void main() {
             vec3(0.2,0.2,0.9) + vec3( abs( sin(Pos.x + Pos.z + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) * 0.5 - 0.5 ),
             0.5
         );
+        // color = vec4(Norm, 0.8);
     }
     else if (m3mType == 3) {
         color = vec4(

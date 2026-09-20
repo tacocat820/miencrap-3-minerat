@@ -6,11 +6,15 @@
 
 in vec3 Position;
 in vec4 Color;
+in vec3 Normal;
 
 out float sphericalVertexDistance;
 out float cylindricalVertexDistance;
 out vec4 vertexColor;
 out vec3 Pos;
+out vec3 Norm;
+out vec4 lightColor;
+
 flat out int m3mType;
 
 uniform float GameTime;
@@ -39,5 +43,6 @@ void main() {
 
     gl_Position = ProjMat * ModelViewMat * vec4(Position + CustomPosOffset, 1.0);
 
-    Pos = Position; 
+    Pos = Position;
+    Norm = Normal;
 }
