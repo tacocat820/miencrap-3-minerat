@@ -15,6 +15,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.ConnectedTextureBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.CustomCraftingTableBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
@@ -53,6 +54,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -345,6 +347,24 @@ public class ModBlocks {
 	public static RegisteredBlock MATRIX_BLOCK = new GenericBlock("matrix_block", p -> new TheMatrixBlock.Block(p), SoundType.STONE, 32.0f,32000.0f).noOcclusion().reg();
 	public static RegisteredBlock WAVE_BLOCK = new GenericBlock("wave_block", TheWaveBlock.Block::new, SoundType.NYLIUM, 4.0f,4.0f).noOcclusion().noCollision().reg();
 	public static RegisteredBlock LIQUID_MATRIX = new GenericBlock("liquid_matrix", TheLiquidMatrix.Block::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+
+	public static RegisteredBlock WHITE_CRAFTING_TABLE = new GenericBlock("white_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock ORANGE_CRAFTING_TABLE = new GenericBlock("orange_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock MAGENTA_CRAFTING_TABLE = new GenericBlock("magenta_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock LIGHT_BLUE_CRAFTING_TABLE = new GenericBlock("light_blue_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock YELLOW_CRAFTING_TABLE = new GenericBlock("yellow_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock LIME_CRAFTING_TABLE = new GenericBlock("lime_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock PINK_CRAFTING_TABLE = new GenericBlock("pink_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock GRAY_CRAFTING_TABLE = new GenericBlock("gray_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock LIGHT_GRAY_CRAFTING_TABLE = new GenericBlock("light_gray_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock CYAN_CRAFTING_TABLE = new GenericBlock("cyan_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock PURPLE_CRAFTING_TABLE = new GenericBlock("purple_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock BLUE_CRAFTING_TABLE = new GenericBlock("blue_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock BROWN_CRAFTING_TABLE = new GenericBlock("brown_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock GREEN_CRAFTING_TABLE = new GenericBlock("green_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock RED_CRAFTING_TABLE = new GenericBlock("red_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock BLACK_CRAFTING_TABLE = new GenericBlock("black_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
+	public static RegisteredBlock NEON_CRAFTING_TABLE = new GenericBlock("neon_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();

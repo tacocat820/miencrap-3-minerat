@@ -7,6 +7,8 @@
 		"MakeFoliagePlacerTypePublicMixin",
 		"MakeTrunkPlacerTypePublicMixin",
 		"MakeStructurePlacementTypePublicMixin",
+		"MakeStillValidPublicMixin",
+		"CraftingMenuMixin",
 		"PlayerMixin",
 		"RegistryMixin",
 		"ThirstMixin",
