@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +34,11 @@ public class TheWaveBlock {
         }
 
         @Override
+        protected boolean skipRendering(final BlockState state, final BlockState neighborState, final Direction direction) {
+            return neighborState.is(this) ? true : super.skipRendering(state, neighborState, direction);
+        }
+
+        @Override
         public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
             return new BlockEntity(pos, state);
         }
@@ -47,15 +53,28 @@ public class TheWaveBlock {
                     RandomSource random = level.getRandom();
                     boolean isMoving = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
                     if (isMoving) {
-                        level.addParticle(
-                            ParticleTypes.CLOUD,
-                            entity.getX(),
-                            pos.getY() + 1,
-                            entity.getZ(),
-                            Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F,
-                            0.05F,
-                            Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F
-                        );
+                        if (random.nextBoolean() && random.nextBoolean()) {
+                            level.addParticle(
+                                ParticleTypes.CLOUD,
+                                entity.getX() + (random.nextDouble()-0.5)*1.2,
+                                pos.getY() + 1 + (random.nextDouble()-0.5)*1.2,
+                                entity.getZ() + (random.nextDouble()-0.5)*1.2,
+                                Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F,
+                                0.05F,
+                                Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F
+                            );  
+                        } else {
+                            level.addParticle(
+                                ParticleTypes.BUBBLE,
+                                entity.getX() + (random.nextDouble()-0.5)*1.2,
+                                pos.getY() + 1 + (random.nextDouble()-0.5)*1.2,
+                                entity.getZ() + (random.nextDouble()-0.5)*1.2,
+                                Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F,
+                                0.05F,
+                                Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F
+                            );
+                        }
+
                     }
                     }
                 }
@@ -72,6 +91,7 @@ public class TheWaveBlock {
                     }
                 );
                 effectApplier.apply(InsideBlockEffectType.EXTINGUISH);
+                effectApplier.apply(InsideBlockEffectType.FREEZE);
             }
     }
 
