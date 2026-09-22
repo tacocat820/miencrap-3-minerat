@@ -42,17 +42,22 @@ void main() {
     else if (m3mType == 1) {
         color = vec4(mod(Pos.x, 1.0),mod(Pos.y, 1.0),mod(Pos.z, 1.0), 0.5);
     }
-    else if (m3mType == 2) {
+    else if (m3mType == 2) { //waves
         color = vec4(
             vec3(0.2,0.2,0.9) + vec3( abs( sin(Pos.x + Pos.z + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) * 0.5 - 0.5 ),
             0.5
         );
-        // color = vec4(Norm, 0.8);
     }
-    else if (m3mType == 3) {
+    else if (m3mType == 3) { //liquid matrix
         color = vec4(
             vec3(1.0-mod(Pos.y, 1.0),1.0-mod(Pos.x, 1.0),1.0-mod(Pos.z, 1.0)),
             1.0
+        );
+    }
+    else if (m3mType == 4) { //LAVA waves
+        color = vec4(
+            vec3(0.9,0.5,0.2) + vec3( abs( sin(Pos.x + Pos.z + Pos.y + vertexColor.r * 3.145*2 - 0.2) ) * 0.5 - 0.5 ),
+            0.85
         );
     }
     else {

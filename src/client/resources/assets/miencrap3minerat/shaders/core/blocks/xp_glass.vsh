@@ -31,7 +31,7 @@ void main() {
     m3mType = int(Color.g * 256);
 
     vec3 CustomPosOffset = vec3(0,0,0);
-    if (m3mType == 2) { // wave block
+    if (m3mType == 2 || m3mType == 4) { // wave block
         // CustomPosOffset = vec3( sin(Position.x), sin(Position.y), sin(Position.z) );
         CustomPosOffset = vec3(0.0, sin(Position.x + Position.z + vertexColor.r*3.145*2) * 0.5 - 0.5, 0.0);
         // 

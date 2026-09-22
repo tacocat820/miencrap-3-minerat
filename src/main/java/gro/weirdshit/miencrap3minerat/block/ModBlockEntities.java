@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
@@ -42,6 +43,7 @@ public class ModBlockEntities {
   public static final BlockEntityType<TheMatrixBlock.BlockEntity> MATRIX_ENTITY_TYPE = register("matrix_block", TheMatrixBlock.BlockEntity::new, ModBlocks.MATRIX_BLOCK.block);
   public static final BlockEntityType<TheWaveBlock.BlockEntity> WAVE_BLOCK_ENTITY_TYPE = register("wave_block", TheWaveBlock.BlockEntity::new, ModBlocks.WAVE_BLOCK.block);
   public static final BlockEntityType<TheLiquidMatrix.BlockEntity> LIQUID_MATRIX_BLOCK_ENTITY_TYPE = register("liquid_matrix", TheLiquidMatrix.BlockEntity::new, ModBlocks.LIQUID_MATRIX.block);
+  public static final BlockEntityType<TheLavaWaveBlock.BlockEntity> LAVA_WAVE_BLOCK_ENTITY_TYPE = register("lava_wave_block", TheLavaWaveBlock.BlockEntity::new, ModBlocks.LAVA_WAVES.block);
 
   private static <T extends BlockEntity> BlockEntityType<T> register(
     String name,
