@@ -23,6 +23,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
@@ -36,6 +38,8 @@ import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class ModItems {
@@ -192,6 +196,36 @@ public class ModItems {
 	public static RegisteredItem<?> DIRT_SHOVEL = ModItems.register("dirt_shovel", Item::new, new Item.Properties().shovel(ToolMaterial.WOOD, 1.1f, 1).durability(6));
 	public static RegisteredItem<?> DIRT_HOE = ModItems.register("dirt_hoe", Item::new, new Item.Properties().hoe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
 
+	public static RegisteredItem<?> KETCHUP = ModItems.register("ketchup", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(8).saturationModifier(4.0f).build()));
+	public static RegisteredItem<?> AUX = ModItems.register("aux", Item::new, new Item.Properties());
+	public static RegisteredItem<?> EARPHONES = ModItems.register("earphones", Item::new, new Item.Properties());
+	public static RegisteredItem<?> RAM = ModItems.register("ram", Item::new, new Item.Properties());
+
+	public static RegisteredItem<?> COMPUTER_SOUP = ModItems.register("computer_soup", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(100).saturationModifier(0f).build()).usingConvertsTo(Items.BOWL));
+	public static RegisteredItem<?> ETHANOL = ModItems.register("ethanol", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(Items.GLASS_BOTTLE));  // TODO: make it make you drunk
+	public static RegisteredItem<?> CHLORAMPHENICOL = ModItems.register("chloramphenicol", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(Items.GLASS_BOTTLE)); // TODO: make it kill you ig
+	public static RegisteredItem<?> CHOCCY_MILK = ModItems.register("choccy_milk", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink()
+		.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.ABSORPTION, 200))).build()));
+	
+	public static RegisteredItem<?> MUG = ModItems.register("mug", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CHOCCY_MILK_MUG = ModItems.register("choccy_milk_mug", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(ModItems.MUG.item));
+	public static RegisteredItem<?> ICE_CREAM_MUG = ModItems.register("ice_cream_mug", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(ModItems.MUG.item)); // TODO: add a rainbow effect
+
+	public static RegisteredItem<?> ICE_CREAM = ModItems.register("ice_cream", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(7).saturationModifier(3.5f).build()).usingConvertsTo(Items.BOWL));
+	public static RegisteredItem<?> MELTED_ICE_CREAM = ModItems.register("melted_ice_cream", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink()
+		.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.LEVITATION, 100))).build()));
+	public static RegisteredItem<?> GLASS_OF_ICE_CREAM = ModItems.register("glass_of_ice_cream", Item::new, new Item.Properties());
+	public static RegisteredItem<?> HYPERMANGAN_ICE_CREAM = ModItems.register("hypermangan_ice_cream", Item::new, new Item.Properties()); 
+	
 	public static void generate() {
 		// Items.CHEST
 	}
