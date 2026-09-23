@@ -39,6 +39,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 
 public class GenericShaderBlockRenderer {
+
+    /*
+    0. create class of block & block ent
+    1. create BlockEntityType in ModBlockEntities
+    2. register BlockEntityRenderers in Client
+    3.1. configure argument
+    4. edit the shader(s)
+    */
+
     public static class RenderState extends BlockEntityRenderState {        
         public final Set<Direction> facesToShow = EnumSet.noneOf(Direction.class);
     }

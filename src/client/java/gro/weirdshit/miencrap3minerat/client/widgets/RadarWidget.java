@@ -28,7 +28,7 @@ public class RadarWidget extends AbstractWidget {
     protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         offset += 7; 
         if (offset >= 180) {offset -= 180; value = this.valueFunction.get(); } //обновление (чтобы нада!!)
-
+        
         graphics.outline(getX()-1, getY()-1, width+2, height+2, outlineColor);
 
         float y_anim = (float) Math.abs( Math.sin(
