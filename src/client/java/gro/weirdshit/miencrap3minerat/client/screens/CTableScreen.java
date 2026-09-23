@@ -34,6 +34,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private static final Identifier CONTAINER_TEXTURE = Identifier.fromNamespaceAndPath("miencrap3minerat","textures/gui/container/crafting_table_2.png");
 	private static final Identifier RECIPE_BOOK = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/recipe_book");
 	private static final Identifier BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button");
+	private static final Identifier ACTIVE_BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button_active");
 	private static final Identifier OK_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/book");
 	private static final int SLOT_SIZE = AbstractContainerMenu.SLOT_SIZE;
 
@@ -82,11 +83,20 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
     	private final Supplier<Float> timeFunction;
 
     	private final static int CELL_SIZE = 18;
+
     	private final static int EDGES_OFFSET = 11;
-    	private final static int IN_ROW = 7;
+
+    	private final static int X_OFFSET = EDGES_OFFSET;
+    	private final static int Y_OFFSET = EDGES_OFFSET+CELL_SIZE;
+
+    	private final static int COLUMNS = 7;
+    	private final static int ROWS = 7;
+    	private final static int MAX_ITEMS = COLUMNS*ROWS;
+
     	private final static int outlineColor = 0xCC_FF0000; // d
 
 		public Point2i cursor = new Point2i(-1,-1);
+		public int choosed = -1;
 
 		public TheRecipeBook(Supplier<Boolean> is_visible, int x, int y, int width, int height, Component message,
 				ScrollbarSettings scrollbarSettings, Supplier<Float> time) {
@@ -95,18 +105,21 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 			timeFunction = time;
 		}
 
-		private void clickOnNumber(final MouseButtonEvent event) {
+		private void clickOnSmthing(final MouseButtonEvent event) {
 			cursor = Point2i.from(event.x(), event.y());
 
-			int trueX = (int)event.x() - getX() - EDGES_OFFSET;
-			int trueY = (int)event.y() - getY() - EDGES_OFFSET;
+			int trueX = (int)event.x() - getX() - X_OFFSET;
+			int trueY = (int)event.y() - getY() - Y_OFFSET;
 
-			LOGGER.info("sus " + trueX + "  " + trueY);
+			int cellX = trueX / CELL_SIZE;
+			int cellY = trueY / CELL_SIZE;
+
+			choosed = cellX + cellY * COLUMNS;
 		}
 
 		@Override
 		public void onClick(final MouseButtonEvent event, final boolean doubleClick) {
-			clickOnNumber(event);
+			clickOnSmthing(event);
 		}
 
 		@Override
@@ -115,13 +128,20 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 				graphics.blitSprite(RenderPipelines.GUI_TEXTURED, RECIPE_BOOK, this.getX(), this.getY(), 256, 256);
 
-				for (int i = 0; i < 12; i++) {
-					int aX = CELL_SIZE * (i%IN_ROW);
-					int aY = CELL_SIZE * (i/IN_ROW);
+				for (int i = 0; i < MAX_ITEMS; i++) {
+					int aX = CELL_SIZE * (i%COLUMNS);
+					int aY = CELL_SIZE * (i/COLUMNS);
 
-					graphics.blitSprite(
-						RenderPipelines.GUI_TEXTURED, BUTTON_SPRITE, getX()+EDGES_OFFSET + aX, getY()+EDGES_OFFSET + aY, 16, 16
-					);
+					if (choosed == i) {
+						graphics.blitSprite(
+							RenderPipelines.GUI_TEXTURED, ACTIVE_BUTTON_SPRITE, getX()+X_OFFSET + aX, getY()+Y_OFFSET + aY, 16, 16
+						);
+					} else {
+						graphics.blitSprite(
+							RenderPipelines.GUI_TEXTURED, BUTTON_SPRITE, getX()+X_OFFSET + aX, getY()+Y_OFFSET + aY, 16, 16
+						);
+					}
+
 				}
 
 
@@ -130,10 +150,6 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 			}
 		}
-
-		// public void tick() {
-		// 	super.tick(); // Важно вызвать супер-метод
-		// }
 
 		@Override
 		protected void updateWidgetNarration(NarrationElementOutput output) {
@@ -151,9 +167,6 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		@Override
 		protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
 			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, OK_SPRITE, this.getX(), this.getY(), this.width, this.height);
-			// if (bookOpened) {
-			// 	graphics.blitSprite(RenderPipelines.GUI_TEXTURED, RECIPE_BOOK, this.getX()+32, this.getY(), 256, 256);
-			// }
 		}
 
 		@Override

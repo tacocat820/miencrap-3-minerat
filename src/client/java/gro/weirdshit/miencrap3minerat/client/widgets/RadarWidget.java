@@ -14,7 +14,7 @@ public class RadarWidget extends AbstractWidget {
     private final static int startColor = 0xAA_660404; // s
     private final static int endColor = 0xFF_AA0014; // e
     private final static int emptyColor = 0xCC_666666; // d
-    private final static int outlineColor = 0xCC_232323; // d
+    private final static int outlineColor = 0xCC_111111; // d
 
     private final Supplier<Float> valueFunction;
     private float value = 0;
