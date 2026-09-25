@@ -26,6 +26,7 @@ import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.GenericShaderBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitionPipelines;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -68,6 +69,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -80,6 +82,7 @@ import net.minecraft.world.entity.LightningBolt;
 public class MIENCRAP3MINERATClient implements ClientModInitializer {
 
 	private int flashTime = 0;
+	private boolean isBlooming = false;
 
 	@Override
 	public void onInitializeClient() {
@@ -143,6 +146,29 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 				if (flashTime == 0) Minecraft.getInstance().gameRenderer.clearPostEffect();
 			}
 		}); 
+
+		ClientTickEvents.START_CLIENT_TICK.register(m -> {	
+
+			if (Minecraft.getInstance().player != null) {
+				float bloomIntensity = Minecraft.getInstance().player.getEffectBlendFactor(ModEffects.BLOOM, 1.0F);
+				
+				if (bloomIntensity > 0.0f) {
+
+					MIENCRAP3MINERAT.LOGGER.info("bloo");
+
+					MakeSetPostEffectPublicMixin postEffect = (MakeSetPostEffectPublicMixin)(Minecraft.getInstance().gameRenderer);
+					postEffect.miencrap3minerat$setPostEffect(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bloom"));
+					isBlooming = true;
+
+				} else {
+
+					if (isBlooming) Minecraft.getInstance().gameRenderer.clearPostEffect();
+					isBlooming = false;
+				}
+			}
+
+		}); 
+
 		ClientTickEvents.START_CLIENT_TICK.register(m -> {	
 			// TODO: optimize?
 			if (Minecraft.getInstance().player != null) {

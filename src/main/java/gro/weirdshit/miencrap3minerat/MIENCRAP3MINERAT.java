@@ -24,6 +24,7 @@ import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
@@ -184,6 +185,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModPackets.generate();
 		ModMenuType.generate();
 		ModParticles.generate();
+		ModEffects.generate();
 		RegisterBiomeModifications.generate();
 
 		TestChain.generate();
