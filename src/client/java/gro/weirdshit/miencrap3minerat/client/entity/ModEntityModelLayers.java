@@ -30,6 +30,8 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.RepeerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SlaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.WaterDeerRenderer;
+import gro.weirdshit.miencrap3minerat.entity.WaterDeer;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
 
@@ -50,6 +52,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
 	public static final ModelLayerLocation STEVE_JOBS = createMain("steve_jobs");
+	public static final ModelLayerLocation WATER_DEER = createMain("water_deer");
 	public static final ModelLayerLocation SLAVE = createMain("slave");
 	public static final ModelLayerLocation ENDER_DRAGON = createMain("ender_dragon");
 	public static final ModelLayerLocation POL_POT = createMain("pol_pot");
@@ -85,6 +88,7 @@ public class ModEntityModelLayers {
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
 		SteveJobsRenderer.register(STEVE_JOBS);
+		WaterDeerRenderer.register(WATER_DEER);
 		EnderDragonRenderer.register(ENDER_DRAGON);
 		SlaveRenderer.register(SLAVE);
 		PolPotRenderer.register(POL_POT);

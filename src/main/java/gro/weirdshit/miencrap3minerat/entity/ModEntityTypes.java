@@ -102,6 +102,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<SteveJobs>of(SteveJobs::new, MobCategory.CREATURE)
 					.sized(0.7f, 3.0f)
 	);
+	public static final EntityType<WaterDeer> WATER_DEER = register(
+			"water_deer",
+			EntityType.Builder.<WaterDeer>of(WaterDeer::new, MobCategory.CREATURE)
+					.sized(1.1f, 2.0f)
+	);
 	public static final EntityType<Slave> SLAVE = register(
 			"slave",
 			EntityType.Builder.<Slave>of(Slave::new, MobCategory.CREATURE)
@@ -187,6 +192,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(STEVE_JOBS, SteveJobs.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(WATER_DEER, WaterDeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(POL_POT, PolPot.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ENDER_DRAGON, EnderDragon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(SLAVE, Slave.createCubeAttributes());
