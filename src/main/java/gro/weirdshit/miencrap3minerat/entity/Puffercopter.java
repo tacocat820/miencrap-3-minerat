@@ -1,10 +1,13 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
+import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
@@ -111,6 +114,23 @@ public class Puffercopter extends PathfinderMob {
 		entityData.set(SHITTING, dancing);
 	}
 
+	public void checkDespawn() {
+		
+		if (!(level() instanceof ServerLevel level)) return;
+
+		float wtf = WtfLevel.getWtfForLevel(level);
+		int maxCount = Math.round(wtf - 200.0f) / 50;
+
+		double inflate = 50.0;
+		int count = 0;
+
+		List<Puffercopter> puffercopters = level.getEntitiesOfClass(Puffercopter.class, this.getBoundingBox().inflate(inflate, inflate, inflate));
+		for (Puffercopter puffercopter : puffercopters) if (puffercopter.isAlive()) ++count; 
+		
+		if (count > maxCount && count != 1)
+			this.kill(level);
+	}
+
 	@Override
 	public void tick() {
 		super.tick();
@@ -154,6 +174,7 @@ public class Puffercopter extends PathfinderMob {
 					serverLevel.addFreshEntity(spawnedTnt);
 				}
 				if (this.shittingTimer -- <= 0) {
+					checkDespawn();
 					this.setShitting(false);
 					this.shittingTimer = 100;
 				}

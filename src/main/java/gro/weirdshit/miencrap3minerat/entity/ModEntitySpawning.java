@@ -36,7 +36,7 @@ public class ModEntitySpawning {
     }
 
     public static boolean checkPuffercopterSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
-        float wtf = Math.max(0.0f, WtfLevel.getWtfForServer(level.getServer()) - 600.0f);
+        float wtf = Math.max(0.0f, WtfLevel.getWtfForServer(level.getServer()) - 200.0f);
 
         
         return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && random.nextFloat() < wtf;

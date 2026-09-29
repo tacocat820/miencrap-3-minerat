@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.mixin.ThirstMixin;
@@ -102,6 +104,21 @@ public class ModCommands {
                         }
                         return 1;
                     }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("setwtf")
+                    .then(Commands.argument("val", IntegerArgumentType.integer())
+                            .executes(ctx -> {
+                                        
+                                WtfLevel wtf = WtfLevel.getSavedBlockData(ctx.getSource().getServer());
+
+
+                                int val = IntegerArgumentType.getInteger(ctx, "val");
+                                
+                                wtf.setWtf(val);
+                                return 1;
+                            })));
         });
 
 
