@@ -17,6 +17,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.GamingChairRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.HmmmRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
@@ -52,6 +53,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
 	public static final ModelLayerLocation STEVE_JOBS = createMain("steve_jobs");
+	public static final ModelLayerLocation HMMM = createMain("hmmm");
 	public static final ModelLayerLocation WATER_DEER = createMain("water_deer");
 	public static final ModelLayerLocation SLAVE = createMain("slave");
 	public static final ModelLayerLocation ENDER_DRAGON = createMain("ender_dragon");
@@ -88,6 +90,7 @@ public class ModEntityModelLayers {
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
 		SteveJobsRenderer.register(STEVE_JOBS);
+		HmmmRenderer.register(HMMM);
 		WaterDeerRenderer.register(WATER_DEER);
 		EnderDragonRenderer.register(ENDER_DRAGON);
 		SlaveRenderer.register(SLAVE);
