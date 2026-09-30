@@ -20,6 +20,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificEpicConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
@@ -344,6 +345,9 @@ public class ModBlocks {
 	public static RegisteredBlock BLWOOD_MINIBLOCKS = new GenericBlock("blwood_miniblocks", p -> new MiniBlocksBlock(p, BLWOOD.block)).copyOf(BLWOOD.block).reg();
 	public static RegisteredBlock REDWALL = new GenericBlock("redwall", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	
+	public static RegisteredBlock APL_PC = new GenericBlock("apl_pc", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock APL_PC_ON = new GenericBlock("apl_pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+
 	public static RegisteredBlock GEOMETRY_PC = new GenericBlock("geometry_pc", SpecificGeometryPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock MATRIX_BLOCK = new GenericBlock("matrix_block", p -> new TheMatrixBlock.Block(p), SoundType.STONE, 32.0f,32000.0f).noOcclusion().reg();
 	public static RegisteredBlock WAVE_BLOCK = new GenericBlock("wave_block", TheWaveBlock.Block::new, SoundType.NYLIUM, 4.0f,4.0f).noOcclusion().noCollision().reg();
@@ -372,6 +376,7 @@ public class ModBlocks {
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
 	public static RegisteredBlock CERAMIC_TILES_MINIBLOCKS = new GenericBlock("ceramic_tiles_miniblocks", p -> new MiniBlocksBlock(p, CERAMIC_TILES.block)).copyOf(CERAMIC_TILES.block).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock EPIC_CONVEYOR_BELT = new GenericBlock("epic_conveyor_belt", SpecificEpicConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.IRON, 1.0f,1.0f).reg();
 	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", Block::new, SoundType.CALCITE, 1.0f,1.0f).reg();
 	public static RegisteredBlock CARAMEL_BRICKS_MINIBLOCKS = new GenericBlock("caramel_bricks_miniblocks", p -> new MiniBlocksBlock(p, CARAMEL_BRICKS.block)).copyOf(CARAMEL_BRICKS.block).reg();

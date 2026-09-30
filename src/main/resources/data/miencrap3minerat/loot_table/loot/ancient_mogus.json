@@ -1,0 +1,59 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "miencrap3minerat:feather_sword",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "miencrap3minerat:staple",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "miencrap3minerat:ethanol",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "miencrap3minerat:banana",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "miencrap3minerat:dust",
+          "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3,
+                "max": 44
+              },
+              "add": false,
+              "conditions": []
+            }
+          ]
+        }
+      ],
+      "rolls": 4
+    }
+  ],
+  "functions": []
+}

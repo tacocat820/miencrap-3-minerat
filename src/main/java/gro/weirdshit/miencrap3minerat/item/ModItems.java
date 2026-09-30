@@ -189,7 +189,8 @@ public class ModItems {
 	public static RegisteredItem<?> NFT = ModItems.register("nft", Item::new, new Item.Properties());
 	public static RegisteredItem<?> WHATEVER_NFT = ModItems.register("whatever_nft", Item::new, new Item.Properties());
 	public static RegisteredItem<?> ROCK = ModItems.register("rock", Item::new, new Item.Properties());
-
+	public static RegisteredItem<?> DUST = ModItems.register("dust", Item::new, new Item.Properties());
+	
 	public static RegisteredItem<?> DIRT_SWORD = ModItems.register("dirt_sword", Item::new, new Item.Properties().sword(ToolMaterial.WOOD, 1.1f, 1).durability(6));
 	public static RegisteredItem<?> DIRT_AXE = ModItems.register("dirt_axe", Item::new, new Item.Properties().axe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
 	public static RegisteredItem<?> DIRT_PICKAXE = ModItems.register("dirt_pickaxe", Item::new, new Item.Properties().pickaxe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
