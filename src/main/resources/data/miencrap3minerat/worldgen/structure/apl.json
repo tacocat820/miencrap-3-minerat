@@ -2,6 +2,7 @@
   "type": "minecraft:jigsaw",
   "biomes": [
     "plains",
+    "snowy_plains",
     "meadow"
   ],
   "step": "surface_structures",

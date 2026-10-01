@@ -30,6 +30,30 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 
 public class ModConfiguredFeatures {
 
+    private static TreeConfiguration coldcityTreeConfig() {
+
+        // TODO: separate function for builder
+        WeightedList.Builder<BlockState> builder = new WeightedList.Builder<BlockState>();
+        builder.add(ModBlocks.COLD_LEAVES.block.defaultBlockState(), 3);
+        builder.add(ModBlocks.COLD_BANANA_LEAVES.block.defaultBlockState(), 1);
+        builder.add(Blocks.AIR.defaultBlockState(), 1);
+        builder.add(ModBlocks.COLD_SLAB.block.defaultBlockState(), 1);
+        WeightedList<BlockState> maybeOakLeaves = builder.build();
+
+        TreeConfiguration tree = new TreeConfiguration.TreeConfigurationBuilder(
+            // Trunk / Logs
+            BlockStateProvider.simple(ModBlocks.COLD_LOG.block),
+            new StraightTrunkPlacer(7, 3, 4),
+            // Leaves
+            new WeightedStateProvider(maybeOakLeaves),
+            new BigcityTreeFoliagePlacer(ConstantInt.of(10), ConstantInt.of(0)),
+
+            new TwoLayersFeatureSize(10, 3, 3)
+        ).build();
+
+        return tree;
+    }
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> FALL_TREE_CONFIGURED_KEY =
         ResourceKey.create(
             Registries.CONFIGURED_FEATURE,
@@ -58,6 +82,11 @@ public class ModConfiguredFeatures {
         ResourceKey.create(
             Registries.CONFIGURED_FEATURE,
             Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bigcity_tree")
+        );
+    public static final ResourceKey<ConfiguredFeature<?, ?>> COLDCITY_TREE_CONFIGURED_KEY =
+        ResourceKey.create(
+            Registries.CONFIGURED_FEATURE,
+            Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "coldcity_tree")
         );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_TREE_CONFIGURED_KEY =
@@ -132,6 +161,8 @@ public class ModConfiguredFeatures {
             new TwoLayersFeatureSize(10, 3, 3)
         ).build();
 
+        TreeConfiguration coldcityTree = coldcityTreeConfig();
+
         TreeConfiguration darkTree = new TreeConfiguration.TreeConfigurationBuilder(
             // Trunk / Logs
             BlockStateProvider.simple(ModBlocks.BLACKSCREEN.block),
@@ -148,6 +179,7 @@ public class ModConfiguredFeatures {
         context.register(BALD_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, BaldTree));
         context.register(TREE_3_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, Tree3));
         context.register(BIGCITY_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, bigcityTree));
+        context.register(COLDCITY_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, coldcityTree));
         context.register(DARK_TREE_CONFIGURED_KEY, new ConfiguredFeature<>(Feature.TREE, darkTree));
 	}
 }

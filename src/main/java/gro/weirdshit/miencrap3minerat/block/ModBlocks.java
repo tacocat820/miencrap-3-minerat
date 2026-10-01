@@ -339,6 +339,7 @@ public class ModBlocks {
 	public static RegisteredBlock FIREFLY_BUSH = new GenericBlock("firefly_bush", Block::new, SoundType.GRASS, 5.0f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock NOT_BIRCH_LEAVES = new GenericBlock("not_birch_leaves", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock OAK_LEAVES_APPLES = new GenericBlock("oak_leaves_apples", p -> new TintedParticleLeavesBlock(0.01F, p), SoundType.GRASS, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock COLD_BANANA_LEAVES = new GenericBlock("cold_banana_leaves", p -> new TintedParticleLeavesBlock(0.01F, p), SoundType.GRASS, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock BLWOOD = new GenericBlock("blwood", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock BLWOOD_STAIRS = new GenericBlock("blwood_stairs", p -> new StairBlock(BLWOOD.block.defaultBlockState(), p), SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();
 	public static RegisteredBlock BLWOOD_SLAB = new GenericBlock("blwood_slab", SlabBlock::new, SoundType.STONE, 1.0f,1.0f).copyOf(BLWOOD.block).reg();

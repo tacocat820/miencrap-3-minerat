@@ -2,7 +2,8 @@
   "type": "minecraft:jigsaw",
   "biomes": [
     "plains",
-    "old_growth_birch_forest"
+    "old_growth_birch_forest",
+    "miencrap3minerat:nether_jungle"
   ],
   "step": "surface_structures",
   "spawn_overrides": {},

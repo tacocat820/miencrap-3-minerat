@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "miencrap3minerat:fall_log"
+    "miencrap3minerat:fall_log",
+    "miencrap3minerat:cold_log"
   ]
 }

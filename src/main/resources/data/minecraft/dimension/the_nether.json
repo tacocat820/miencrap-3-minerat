@@ -1,0 +1,72 @@
+{
+  "type": "minecraft:the_nether",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "miencrap3minerat:nether_jungle",
+          "parameters": {
+            "temperature": 0.2,
+            "humidity": 0.1,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "miencrap3minerat:grassblockmond_nether",
+          "parameters": {
+            "temperature": -0.1,
+            "humidity": 0.1,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "miencrap3minerat:grassblockmond_nether",
+          "parameters": {
+            "temperature": 0.1,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "miencrap3minerat:nether_jungle",
+          "parameters": {
+            "temperature": -0.1,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "miencrap3minerat:nether_saul",
+          "parameters": {
+            "temperature": 0.2,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    },
+    "settings": "minecraft:the_nether"
+  }
+}

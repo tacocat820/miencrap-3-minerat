@@ -253,6 +253,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:squish","stream": false}]},
 	"fundy":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:fundy","stream": false}]},
+	"ost.brain_rot":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/brain_rot","stream": true}]},
 
 
 	"ed2_scream": {
