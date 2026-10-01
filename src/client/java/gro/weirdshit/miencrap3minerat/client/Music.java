@@ -160,6 +160,8 @@ public class Music {
                             MusicSounds.DIE,
                             MusicSounds.IDRINKGLUE,
                             MusicSounds.TWEETER_ALARM,
+                            MusicSounds.TWEETERER_ALARM,
+                            MusicSounds.AAAAAA,
                             MusicSounds.EXCUSE,
                         });
                     } else if (ClientWtf.wtf >= 3) {
@@ -169,6 +171,7 @@ public class Music {
                             MusicSounds.IDRINKGLUE,
                             MusicSounds.TWEETER_ALARM,
                             MusicSounds.TWEETER_ALARM,
+                            MusicSounds.TWEETERER_ALARM,
                             MusicSounds.LAUGH,
                             MusicSounds.FUCKING_PIG,
                             MusicSounds.STAL,

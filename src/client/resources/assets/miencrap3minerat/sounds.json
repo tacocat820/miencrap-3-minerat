@@ -255,6 +255,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:fundy","stream": false}]},
 	"ost.brain_rot":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/brain_rot","stream": true}]},
+	"ost.tweeterer_alarm":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tweeterer_alarm","stream": true}]},
 
 
 	"ed2_scream": {
