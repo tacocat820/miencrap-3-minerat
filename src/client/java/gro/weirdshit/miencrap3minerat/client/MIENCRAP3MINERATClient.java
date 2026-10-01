@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
 import it.unimi.dsi.fastutil.ints.IntList;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.client.mixin.CameraRotation;
@@ -19,6 +20,7 @@ import gro.weirdshit.miencrap3minerat.client.screens.CTableScreen;
 import gro.weirdshit.miencrap3minerat.client.screens.WatercoolerScreen;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.special.BlissPcRenderer;
+import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.GeometryPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
@@ -277,8 +279,10 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(PlayerHitTensionPayload.TYPE, (payload, context) -> {
 			Music.hit();
 		});
+		ClientPlayNetworking.registerGlobalReceiver(WtfPayload.TYPE, (payload, context) -> {
+			ClientWtf.wtf = payload.lvl();
+		});
 		ClientPlayNetworking.registerGlobalReceiver(StartBoxTransitionPayload.TYPE, (payload, context) -> {
-			MIENCRAP3MINERAT.LOGGER.info("shit");
 			BoxTransitions.startBoxTransition(payload.pos(), Minecraft.getInstance().level.getGameTime());
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {

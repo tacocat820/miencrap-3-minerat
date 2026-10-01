@@ -10,6 +10,7 @@ import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MappableRingBuffer;
@@ -39,7 +40,9 @@ enum Sky {
     DAY_1(new SkyboxTexture("textures/sky/overworld_day_1.png")),
     DAY_2(new SkyboxTexture("textures/sky/overworld_day_2.png")),
     DAY_PINK(new SkyboxTexture("textures/sky/overworld_day_pink.png")),
+    DAY_PINKNT(new SkyboxTexture("textures/sky/overworld_day_pinknt.png")),
     DAY_BIGCITY(new SkyboxTexture("textures/sky/overworld_day_bigcity.png")),
+    DAY_BIGCITY_EVIL(new SkyboxTexture("textures/sky/overworld_day_bigcity_evil.png")),
     DAY_INVERTED(new SkyboxTexture("textures/sky/overworld_day_inverted.png")),
     DAY_PURPLE(new SkyboxTexture("textures/sky/overworld_day_purple.png")),
     DAY_BLACK(new SkyboxTexture("textures/sky/overworld_day_black.png")),
@@ -98,12 +101,19 @@ public class OverworldSkybox extends Skybox {
         this.ubo.rotate();
 
         float dt = Minecraft.getInstance().level.getOverworldClockTime() % 24000;
-        if (dt < 10_000) {
-            if (CurrentBiome.is(INVERTED_SKY_BIOME)) transition(Sky.DAY_INVERTED);
+
+        if (ClientWtf.wtf >= 4) transition(Sky.NIGHT_BIGCITY);
+        else if (dt < 10_000) {
+            if (ClientWtf.wtf >= 3) transition(Sky.DAY_INVERTED);
+            else if (ClientWtf.wtf >= 2 && CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_2); 
+            else if (ClientWtf.wtf >= 2 && CurrentBiome.is(PINK_SKY_BIOME)) transition(Sky.DAY_PINKNT); 
+            else if (ClientWtf.wtf >= 2 && CurrentBiome.is(BIGCITY_BIOME)) transition(Sky.DAY_BIGCITY_EVIL); 
+            else if (CurrentBiome.is(INVERTED_SKY_BIOME)) transition(Sky.DAY_INVERTED);
             else if (CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_PURPLE);
             else if (CurrentBiome.is(PINK_SKY_BIOME)) transition(Sky.DAY_PINK);
             else if (CurrentBiome.is(BLACK_SKY_BIOME)) transition(Sky.DAY_BLACK);
             else if (CurrentBiome.is(BIGCITY_BIOME)) transition(Sky.DAY_BIGCITY);
+            else if (ClientWtf.wtf >= 2) transition(Sky.DAY_PURPLE);
             else if (CurrentBiome.is(SKY_2_BIOME)) transition(Sky.DAY_2);
             else transition(Sky.DAY_1);
         } else if (dt < 14_000) {

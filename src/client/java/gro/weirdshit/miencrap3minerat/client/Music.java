@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Random;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import gro.weirdshit.miencrap3minerat.entity.BrainMarker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -67,7 +71,7 @@ public class Music {
         Stop();
         
         type = getMusicType(minecraft);
-        SoundEvent chosen = chooseSong();
+        SoundEvent chosen = chooseSong(minecraft);
         nowPlaying = chosen.location().getPath();
         music = SimpleSoundInstance.forMusic(chosen);
 
@@ -86,7 +90,7 @@ public class Music {
         return MusicType.PEACEFUL;
     }
     
-    private static SoundEvent chooseSong() {
+    private static SoundEvent chooseSong(Minecraft minecraft) {
         
         switch (type) {
             case MENU:
@@ -106,7 +110,13 @@ public class Music {
                 });
             case PEACEFUL:
 
-                if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
+                if (brainCheck(minecraft.player)) return Choose(new SoundEvent[]{
+                    MusicSounds.BRAIN_ROT,
+                    MusicSounds.BRAIN_ROT,
+                    MusicSounds.DROOPY,
+                    MusicSounds.TWEETER_ALARM
+                });
+                else if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_MATH,
                     MusicSounds.KI
                 });
@@ -126,6 +136,8 @@ public class Music {
                     MusicSounds.MINERAT,
                     MusicSounds.DROOPY,
                     MusicSounds.TFARCENIM,
+                    MusicSounds.TWEETER_ALARM,
+                    MusicSounds.IDRINKGLUE,
                     MusicSounds.SJTOC,
                     MusicSounds.LAUGH,
                     MusicSounds.KR,
@@ -141,29 +153,82 @@ public class Music {
                     MusicSounds.SJ,
                     MusicSounds.BR,
                 });
-                else return Choose(new SoundEvent[]{
-                    MusicSounds.GREECE,
-                    MusicSounds.RAT,
-                    MusicSounds.FUCKING_PIG,
-                    MusicSounds.SJTOC,
-                    MusicSounds.FUCKING_PIG,
-                    MusicSounds.STALLAT,
-                    MusicSounds.STRAD,
-                    MusicSounds.PYRAMIDS,
-                    MusicSounds.PUPEPUPE,
-                    MusicSounds.MINERAT,
-                    MusicSounds.DRUMS,
-                    MusicSounds.GROMADJI,
-                    MusicSounds.BLOCKS_AND_SHIT,
-                    MusicSounds.EXCUSE,
-                    MusicSounds.BOOG_CITY,
-                    MusicSounds.TASWELL,
-                    MusicSounds.STEVE_LOVES_PEEPEE,
-                    MusicSounds.KR,
-                    MusicSounds.MXAC,
-                    MusicSounds.SJ,
-                    MusicSounds.BR,
-                });
+                else {
+                    if (ClientWtf.wtf >= 4) {
+                        return Choose(new SoundEvent[]{
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.DIE,
+                            MusicSounds.IDRINKGLUE,
+                            MusicSounds.TWEETER_ALARM,
+                            MusicSounds.EXCUSE,
+                        });
+                    } else if (ClientWtf.wtf >= 3) {
+                        return Choose(new SoundEvent[]{
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.SJTOC,
+                            MusicSounds.IDRINKGLUE,
+                            MusicSounds.TWEETER_ALARM,
+                            MusicSounds.TWEETER_ALARM,
+                            MusicSounds.LAUGH,
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.STAL,
+                            MusicSounds.PUPEPUPE,
+                            MusicSounds.MINERAT,
+                            MusicSounds.DRUMS,
+                            MusicSounds.GROMADJI,
+                            MusicSounds.BOOG_CITY,
+                            MusicSounds.STEVE_LOVES_PEEPEE,
+                        });
+                    } else if (ClientWtf.wtf >= 2) {
+                        return Choose(new SoundEvent[]{
+                            MusicSounds.GREECE,
+                            MusicSounds.RAT,
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.SJTOC,
+                            MusicSounds.IDRINKGLUE,
+                            MusicSounds.TWEETER_ALARM,
+                            MusicSounds.LAUGH,
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.STAL,
+                            MusicSounds.STRAD,
+                            MusicSounds.PYRAMIDS,
+                            MusicSounds.PUPEPUPE,
+                            MusicSounds.MINERAT,
+                            MusicSounds.DRUMS,
+                            MusicSounds.GROMADJI,
+                            MusicSounds.BLOCKS_AND_SHIT,
+                            MusicSounds.EXCUSE,
+                            MusicSounds.STEVE_LOVES_PEEPEE,
+                            MusicSounds.MXAC,
+                            MusicSounds.SJ,
+                            MusicSounds.BR,
+                            MusicSounds.STALLAT,
+                        });
+                    } else {
+                        return Choose(new SoundEvent[]{
+                            MusicSounds.GREECE,
+                            MusicSounds.RAT,
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.SJTOC,
+                            MusicSounds.FUCKING_PIG,
+                            MusicSounds.STALLAT,
+                            MusicSounds.STRAD,
+                            MusicSounds.PYRAMIDS,
+                            MusicSounds.PUPEPUPE,
+                            MusicSounds.MINERAT,
+                            MusicSounds.DRUMS,
+                            MusicSounds.GROMADJI,
+                            MusicSounds.BLOCKS_AND_SHIT,
+                            MusicSounds.EXCUSE,
+                            MusicSounds.TASWELL,
+                            MusicSounds.STEVE_LOVES_PEEPEE,
+                            MusicSounds.KR,
+                            MusicSounds.MXAC,
+                            MusicSounds.SJ,
+                            MusicSounds.BR,
+                        });
+                    }
+                }
             case BATTLE:
                 return Choose(new SoundEvent[]{
                     MusicSounds.CALM5,
@@ -193,13 +258,19 @@ public class Music {
     private static boolean enemyCheck(LocalPlayer player) {
         Level level = player.level();
 
-        List<Mob> mobs = level.getEntitiesOfClass(Mob.class, player.getBoundingBox()
+        List<Monster> mobs = level.getEntitiesOfClass(Monster.class, player.getBoundingBox()
             .inflate(20.0));
 
-        for (Mob mob : mobs) {
-            if (mob instanceof Enemy) { return true; }
-        }
-        return false;
+        return mobs.size() > 0;
+    }
+
+    private static boolean brainCheck(LocalPlayer player) {
+        Level level = player.level();
+
+        List<BrainMarker> mobs = level.getEntitiesOfClass(BrainMarker.class, player.getBoundingBox()
+            .inflate(40.0));
+
+        return mobs.size() > 0;
     }
 
     public static void hit() {

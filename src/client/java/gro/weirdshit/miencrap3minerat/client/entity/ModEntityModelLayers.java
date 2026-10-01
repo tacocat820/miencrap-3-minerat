@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
@@ -66,6 +67,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation REPEER = createMain("repeer");
 	public static final ModelLayerLocation PUFFERCOPTER = createMain("puffercopter");
 	public static final ModelLayerLocation NOTJUAN_SPIT = createMain("notjuan_spit");
+	public static final ModelLayerLocation BRAIN_MARKER = createMain("brain_marker");
 	public static final ModelLayerLocation RED_LIGHTNING_BOLT = createMain("red_lightning_bolt");
 	public static final ModelLayerLocation PC = createMain("pc");
 
@@ -103,6 +105,7 @@ public class ModEntityModelLayers {
 		RepeerRenderer.register(REPEER);
 		PuffercopterRenderer.register(PUFFERCOPTER);
 		NotjuanSpitRenderer.register(NOTJUAN_SPIT);
+		BrainMarkerRenderer.register(BRAIN_MARKER);
 		RedLightningBoltRenderer.register(RED_LIGHTNING_BOLT);
 		PcEntityRenderer.register(PC);
 	}

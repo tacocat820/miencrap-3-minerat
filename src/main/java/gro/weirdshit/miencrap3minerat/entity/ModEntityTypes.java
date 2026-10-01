@@ -170,6 +170,10 @@ public class ModEntityTypes {
 			"red_lightning_bolt",
 			EntityType.Builder.<RedLightningBolt>of(RedLightningBolt::new, MobCategory.MISC).noLootTable().noSave().sized(0.0F, 0.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE)
 	);
+	public static final EntityType<BrainMarker> BRAIN_MARKER = register(
+			"brain_marker",
+			EntityType.Builder.<BrainMarker>of(BrainMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+	);
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
 		ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name));

@@ -11,6 +11,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
 import gro.weirdshit.miencrap3minerat.saved_data.MetMerl;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import gro.weirdshit.miencrap3minerat.worldgen.RegisterBiomeModifications;
@@ -80,6 +82,17 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
 			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
+
+			if (m.overworld().getGameTime() % 200 == 0) {
+
+				WtfPayload payload = new WtfPayload(Math.round(wtf.getWtf(m.overworld()) / 220));
+				PlayerList p = m.getPlayerList();
+
+				for (Player player : p.getPlayers()) {
+					if (!(player instanceof ServerPlayer serverPlayer)) continue;
+					ServerPlayNetworking.send(serverPlayer, payload);
+				}
+			}
 		});
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			
 			if (SCHEDULED_MESSAGES.size() > 0) {

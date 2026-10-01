@@ -77,6 +77,7 @@ public class MusicSounds {
     public static final SoundEvent BR = registerSound("ost.br");
     public static final SoundEvent ARIA_CHEMISTRY = registerSound("ost.aria_chemistry");
     public static final SoundEvent ARIA_MATH = registerSound("ost.aria_math");
+    public static final SoundEvent BRAIN_ROT = registerSound("ost.brain_rot");
     
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

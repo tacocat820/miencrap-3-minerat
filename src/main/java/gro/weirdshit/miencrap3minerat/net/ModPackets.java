@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerUsePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
@@ -25,6 +26,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> WATERCOOLER_USE_PAYLOAD = PayloadTypeRegistry.serverboundPlay().register(WatercoolerUsePayload.TYPE, WatercoolerUsePayload.CODEC);
 
     public static CustomPacketPayload.TypeAndCodec<?, ?> FLASH_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(FlashPayload.TYPE, FlashPayload.CODEC);
+    public static CustomPacketPayload.TypeAndCodec<?, ?> WTF_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(WtfPayload.TYPE, WtfPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> SCREENSHAKE_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ScreenshakePayload.TYPE, ScreenshakePayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> PLAYER_HIT_TENSION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(PlayerHitTensionPayload.TYPE, PlayerHitTensionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> TTS_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(TtsPayload.TYPE, TtsPayload.CODEC);
