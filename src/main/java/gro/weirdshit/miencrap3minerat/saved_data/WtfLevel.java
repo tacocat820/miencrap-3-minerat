@@ -12,6 +12,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
 import net.minecraft.world.level.saveddata.WeatherData;
@@ -46,8 +47,20 @@ public class WtfLevel extends SavedData {
 
         return y;
     }
+    public float getWtf(LevelAccessor level) {
+        float d = (level.getGameTime() % 10000) * 0.0001f / 2;
+        float s = Mth.sin(Math.PI * d);
+        float y = from + s * (to - from);
+
+        return y;
+    }
 
     public static float getWtfForLevel(Level level) {
+        WtfLevel wtf = WtfLevel.getSavedBlockData(level.getServer());
+
+        return wtf.getWtf(level);
+    }
+    public static float getWtfForLevel(LevelAccessor level) {
         WtfLevel wtf = WtfLevel.getSavedBlockData(level.getServer());
 
         return wtf.getWtf(level);
@@ -60,6 +73,7 @@ public class WtfLevel extends SavedData {
 
     public void setWtf(int set) {
         this.to = set; this.from = set;
+        this.setDirty();
     }
 
     public int getFrom() { return this.from; }

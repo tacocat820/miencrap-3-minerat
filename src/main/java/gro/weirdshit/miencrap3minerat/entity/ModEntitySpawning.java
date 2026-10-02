@@ -20,6 +20,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.fish.WaterAnimal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 
@@ -40,6 +41,22 @@ public class ModEntitySpawning {
 
         
         return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && random.nextFloat() < wtf;
+    }
+
+    public static boolean checkMonsterSpawnRulesWithWtf(final EntityType<? extends PathfinderMob> type, final ServerLevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random, float minWtf) {
+        
+        float wtf = WtfLevel.getWtfForLevel(level);
+
+        return  Monster.checkMonsterSpawnRules(type, level, spawnReason, pos, random) && wtf >= minWtf;
+
+    }
+
+    public static boolean checkAnimalSpawnRulesWithWtf(final EntityType<? extends PathfinderMob> type, final ServerLevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random, float minWtf) {
+        
+        float wtf = WtfLevel.getWtfForLevel(level);
+
+        return  checkNotjuanSpawnrules(type, level, spawnReason, pos, random) && wtf >= minWtf;
+
     }
 
     public static void generate() {
@@ -68,6 +85,12 @@ public class ModEntitySpawning {
 
         SpawnPlacements.register(ModEntityTypes.CRISH, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Crish::checkCrishSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.CRISH, 30, 1, 2);
+
+        SpawnPlacements.register(ModEntityTypes.GAMING_CHAIR, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (t, l, s, p, r) -> checkMonsterSpawnRulesWithWtf(t, l, s, p, r, 400));
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.GAMING_CHAIR, 80, 1, 1);
+
+        SpawnPlacements.register(ModEntityTypes.CABLE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (t, l, s, p, r) -> checkAnimalSpawnRulesWithWtf(t, l, s, p, r, 500));
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.CABLE, 80, 1, 5);
 
         //SpawnPlacements.register(ModEntityTypes.ANGLERFISH, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Anglerfish::checkAnglerfishSpawnRules);
         //BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.WATER_CREATURE, ModEntityTypes.ANGLERFISH, 1, 1, 2);

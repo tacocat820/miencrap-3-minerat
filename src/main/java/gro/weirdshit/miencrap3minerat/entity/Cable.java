@@ -71,7 +71,7 @@ class CableAttackGoal extends MeleeAttackGoal {
 }
 
 
-public class Cable extends Monster {
+public class Cable extends PathfinderMob {
 	
 	public Cable(Level world) {
 		this(ModEntityTypes.CABLE, world);

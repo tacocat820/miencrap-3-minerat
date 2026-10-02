@@ -120,6 +120,16 @@ public class Music {
                     MusicSounds.ARIA_MATH,
                     MusicSounds.KI
                 });
+                // overworld biomes:
+                else if (ClientWtf.wtf >= 4) return Choose(new SoundEvent[]{
+                    MusicSounds.FUCKING_PIG,
+                    MusicSounds.DIE,
+                    MusicSounds.IDRINKGLUE,
+                    MusicSounds.TWEETER_ALARM,
+                    MusicSounds.TWEETERER_ALARM,
+                    MusicSounds.AAAAAA,
+                    MusicSounds.EXCUSE,
+                });
                 else if (CurrentBiome.is(SCARY)) return Choose(new SoundEvent[]{
                     MusicSounds.DIE,
                     MusicSounds.TASWELL,
@@ -154,18 +164,7 @@ public class Music {
                     MusicSounds.BR,
                 });
                 else {
-                    if (ClientWtf.wtf >= 4) {
-                        return Choose(new SoundEvent[]{
-                            MusicSounds.FUCKING_PIG,
-                            MusicSounds.DIE,
-                            MusicSounds.IDRINKGLUE,
-                            MusicSounds.TWEETER_ALARM,
-                            MusicSounds.TWEETERER_ALARM,
-                            MusicSounds.AAAAAA,
-                            MusicSounds.EXCUSE,
-                        });
-                    }
-                    else if (ClientWtf.wtf >= 3) {
+                    if (ClientWtf.wtf >= 3) {
                         return Choose(new SoundEvent[]{
                             MusicSounds.FUCKING_PIG,
                             MusicSounds.SJTOC,
