@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.block;
 import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModSounds;
 // import gro.weirdshit.miencrap3minerat.block.classes.FaceRotatingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotShapeBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotatingBlock;
@@ -354,6 +355,7 @@ public class ModBlocks {
 	public static RegisteredBlock WAVE_BLOCK = new GenericBlock("wave_block", TheWaveBlock.Block::new, SoundType.NYLIUM, 4.0f,4.0f).noOcclusion().noCollision().reg();
 	public static RegisteredBlock LIQUID_MATRIX = new GenericBlock("liquid_matrix", TheLiquidMatrix.Block::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock LAVA_WAVES = new GenericBlock("lava_wave_block", TheLavaWaveBlock.Block::new, SoundType.EMPTY, 8.0f,8.0f).light(15).noCollision().noOcclusion().reg();
+	public static RegisteredBlock FRANCIUM = new GenericBlock("francium", Block::new, ModSounds.FRANCE_SOUND_TYPE, 3.0f,3.0f).reg();
 
 	public static RegisteredBlock WHITE_CRAFTING_TABLE = new GenericBlock("white_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
 	public static RegisteredBlock ORANGE_CRAFTING_TABLE = new GenericBlock("orange_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();

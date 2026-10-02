@@ -3,7 +3,8 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
-
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.core.Registry;
 
 import net.minecraft.resources.Identifier;
@@ -26,6 +27,11 @@ public class ModSounds {
     public static final SoundEvent SCREAM = registerSound("scream");
     public static final SoundEvent FUNDY = registerSound("fundy");
     public static final SoundEvent HAIRDRYER = registerSound("hairdryer");
+    public static final SoundEvent LEFISHE = registerSound("lefishe");
+
+    public static final SoundType FRANCE_SOUND_TYPE = new SoundType(
+		1.0F, 1.0F, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.WRENCH, ModSounds.LEFISHE
+	);
 
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);
