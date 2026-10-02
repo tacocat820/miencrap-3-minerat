@@ -241,6 +241,8 @@ public class ModRegister {
                     RECIPES_2.addList(list);
                     MIENCRAP3MINERAT.LOGGER.warn(list.size()+"list wtf"+list+"\nfewf: "+RECIPES_2.recipes);
                     MIENCRAP3MINERAT.LOGGER.info("loaded " + RECIPES_2.recipes.size() + " recipes 2!");
+
+                    
                     // RECIPES_2.addAll(applyFuture.join());
                     // MIENCRAP3MINERAT.LOGGER.info("loaded " + RECIPES_2.size() + " recipes 2");
                 }, reloadExecutor);

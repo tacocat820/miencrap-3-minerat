@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "miencrap3minerat:nuclear_waste",
+    "miencrap3minerat:flowing_nuclear_waste",
     "miencrap3minerat:blood",
     "miencrap3minerat:flowing_blood",
     "miencrap3minerat:piss",

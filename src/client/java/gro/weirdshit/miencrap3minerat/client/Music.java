@@ -164,7 +164,8 @@ public class Music {
                             MusicSounds.AAAAAA,
                             MusicSounds.EXCUSE,
                         });
-                    } else if (ClientWtf.wtf >= 3) {
+                    }
+                    else if (ClientWtf.wtf >= 3) {
                         return Choose(new SoundEvent[]{
                             MusicSounds.FUCKING_PIG,
                             MusicSounds.SJTOC,
@@ -207,7 +208,8 @@ public class Music {
                             MusicSounds.BR,
                             MusicSounds.STALLAT,
                         });
-                    } else {
+                    }
+                    else if (ClientWtf.wtf >= 1) {
                         return Choose(new SoundEvent[]{
                             MusicSounds.GREECE,
                             MusicSounds.RAT,
@@ -225,6 +227,26 @@ public class Music {
                             MusicSounds.EXCUSE,
                             MusicSounds.TASWELL,
                             MusicSounds.STEVE_LOVES_PEEPEE,
+                            MusicSounds.KR,
+                            MusicSounds.MXAC,
+                            MusicSounds.SJ,
+                            MusicSounds.BR,
+                        });
+                    }
+                    else {
+                        return Choose(new SoundEvent[]{
+                            MusicSounds.GREECE,
+                            MusicSounds.RAT,
+                            MusicSounds.SJTOC,
+                            MusicSounds.STALLAT,
+                            MusicSounds.STRAD,
+                            MusicSounds.PYRAMIDS,
+                            MusicSounds.PUPEPUPE,
+                            MusicSounds.MINERAT,
+                            MusicSounds.DRUMS,
+                            MusicSounds.GROMADJI,
+                            MusicSounds.EXCUSE,
+                            MusicSounds.TASWELL,
                             MusicSounds.KR,
                             MusicSounds.MXAC,
                             MusicSounds.SJ,

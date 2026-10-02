@@ -128,24 +128,26 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 				graphics.blitSprite(RenderPipelines.GUI_TEXTURED, RECIPE_BOOK, this.getX(), this.getY(), 256, 256);
 
-				for (int i = 0; i < MAX_ITEMS; i++) {
-					int aX = CELL_SIZE * (i%COLUMNS);
-					int aY = CELL_SIZE * (i/COLUMNS);
+				float time = timeFunction.get();
 
+				for (int i = 0; i < MAX_ITEMS; i++) {
+					int oX = CELL_SIZE * (i%COLUMNS) + (int)(Mth.cos(time*2 + i*0.5)*2);
+					int oY = CELL_SIZE * (i/COLUMNS) + (int)(Mth.sin(time*2 + i*0.5)*2);
+
+					Identifier sprite;
 					if (choosed == i) {
-						graphics.blitSprite(
-							RenderPipelines.GUI_TEXTURED, ACTIVE_BUTTON_SPRITE, getX()+X_OFFSET + aX, getY()+Y_OFFSET + aY, 16, 16
-						);
+						sprite = ACTIVE_BUTTON_SPRITE;
 					} else {
-						graphics.blitSprite(
-							RenderPipelines.GUI_TEXTURED, BUTTON_SPRITE, getX()+X_OFFSET + aX, getY()+Y_OFFSET + aY, 16, 16
-						);
+						sprite = BUTTON_SPRITE;
 					}
+
+					graphics.blitSprite(
+						RenderPipelines.GUI_TEXTURED, sprite, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, 16, 16
+					);
 
 				}
 
-
-				int ofs = (int) Mth.abs( Mth.sin(timeFunction.get()*3f)* 7F );
+				int ofs = (int) Mth.abs( Mth.sin(time*3f)* 7F );
 				graphics.outline(cursor.x()-ofs, cursor.y()-ofs, ofs*2, ofs*2, outlineColor);
 
 			}
