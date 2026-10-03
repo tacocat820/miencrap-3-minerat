@@ -8,8 +8,10 @@ import net.minecraft.resources.Identifier;
 
 public class ModParticles {
     public static final SimpleParticleType FALL_DUST = FabricParticleTypes.simple();
+    public static final SimpleParticleType DEATH = FabricParticleTypes.simple();
 
     public static void generate() {
         Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "fall_dust"), FALL_DUST);
+        Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "death"), DEATH);
     }
 }

@@ -85,7 +85,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 			if (m.overworld().getGameTime() % 200 == 0) {
 
-				WtfPayload payload = new WtfPayload(Math.round(wtf.getWtf(m.overworld()) / 220));
+				WtfPayload payload = new WtfPayload((int)Math.floor(wtf.getWtf(m.overworld()) / 220));
 				PlayerList p = m.getPlayerList();
 
 				for (Player player : p.getPlayers()) {

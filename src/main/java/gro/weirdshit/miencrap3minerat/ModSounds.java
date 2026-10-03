@@ -28,6 +28,7 @@ public class ModSounds {
     public static final SoundEvent FUNDY = registerSound("fundy");
     public static final SoundEvent HAIRDRYER = registerSound("hairdryer");
     public static final SoundEvent LEFISHE = registerSound("lefishe");
+    public static final SoundEvent MOAI = registerSound("moai");
 
     public static final SoundType FRANCE_SOUND_TYPE = new SoundType(
 		1.0F, 1.0F, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.WRENCH, ModSounds.LEFISHE

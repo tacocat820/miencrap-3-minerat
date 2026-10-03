@@ -299,6 +299,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntities.LAVA_WAVE_BLOCK_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheLavaWaveBlock.BlockEntity>(ctx, "lava_wave_block", 5.0f / 256.0f, 0));
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
+		ParticleProviderRegistry.getInstance().register(ModParticles.DEATH, CosyProvider::new);
 
 		LevelRenderEvents.END_EXTRACTION.register(Skyboxes::extractSkyboxState);
 		LevelRenderEvents.END_EXTRACTION.register(BoxTransitions::extractBoxTransitionState);

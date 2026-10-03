@@ -8,9 +8,11 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.DeathRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.FateRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FundyRenderer;
@@ -40,6 +42,8 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation DEATH = createMain("death");
+	public static final ModelLayerLocation FATE = createMain("fate");
 	public static final ModelLayerLocation FUNDY = createMain("fundy");
 	public static final ModelLayerLocation MERL = createMain("merl");
 	public static final ModelLayerLocation FISH = createMain("fish");
@@ -78,6 +82,8 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		DeathRenderer.register(DEATH);
+		FateRenderer.register(FATE);
 		FundyRenderer.register(FUNDY);
 		MerlRenderer.register(MERL);
 		FishRenderer.register(FISH);
