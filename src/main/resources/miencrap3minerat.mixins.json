@@ -9,6 +9,7 @@
 		"MakeStructurePlacementTypePublicMixin",
 		"MakeStillValidPublicMixin",
 		"CraftingMenuMixin",
+		"TransitionsMixin",
 		"PlayerMixin",
 		"RegistryMixin",
 		"ThirstMixin",

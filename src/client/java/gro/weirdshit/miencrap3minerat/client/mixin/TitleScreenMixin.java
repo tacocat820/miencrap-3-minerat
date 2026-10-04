@@ -28,6 +28,6 @@ public class TitleScreenMixin {
     public void addM3MVersion(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY, final float a, CallbackInfo clf) {
         //MIENCRAP3MINERAT.LOGGER.info("she");
         // why doesn't this work
-        graphics.text(m3m$getFont(), "MIENCRAP 3 MINERAT", 2, m3m$getHeight() - 10, ARGB.black(0));
+        graphics.text(m3m$getFont(), "MIENCRAP 3 MINERAT", 2, m3m$getHeight() - 10, ARGB.color(255, 255, 0, 0));
     }
 }

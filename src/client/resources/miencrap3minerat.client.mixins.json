@@ -10,7 +10,9 @@
 		"StfuAskForBackup",
 		"GetNowPlayingMixin",
 		"RemoveVanillaMusicMixin",
-		"TitleScreenMixin"
+		"TitleScreenMixin",
+		"GameRendererExtractMixin",
+		"DontApplyCursorMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

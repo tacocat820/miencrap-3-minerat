@@ -5,10 +5,15 @@ import org.jetbrains.annotations.Nullable;
 import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -34,6 +39,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class SpecificGeometryPcBlock extends BaseEntityBlock {
     public static final EnumProperty<Direction> FACING;
@@ -86,7 +92,14 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         
         if (player instanceof ServerPlayer serverPlayer) {
-            StartBoxTransitionPayload payload = new StartBoxTransitionPayload(pos);
+            //StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
+            //ServerPlayNetworking.send(serverPlayer, boxPayload);
+
+            ((TransitionsMixinInterface)(Object)player).teleportTo(
+                ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"))
+                , new Vec3(0, -28, -4), 20);
+
+            StartTransitionPayload payload = new StartTransitionPayload(true, "vertical_close");
             ServerPlayNetworking.send(serverPlayer, payload);
         }
 

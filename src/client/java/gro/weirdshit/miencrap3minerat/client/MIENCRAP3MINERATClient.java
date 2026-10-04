@@ -10,6 +10,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -28,6 +29,8 @@ import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.GenericShaderBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitionPipelines;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
+import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransitions;
+import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.FadeOverlayTransition;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import net.fabricmc.api.ClientModInitializer;
@@ -92,6 +95,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		Pipelines.generate();
 		// what a looooooong name
 		BoxTransitionPipelines.generate();
+		OverlayTransitions.generate();
 
 		// BIOME TINTED vvvvvv
 		BlockColorRegistry.register(List.of(new BlockTintSource() {
@@ -284,6 +288,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(StartBoxTransitionPayload.TYPE, (payload, context) -> {
 			BoxTransitions.startBoxTransition(payload.pos(), Minecraft.getInstance().level.getGameTime());
+		});
+		ClientPlayNetworking.registerGlobalReceiver(StartTransitionPayload.TYPE, (payload, context) -> {
+			OverlayTransitions.start(payload.transitionType(), payload.dimensional());
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());
