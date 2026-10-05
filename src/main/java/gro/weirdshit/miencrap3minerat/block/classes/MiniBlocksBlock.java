@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import com.mojang.serialization.MapCodec;
 
@@ -156,6 +157,16 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
         }
 
         return shapes;
+    }
+
+    static public Optional<BlockState> convertToMiniblocksBlockstate(Block orig) {
+        Optional<Block> miniblocks = ModRegister.MINIBLOCKS.get(orig);
+        
+        Optional<BlockState> a = miniblocks
+            .map(b -> b.defaultBlockState()) // Если блок есть, берем его состояние
+        .or(Optional::empty);
+
+        return a;
     }
 
     static public boolean removeOneMiniblock(Level level, BlockState blockState, BlockPos blockPos, Vec3i pos) {
@@ -318,6 +329,7 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
     @Override
     protected MapCodec<? extends MiniBlocksBlock> codec() { return CODEC; }
     
+    // @Deprecated
     public MiniBlocksBlock(BlockBehaviour.Properties properties) {
         super(properties);
 

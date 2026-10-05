@@ -229,7 +229,7 @@ public class ModRegister {
                     return recipes;
                 }, taskExecutor);
 
-                CompletableFuture<List<CraftRecipe>> applyFuture = recipeList.thenCompose(preparationBarrier::wait); 
+            CompletableFuture<List<CraftRecipe>> applyFuture = recipeList.thenCompose(preparationBarrier::wait); 
                 /*
                 preparedCompletableFuture.thenAccept((data) -> {
                     RECIPES_2.add(data);

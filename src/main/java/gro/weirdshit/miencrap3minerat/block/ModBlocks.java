@@ -18,6 +18,8 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.ConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.CustomCraftingTableBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.DustFallingBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.EdibleBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.EdibleMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
@@ -267,8 +269,8 @@ public class ModBlocks {
 
 	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
-	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", Block::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
-	public static RegisteredBlock JELLY_MINIBLOCKS = new GenericBlock("jelly_miniblocks", p -> new MiniBlocksBlock(p, JELLY_BLOCK.block)).copyOf(JELLY_BLOCK.block).reg();
+	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", EdibleBlock::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
+	public static RegisteredBlock JELLY_MINIBLOCKS = new GenericBlock("jelly_miniblocks", p -> new EdibleMiniBlocksBlock(p, JELLY_BLOCK.block)).copyOf(JELLY_BLOCK.block).reg();
 	public static RegisteredBlock BULLSHITTIUM = new GenericBlock("bullshittium", Block::new, SoundType.STONE, 3.0f,2.0f).light(5).emissiveRendering().reg();
 	public static RegisteredBlock BULLSHITTIUM_STAIRS = new GenericBlock("bullshittium_stairs", p -> new StairBlock(BULLSHITTIUM.block.defaultBlockState(), p)).copyOf(BULLSHITTIUM.block).reg();
 	public static RegisteredBlock BULLSHITTIUM_SLAB = new GenericBlock("bullshittium_slab", SlabBlock::new).copyOf(BULLSHITTIUM.block).reg();
@@ -377,8 +379,8 @@ public class ModBlocks {
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock EPIC_CONVEYOR_BELT = new GenericBlock("epic_conveyor_belt", SpecificEpicConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.IRON, 1.0f,1.0f).reg();
-	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", Block::new, SoundType.CALCITE, 1.0f,1.0f).reg();
-	public static RegisteredBlock CARAMEL_BRICKS_MINIBLOCKS = new GenericBlock("caramel_bricks_miniblocks", p -> new MiniBlocksBlock(p, CARAMEL_BRICKS.block)).copyOf(CARAMEL_BRICKS.block).reg();
+	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", EdibleBlock::new, SoundType.CALCITE, 1.0f,1.0f).reg();
+	public static RegisteredBlock CARAMEL_BRICKS_MINIBLOCKS = new GenericBlock("caramel_bricks_miniblocks", p -> new EdibleMiniBlocksBlock(p, CARAMEL_BRICKS.block)).copyOf(CARAMEL_BRICKS.block).reg();
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", p -> new MiniBlocksBlock(p, Blocks.DIRT)).copyOf(Blocks.DIRT).reg();
@@ -394,7 +396,7 @@ public class ModBlocks {
 	public static RegisteredBlock CRIMSON_PLANKS_MINIBLOCKS = new GenericBlock("crimson_planks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.CRIMSON_PLANKS)).copyOf(Blocks.CRIMSON_PLANKS).reg();
 	public static RegisteredBlock IRON_MINIBLOCKS = new GenericBlock("iron_miniblocks", p -> new MiniBlocksBlock(p, Blocks.IRON_BLOCK)).copyOf(Blocks.IRON_BLOCK).reg();
 	public static RegisteredBlock QUARTZ_MINIBLOCKS = new GenericBlock("quartz_miniblocks", p -> new MiniBlocksBlock(p, Blocks.QUARTZ_BLOCK)).copyOf(Blocks.QUARTZ_BLOCK).reg();
-	public static RegisteredBlock PUMPKIN_MINIBLOCKS = new GenericBlock("pumpkin_miniblocks", p -> new MiniBlocksBlock(p, Blocks.PUMPKIN)).copyOf(Blocks.PUMPKIN).reg();
+	public static RegisteredBlock PUMPKIN_MINIBLOCKS = new GenericBlock("pumpkin_miniblocks", p -> new EdibleMiniBlocksBlock(p, Blocks.PUMPKIN)).copyOf(Blocks.PUMPKIN).reg();
 	
 	public static RegisteredBlock BEDROCK_MINIBLOCKS = new GenericBlock("bedrock_miniblocks", MiniBlocksBlock::new).copyOf(Blocks.BEDROCK).reg();
 	public static RegisteredBlock BRICKS_MINIBLOCKS = new GenericBlock("bricks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.BRICKS)).copyOf(Blocks.BRICKS).reg();
@@ -402,7 +404,7 @@ public class ModBlocks {
 	public static RegisteredBlock MUD_MINIBLOCKS = new GenericBlock("mud_miniblocks", p -> new MiniBlocksBlock(p, Blocks.MUD)).copyOf(Blocks.MUD).reg();
 	public static RegisteredBlock GRASS_MINIBLOCKS = new GenericBlock("grass_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHORT_GRASS)).copyOf(Blocks.SHORT_GRASS).reg();
 	public static RegisteredBlock TUFF_MINIBLOCKS = new GenericBlock("tuff_miniblocks", p -> new MiniBlocksBlock(p, Blocks.TUFF)).copyOf(Blocks.TUFF).reg();
-	public static RegisteredBlock MELON_MINIBLOCKS = new GenericBlock("melon_miniblocks", p -> new MiniBlocksBlock(p, Blocks.MELON)).copyOf(Blocks.MELON).reg();
+	public static RegisteredBlock MELON_MINIBLOCKS = new GenericBlock("melon_miniblocks", p -> new EdibleMiniBlocksBlock(p, Blocks.MELON)).copyOf(Blocks.MELON).reg();
 	public static RegisteredBlock FIREFLY_BUSH_MINIBLOCKS = new GenericBlock("firefly_bush_miniblocks", p -> new MiniBlocksBlock(p, Blocks.FIREFLY_BUSH)).copyOf(Blocks.FIREFLY_BUSH).reg();
 	public static RegisteredBlock ANDESITE_MINIBLOCKS = new GenericBlock("andesite_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ANDESITE)).copyOf(Blocks.ANDESITE).reg();
 	public static RegisteredBlock CLAY_MINIBLOCKS = new GenericBlock("clay_miniblocks", p -> new MiniBlocksBlock(p, Blocks.CLAY)).copyOf(Blocks.CLAY).reg();

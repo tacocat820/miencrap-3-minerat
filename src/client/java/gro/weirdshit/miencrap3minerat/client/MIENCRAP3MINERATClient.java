@@ -2,6 +2,8 @@ package gro.weirdshit.miencrap3minerat.client;
 
 import java.util.List;
 
+import org.joml.Matrix3x2fStack;
+
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
@@ -40,6 +42,8 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockTintsFactory;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl;
 import net.minecraft.client.Minecraft;
@@ -74,6 +78,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Display.BlockDisplay.BlockRenderState;
 import net.minecraft.world.level.biome.Biome;
@@ -88,6 +93,37 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 
 	private int flashTime = 0;
 	private boolean isBlooming = false;
+	public float totalTickProgress = 0F;
+
+	private HudElement hudLayer() {
+		return (graphics, deltaTracker) -> {
+			Matrix3x2fStack matrices = graphics.pose();
+
+			// Store the total tick delta in a field, so we can use it later.
+			this.totalTickProgress += deltaTracker.getGameTimeDeltaPartialTick(true);
+
+			// Push a new matrix onto the stack.
+			matrices.pushMatrix();
+
+			// Scale the matrix by 0.5 to make the triangle smaller and larger over time.
+			float scaleAmount = Mth.sin(this.totalTickProgress / 10F) / 2F + 1.5F;
+
+			// Apply the scaling amount to the matrix.
+			// We don't need to scale the Z axis since it's on the HUD and 2D.
+			matrices.scale(scaleAmount, scaleAmount);
+			matrices.scale(1 / scaleAmount, 1 / scaleAmount);
+			matrices.translate(60f, 60f);
+			// Lerp between 0 and 360 degrees over time.
+			float rotationAmount = this.totalTickProgress / 50F % 360;
+			matrices.rotate(rotationAmount);
+			// Shift entire square so that it rotates in its center.
+			matrices.translate(-20f, -40f);
+			// We do not need to manually write to the buffer. GuiGraphics methods write to GUI buffer in `GuiRenderer` at the end of preparation.
+
+			// Pop our matrix from the stack.
+			matrices.popMatrix();
+		};
+	}
 
 	@Override
 	public void onInitializeClient() {
@@ -312,6 +348,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		LevelRenderEvents.END_EXTRACTION.register(BoxTransitions::extractBoxTransitionState);
 		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(Skyboxes::renderAndDrawSkybox);
 		LevelRenderEvents.AFTER_TRANSLUCENT_TERRAIN.register(BoxTransitions::renderAndDraw);
+
+		HudElementRegistry.addLast(MIENCRAP3MINERAT.id("last_element"), this.hudLayer()); //????????
+
 	}
 	
 }
