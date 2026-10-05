@@ -4,12 +4,17 @@ import java.rmi.registry.Registry;
 import java.util.Set;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
+import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 // import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,8 +36,9 @@ public class NetherPortalItem extends Item {
         super(properties);
     }
 
-    private void tpToDimension(ServerPlayer player, ServerLevel level, Vec3 targetPos) {
-
+    private InteractionResult tpToDimension(MinecraftServer server, ServerPlayer player, ResourceKey<Level> level_res_key, Vec3 targetPos) {
+        
+        ServerLevel level = server.getLevel(level_res_key);
         // BlockPos checkPos = new BlockPos((int)targetPos.x, ((int)targetPos.y) + 1, (int)targetPos.z);
         // boolean is_valid = level.getBlockState(checkPos).isAir();
         
@@ -52,33 +58,39 @@ public class NetherPortalItem extends Item {
             
         }
 
-        if (finalTargetPos != null) {
-            player.teleportTo(level, finalTargetPos.x, finalTargetPos.y, finalTargetPos.z, Set.of(), player.getYRot(), player.getXRot(), true);
-        }
-    }
+        if (finalTargetPos != null && player instanceof ServerPlayer serverPlayer) {
 
-    // public InteractionResult useOn(final UseOnContext context) {  // use on terrain
-    //     return InteractionResult.SUCCESS;
-    // }
+            ((TransitionsMixinInterface)(Object)player).teleportTo(
+                level_res_key,
+                finalTargetPos, 20
+            );
+
+            StartTransitionPayload payload = new StartTransitionPayload(true, "rect_close");
+            ServerPlayNetworking.send(serverPlayer, payload);
+
+            return InteractionResult.SUCCESS_SERVER;
+        }
+        return InteractionResult.FAIL;
+    }
 
     public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
         if (player instanceof ServerPlayer server_pl) {
 
             MinecraftServer server = level.getServer();
             Vec3 targetPos;
-            ServerLevel target_level;
+            ResourceKey<Level> target_level;
             Vec3 poss = (player.position());
 
             if (level.dimension().equals( Level.NETHER )) {
-                target_level = server.getLevel(Level.OVERWORLD);
+                target_level = (Level.OVERWORLD);
                 targetPos = new Vec3(poss.x * 8, poss.y, poss.z * 8);
             } else {
-                target_level = server.getLevel(Level.NETHER);
+                target_level = (Level.NETHER);
                 targetPos = new Vec3(poss.x / 8, poss.y, poss.z / 8);
             }
 
-            tpToDimension(server_pl, target_level, targetPos);
+            return tpToDimension(server, server_pl, target_level, targetPos);
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.PASS;
     }
 }

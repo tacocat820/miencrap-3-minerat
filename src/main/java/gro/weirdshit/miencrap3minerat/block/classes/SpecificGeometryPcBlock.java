@@ -97,7 +97,8 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
 
             ((TransitionsMixinInterface)(Object)player).teleportTo(
                 ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"))
-                , new Vec3(0, -28, -4), 20);
+                , new Vec3(0, -28, -4), 20
+            );
 
             StartTransitionPayload payload = new StartTransitionPayload(true, "vertical_close");
             ServerPlayNetworking.send(serverPlayer, payload);

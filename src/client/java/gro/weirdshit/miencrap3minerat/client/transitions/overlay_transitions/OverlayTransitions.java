@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransition.OverlayTransitionDirection;
+import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.RectCloseTransition;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.FadeOverlayTransition;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.VerticalCloseOverlayTransition;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -70,6 +71,7 @@ public class OverlayTransitions {
     public static void generate() {
         register("fade", FadeOverlayTransition::new);
         register("vertical_close", VerticalCloseOverlayTransition::new);
+        register("rect_close", RectCloseTransition::new);
     }
 
 }
