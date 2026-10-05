@@ -14,7 +14,8 @@
 		"RegistryMixin",
 		"ThirstMixin",
 		"CatMixin",
-		"FartlandsMixin"
+		"FartlandsMixin",
+		"JigsawPlacementMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

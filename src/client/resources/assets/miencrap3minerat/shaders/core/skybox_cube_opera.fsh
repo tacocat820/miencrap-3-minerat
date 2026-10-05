@@ -211,7 +211,7 @@ void main() {
     vec2 screenPos = gl_FragCoord.xy / vec2(max(W,H), max(W,H));
     vec2 uv = screenPos * 2.0 - 1.0;
 
-    vec3 cam = vec3(CX + 8.0, CY + 45.5, CZ + 8.0);
+    vec3 cam = vec3(CX - 40.0, CY + 45.5, CZ - 40.0);
 
     float fov = 1.0;
     

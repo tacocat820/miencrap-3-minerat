@@ -166,8 +166,6 @@ class GenericBlock {
 		// Create the block instance
 		Block block = blockFactory.apply(properties.setId(blockKey));
 
-		// Sometimes, you may not want to register an item for the block.
-		// Eg: if it's a technical block like `minecraft:moving_piston` or `minecraft:end_gateway`
 		ResourceKey<Item> itemKey = keyOfItem(name);
 		BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey).useBlockDescriptionPrefix());
 		Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
@@ -181,8 +179,6 @@ class GenericBlock {
 		// Create the block instance
 		Block block = blockFactory.apply(properties.setId(blockKey));
 
-		// Sometimes, you may not want to register an item for the block.
-		// Eg: if it's a technical block like `minecraft:moving_piston` or `minecraft:end_gateway`
 		ResourceKey<Item> itemKey = keyOfItem(name);
 		BlockItem blockItem = new BlockItem(block, itemProperties.setId(itemKey).useBlockDescriptionPrefix());
 		Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);

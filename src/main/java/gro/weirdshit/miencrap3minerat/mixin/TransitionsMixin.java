@@ -47,7 +47,7 @@ import net.minecraft.world.phys.Vec3;
 @Mixin(Player.class)
 public abstract class TransitionsMixin implements TransitionsMixinInterface {
 
-    private int transition = 0;
+    private int transition = -1;
     private ResourceKey<Level> transitionDimension = null;
     private Vec3 transitionPos = null;
 
@@ -55,9 +55,8 @@ public abstract class TransitionsMixin implements TransitionsMixinInterface {
     protected void addAdditionalSaveData(final ValueOutput output, CallbackInfo cir) {
 
         output.putBoolean("transitioning", transition >= 0);
-        output.store("transitionDimension", Level.RESOURCE_KEY_CODEC, Level.END);
-        output.store("transitionPos", Vec3.CODEC, transitionPos);
-        
+        if (transitionDimension != null) output.store("transitionDimension", Level.RESOURCE_KEY_CODEC, transitionDimension);
+        if (transitionPos != null) output.store("transitionPos", Vec3.CODEC, transitionPos);
 
     }    
     @Inject(at = @At("HEAD"), method = "readAdditionalSaveData")
@@ -79,6 +78,7 @@ public abstract class TransitionsMixin implements TransitionsMixinInterface {
     public void tick(CallbackInfo cir) {
 
         if (transition >= 0) {
+
             --transition;
 
             if (transition < 0) {
