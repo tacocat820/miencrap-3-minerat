@@ -8,9 +8,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.Screenshake;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import net.minecraft.client.Camera;
+import net.minecraft.util.Util;
 
 @Mixin(Camera.class)
 public abstract class CameraRotation {
@@ -44,10 +46,16 @@ public abstract class CameraRotation {
     public abstract Vector3f getLeft();
 
     Random random = new Random();
+    long lastMillis = 1;
+
+    float lastDiff = 0;
     
     @Overwrite
     protected void setRotation(final float yRot, final float xRot) {
-        float diff = yRot - this.getYRot();
+        long millis = Util.getMillis();
+        float diff = (lastDiff * 3.0f + (yRot - this.getYRot()) / (float)(millis - lastMillis)) / 4.0f;
+
+        MIENCRAP3MINERAT.LOGGER.info(String.valueOf(diff));
         
         float ssh = (-0.5f + random.nextFloat()) * Screenshake.screenShake * 0.1f;
         if (Screenshake.screenShake > 0.0f) {
@@ -60,12 +68,15 @@ public abstract class CameraRotation {
         this.setYRot(yRot);
         this.getRotation().rotationYXZ((float) Math.PI - yRot * (float) (Math.PI / 180.0), 
             -xRot * (float) (Math.PI / 180.0), 
-            diff * 0.005f + ssh + 0.002f * (float)InverseForestTilt.inverseForestTilt);
+            diff * 0.1f + ssh + 0.002f * (float)InverseForestTilt.inverseForestTilt);
         
         FORWARDS.rotate(this.getRotation(), this.getForwards());
         UP.rotate(this.getRotation(), this.getUp());
         LEFT.rotate(this.getRotation(), this.getLeft());
         this.setMatrixPropertiesDirty(this.getMatrixPropertiesDirty() | 3);
+
+        lastMillis = millis;
+        lastDiff = diff;
     }
 
 }

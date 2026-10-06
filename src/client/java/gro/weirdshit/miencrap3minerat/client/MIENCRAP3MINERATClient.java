@@ -10,6 +10,7 @@ import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
@@ -327,6 +328,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(StartTransitionPayload.TYPE, (payload, context) -> {
 			OverlayTransitions.start(payload.transitionType(), payload.dimensional());
+		});
+		ClientPlayNetworking.registerGlobalReceiver(ReverseTransitionTeleportingPayload.TYPE, (payload, context) -> {
+			OverlayTransitions.out();
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());

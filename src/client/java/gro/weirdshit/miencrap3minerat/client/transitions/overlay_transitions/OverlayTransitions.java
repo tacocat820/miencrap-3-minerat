@@ -34,14 +34,14 @@ public class OverlayTransitions {
             MIENCRAP3MINERAT.LOGGER.error("no transition with name " + name);
         }
     }
+    public static void out() {{
+        if (!isDimensional) {
+            currentTransition.start = Util.getMillis();
+            transitionDirection = OverlayTransitionDirection.OUT;
+        }
+    }}
     public static void draw(GuiGraphicsExtractor graphics) {
         if (currentTransition == null) return;
-
-        if (!isDimensional && 
-            transitionDirection == OverlayTransitionDirection.OUT && 
-            Util.getMillis() - currentTransition.start > currentTransition.getDuration()
-        ) 
-            transitionDirection = OverlayTransitionDirection.OUT;
         
         if (transitionDirection == OverlayTransitionDirection.OUT && 
             Util.getMillis() - currentTransition.start > currentTransition.getDuration()

@@ -15,6 +15,9 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
+import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,6 +29,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -92,6 +96,12 @@ public abstract class TransitionsMixin implements TransitionsMixinInterface {
                     Set.of(), 
                     ((Player)(Object)this).getYRot(), ((Player)(Object)this).getXRot(), //add direction later i guess
                     true);
+
+                            
+                ReverseTransitionTeleportingPayload payload = new ReverseTransitionTeleportingPayload(0);
+                if ((Object)this instanceof ServerPlayer serverPlayer) {
+                    ServerPlayNetworking.send(serverPlayer, payload);
+                }
             }
         }
 

@@ -3,9 +3,11 @@ package gro.weirdshit.miencrap3minerat.entity;
 import java.util.List;
 
 import gro.weirdshit.miencrap3minerat.ModParticles;
+import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -48,6 +50,32 @@ class DeathAttackGoal extends MeleeAttackGoal {
 		super.tick();
 		this.death.setAggressive(true);
 	}
+
+	protected void checkAndPerformAttack(final LivingEntity target) {
+		if (this.canPerformAttack(target)) {
+			this.resetAttackCooldown();
+			this.mob.swing(InteractionHand.MAIN_HAND);
+			this.mob.doHurtTarget(getServerLevel(this.mob), target);
+
+			List<DeathVillageMarker> markers = this.mob.level()
+				.getEntitiesOfClass(DeathVillageMarker.class, mob.getBoundingBox().inflate(40, 40, 40));
+			if (markers.size() > 0 && target.getHealth() > 0.0f) {
+
+				Vec3 markerPos = markers.get(0).position();
+
+				if (target instanceof Player player) {
+					PlayerStartTransition.run(player, player.level().dimension(), markerPos, "fade", 20);
+				} else {
+					target.teleportTo(markerPos.x, markerPos.y, markerPos.z);
+				}
+			}
+
+		}
+	}
+	protected int adjustedTickDelay(final int ticks) {
+		return ticks + 20;
+	}
+
 }
 
 

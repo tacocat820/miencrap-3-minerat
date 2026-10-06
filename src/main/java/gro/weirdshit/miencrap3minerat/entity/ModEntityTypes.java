@@ -9,6 +9,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Marker;
 import net.minecraft.world.entity.MobCategory;
 
 class GenericEntity {
@@ -184,6 +185,12 @@ public class ModEntityTypes {
 			"brain_marker",
 			EntityType.Builder.<BrainMarker>of(BrainMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
 	);
+	public static final EntityType<DeathVillageMarker> DEATH_VILLAGE_MARKER = register(
+			"death_village_marker",
+			EntityType.Builder.<DeathVillageMarker>of(DeathVillageMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
+	);
+
+	//.noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
 		ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name));

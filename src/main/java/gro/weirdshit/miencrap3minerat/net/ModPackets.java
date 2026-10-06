@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
@@ -33,6 +34,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> TTS_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(TtsPayload.TYPE, TtsPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> BOX_TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartBoxTransitionPayload.TYPE, StartBoxTransitionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartTransitionPayload.TYPE, StartTransitionPayload.CODEC);
+    public static CustomPacketPayload.TypeAndCodec<?, ?> REVERSE_TRANSITION_TELEPORTING_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ReverseTransitionTeleportingPayload.TYPE, ReverseTransitionTeleportingPayload.CODEC);
 
     public static void clientGenerate() {}
     public static void generate() {

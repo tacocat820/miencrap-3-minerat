@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 
+import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
@@ -101,14 +102,9 @@ public class ModCommands {
                     .executes(ctx -> {
                         
                         if (ctx.getSource().getEntityOrException() instanceof Player player) {
-                            MIENCRAP3MINERAT.LOGGER.info("asd");
-                            ((TransitionsMixinInterface)(Object)player).teleportTo(Level.NETHER, new Vec3(0, 0, 0), 20);
+                            PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "vertical_close", 20);
                         }
 
-                        StartTransitionPayload payload = new StartTransitionPayload(true, "vertical_close");
-                        if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
-							ServerPlayNetworking.send(player, payload);
-                        }
                         return 1;
                     }));
         });
