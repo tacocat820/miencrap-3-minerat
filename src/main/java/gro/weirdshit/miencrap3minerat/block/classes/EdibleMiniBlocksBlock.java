@@ -2,7 +2,6 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -25,19 +24,16 @@ public class EdibleMiniBlocksBlock extends MiniBlocksBlock implements ImplEdible
         FoodData fdata = player.getFoodData();
         int food_level = fdata.getFoodLevel();
 
-        if (food_level >= 20) {
-            return InteractionResult.PASS;
-        } else {
-            fdata.setFoodLevel( food_level + 1 );
+        if (food_level >= 20 && !player.gameMode().isCreative()) return InteractionResult.PASS;
 
-            if (player instanceof ServerPlayer serverPlayer) {
-                serverPlayer.playSound(SoundEvents.MULE_EAT);
-            }
-        }
+        fdata.setFoodLevel( food_level + 1 );
+
+        player.playSound(SoundEvents.MULE_EAT);
+    
 
         Vec3i minipos = MiniBlocksBlock.getMiniXYZ(hitResult.getBlockPos(), hitResult.getLocation(), hitResult.getDirection().getOpposite());
         MiniBlocksBlock.removeOneMiniblock(level, state, pos, minipos);
-        return InteractionResult.CONSUME;
+        return InteractionResult.SUCCESS;
         
     }
 

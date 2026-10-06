@@ -46,6 +46,8 @@ import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
+import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -354,6 +356,9 @@ public class ModBlocks {
 	public static RegisteredBlock LIQUID_MATRIX = new GenericBlock("liquid_matrix", TheLiquidMatrix.Block::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock LAVA_WAVES = new GenericBlock("lava_wave_block", TheLavaWaveBlock.Block::new, SoundType.EMPTY, 8.0f,8.0f).light(15).noCollision().noOcclusion().reg();
 	public static RegisteredBlock FRANCIUM = new GenericBlock("francium", Block::new, ModSounds.FRANCE_SOUND_TYPE, 3.0f,3.0f).reg();
+
+	public static RegisteredBlock RICE = new GenericBlock("rice", EdibleBlock::new, SoundType.COBWEB, 0.7f,0.4f).reg();
+	public static RegisteredBlock RICE_MINIBLOCKS = new GenericBlock("rice_miniblocks", p -> new EdibleMiniBlocksBlock(p, RICE.block)).copyOf(RICE.block).reg();
 
 	public static RegisteredBlock WHITE_CRAFTING_TABLE = new GenericBlock("white_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
 	public static RegisteredBlock ORANGE_CRAFTING_TABLE = new GenericBlock("orange_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();

@@ -226,7 +226,12 @@ public class ModItems {
 		.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.LEVITATION, 100))).build()));
 	public static RegisteredItem<?> GLASS_OF_ICE_CREAM = ModItems.register("glass_of_ice_cream", Item::new, new Item.Properties());
 	public static RegisteredItem<?> HYPERMANGAN_ICE_CREAM = ModItems.register("hypermangan_ice_cream", Item::new, new Item.Properties()); 
-	
+		
+	public static RegisteredItem<?> BOWL_OF_RICE = ModItems.register("bowl_of_rice", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(7).saturationModifier(4.0f).build()).usingConvertsTo(Items.BOWL));
+	public static RegisteredItem<?> BOWL_OF_MASHED_POTATOES = ModItems.register("bowl_of_mashed_potatoes", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(8).saturationModifier(4.8f).build()).usingConvertsTo(Items.BOWL));
+
 	public static void generate() {
 		// Items.CHEST
 	}

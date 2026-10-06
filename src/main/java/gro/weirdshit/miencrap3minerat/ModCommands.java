@@ -144,6 +144,20 @@ public class ModCommands {
 
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("hungary")
+                    .then(Commands.argument("val", IntegerArgumentType.integer())
+                            .executes(ctx -> {
+                                        
+                                int val = IntegerArgumentType.getInteger(ctx, "val");
+                                if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+                                    player.getFoodData().setFoodLevel(val);
+                                }
+                                return 1;
+                            })));
+        });
+
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("savemarkov")
                     .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
                     .executes(ctx -> {
