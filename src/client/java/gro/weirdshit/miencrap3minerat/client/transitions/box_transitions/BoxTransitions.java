@@ -58,7 +58,7 @@ public class BoxTransitions {
     }
 
     public static void extractBoxTransitionState(LevelExtractionContext context) {
-        if (Minecraft.getInstance().level.getGameTime() - startTick > 100) currentTransition = null;
+        if (Minecraft.getInstance().level.getGameTime() - startTick > 40) currentTransition = null;
         if (currentTransition == null) {
             transitionState = null;
             return;

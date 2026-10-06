@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransition.OverlayTransitionDirection;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.RectCloseTransition;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.FadeOverlayTransition;
+import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.GeometryPCVerticalCloseOverlayTransition;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.classes.VerticalCloseOverlayTransition;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.util.Util;
@@ -72,6 +73,7 @@ public class OverlayTransitions {
         register("fade", FadeOverlayTransition::new);
         register("vertical_close", VerticalCloseOverlayTransition::new);
         register("rect_close", RectCloseTransition::new);
+        register("geometry_pc_vertical_close", GeometryPCVerticalCloseOverlayTransition::new);
     }
 
 }

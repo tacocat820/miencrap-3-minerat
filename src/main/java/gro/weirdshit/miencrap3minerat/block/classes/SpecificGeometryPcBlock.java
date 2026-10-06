@@ -92,15 +92,15 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         
         if (player instanceof ServerPlayer serverPlayer) {
-            //StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
-            //ServerPlayNetworking.send(serverPlayer, boxPayload);
+            StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
+            ServerPlayNetworking.send(serverPlayer, boxPayload);
 
             ((TransitionsMixinInterface)(Object)player).teleportTo(
                 ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"))
-                , new Vec3(32, -28, 37), 20
+                , new Vec3(32, -28, 37), 40
             );
 
-            StartTransitionPayload payload = new StartTransitionPayload(true, "vertical_close");
+            StartTransitionPayload payload = new StartTransitionPayload(true, "geometry_pc_vertical_close");
             ServerPlayNetworking.send(serverPlayer, payload);
         }
 
