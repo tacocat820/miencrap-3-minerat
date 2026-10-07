@@ -114,9 +114,10 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					if (e == null) return;
 					boolean player = convo.getNearestPlayer(e, 70.0) != null;
 
-					if (!player && !(e instanceof Notjuan) 
+					if (!player
 						&& !(e instanceof Cat) 
-						&& !(e instanceof Villager)) killList.add(e);
+						&& !(e instanceof Villager)
+						&& !(e instanceof Player)) killList.add(e);
 				});
 
 				for (Entity e : killList) {
