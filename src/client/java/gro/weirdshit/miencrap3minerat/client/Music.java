@@ -34,6 +34,7 @@ public class Music {
     private static TagKey<Biome> HOT = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "hot"));
     
     private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
+    private static TagKey<Biome> CONVO = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"));
 
 
     static Random rand = new Random();
@@ -119,6 +120,10 @@ public class Music {
                 else if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_MATH,
                     MusicSounds.KI
+                });
+                else if (CurrentBiome.is(CONVO)) return Choose(new SoundEvent[]{
+                    MusicSounds.EPIK,
+                    MusicSounds.EROR
                 });
                 // overworld biomes:
                 else if (ClientWtf.wtf >= 4) return Choose(new SoundEvent[]{

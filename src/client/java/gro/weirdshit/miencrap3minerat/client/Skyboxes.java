@@ -30,6 +30,7 @@ import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.ConvoSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.EndSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
@@ -57,9 +58,11 @@ public class Skyboxes {
 	private static final Skybox END_SKYBOX = new EndSkybox();
 	private static final Skybox META_SKYBOX = new MetaSkybox();
 	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
+	private static final Skybox CONVO_SKYBOX = new ConvoSkybox();
 	
 	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
 	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
+	private static final Identifier CONVO_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
@@ -75,6 +78,8 @@ public class Skyboxes {
 			return (T)META_SKYBOX;
 		} else if (dimension.equals(OPERA_DIMENSION)) {
 			return (T)OPERA_SKYBOX;
+		} else if (dimension.equals(CONVO_DIMENSION)) {
+			return (T)CONVO_SKYBOX;
 		}
         return (T)TEST_SKYBOX;
     }

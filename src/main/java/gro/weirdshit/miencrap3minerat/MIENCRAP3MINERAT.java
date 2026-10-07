@@ -2,15 +2,19 @@ package gro.weirdshit.miencrap3minerat;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 //import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.feline.Cat;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 
@@ -28,6 +32,7 @@ import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
+import gro.weirdshit.miencrap3minerat.entity.Notjuan;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MerlChain;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
@@ -56,6 +61,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -69,6 +75,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static List<String> SCHEDULED_MESSAGES = new ArrayList<>();
+
+	private static final ResourceKey<Level> CONVO_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo")); 
 
 	@Override
 	public void onInitialize() {
@@ -92,6 +100,29 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					if (!(player instanceof ServerPlayer serverPlayer)) continue;
 					ServerPlayNetworking.send(serverPlayer, payload);
 				}
+			}
+		});
+		ServerTickEvents.END_SERVER_TICK.register(m -> {			
+
+			ServerLevel convo = m.getLevel(CONVO_DIMENSION);
+			if (convo != null && convo.getGameTime() % 20 == 0) {
+
+				MIENCRAP3MINERAT.LOGGER.info("del");
+
+				ArrayList<Entity> killList = new ArrayList<>();
+				convo.getAllEntities().forEach(e -> {
+					if (e == null) return;
+					boolean player = convo.getNearestPlayer(e, 70.0) != null;
+
+					if (!player && !(e instanceof Notjuan) 
+						&& !(e instanceof Cat) 
+						&& !(e instanceof Villager)) killList.add(e);
+				});
+
+				for (Entity e : killList) {
+					e.kill(convo);
+				}
+				
 			}
 		});
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			

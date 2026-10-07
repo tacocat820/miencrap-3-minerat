@@ -1,0 +1,142 @@
+{
+  "attributes": {
+    "minecraft:visual/sky_color": 16696111,
+    "minecraft:visual/fog_color": "#f2de57"
+  },
+  "carvers": [],
+  "downfall": 0.4,
+  "effects": {
+    "water_color": "#3f76e4"
+  },
+  "features": [],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "miencrap3minerat:damn",
+        "maxCount": 30,
+        "minCount": 4,
+        "weight": 12
+      },
+      {
+        "type": "miencrap3minerat:actual_fish",
+        "maxCount": 5,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "miencrap3minerat:psycho",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "miencrap3minerat:ptl",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "miencrap3minerat:hooorse",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:donkey",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "minecraft:villager",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 12
+      },
+      {
+        "type": "miencrap3minerat:notjuan",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 7
+      }
+    ],
+    "monster": [
+
+      {
+        "type": "miencrap3minerat:cable",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 6
+      },
+      {
+        "type": "miencrap3minerat:ender_dragon",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 12
+      },
+
+      {
+        "type": "miencrap3minerat:damn",
+        "maxCount": 30,
+        "minCount": 4,
+        "weight": 12
+      },
+      {
+        "type": "miencrap3minerat:actual_fish",
+        "maxCount": 5,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "miencrap3minerat:psycho",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "miencrap3minerat:ptl",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "miencrap3minerat:fate",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "miencrap3minerat:hooorse",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:donkey",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "minecraft:villager",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 12
+      },
+      {
+        "type": "miencrap3minerat:notjuan",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 7
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

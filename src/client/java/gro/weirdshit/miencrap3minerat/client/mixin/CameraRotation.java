@@ -12,6 +12,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.Screenshake;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import net.minecraft.client.Camera;
+import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 
 @Mixin(Camera.class)
@@ -53,9 +54,11 @@ public abstract class CameraRotation {
     @Overwrite
     protected void setRotation(final float yRot, final float xRot) {
         long millis = Util.getMillis();
-        float diff = (lastDiff * 3.0f + (yRot - this.getYRot()) / (float)(millis - lastMillis)) / 4.0f;
+        float rot_diff = (yRot - this.getYRot());
+        float diff = (lastDiff * 3.0f + rot_diff / (float)(millis - lastMillis + 1)) / 4.0f;
 
-        MIENCRAP3MINERAT.LOGGER.info(String.valueOf(diff));
+        //MIENCRAP3MINERAT.LOGGER.info("rdiff" + String.valueOf(rot_diff));
+        //MIENCRAP3MINERAT.LOGGER.info("diff " + String.valueOf(diff));
         
         float ssh = (-0.5f + random.nextFloat()) * Screenshake.screenShake * 0.1f;
         if (Screenshake.screenShake > 0.0f) {
