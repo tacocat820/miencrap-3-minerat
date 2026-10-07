@@ -1,0 +1,31 @@
+{
+  "attributes": {
+    "minecraft:visual/sky_color": "#FF8000"
+  },
+  "carvers": [],
+  "downfall": 0.4,
+  "effects": {
+    "sky_color": 16742400,
+    "fog_color": 16742400,
+    "water_color": 16742400,
+    "water_fog_color": 16742400,
+    "grass_color": 16742400,
+    "foliage_color": 16742400
+  },
+  "features": [
+    ["miencrap3minerat:orange_tree"]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "creature": [
+      {
+        "weight": 100,
+        "type": "minecraft:snowball",
+        "minCount": 2,
+        "maxCount": 8
+      }
+    ]
+  },
+  "temperature": 1
+}

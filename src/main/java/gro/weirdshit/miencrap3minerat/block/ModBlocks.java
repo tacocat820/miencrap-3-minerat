@@ -231,9 +231,10 @@ public class ModBlocks {
     public static RegisteredBlock PLASTIC_BLOCK = new GenericBlock("plastic_block", Block::new, SoundType.MUD,3.0f,1.5f).reg();
 	public static RegisteredBlock PLASTIC_MINIBLOCKS = new GenericBlock("plastic_miniblocks", p -> new MiniBlocksBlock(p, PLASTIC_BLOCK.block)).copyOf(PLASTIC_BLOCK.block).reg();
 	public static RegisteredBlock ORANGE_WOOD = new GenericBlock("orange_wood", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
-    public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock ORANGE_WOOD_MINIBLOCKS = new GenericBlock("orange_wood_miniblocks", p -> new MiniBlocksBlock(p, ORANGE_WOOD.block)).copyOf(ORANGE_WOOD.block).reg();
+	public static RegisteredBlock ORANGE_PLANKS = new GenericBlock("orange_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock ORANGE_PLANKS_MINIBLOCKS = new GenericBlock("orange_planks_miniblocks", p -> new MiniBlocksBlock(p, ORANGE_PLANKS.block)).copyOf(ORANGE_PLANKS.block).reg();
-	public static RegisteredBlock ORANGE_LEAVES = new GenericBlock("orange_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 16753480), p), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock ORANGE_LEAVES = new GenericBlock("orange_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 16753480), p), SoundType.ANVIL, 1.0f,1.0f).ignitedByLava().noOcclusion().reg();
 	public static RegisteredBlock MAPLE_LOG = new GenericBlock("maple_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
     public static RegisteredBlock MAPLE_PLANKS = new GenericBlock("maple_planks", RotatedPillarBlock::new, SoundType.WOOL,2.0f,1.5f).ignitedByLava().reg();
 	public static RegisteredBlock MAPLE_PLANKS_MINIBLOCKS = new GenericBlock("maple_planks_miniblocks", p -> new MiniBlocksBlock(p, MAPLE_PLANKS.block)).copyOf(MAPLE_PLANKS.block).reg();
