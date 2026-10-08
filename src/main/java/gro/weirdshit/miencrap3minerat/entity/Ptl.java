@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
@@ -42,6 +43,8 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.animal.cow.Cow;
 import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.animal.turtle.Turtle;
@@ -67,6 +70,8 @@ public class Ptl extends PathfinderMob {
 	private int jumpTimer = 100;
 	private static final TargetingConditions.Selector LIVING_ENTITY_SELECTOR = (target, level) ->  true;
 	private static final TargetingConditions TARGETING_CONDITIONS = TargetingConditions.forNonCombat().range(8.0).selector(LIVING_ENTITY_SELECTOR);
+
+	private static final ResourceKey<Level> CONVO_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo")); 
 
 	public Ptl(Level world) {
 		this(ModEntityTypes.PTL, world);
@@ -142,6 +147,11 @@ public class Ptl extends PathfinderMob {
 		this.jumpTimer = input.getIntOr("jumpTimer", 100);
 	}
 
+	private float getShakePower(Player player, boolean isConvo) {
+		if (isConvo) return 2.0f - player.distanceTo(this) / 30.0f;
+		else return 5.0f - player.distanceTo(this) / 30.0f;
+	} 
+
 	public boolean causeFallDamage(final double fallDistance, final float damageModifier, final DamageSource damageSource) {
 		
 		if (fallDistance < 5.0) return false;
@@ -159,8 +169,10 @@ public class Ptl extends PathfinderMob {
 			}
 
 			Collection<ServerPlayer> players = PlayerLookup.around(level, this.getPosition(0.0f), 200.0);
+			boolean isConvo = this.level().dimension().equals(CONVO_DIMENSION);
+			
 			for (ServerPlayer player : players) {
-				ScreenshakePayload screenshake = new ScreenshakePayload(Math.max(0.0f, 5.0f - player.distanceTo(this) / 30.0f));
+				ScreenshakePayload screenshake = new ScreenshakePayload(Math.max(0.0f, getShakePower(player, isConvo)));
 				ServerPlayNetworking.send(player, screenshake);
 			}
 

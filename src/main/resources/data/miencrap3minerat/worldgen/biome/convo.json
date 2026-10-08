@@ -72,12 +72,6 @@
         "minCount": 1,
         "weight": 6
       },
-      {
-        "type": "miencrap3minerat:ender_dragon",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 12
-      },
 
       {
         "type": "miencrap3minerat:damn",
