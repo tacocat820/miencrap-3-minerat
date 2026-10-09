@@ -163,6 +163,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Float>of(Float::new, MobCategory.CREATURE)
 					.sized(1.4f, 0.7f)
 	);
+	public static final EntityType<Blimp> BLIMP = register(
+			"blimp",
+			EntityType.Builder.<Blimp>of(Blimp::new, MobCategory.CREATURE)
+					.sized(1.4f, 0.85f)
+	);
 	public static final EntityType<Puffercopter> PUFFERCOPTER = register(
 			"puffercopter",
 			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.CREATURE)
@@ -220,6 +225,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(PTL, Ptl.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CRISH, Crish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ACTUAL_FISH, ActualFish.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(BLIMP, Blimp.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HAPPY_GHAST, HappyGhast.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());

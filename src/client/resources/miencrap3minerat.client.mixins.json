@@ -12,7 +12,10 @@
 		"RemoveVanillaMusicMixin",
 		"TitleScreenMixin",
 		"GameRendererExtractMixin",
-		"DontApplyCursorMixin"
+		"DontApplyCursorMixin",
+		"HumanoidRenderStateMixin",
+		"HumanoidMobRendererMixin",
+		"HumanoidRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BlimpRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
@@ -54,6 +55,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
 	public static final ModelLayerLocation ACTUAL_FISH = createMain("actual_fish");
+	public static final ModelLayerLocation BLIMP = createMain("blimp");
 	public static final ModelLayerLocation HAPPY_GHAST = createMain("happy_ghast");
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
@@ -94,6 +96,7 @@ public class ModEntityModelLayers {
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
 		ActualFishRenderer.register(ACTUAL_FISH);
+		BlimpRenderer.register(BLIMP);
 		HappyGhastRenderer.register(HAPPY_GHAST);
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
