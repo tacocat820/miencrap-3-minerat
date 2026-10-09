@@ -429,6 +429,9 @@ public class ModBlocks {
 	public static RegisteredBlock END_STONE_MINIBLOCKS = new GenericBlock("end_stone_miniblocks", p -> new MiniBlocksBlock(p, Blocks.END_STONE)).copyOf(Blocks.END_STONE).reg();
 	public static RegisteredBlock PALE_OAK_PLANKS_MINIBLOCKS = new GenericBlock("pale_oak_planks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.PALE_OAK_PLANKS)).copyOf(Blocks.PALE_OAK_PLANKS).reg();
 	
+	public static RegisteredBlock PIPE_BOMB = new GenericBlock("pipe_bomb", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock SACABAMBASPIS = new GenericBlock("sacabambaspis", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));

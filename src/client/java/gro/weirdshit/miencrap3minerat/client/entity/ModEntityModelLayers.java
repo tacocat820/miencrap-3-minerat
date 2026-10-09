@@ -23,6 +23,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRende
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HmmmRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.LefisheRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
@@ -36,6 +37,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.SlaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.WaterDeerRenderer;
+import gro.weirdshit.miencrap3minerat.entity.Lefishe;
 import gro.weirdshit.miencrap3minerat.entity.WaterDeer;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
@@ -50,6 +52,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation FISH = createMain("fish");
 	public static final ModelLayerLocation GAMING_CHAIR = createMain("gaming_chair");
 	public static final ModelLayerLocation BAA = createMain("baa");
+	public static final ModelLayerLocation LEFISHE = createMain("lefishe");
 	public static final ModelLayerLocation CABLE = createMain("cable");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
 	public static final ModelLayerLocation PTL = createMain("ptl");
@@ -91,6 +94,7 @@ public class ModEntityModelLayers {
 		FishRenderer.register(FISH);
 		GamingChairRenderer.register(GAMING_CHAIR);
 		BaaRenderer.register(BAA);
+		LefisheRenderer.register(LEFISHE);
 		CableRenderer.register(CABLE);
 		GigachickenRenderer.register(GIGACHICKEN);
 		PtlRenderer.register(PTL);

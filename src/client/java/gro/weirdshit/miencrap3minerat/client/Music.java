@@ -32,6 +32,7 @@ public class Music {
     private static TagKey<Biome> SCARY = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "scary"));
     private static TagKey<Biome> WEIRD = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "weird"));
     private static TagKey<Biome> HOT = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "hot"));
+    private static TagKey<Biome> NETHER = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "nether_main"));
     
     private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
     private static TagKey<Biome> CONVO = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"));
@@ -116,6 +117,13 @@ public class Music {
                     MusicSounds.BRAIN_ROT,
                     MusicSounds.DROOPY,
                     MusicSounds.TWEETER_ALARM
+                });
+                else if (CurrentBiome.is(NETHER)) return Choose(new SoundEvent[]{
+                    MusicSounds.LAVACHICKEB,
+                    MusicSounds.POOM,
+                    MusicSounds.CAT_SONG,
+                    MusicSounds.BALLAD_OF_THE_CAT,
+                    MusicSounds.CONCRETE_HOUSES
                 });
                 else if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_MATH,
@@ -259,10 +267,14 @@ public class Music {
                     }
                 }
             case BATTLE:
-                return Choose(new SoundEvent[]{
+
+                if (CurrentBiome.is(NETHER)) return Choose(new SoundEvent[]{
+                    MusicSounds.STEPPIG,
+                    MusicSounds.FARD,
+                });
+                else return Choose(new SoundEvent[]{
                     MusicSounds.CALM5,
                     MusicSounds.FARD,
-                    MusicSounds.ARIA_CHEMISTRY,
                 });
         
             default:

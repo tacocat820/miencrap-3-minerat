@@ -68,6 +68,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Cable>of(Cable::new, MobCategory.MONSTER)
 					.sized(1.4f, 1.0f)
 	);
+	public static final EntityType<Lefishe> LEFISHE = register(
+			"lefishe",
+			EntityType.Builder.<Lefishe>of(Lefishe::new, MobCategory.MONSTER)
+					.sized(1.4f, 0.7f)
+	);
 	public static final EntityType<Gigachicken> GIGACHICKEN = register(
 			"gigachicken",
 			EntityType.Builder.<Gigachicken>of(Gigachicken::new, MobCategory.MONSTER)
@@ -220,6 +225,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(FISH, Fish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GAMING_CHAIR, GamingChair.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BAA, Baa.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(LEFISHE, Lefishe.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CABLE, Cable.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GIGACHICKEN, Gigachicken.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PTL, Ptl.createCubeAttributes());

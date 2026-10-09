@@ -26,6 +26,9 @@ public class MusicSounds {
     public static final SoundEvent GROMADJI = registerSound("ost.gromadji");
     public static final SoundEvent LAVACHICKEB = registerSound("ost.lavachickeb");
     public static final SoundEvent POOM = registerSound("ost.poom");
+    public static final SoundEvent CONCRETE_HOUSES = registerSound("ost.concrete_houses");
+    public static final SoundEvent BALLAD_OF_THE_CAT = registerSound("ost.balladofthecat");
+    public static final SoundEvent CAT_SONG = registerSound("ost.catsong");
     public static final SoundEvent FRYING_GHASTS = registerSound("ost.fryingghasts");
     public static final SoundEvent SJTOC = registerSound("ost.scott_joplin_the_original_chirps");
     public static final SoundEvent FUCKING_PIG = registerSound("ost.fuckingpig");

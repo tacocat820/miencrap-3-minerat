@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:convo_park",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 10031173,
+    "spacing": 6,
+    "separation": 3
+  }
+}

@@ -107,8 +107,6 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 			ServerLevel convo = m.getLevel(CONVO_DIMENSION);
 			if (convo != null && convo.getGameTime() % 20 == 0) {
 
-				MIENCRAP3MINERAT.LOGGER.info("del");
-
 				ArrayList<Entity> killList = new ArrayList<>();
 				convo.getAllEntities().forEach(e -> {
 					if (e == null) return;

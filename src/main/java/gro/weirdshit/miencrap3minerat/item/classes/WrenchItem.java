@@ -2,7 +2,9 @@ package gro.weirdshit.miencrap3minerat.item.classes;
 
 import java.util.Random;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,7 +29,7 @@ public class WrenchItem extends Item {
     static final SimpleParticleType particle = ParticleTypes.HAPPY_VILLAGER;
 
     public WrenchItem(Properties properties) {
-        super(properties.sword(ToolMaterial.WOOD, +1.6f, -2.0f).durability(Integer.MAX_VALUE/1024));
+        super(properties.sword(ToolMaterial.WOOD, +2.6f, -2.0f).durability(Integer.MAX_VALUE/1024));
     }
     
     static Random rand = new Random();
@@ -71,10 +73,17 @@ public class WrenchItem extends Item {
 	}
 
     @Override
-	public void hurtEnemy(final ItemStack itemStack, final LivingEntity mob, final LivingEntity attacker) {
+	public void postHurtEnemy(ItemStack itemStack, final LivingEntity mob, final LivingEntity attacker) {
+        MIENCRAP3MINERAT.LOGGER.info("attac!!!");
         mob.playSound(SoundEvents.COPPER_BREAK);
+
+        if (!itemStack.is(ModItems.FRENCH.item)) {
+            attacker.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.FRENCH.item));
+            MIENCRAP3MINERAT.LOGGER.info("france");
+        }
 
         BreadSwordItem.breakitem(65536, attacker, itemStack);
         
     }
+
 }

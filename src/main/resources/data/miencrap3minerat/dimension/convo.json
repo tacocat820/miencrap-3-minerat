@@ -11,9 +11,6 @@
           "height": 1,
           "block": "miencrap3minerat:epic_conveyor_belt"
         }
-      ],
-      "structure_overrides": [
-        "minecraft:villages"
       ]
     }
   }

@@ -12,6 +12,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.FireExtinguisherItem;
 import gro.weirdshit.miencrap3minerat.item.classes.HairdryerItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
+import gro.weirdshit.miencrap3minerat.item.classes.LefisheItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
 import gro.weirdshit.miencrap3minerat.item.classes.SteeringWheelItem;
 import gro.weirdshit.miencrap3minerat.item.classes.UraniumLollipopItem;
@@ -118,7 +119,7 @@ public class ModItems {
 		
 	public static RegisteredItem<?> LEEK = ModItems.register("leek", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().nutrition(3).saturationModifier(3f).build())
-		.sword(ToolMaterial.WOOD, 2.0F, -1.2F)
+		.sword(ToolMaterial.WOOD, 1.1F, -1.2F).durability(15)
 	);
 	
 	public static RegisteredItem<?> WRENCH = ModItems.register("wrench", WrenchItem::new, new Item.Properties());
@@ -228,9 +229,14 @@ public class ModItems {
 	public static RegisteredItem<?> HYPERMANGAN_ICE_CREAM = ModItems.register("hypermangan_ice_cream", Item::new, new Item.Properties()); 
 		
 	public static RegisteredItem<?> BOWL_OF_RICE = ModItems.register("bowl_of_rice", Item::new, new Item.Properties().food(new FoodProperties
-		.Builder().nutrition(7).saturationModifier(4.0f).build()).usingConvertsTo(Items.BOWL));
+		.Builder().nutrition(7).saturationModifier(4.8f).build()).usingConvertsTo(Items.BOWL));
 	public static RegisteredItem<?> BOWL_OF_MASHED_POTATOES = ModItems.register("bowl_of_mashed_potatoes", Item::new, new Item.Properties().food(new FoodProperties
-		.Builder().nutrition(8).saturationModifier(4.8f).build()).usingConvertsTo(Items.BOWL));
+		.Builder().nutrition(8).saturationModifier(4.0f).build()).usingConvertsTo(Items.BOWL));
+
+	public static RegisteredItem<?> LEFISHE = ModItems.register("lefishe", LefisheItem::new, new Item.Properties());
+	public static RegisteredItem<?> NOKIA = ModItems.register("nokia", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CUCUMBER = ModItems.register("cucumber", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BLUE_TAPE = ModItems.register("blue_tape", Item::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST

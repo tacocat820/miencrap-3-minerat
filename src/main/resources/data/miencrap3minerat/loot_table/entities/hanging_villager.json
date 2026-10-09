@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "miencrap3minerat:villager_meat",
+          "name": "miencrap3minerat:villager_meat_raw",
           "functions": [
             {
               "function": "minecraft:set_count",

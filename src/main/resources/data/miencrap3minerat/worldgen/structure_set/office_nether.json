@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:office_nether",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 10018684,
+    "spacing": 6,
+    "separation": 2
+  }
+}
