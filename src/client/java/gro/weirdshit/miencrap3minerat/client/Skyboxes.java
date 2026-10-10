@@ -37,6 +37,7 @@ import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OperaSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.OrangeSkybox;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.minecraft.client.Minecraft;
@@ -59,10 +60,12 @@ public class Skyboxes {
 	private static final Skybox META_SKYBOX = new MetaSkybox();
 	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
 	private static final Skybox CONVO_SKYBOX = new ConvoSkybox();
+	private static final Skybox ORANGE_SKYBOX = new OrangeSkybox();
 	
 	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
 	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
 	private static final Identifier CONVO_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"); 
+	private static final Identifier ORANGE_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
@@ -80,6 +83,8 @@ public class Skyboxes {
 			return (T)OPERA_SKYBOX;
 		} else if (dimension.equals(CONVO_DIMENSION)) {
 			return (T)CONVO_SKYBOX;
+		} else if (dimension.equals(ORANGE_DIMENSION)) {
+			return (T)ORANGE_SKYBOX;
 		}
         return (T)TEST_SKYBOX;
     }

@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:overworld",
+  "type": "miencrap3minerat:orange",
   "generator": {
     "type": "minecraft:noise",
     "settings": "miencrap3minerat:orange",
