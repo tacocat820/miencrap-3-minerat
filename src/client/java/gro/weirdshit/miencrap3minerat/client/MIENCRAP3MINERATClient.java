@@ -257,6 +257,16 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 			)
 		);
 		FluidRenderingRegistry.register(
+			ModFluids.ORANGE_JUICE_STILL,
+			ModFluids.ORANGE_JUICE_FLOWING,
+			new FluidModel.Unbaked(
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/orange_juice_still")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/orange_juice_flow")),
+					new Material(Identifier.fromNamespaceAndPath("miencrap3minerat", "block/orange_juice_flow")),
+					BlockTintSources.constant(ARGB.opaque(0xffffff))
+			)
+		);
+		FluidRenderingRegistry.register(
 			ModFluids.OIL_STILL,
 			ModFluids.OIL_FLOWING,
 			new FluidModel.Unbaked(

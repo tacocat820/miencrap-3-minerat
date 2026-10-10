@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.block.fluid.BloodFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.EarsFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.NuclearWasteFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.OilFluid;
+import gro.weirdshit.miencrap3minerat.block.fluid.OrangeJuiceFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.PissFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.SulfuricAcidFluid;
 import gro.weirdshit.miencrap3minerat.block.fluid.WorldDeletingFluid;
@@ -108,6 +109,11 @@ public class ModFluids {
 	public static final FlowingFluid WORLD_DELETING_FLUID_STILL = register("world_deleting_fluid", new WorldDeletingFluid.Source());
     public static RegisteredBlock WORLD_DELETING_FLUID = new GenericFluid("world_deleting_fluid",(props) -> new LiquidBlock(ModFluids.WORLD_DELETING_FLUID_STILL, props)).reg();
 	public static RegisteredItem<?> WORLD_DELETING_FLUID_BUCKET = ModItems.register("world_deleting_fluid_bucket", p -> new BucketItem(ModFluids.WORLD_DELETING_FLUID_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
+
+	public static final FlowingFluid ORANGE_JUICE_FLOWING = register("flowing_orange_juice", new OrangeJuiceFluid.Flowing());
+	public static final FlowingFluid ORANGE_JUICE_STILL = register("orange_juice", new OrangeJuiceFluid.Source());
+    public static RegisteredBlock ORANGE_JUICE = new GenericFluid("orange_juice",(props) -> new LiquidBlock(ModFluids.ORANGE_JUICE_STILL, props)).reg();
+	public static RegisteredItem<?> ORANGE_JUICE_BUCKET = ModItems.register("orange_juice_bucket", p -> new BucketItem(ModFluids.ORANGE_JUICE_STILL, p), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1));
 
 
     public static void generate() {}

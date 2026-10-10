@@ -13,7 +13,12 @@
     "foliage_color": 16742400
   },
   "features": [
-    ["miencrap3minerat:orange_tree"]
+    [
+      "miencrap3minerat:orange_tree",
+      "miencrap3minerat:strange_grass",
+      "minecraft:disk_grass",
+      "minecraft:grass_bonemeal"
+    ]
   ],
   "has_precipitation": true,
   "spawn_costs": {},

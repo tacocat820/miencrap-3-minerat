@@ -231,7 +231,12 @@ public class ModItems {
 	public static RegisteredItem<?> BOWL_OF_RICE = ModItems.register("bowl_of_rice", Item::new, new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(7).saturationModifier(4.8f).build()).usingConvertsTo(Items.BOWL));
 	public static RegisteredItem<?> BOWL_OF_MASHED_POTATOES = ModItems.register("bowl_of_mashed_potatoes", Item::new, new Item.Properties().food(new FoodProperties
-		.Builder().nutrition(8).saturationModifier(4.0f).build()).usingConvertsTo(Items.BOWL));
+		.Builder().nutrition(8).saturationModifier(4.0f).build()).usingConvertsTo(Items.BOWL)
+	);
+
+	public static RegisteredItem<?> ORANGE = ModItems.register(
+		"orange", Item::new, new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(2.8f).build())
+	);
 
 	public static RegisteredItem<?> LEFISHE = ModItems.register("lefishe", LefisheItem::new, new Item.Properties());
 	public static RegisteredItem<?> NOKIA = ModItems.register("nokia", Item::new, new Item.Properties());

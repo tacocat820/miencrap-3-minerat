@@ -2,7 +2,7 @@
   "type": "minecraft:overworld",
   "generator": {
     "type": "minecraft:noise",
-    "settings": "minecraft:overworld",
+    "settings": "miencrap3minerat:orange",
     "biome_source": {
       "type": "minecraft:fixed",
       "biome": "miencrap3minerat:orange"
