@@ -2,12 +2,19 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,6 +31,7 @@ import net.minecraft.world.entity.player.Player;
 
 class FateAttackGoal extends MeleeAttackGoal {
 	private final Fate death;
+	private static final ResourceKey<Level> CONVO_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo")); 
 
 	public FateAttackGoal(final Fate death, final double speedModifier, final boolean trackTarget) {
 		super(death, speedModifier, trackTarget);
@@ -42,6 +50,28 @@ class FateAttackGoal extends MeleeAttackGoal {
 	public void tick() {
 		super.tick();
 		this.death.setAggressive(true);
+	}
+
+	protected void checkAndPerformAttack(final LivingEntity target) {
+		if (this.canPerformAttack(target)) {
+			this.resetAttackCooldown();
+			this.mob.swing(InteractionHand.MAIN_HAND);
+			this.mob.doHurtTarget(getServerLevel(this.mob), target);
+
+			if (target.level().dimension() == CONVO_DIMENSION) return;
+			
+			if (target instanceof Player player) {
+				PlayerStartTransition.run(player, CONVO_DIMENSION, 
+					player.position().multiply(1.0, 0.0, 1.0).add(0.0, -60.0, 0.0), 
+					"fade", 20);
+			} else {
+				//target.teleportTo(null, getTicksUntilNextAttack(), getAttackInterval(), getAttackInterval(), null, getTicksUntilNextAttack(), getAttackInterval(), isInterruptable())
+			}
+		
+		}
+	}
+	protected int adjustedTickDelay(final int ticks) {
+		return ticks + 20;
 	}
 }
 
