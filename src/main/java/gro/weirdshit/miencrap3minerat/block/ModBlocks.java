@@ -24,6 +24,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.FallingMiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.HangingFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDrywallBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificEpicConveyorBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificEscalatorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
@@ -383,6 +384,7 @@ public class ModBlocks {
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
 	public static RegisteredBlock CERAMIC_TILES_MINIBLOCKS = new GenericBlock("ceramic_tiles_miniblocks", p -> new MiniBlocksBlock(p, CERAMIC_TILES.block)).copyOf(CERAMIC_TILES.block).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock ESCALATOR = new GenericBlock("escalator", p -> new SpecificEscalatorBlock(p).shape(ModShapes.WEDGE), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock EPIC_CONVEYOR_BELT = new GenericBlock("epic_conveyor_belt", SpecificEpicConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.IRON, 1.0f,1.0f).reg();
 	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", EdibleBlock::new, SoundType.CALCITE, 1.0f,1.0f).reg();
