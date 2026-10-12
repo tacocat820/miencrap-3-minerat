@@ -30,7 +30,17 @@ public class ModBlocksTagProvider extends FabricTagsProvider.BlockTagsProvider {
     @Override
     protected void addTags(Provider registries) {
         builder(MINEABLE_BY_PICKAXE)
-        .add(createModKey("iron_miniblocks"));
+            .add(createModKey("netherrack_miniblocks"))
+            .add(createModKey("obsidian_miniblocks"))
+            .add(createModKey("quartz_miniblocks"))
+            .add(createModKey("end_stone_miniblocks"))
+            .add(createModKey("stone_miniblocks"))
+            .add(createModKey("cobblestone_miniblocks"))
+            .add(createModKey("tuff_miniblocks"))
+            .add(createModKey("iron_miniblocks"))
+            .add(createModKey("ceramic_tiles"))
+            .add(createModKey("ceramic_tiles_miniblocks"))
+        ;
     }
     
 }
