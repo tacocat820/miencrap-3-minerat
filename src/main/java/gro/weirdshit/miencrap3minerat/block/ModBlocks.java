@@ -63,6 +63,7 @@ import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CraftingTableBlock;
+import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -433,7 +434,7 @@ public class ModBlocks {
 	
 	public static RegisteredBlock PIPE_BOMB = new GenericBlock("pipe_bomb", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SACABAMBASPIS = new GenericBlock("sacabambaspis", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
-	
+	public static RegisteredBlock ORANGE_GRASS_BLOCK = new GenericBlock("orange_grass_block", GrassBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));

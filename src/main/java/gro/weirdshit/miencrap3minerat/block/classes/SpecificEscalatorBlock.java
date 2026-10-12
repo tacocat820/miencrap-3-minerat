@@ -22,7 +22,7 @@ public class SpecificEscalatorBlock extends HorizontallyRotShapeBlock {
         //entity.setPos(position.add(, , );
         Vec3 delta = entity.getDeltaMovement();
         entity.setDeltaMovement(delta.x + ((double)dir.getStepX())/13, 
-            delta.y + 6/13, 
+            delta.y + ((double)dir.getStepY())/13, 
             delta.z + ((double)dir.getStepZ())/13);
     
         //level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), 3.3f, true, ExplosionInteraction.TNT);

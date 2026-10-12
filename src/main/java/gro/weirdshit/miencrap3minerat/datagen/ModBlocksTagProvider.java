@@ -25,12 +25,12 @@ public class ModBlocksTagProvider extends FabricTagsProvider.BlockTagsProvider {
         super(output, registryLookupFuture);
     }
 
-    // public static final TagKey<Block> MINEABLE_BY_PICKAXE = TagKey.create(Registries.BLOCK, Identifier.withDefaultNamespace("mineable/pickaxe"));
+    public static final TagKey<Block> MINEABLE_BY_PICKAXE = TagKey.create(Registries.BLOCK, Identifier.withDefaultNamespace("mineable/pickaxe"));
 
     @Override
     protected void addTags(Provider registries) {
-        // builder(MINEABLE_BY_PICKAXE)
-        // .add(createModKey("iron_miniblocks"));
+        builder(MINEABLE_BY_PICKAXE)
+        .add(createModKey("iron_miniblocks"));
     }
     
 }
