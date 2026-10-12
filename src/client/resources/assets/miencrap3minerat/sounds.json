@@ -259,6 +259,10 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/brain_rot","stream": true}]},
 	"ost.tweeterer_alarm":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/tweeterer_alarm","stream": true}]},
+	"ost.oapple":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/oapple","stream": true}]},
+	"ost.do":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/do","stream": true}]},
 
 
 	"ed2_scream": {

@@ -32,10 +32,11 @@ public class Music {
     private static TagKey<Biome> SCARY = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "scary"));
     private static TagKey<Biome> WEIRD = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "weird"));
     private static TagKey<Biome> HOT = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "hot"));
-    private static TagKey<Biome> NETHER = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "nether_main"));
-    
+
+    private static TagKey<Biome> NETHER = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "nether_main"));    
     private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
     private static TagKey<Biome> CONVO = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"));
+    private static TagKey<Biome> ORANGE = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"));
 
 
     static Random rand = new Random();
@@ -124,6 +125,10 @@ public class Music {
                     MusicSounds.CAT_SONG,
                     MusicSounds.BALLAD_OF_THE_CAT,
                     MusicSounds.CONCRETE_HOUSES
+                });
+                else if (CurrentBiome.is(ORANGE)) return Choose(new SoundEvent[]{
+                    MusicSounds.OAPPLE,
+                    MusicSounds.DESIRABLE_ORANGE
                 });
                 else if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_MATH,
