@@ -46,7 +46,10 @@ import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentConnectedTextureBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TransparentDustFallingBlock;
+import gro.weirdshit.miencrap3minerat.datagen.ModDatagen;
+import gro.weirdshit.miencrap3minerat.etc.AdditionalBlockProperties;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
+import gro.weirdshit.miencrap3minerat.etc.Abp.WithTool;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import net.minecraft.core.Registry;
@@ -84,9 +87,24 @@ class GenericBlock {
 	private String name;
 	private Function<BlockBehaviour.Properties, Block> blockFactory;
 	private Properties properties;
+	public AdditionalBlockProperties additionalBlockProperties = new AdditionalBlockProperties();
 
 	public GenericBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory, SoundType sound, float destroyT, float explRes) {
         this.name = name; this.blockFactory = blockFactory;
+		additionalBlockProperties.name = name;
+
+		Properties properties = BlockBehaviour.Properties.of();
+		properties = properties.sound(sound);
+		properties = properties.destroyTime(destroyT);
+		properties = properties.explosionResistance(explRes);
+
+		this.properties = properties;
+    }
+
+	public GenericBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory, SoundType sound, float destroyT, float explRes, WithTool tool) {
+		this.additionalBlockProperties.tool = tool;
+        this.name = name; this.blockFactory = blockFactory;
+		additionalBlockProperties.name = name;
 
 		Properties properties = BlockBehaviour.Properties.of();
 		properties = properties.sound(sound);
@@ -98,15 +116,22 @@ class GenericBlock {
 
 	public GenericBlock(String name, Function<BlockBehaviour.Properties, Block> blockFactory) {
         this.name = name; this.blockFactory = blockFactory;
+		additionalBlockProperties.name = name;
 
 		Properties properties = BlockBehaviour.Properties.of();
 		this.properties = properties;
     }
 
+	public GenericBlock tool(WithTool tool) {
+		this.additionalBlockProperties.tool = tool;
+		return this;
+	}
+
 	public GenericBlock copyOf(Block base) {
 		properties = Properties.ofFullCopy(base);
         return this;
 	}
+
 	public GenericBlock ignitedByLava() {
 		properties = properties.ignitedByLava();
         return this;
@@ -166,6 +191,10 @@ class GenericBlock {
 		return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name));
 	}
 
+	private void regInDatagen() {
+		ModDatagen.blockdata.add(additionalBlockProperties);
+	}
+
 	public RegisteredBlock reg() {
 		// Create a registry key for the block
 		ResourceKey<Block> blockKey = keyOfBlock(name);
@@ -175,7 +204,8 @@ class GenericBlock {
 		ResourceKey<Item> itemKey = keyOfItem(name);
 		BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey).useBlockDescriptionPrefix());
 		Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
-
+		regInDatagen();
+		
 		return new RegisteredBlock(Registry.register(BuiltInRegistries.BLOCK, blockKey, block), blockItem);
 	}
 
@@ -188,6 +218,7 @@ class GenericBlock {
 		ResourceKey<Item> itemKey = keyOfItem(name);
 		BlockItem blockItem = new BlockItem(block, itemProperties.setId(itemKey).useBlockDescriptionPrefix());
 		Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
+		regInDatagen();
 
 		return new RegisteredBlock(Registry.register(BuiltInRegistries.BLOCK, blockKey, block), blockItem);
 	}
@@ -244,12 +275,12 @@ public class ModBlocks {
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).reg();
 	public static RegisteredBlock RUST_MINIBLOCKS = new GenericBlock("rust_miniblocks", p -> new MiniBlocksBlock(p, RUST_BLOCK.block)).copyOf(RUST_BLOCK.block).reg();
 	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", TransparentDustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).noOcclusion().reg();
-    public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).reg();
-	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
-	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).ignitedByLava().reg();
+    public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).tool(WithTool.PICKAXE).reg();
+	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).tool(WithTool.AXE).ignitedByLava().reg();
+	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).tool(WithTool.AXE).ignitedByLava().reg();
     public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
 	public static RegisteredBlock FALL_LEAF_LITTER = new GenericBlock("fall_leaf_litter", SpecificFallLeafLitterBlock::new, SoundType.WOOL,2.0f,1.5f).replaceable().noCollision().reg();
-	public static RegisteredBlock FALL_PLANKS = new GenericBlock("fall_planks", Block::new, SoundType.WOOD,1.5f,2.0f).ignitedByLava().reg();
+	public static RegisteredBlock FALL_PLANKS = new GenericBlock("fall_planks", Block::new, SoundType.WOOD,1.5f,2.0f).tool(WithTool.AXE).ignitedByLava().reg();
 	public static RegisteredBlock FALL_PLANKS_MINIBLOCKS = new GenericBlock("fall_planks_miniblocks", p -> new MiniBlocksBlock(p, FALL_PLANKS.block)).copyOf(FALL_PLANKS.block).reg();
 	
 	public static RegisteredBlock FALL_STAIRS = new GenericBlock("fall_stairs", p -> new StairBlock(FALL_PLANKS.block.defaultBlockState(), p), SoundType.WOOD,1.5f,2.0f).copyOf(FALL_PLANKS.block).ignitedByLava().reg();
@@ -263,47 +294,47 @@ public class ModBlocks {
 	public static RegisteredBlock COLD_STAIRS = new GenericBlock("cold_stairs", p -> new StairBlock(COLD_PLANKS.block.defaultBlockState(), p)).copyOf(COLD_PLANKS.block).reg();
 	public static RegisteredBlock COLD_SLAB = new GenericBlock("cold_slab", SlabBlock::new).copyOf(COLD_PLANKS.block).reg();
 
-	public static RegisteredBlock DIAMOND_BLOCK_2 = new GenericBlock("diamond_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
-	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
-	public static RegisteredBlock GOLD_BLOCK_2 = new GenericBlock("gold_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f).reg();
+	public static RegisteredBlock DIAMOND_BLOCK_2 = new GenericBlock("diamond_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f, WithTool.SHOVEL).reg();
+	public static RegisteredBlock REDSTONE_BLOCK_2 = new GenericBlock("redstone_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f, WithTool.SHOVEL).reg();
+	public static RegisteredBlock GOLD_BLOCK_2 = new GenericBlock("gold_block_2", Block::new, SoundType.AZALEA_LEAVES,0.5f, 1.5f, WithTool.SHOVEL).reg();
 	
-	public static RegisteredBlock CURSED_WOOD = new GenericBlock("cursed_wood", RotatedPillarBlock::new, SoundType.WOOD,2.0f,1.5f).ignitedByLava().noOcclusion().reg();
-    public static RegisteredBlock CURSED_PLANKS = new GenericBlock("cursed_planks", Block::new, SoundType.WOOD,2.0f,1.5f).ignitedByLava().noOcclusion().reg();
-	public static RegisteredBlock CURSED_LEAVES = new GenericBlock("cursed_leaves", p -> new NotDecayingUntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 4057628), p), SoundType.GRASS,2.0f,1.5f).noOcclusion().ignitedByLava().noOcclusion().reg();
-    public static RegisteredBlock CURSED_TREE_SAPLING = new GenericBlock("cursed_tree_sapling", Block::new, SoundType.WOOD,2.0f,1.5f).ignitedByLava().noOcclusion().reg();
+	public static RegisteredBlock CURSED_WOOD = new GenericBlock("cursed_wood", RotatedPillarBlock::new, SoundType.WOOD,2.0f,1.5f, WithTool.PICKAXE).ignitedByLava().noOcclusion().reg();
+    public static RegisteredBlock CURSED_PLANKS = new GenericBlock("cursed_planks", Block::new, SoundType.WOOD,2.0f,1.5f, WithTool.PICKAXE).ignitedByLava().noOcclusion().reg();
+	public static RegisteredBlock CURSED_LEAVES = new GenericBlock("cursed_leaves", p -> new NotDecayingUntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 4057628), p), SoundType.GRASS,2.0f,1.5f).tool(WithTool.PICKAXE).noOcclusion().ignitedByLava().noOcclusion().reg();
+    public static RegisteredBlock CURSED_TREE_SAPLING = new GenericBlock("cursed_tree_sapling", Block::new, SoundType.WOOD,2.0f,1.5f, WithTool.HOE).ignitedByLava().noOcclusion().reg();
 
 	public static RegisteredBlock IEXPLORER = new GenericBlock("iexplorer", TransparentBlock::new, SoundType.AMETHYST, 1.0f,1.0f).isNotViewBlocking().light(4).noOcclusion().reg();
 	public static RegisteredBlock MASHED_POTATOES = new GenericBlock("mashed_potatoes", DustFallingBlock::new, SoundType.COBWEB, 0.5f,1.0f).reg();
 	public static RegisteredBlock JELLY_BLOCK = new GenericBlock("jelly_block", EdibleBlock::new, SoundType.SLIME_BLOCK, 0.5f,0.5f).noOcclusion().reg();
 	public static RegisteredBlock JELLY_MINIBLOCKS = new GenericBlock("jelly_miniblocks", p -> new EdibleMiniBlocksBlock(p, JELLY_BLOCK.block)).copyOf(JELLY_BLOCK.block).reg();
-	public static RegisteredBlock BULLSHITTIUM = new GenericBlock("bullshittium", Block::new, SoundType.STONE, 3.0f,2.0f).light(5).emissiveRendering().reg();
-	public static RegisteredBlock BULLSHITTIUM_STAIRS = new GenericBlock("bullshittium_stairs", p -> new StairBlock(BULLSHITTIUM.block.defaultBlockState(), p)).copyOf(BULLSHITTIUM.block).reg();
-	public static RegisteredBlock BULLSHITTIUM_SLAB = new GenericBlock("bullshittium_slab", SlabBlock::new).copyOf(BULLSHITTIUM.block).reg();
+	public static RegisteredBlock BULLSHITTIUM = new GenericBlock("bullshittium", Block::new, SoundType.STONE, 3.0f,2.0f, WithTool.PICKAXE).light(5).emissiveRendering().reg();
+	public static RegisteredBlock BULLSHITTIUM_STAIRS = new GenericBlock("bullshittium_stairs", p -> new StairBlock(BULLSHITTIUM.block.defaultBlockState(), p)).tool(WithTool.PICKAXE).copyOf(BULLSHITTIUM.block).reg();
+	public static RegisteredBlock BULLSHITTIUM_SLAB = new GenericBlock("bullshittium_slab", SlabBlock::new).tool(WithTool.PICKAXE).copyOf(BULLSHITTIUM.block).reg();
 
-	public static RegisteredBlock PC = new GenericBlock("pc", SpecificPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock PC_ON = new GenericBlock("pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
-	public static RegisteredBlock PC_STAIRS = new GenericBlock("pc_stairs", p -> new StairBlock(PC.block.defaultBlockState(), p)).copyOf(PC.block).reg();
-	public static RegisteredBlock PC_SLAB = new GenericBlock("pc_slab", SlabBlock::new).copyOf(PC.block).reg();
-	public static RegisteredBlock PC_MINIBLOCKS = new GenericBlock("pc_miniblocks", p -> new MiniBlocksBlock(p)).copyOf(PC.block).reg();
+	public static RegisteredBlock PC = new GenericBlock("pc", SpecificPcBlock::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).noOcclusion().reg();
+	public static RegisteredBlock PC_ON = new GenericBlock("pc_on", HorizontallyRotatingBlock::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).noOcclusion().reg();
+	public static RegisteredBlock PC_STAIRS = new GenericBlock("pc_stairs", p -> new StairBlock(PC.block.defaultBlockState(), p)).tool(WithTool.PICKAXE).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_SLAB = new GenericBlock("pc_slab", SlabBlock::new).tool(WithTool.PICKAXE).copyOf(PC.block).reg();
+	public static RegisteredBlock PC_MINIBLOCKS = new GenericBlock("pc_miniblocks", p -> new MiniBlocksBlock(p)).tool(WithTool.PICKAXE).copyOf(PC.block).reg();
 
-	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f).reg();
+	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f, WithTool.HOE).reg();
 	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.STONE, 0.0f,0.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock ICICLE = new GenericBlock("icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(3507428), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
-	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f).noOcclusion().reg();
+	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f, WithTool.HOE).noOcclusion().reg();
 	public static RegisteredBlock EPIC_LEAVES = new GenericBlock("epic_leaves", Block::new, SoundType.GRASS, 0.5f,0.5f).noOcclusion().reg();
 	public static RegisteredBlock BRAZIL = new GenericBlock("brazil", RotatedPillarBlock::new, SoundType.GLASS, 0.5f,1.0f).reg();
 	public static RegisteredBlock TRASH_BAG = new GenericBlock("trash_bag", DustFallingBlock::new, SoundType.AZALEA_LEAVES, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock BLISSFUL_GRASS = new GenericBlock("blissful_grass", Block::new, SoundType.GRASS, 0.0f,0.0f).noOcclusion().noCollision().reg();
 	public static RegisteredBlock BLISS_PC = new GenericBlock("bliss_pc", SpecificBlissPcBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 
-	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
-	public static RegisteredBlock SOLID_DUST_MINIBLOCKS = new GenericBlock("solid_dust_miniblocks", p -> new MiniBlocksBlock(p, SOLID_DUST.block)).copyOf(SOLID_DUST.block).reg();
+	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f, WithTool.HOE).reg();
+	public static RegisteredBlock SOLID_DUST_MINIBLOCKS = new GenericBlock("solid_dust_miniblocks", p -> new MiniBlocksBlock(p, SOLID_DUST.block)).tool(WithTool.HOE).copyOf(SOLID_DUST.block).reg();
 	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock STATIC = new GenericBlock("static", SpecificStaticBlock::new, SoundType.STONE ,2.0f,1.5f).reg();
 	public static RegisteredBlock KEBAB_COOKED = new GenericBlock("kebab_cooked", RotatedPillarBlock::new, SoundType.CREAKING_HEART, 1.0f,1.0f).reg(
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(5f).build())
 	);
-	public static RegisteredBlock KEBAB = new GenericBlock("kebab", SpecificKebabBlock::new, SoundType.CREAKING_HEART, 1.2f,1.2f).randomTicks().reg(
+	public static RegisteredBlock KEBAB = new GenericBlock("kebab", SpecificKebabBlock::new, SoundType.CREAKING_HEART, 1.2f,1.2f).randomTicks().tool(WithTool.AXE).reg(
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(1f).build())
 	);
 	public static RegisteredBlock BING_CHILLING = new GenericBlock("bing_chilling", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
@@ -435,6 +466,7 @@ public class ModBlocks {
 	public static RegisteredBlock PIPE_BOMB = new GenericBlock("pipe_bomb", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SACABAMBASPIS = new GenericBlock("sacabambaspis", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock ORANGE_GRASS_BLOCK = new GenericBlock("orange_grass_block", GrassBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
+	public static RegisteredBlock PASTEL_WOOL = new GenericBlock("pastel_wool", Block::new).copyOf(Blocks.WHITE_WOOL).reg();
 	// --- //
 
 	//public static GenericBlock VLC = new GenericBlock("vlc", Block::new, properties().sound(SoundType.GRASS));
