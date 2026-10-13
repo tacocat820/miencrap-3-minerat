@@ -77,12 +77,12 @@ public class WrenchItem extends Item {
         MIENCRAP3MINERAT.LOGGER.info("attac!!!");
         mob.playSound(SoundEvents.COPPER_BREAK);
 
+        BreadSwordItem.breakitem(65536, attacker, itemStack);
+
         if (!itemStack.is(ModItems.FRENCH.item)) {
             attacker.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.FRENCH.item));
             MIENCRAP3MINERAT.LOGGER.info("france");
         }
-
-        BreadSwordItem.breakitem(65536, attacker, itemStack);
         
     }
 
