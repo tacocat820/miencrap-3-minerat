@@ -261,7 +261,7 @@ public class Anglerfish extends WaterAnimal {
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)
-				.add(Attributes.TEMPT_RANGE, 10)
+				.add(Attributes.TEMPT_RANGE, 40)
 				.add(Attributes.MOVEMENT_SPEED, 0.9)
 				.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 2.0)
 				.add(Attributes.FOLLOW_RANGE, 100.0)

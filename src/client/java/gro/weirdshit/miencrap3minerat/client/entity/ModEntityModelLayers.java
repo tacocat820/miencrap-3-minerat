@@ -6,6 +6,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BlimpRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BrothersRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
@@ -55,6 +56,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation BAA = createMain("baa");
 	public static final ModelLayerLocation LEFISHE = createMain("lefishe");
 	public static final ModelLayerLocation CABLE = createMain("cable");
+	public static final ModelLayerLocation BROTHERS = createMain("brothers");
 	public static final ModelLayerLocation DEMON = createMain("demon");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
 	public static final ModelLayerLocation PTL = createMain("ptl");
@@ -98,6 +100,7 @@ public class ModEntityModelLayers {
 		BaaRenderer.register(BAA);
 		LefisheRenderer.register(LEFISHE);
 		CableRenderer.register(CABLE);
+		BrothersRenderer.register(BROTHERS);
 		DemonRenderer.register(DEMON);
 		GigachickenRenderer.register(GIGACHICKEN);
 		PtlRenderer.register(PTL);

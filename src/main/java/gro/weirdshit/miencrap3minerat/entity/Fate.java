@@ -1,14 +1,18 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
+import java.util.Set;
+
 import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
@@ -27,6 +31,7 @@ import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.villager.AbstractVillager;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
 
 class FateAttackGoal extends MeleeAttackGoal {
@@ -59,13 +64,29 @@ class FateAttackGoal extends MeleeAttackGoal {
 			this.mob.doHurtTarget(getServerLevel(this.mob), target);
 
 			if (target.level().dimension() == CONVO_DIMENSION) return;
+
+			if (death.level() instanceof ServerLevel serverLevel) {
+				target.playSound(ModSounds.PUFF);
+				serverLevel.sendParticles(ModParticles.DEATH, target.getX(), target.getY() + 1.5, target.getZ(), 50, 0.1, 0.1, 0.1, 0.1);
+				serverLevel.sendParticles(ParticleTypes.CLOUD, target.getX(), target.getY() + 1.5, target.getZ(), 50, 0.1, 0.1, 0.1, 0.1);
+				serverLevel.sendParticles(ParticleTypes.ENCHANTED_HIT, target.getX(), target.getY() + 1.5, target.getZ(), 50, 0.1, 0.1, 0.1, 0.1);
+			} 
 			
 			if (target instanceof Player player) {
 				PlayerStartTransition.run(player, CONVO_DIMENSION, 
 					player.position().multiply(1.0, 0.0, 1.0).add(0.0, -60.0, 0.0), 
 					"fade", 20);
 			} else {
-				//target.teleportTo(null, getTicksUntilNextAttack(), getAttackInterval(), getAttackInterval(), null, getTicksUntilNextAttack(), getAttackInterval(), isInterruptable())
+
+				MinecraftServer server = death.level().getServer();
+                ServerLevel targetLevel = server.getLevel(CONVO_DIMENSION);
+				Vec3 pos = target.position().multiply(1.0, 0.0, 1.0).add(0.0, -60.0, 0.0);
+
+                target.teleportTo(targetLevel, pos.x, pos.y, pos.z, 
+                    Set.of(), 
+                    target.getYRot(), target.getXRot(),
+                    true);
+
 			}
 		
 		}
@@ -108,7 +129,8 @@ public class Fate extends Monster {
         this.goalSelector.addGoal(1, new FateAttackGoal(this, 1.0, true));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Death.class, 4));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-      	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+      	this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
+      	this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<Demon>(this, Demon.class, true));
       	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<Player>(this, Player.class, true));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<AbstractVillager>(this, AbstractVillager.class, false));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, true));

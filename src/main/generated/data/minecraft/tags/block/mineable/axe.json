@@ -1,8 +1,18 @@
 {
   "values": [
+    "miencrap3minerat:stool",
+    "miencrap3minerat:table",
+    "miencrap3minerat:orange_wood",
+    "miencrap3minerat:orange_wood_miniblocks",
+    "miencrap3minerat:maple_log",
+    "miencrap3minerat:maple_planks",
     "miencrap3minerat:fall_wood",
     "miencrap3minerat:fall_log",
     "miencrap3minerat:fall_planks",
-    "miencrap3minerat:kebab"
+    "miencrap3minerat:fall_stairs",
+    "miencrap3minerat:fall_slab",
+    "miencrap3minerat:kebab_cooked",
+    "miencrap3minerat:kebab",
+    "miencrap3minerat:blwood"
   ]
 }

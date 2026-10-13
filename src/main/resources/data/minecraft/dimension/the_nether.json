@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:the_nether",
+  "type": "miencrap3minerat:nether",
   "generator": {
     "type": "minecraft:noise",
     "biome_source": {

@@ -315,7 +315,7 @@ public class Crish extends Monster {
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)
-				.add(Attributes.TEMPT_RANGE, 10)
+				.add(Attributes.TEMPT_RANGE, 30)
 				.add(Attributes.MOVEMENT_SPEED, 1.5)
 				.add(Attributes.STEP_HEIGHT, 1.0)
 				.add(Attributes.WATER_MOVEMENT_EFFICIENCY, 5.6)

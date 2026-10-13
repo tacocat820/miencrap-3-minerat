@@ -90,7 +90,7 @@ public class GamingChair extends Monster {
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 64)
-				.add(Attributes.TEMPT_RANGE, 10)
+				.add(Attributes.TEMPT_RANGE, 35)
 				.add(Attributes.SCALE, 4.0)
 				.add(Attributes.MOVEMENT_SPEED, 0.45)
 				.add(Attributes.ATTACK_DAMAGE, 5.0);

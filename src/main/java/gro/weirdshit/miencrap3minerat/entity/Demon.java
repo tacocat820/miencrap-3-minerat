@@ -2,7 +2,9 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -35,6 +37,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.animal.cow.Cow;
 import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.animal.turtle.Turtle;
@@ -66,6 +70,8 @@ import java.lang.Float;
 
 public class Demon extends PathfinderMob {
 	
+	private static final ResourceKey<Level> CONVO_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo")); 
+
 	public Demon(Level world) {
 		this(ModEntityTypes.DEMON, world);
 	}
@@ -86,13 +92,14 @@ public class Demon extends PathfinderMob {
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 16)
-				.add(Attributes.TEMPT_RANGE, 10)
+				.add(Attributes.TEMPT_RANGE, 34)
 				.add(Attributes.MOVEMENT_SPEED, 0.45)
 				.add(Attributes.ATTACK_DAMAGE, 5.0);
 	}
 
 	@Override 
     public boolean hurtServer(final ServerLevel level, final DamageSource source, float damage) {
+		if (level.dimension().equals(CONVO_DIMENSION)) return super.hurtServer(level, source, damage);
         return false;
     }
 
@@ -115,7 +122,7 @@ public class Demon extends PathfinderMob {
 				&& !this.level().getFluidState(this.blockPosition()).is(FluidTags.LAVA)) {
 				this.setOnGround(true);
 			} else {
-				this.setDeltaMovement(this.getDeltaMovement().x * 2.3, 0.1, this.getDeltaMovement().z * 2.3);
+				this.setDeltaMovement(this.getDeltaMovement().x * 1.1, 0.1, this.getDeltaMovement().z * 1.1);
 			}
 		}
 	}
@@ -138,6 +145,7 @@ public class Demon extends PathfinderMob {
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Cow.class, 4));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
       	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<Fate>(this, Fate.class, false));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Lefishe>(this, Lefishe.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Psycho>(this, Psycho.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<Fundy>(this, Fundy.class, true));
