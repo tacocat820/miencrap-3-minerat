@@ -1,7 +1,7 @@
 {
-	"parent": "miencrap3minerat:templates/display_as_block",
 	"format_version": "1.9.0",
 	"credit": "Made with Blockхуенч",
+	"parent": "miencrap3minerat:templates/display_as_block",
 	"textures": {
 		"0": "block/oak_planks",
 		"1": "block/spruce_planks",
@@ -10,7 +10,7 @@
 	"elements": [
 		{
 			"from": [1, 16, 1],
-			"to": [15, 17, 15],
+			"to": [15, 17.05, 15],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 16, 0]},
 			"faces": {
 				"north": {"uv": [0, 3, 14, 4], "texture": "#0"},
