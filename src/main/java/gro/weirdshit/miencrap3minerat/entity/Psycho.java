@@ -77,6 +77,7 @@ public class Psycho extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, Demon.class, 30, 1.0, 1.0));
       this.goalSelector.addGoal(0, new PanicGoal(this, 1.25));
       this.goalSelector.addGoal(0, new EatSpecificBlockGoal(this, ModBlocks.CARAMEL_BRICKS.block));
       this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
