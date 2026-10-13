@@ -134,6 +134,7 @@ public class Blimp extends PathfinderMob implements PlayerRideable {
 		super(entityType, world);
 
 		this.moveControl = new FlyingMoveControl(this, 20, true);
+		this.setNoGravity(true);
 
 		this.setPathfindingMalus(PathType.FIRE, -1.0F);
 		this.setPathfindingMalus(PathType.WATER, -1.0F);
@@ -161,8 +162,7 @@ public class Blimp extends PathfinderMob implements PlayerRideable {
 
     @Override
     protected void registerGoals() {
-		this.goalSelector.addGoal(1, new BlimpWanderGoal(this, 1.0));
-		this.goalSelector.addGoal(2, new FollowMobGoal(this, 1.0, 3.0F, 7.0F));
+		//this.goalSelector.addGoal(1, new BlimpWanderGoal(this, 1.0));
 		this.goalSelector.addGoal(2, new FloatGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Cow.class, 4));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
@@ -188,6 +188,13 @@ public class Blimp extends PathfinderMob implements PlayerRideable {
 		Vec2 rotation = this.getRiddenRotation(controller);
 		this.setRot(rotation.y, rotation.x);
 		this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+	}
+	@Override
+	public void tick() {
+		
+		super.tick();
+		this.setNoGravity(true);
+
 	}
 
 	@Override
@@ -248,10 +255,16 @@ public class Blimp extends PathfinderMob implements PlayerRideable {
 
 		return new Vec3(0.0, this.rideHeight(dimensions), offset).yRot(-this.getYRot() * (float) (Math.PI / 180.0));
 	}
-
 	protected double rideHeight(final EntityDimensions dimensions) {
 		return -1.7;
 	}
+	@Override
+	public Vec3 getDismountLocationForPassenger(final LivingEntity passenger) {
+
+		return passenger.position();
+
+	}
+
 
 
 }

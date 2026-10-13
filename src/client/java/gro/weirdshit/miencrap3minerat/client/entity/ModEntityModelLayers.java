@@ -10,6 +10,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.CableRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.CrishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DamnRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DeathRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.DemonRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
@@ -54,6 +55,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation BAA = createMain("baa");
 	public static final ModelLayerLocation LEFISHE = createMain("lefishe");
 	public static final ModelLayerLocation CABLE = createMain("cable");
+	public static final ModelLayerLocation DEMON = createMain("demon");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
 	public static final ModelLayerLocation PTL = createMain("ptl");
 	public static final ModelLayerLocation CRISH = createMain("crish");
@@ -96,6 +98,7 @@ public class ModEntityModelLayers {
 		BaaRenderer.register(BAA);
 		LefisheRenderer.register(LEFISHE);
 		CableRenderer.register(CABLE);
+		DemonRenderer.register(DEMON);
 		GigachickenRenderer.register(GIGACHICKEN);
 		PtlRenderer.register(PTL);
 		CrishRenderer.register(CRISH);
