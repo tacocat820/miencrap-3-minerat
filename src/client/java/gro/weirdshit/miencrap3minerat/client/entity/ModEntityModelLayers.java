@@ -32,6 +32,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PcEntityRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PolPotRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PsychoRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.PsychotherapistRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PuffercopterRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RedLightningBoltRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.RepeerRenderer;
@@ -67,6 +68,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation HOOORSE = createMain("hooorse");
 	public static final ModelLayerLocation HANGING_VILLAGER = createMain("hanging_villager");
 	public static final ModelLayerLocation STEVE_JOBS = createMain("steve_jobs");
+	public static final ModelLayerLocation PSYCHOTHERAPIST = createMain("psychotherapist");
 	public static final ModelLayerLocation HMMM = createMain("hmmm");
 	public static final ModelLayerLocation WATER_DEER = createMain("water_deer");
 	public static final ModelLayerLocation SLAVE = createMain("slave");
@@ -111,6 +113,7 @@ public class ModEntityModelLayers {
 		HooorseRenderer.register(HOOORSE);
 		HangingVillagerRenderer.register(HANGING_VILLAGER);
 		SteveJobsRenderer.register(STEVE_JOBS);
+		PsychotherapistRenderer.register(PSYCHOTHERAPIST);
 		HmmmRenderer.register(HMMM);
 		WaterDeerRenderer.register(WATER_DEER);
 		EnderDragonRenderer.register(ENDER_DRAGON);

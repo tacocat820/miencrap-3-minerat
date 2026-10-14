@@ -128,6 +128,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<SteveJobs>of(SteveJobs::new, MobCategory.CREATURE)
 					.sized(0.7f, 3.0f)
 	);
+	public static final EntityType<Psychotherapist> PSYCHOTHERAPIST = register(
+			"psychotherapist",
+			EntityType.Builder.<Psychotherapist>of(Psychotherapist::new, MobCategory.CREATURE)
+					.sized(0.7f, 3.0f)
+	);
 	public static final EntityType<Hmmm> HMMM = register(
 			"hmmm",
 			EntityType.Builder.<Hmmm>of(Hmmm::new, MobCategory.CREATURE)
@@ -248,6 +253,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HANGING_VILLAGER, HangingVillager.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(STEVE_JOBS, SteveJobs.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(PSYCHOTHERAPIST, Psychotherapist.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HMMM, Hmmm.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(WATER_DEER, WaterDeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(POL_POT, PolPot.createCubeAttributes());

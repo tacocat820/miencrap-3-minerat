@@ -33,6 +33,7 @@ import gro.weirdshit.miencrap3minerat.client.mixin.MakeSetPostEffectPublicMixin;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.ConvoSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.EndSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.NetherSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
@@ -55,7 +56,9 @@ import net.minecraft.world.phys.Vec3;
 public class Skyboxes {
 
     private static final Skybox TEST_SKYBOX = new Skybox(Identifier.fromNamespaceAndPath("miencrap3minerat", "textures/sky/overworld_day_2.png"));
-    private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
+    
+	private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
+	private static final Skybox NETHER_SKYBOX = new NetherSkybox();
 	private static final Skybox END_SKYBOX = new EndSkybox();
 	private static final Skybox META_SKYBOX = new MetaSkybox();
 	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
@@ -75,6 +78,8 @@ public class Skyboxes {
 
 		if (dimension.equals(BuiltinDimensionTypes.OVERWORLD.identifier())) {
 			return (T)OVERWORLD_SKYBOX;
+		} else if (dimension.equals(BuiltinDimensionTypes.NETHER.identifier())) {
+			return (T)NETHER_SKYBOX;
 		} else if (dimension.equals(BuiltinDimensionTypes.END.identifier())) {
 			return (T)END_SKYBOX;
 		} else if (dimension.equals(META_DIMENSION)) {
