@@ -40,6 +40,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlass;
+import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
@@ -416,6 +417,7 @@ public class ModBlocks {
 	public static RegisteredBlock SACABAMBASPIS = new GenericBlock("sacabambaspis", Block::new, SoundType.STONE, -1.0f,9999.0f).reg();
 	public static RegisteredBlock ORANGE_GRASS_BLOCK = new GenericBlock("orange_grass_block", GrassBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
 	public static RegisteredBlock PASTEL_WOOL = new GenericBlock("pastel_wool", Block::new).copyOf(Blocks.WHITE_WOOL).reg();
+	public static RegisteredBlock BASKET = new GenericBlock("basket", TheBasketBlock.Blk::new, SoundType.WET_GRASS, 0.4f,1.0f, WithTool.HOE).noOcclusion().noCollision().reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
