@@ -108,6 +108,7 @@ public class Music {
                     MusicSounds.STALLAT,
                     MusicSounds.MINERAT2,
                     MusicSounds.CREDITS,
+                    MusicSounds.MENU_VERY_ORCHESTRAL_MUSIC,
                     MusicSounds.EPIK,
                     MusicSounds.BORING,
                 });
