@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "miencrap3minerat:block/basket"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/basket",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/basket",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/basket",
+      "y": 270
     }
   }
 }
