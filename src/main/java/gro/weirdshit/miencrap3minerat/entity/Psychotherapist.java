@@ -1,64 +1,76 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
-import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.server.level.ServerBossEvent;
+import java.util.Arrays;
+import java.util.List;
+
+import gro.weirdshit.miencrap3minerat.entity.ai.InnovationalBehavior;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.DoNothing;
+import gro.weirdshit.miencrap3minerat.entity.ai.classes.PsychotherapistHuntForPsychos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.Mth;
-import net.minecraft.util.Util;
-import net.minecraft.world.BossEvent.BossBarColor;
-import net.minecraft.world.BossEvent.BossBarOverlay;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal; 
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal; 
 import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.network.syncher.SynchedEntityData.Builder;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.cow.Cow;
-import net.minecraft.world.entity.animal.golem.IronGolem;
-import net.minecraft.world.entity.animal.pig.Pig;
-import net.minecraft.world.entity.animal.turtle.Turtle;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.EnderMan;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
-import net.minecraft.world.entity.monster.zombie.Zombie;
-import net.minecraft.world.entity.npc.villager.AbstractVillager;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal; 
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal; 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
+import net.minecraft.world.entity.player.Player; 
 
 
 public class Psychotherapist extends PathfinderMob {
+
+	private static final List<InnovationalBehavior<Psychotherapist>> BEHAVIORS = Arrays.asList(
+		new PsychotherapistHuntForPsychos()
+		//new DoNothing<Psychotherapist>()
+	);
+	public InnovationalBehavior<Psychotherapist> currentBehavior = null;
+
+	int i = 0; long behaviorTime = 0;
+
+	public void stopBehavior(ServerLevel level) {
+		if (currentBehavior != null) currentBehavior.stop(level, this);
+		currentBehavior = null;
+	}
+	public void setBehavior(ServerLevel level, InnovationalBehavior<Psychotherapist> to) {
+		if (currentBehavior != null) currentBehavior.stop(level, this);
+		currentBehavior = to;
+	}
+
+	private Vec3 home;
+
+	@Override 
+    public boolean hurtServer(final ServerLevel level, final DamageSource source, float damage) {
+		
+		if (source.is(DamageTypes.IN_WALL)) return false;
+
+		return super.hurtServer(level, source, damage);
+    }
+
+	@Override
+	protected void addAdditionalSaveData(final ValueOutput output) {
+		super.addAdditionalSaveData(output);
+		output.store("homePos", Vec3.CODEC, home);
+	}
+
+	@Override
+	protected void readAdditionalSaveData(final ValueInput input) {
+		super.readAdditionalSaveData(input);
+		home = input.read("homePos", Vec3.CODEC).orElse(new Vec3(0,0,0));
+	}
+
+	public Vec3 getHome() {
+		return home;
+	}
 	
 	public Psychotherapist(Level world) {
 		this(ModEntityTypes.PSYCHOTHERAPIST, world);
@@ -74,11 +86,37 @@ public class Psychotherapist extends PathfinderMob {
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 10)
+				.add(Attributes.MAX_HEALTH, 70)
 				.add(Attributes.TEMPT_RANGE, 60)
 				.add(Attributes.FOLLOW_RANGE, 60)
 				.add(Attributes.MOVEMENT_SPEED, 0.4)
 				.add(Attributes.ATTACK_DAMAGE, 4.0);
+	}
+
+	private InnovationalBehavior<Psychotherapist> getNextAction() {
+		if (i >= BEHAVIORS.size()) i = 0;
+		return BEHAVIORS.get(i++);
+	}
+
+	private void behaviors(final ServerLevel level) {
+
+		if (currentBehavior == null) {
+			currentBehavior = getNextAction();
+
+			if (!currentBehavior.start(level, this)) {
+				currentBehavior = null; behaviorTime = 0; return;
+			}
+		}
+		if (!currentBehavior.tick(level, this, ++behaviorTime)) {
+			currentBehavior = null; behaviorTime = 0; return;
+		}
+		
+	}
+
+	protected void customServerAiStep(final ServerLevel level) {
+		behaviors(level);
+		
+		super.customServerAiStep(level); 
 	}
 
     @Override

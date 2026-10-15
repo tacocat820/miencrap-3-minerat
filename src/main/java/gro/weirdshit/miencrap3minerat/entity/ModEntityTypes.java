@@ -214,6 +214,10 @@ public class ModEntityTypes {
 			"death_village_marker",
 			EntityType.Builder.<DeathVillageMarker>of(DeathVillageMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
 	);
+	public static final EntityType<HospitalMarker> HOSPITAL_MARKER = register(
+			"hospital_marker",
+			EntityType.Builder.<HospitalMarker>of(HospitalMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
+	);
 	public static final EntityType<Spawner> SPAWNER = register(
 			"spawner",
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)

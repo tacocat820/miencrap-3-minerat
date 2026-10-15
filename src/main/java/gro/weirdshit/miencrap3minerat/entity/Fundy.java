@@ -60,7 +60,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 
 
-public class Fundy extends PathfinderMob {
+public class Fundy extends Psycho {
 	
 	public Fundy(Level world) {
 		this(ModEntityTypes.FUNDY, world);
