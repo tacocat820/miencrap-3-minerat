@@ -45,12 +45,11 @@ public class TheBasketBlock {
         }
 
         @Override
-        protected InteractionResult useWithoutItem(final BlockState state, final Level level, final BlockPos pos, final Player player, final BlockHitResult hitResult) {
+        protected InteractionResult useItemOn(final ItemStack player_stack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
             if (level.getBlockEntity(pos) instanceof TheBasketBlock.BlockEnt basketEntity) {
                 basketEntity.incrementClicks();
 
                 ItemStack inner_stack = basketEntity.getItem().copy();
-                ItemStack player_stack = player.getItemInHand(InteractionHand.MAIN_HAND).copy();
 
                 // //drop last
                 // if (!inner_stack.isEmpty()) {
@@ -60,7 +59,7 @@ public class TheBasketBlock {
 
                 //swap
                 basketEntity.setItem(player_stack);
-                player.setItemInHand(InteractionHand.MAIN_HAND, inner_stack);;
+                player.setItemInHand(hand, inner_stack);
 
                 return InteractionResult.SUCCESS;
             }
@@ -80,6 +79,7 @@ public class TheBasketBlock {
 
         public void setItem(ItemStack stack) {
             this.items.set(0, stack);
+            this.setChanged();
         }
 
         public void incrementClicks() {

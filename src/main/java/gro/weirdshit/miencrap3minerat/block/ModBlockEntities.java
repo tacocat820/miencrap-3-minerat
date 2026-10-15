@@ -12,6 +12,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheMicrowaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.world.level.block.Block;
@@ -43,6 +44,10 @@ public class ModBlockEntities {
   public static final BlockEntityType<TheBasketBlock.BlockEnt> BASKET_ENTITY_TYPE =
   register("basket", TheBasketBlock.BlockEnt::new, ModBlocks.BASKET.block);
 
+  public static final BlockEntityType<TheMicrowaveBlock.BlockEnt> MICROWAVE_ENTITY_TYPE =
+  register("microwave", TheMicrowaveBlock.BlockEnt::new, ModBlocks.MICROWAVE.block);
+
+  
   public static final BlockEntityType<SpecificXpGlassBlockEntity> XP_GLASS_ENTITY_TYPE = register("xp_glass", SpecificXpGlassBlockEntity::new, ModBlocks.XP_GLASS.block);
   public static final BlockEntityType<TheMatrixBlock.BlockEntity> MATRIX_ENTITY_TYPE = register("matrix_block", TheMatrixBlock.BlockEntity::new, ModBlocks.MATRIX_BLOCK.block);
   public static final BlockEntityType<TheWaveBlock.BlockEntity> WAVE_BLOCK_ENTITY_TYPE = register("wave_block", TheWaveBlock.BlockEntity::new, ModBlocks.WAVE_BLOCK.block);
