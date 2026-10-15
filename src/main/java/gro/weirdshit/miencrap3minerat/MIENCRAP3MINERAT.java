@@ -222,7 +222,7 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		ModStructurePlacementType.generate();
 		ModFluids.generate();
 		ModItems.generate();
-		ModRegister.generate();
+		ModRegistry.generate();
 		ModSounds.generate();
 		ModCommands.generate();
 		ModPackets.generate();

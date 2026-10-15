@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import gro.weirdshit.miencrap3minerat.ModRegister.Recipe2_Registry;
+import gro.weirdshit.miencrap3minerat.ModRegistry.Recipe2_Registry;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftRecipe;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsSet;
@@ -56,7 +57,7 @@ class JsonClassParser {
     }
 }
 
-public class ModRegister {
+public class ModRegistry {
     private static final Identifier fabricid = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "sus");
     private static final Identifier customRecipes = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "recipes2");
    
@@ -122,6 +123,10 @@ public class ModRegister {
         private HashMap<Integer, ArrayList<CraftRecipe>> recipes = new HashMap<>();
         
         public Recipe2_Registry() { /* хз */}
+
+        public Collection<ArrayList<CraftRecipe>> values() {
+            return recipes.values();
+        }
 
         public Optional<CraftRecipe> get(CTableMenu.ItemsGrid optimizedGrid) {
             ItemsSet itemset = optimizedGrid.toItemsSet();

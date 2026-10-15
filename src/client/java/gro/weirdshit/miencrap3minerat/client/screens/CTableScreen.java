@@ -1,5 +1,6 @@
 package gro.weirdshit.miencrap3minerat.client.screens;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
@@ -9,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import com.mojang.authlib.minecraft.client.MinecraftClient;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.client.widgets.RadarWidget;
 import gro.weirdshit.miencrap3minerat.etc.Point2i;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.InputWithModifiers;
@@ -20,9 +23,11 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -49,12 +54,24 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private float time = 0.0f;
 	public Float distanceValue = 3.0f;
 
+	private ArrayList<ItemStack> craftable_items = new ArrayList<>();
 
 	public CTableScreen(CTableMenu abstractContainerMenu, Inventory inventory, Component component) {
 		super(abstractContainerMenu, inventory, component);
 		// Center the title
 		// this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 		this.titleLabelX = 8;
+
+
+		ModRegistry.RECIPES_2.values().forEach(v -> {
+			v.forEach(v2 -> {
+
+				craftable_items.add(
+					new ItemStack(v2.result.toItem())
+				);
+
+			});
+		});
 	}
 
 	private double dist(float a, float b) {
@@ -141,9 +158,23 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 						sprite = BUTTON_SPRITE;
 					}
 
-					graphics.blitSprite(
-						RenderPipelines.GUI_TEXTURED, sprite, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, 16, 16
-					);
+
+
+					ItemStack disp;
+					if (i < craftable_items.size()) {
+						disp = craftable_items.get(i);
+
+						graphics.blitSprite(
+							RenderPipelines.GUI_TEXTURED, sprite, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, 16, 16
+						);
+
+						graphics.item(disp, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY);
+
+					}
+
+
+
+					// graphics.text(font, "1", getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, ARGB.color(255,255,0));
 
 				}
 

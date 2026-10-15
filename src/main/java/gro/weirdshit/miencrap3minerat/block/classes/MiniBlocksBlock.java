@@ -10,7 +10,7 @@ import java.util.Optional;
 import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
-import gro.weirdshit.miencrap3minerat.ModRegister;
+import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.etc.Point3i;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -160,7 +160,7 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
     }
 
     static public Optional<BlockState> convertToMiniblocksBlockstate(Block orig) {
-        Optional<Block> miniblocks = ModRegister.MINIBLOCKS.get(orig);
+        Optional<Block> miniblocks = ModRegistry.MINIBLOCKS.get(orig);
         
         Optional<BlockState> a = miniblocks
             .map(b -> b.defaultBlockState()) // Если блок есть, берем его состояние
@@ -349,7 +349,7 @@ public class MiniBlocksBlock extends WaterloggedTransparentBlock {
 
     public MiniBlocksBlock(BlockBehaviour.Properties properties, Block original) {
         super(properties);
-        ModRegister.MINIBLOCKS.set(original, this);
+        ModRegistry.MINIBLOCKS.set(original, this);
 
         registerDefaultState(
             defaultBlockState()

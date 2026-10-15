@@ -9,7 +9,7 @@ import java.util.Random;
 import org.joml.Math;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
-import gro.weirdshit.miencrap3minerat.ModRegister;
+import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -47,7 +47,7 @@ public class ChiselItem extends Item {
 
         if (!(clickedBlock instanceof MiniBlocksBlock)) {
 
-            Optional<Block> miniblocks = ModRegister.MINIBLOCKS.get(clickedBlock);
+            Optional<Block> miniblocks = ModRegistry.MINIBLOCKS.get(clickedBlock);
             if (miniblocks.isPresent()) {
                 level.setBlock(pos, miniblocks.get().defaultBlockState(), MiniBlocksBlock.UPDATE_ALL);
                 bstate = level.getBlockState(pos); //update the blockstate

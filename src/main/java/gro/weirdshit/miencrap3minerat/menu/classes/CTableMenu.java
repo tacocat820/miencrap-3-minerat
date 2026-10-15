@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
-import gro.weirdshit.miencrap3minerat.ModRegister;
+import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.GridItem;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsGrid;
@@ -148,7 +148,7 @@ public class CTableMenu extends AbstractContainerMenu {
 		MIENCRAP3MINERAT.LOGGER.warn("hash :::: "+itemset.hashCode());
 		//---//
 		try {
-			CraftRecipe rec = ModRegister.RECIPES_2.get(optimizedGrid).orElseThrow();
+			CraftRecipe rec = ModRegistry.RECIPES_2.get(optimizedGrid).orElseThrow();
 			resultSlot.set_result(
 				rec
 			);
@@ -218,7 +218,7 @@ public class CTableMenu extends AbstractContainerMenu {
 	//-------class
 	public class CraftRecipe {
 		public static final String type = "none";
-		GridItem result = new GridItem("minecraft:air", 1);
+		public GridItem result = new GridItem("minecraft:air", 1);
 
 		public ItemsSet toItemsSet() { return null; }
 	}
@@ -259,6 +259,12 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 		public GridItem(ItemStack itemStack) {
 			this.id = itemStack.getItem().toString();this.count = itemStack.count();
+		}
+
+		public Item toItem() {
+			Identifier id = Identifier.tryParse( this.id );
+			Item item = BuiltInRegistries.ITEM.get(id).map(Holder::value).orElse(Items.AIR);
+			return item;
 		}
 	}
 	public class ItemHash {
