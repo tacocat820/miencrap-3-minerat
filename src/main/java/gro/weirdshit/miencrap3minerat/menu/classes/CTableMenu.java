@@ -2,14 +2,21 @@ package gro.weirdshit.miencrap3minerat.menu.classes;
 
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Set;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModRegistry;
+import gro.weirdshit.miencrap3minerat.etc.Helpers;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.GridItem;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsGrid;
@@ -216,11 +223,44 @@ public class CTableMenu extends AbstractContainerMenu {
 		return clicked;
 	}
 	//-------class
-	public class CraftRecipe {
+	static public class CraftDisplay {
+		final public int cols;
+		final public int rows;
+		public ItemStack result;
+		public ItemStack[] items;
+
+		public CraftDisplay(int h, int w, ItemStack result) {
+			this.rows = h;
+			this.cols = w;
+			this.result = result;
+
+			this.items = new ItemStack[h*w];
+			Arrays.fill(this.items, ItemStack.EMPTY);
+		}
+
+		public void setItem(ItemStack item, int index) {
+			this.items[index] = item;
+		}
+		public void setItem(ItemStack item, int x, int y) {
+			this.items[x + y*this.rows] = item;
+		}
+
+		public ItemStack getItem(int index) {
+			return this.items[index];
+		}
+		public ItemStack getItem(int x, int y) {
+			return this.items[x + y*this.rows];
+		}
+	}
+	public abstract class CraftRecipe {
 		public static final String type = "none";
 		public GridItem result = new GridItem("minecraft:air", 1);
 
-		public ItemsSet toItemsSet() { return null; }
+		public abstract ItemsSet toItemsSet();
+		// public abstract ItemsGrid toItemsGrid(int h, int w);
+		@NotNull
+		public abstract CraftDisplay toDisplay();
+
 	}
 	public class ShapedRecipe extends CraftRecipe {
 		public static final String type = "shaped";
@@ -236,7 +276,18 @@ public class CTableMenu extends AbstractContainerMenu {
 			// }
 			//grid.display();
 			return grid.toItemsSet();
-		};
+		}
+
+		@Override
+		public CraftDisplay toDisplay() {
+			CraftDisplay cdisp = new CraftDisplay(grid.cols, grid.rows, this.result.toItemStack());
+			for (int i = 0; i < this.grid.items.length; i++) {
+				
+				ItemStack stack = new ItemStack( Helpers.parse_item(this.grid.items[i].id) );
+				cdisp.setItem(stack, i);
+			}
+			return cdisp;
+		}
 	}
 	public class ShapelessRecipe extends CraftRecipe {
 		public static final String type = "shapeless";
@@ -245,7 +296,24 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		public ItemsSet toItemsSet() {
 			return set;
-		};
+		}
+
+		@Override
+		public CraftDisplay toDisplay() {
+			CraftDisplay cdisp = new CraftDisplay(set.items.size(), 1, this.result.toItemStack());
+			Set<Entry<String, Integer>> entries = set.items.entrySet();
+			
+			int i = 0;
+			for (Entry<String,Integer> entry : entries) {
+
+				ItemStack stack = new ItemStack( Helpers.parse_item(entry.getKey()), entry.getValue() );
+				cdisp.setItem(stack, i);
+
+				i++;
+			}
+
+			return cdisp;
+		}
 	}
 	public class GridItem {
 		public String id = "minecraft:air";
@@ -262,9 +330,10 @@ public class CTableMenu extends AbstractContainerMenu {
 		}
 
 		public Item toItem() {
-			Identifier id = Identifier.tryParse( this.id );
-			Item item = BuiltInRegistries.ITEM.get(id).map(Holder::value).orElse(Items.AIR);
-			return item;
+			return Helpers.parse_item(this.id);
+		}
+		public ItemStack toItemStack() {
+			return new ItemStack(this.toItem(), this.count);
 		}
 	}
 	public class ItemHash {
@@ -297,6 +366,15 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		public boolean equal(ItemsSet another) {
 			return this.items.equals(another.items);
+		}
+
+		@Override
+		public boolean equals(Object other) {
+			if (other instanceof ItemsSet other_i_set) {
+				return equal(other_i_set);
+			} else {
+				return false;
+			}
 		}
 
 		@Override

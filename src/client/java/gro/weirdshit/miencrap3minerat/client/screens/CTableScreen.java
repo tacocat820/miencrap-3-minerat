@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.client.screens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
@@ -14,6 +15,8 @@ import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.client.widgets.RadarWidget;
 import gro.weirdshit.miencrap3minerat.etc.Point2i;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplay;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ShapelessRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -38,6 +41,7 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private static final Identifier CONTAINER_TEXTURE = Identifier.fromNamespaceAndPath("miencrap3minerat","textures/gui/container/crafting_table_2.png");
 	private static final Identifier RECIPE_BOOK = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/recipe_book");
+	private static final Identifier EXAMPLE_CRAFT_GRID_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/example_craft_grid");
 	private static final Identifier BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button");
 	private static final Identifier ACTIVE_BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button_active");
 	private static final Identifier OK_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/book");
@@ -54,7 +58,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private float time = 0.0f;
 	public Float distanceValue = 3.0f;
 
-	private ArrayList<ItemStack> craftable_items = new ArrayList<>();
+	private ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
 
 	public CTableScreen(CTableMenu abstractContainerMenu, Inventory inventory, Component component) {
 		super(abstractContainerMenu, inventory, component);
@@ -62,17 +66,18 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		// this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 		this.titleLabelX = 8;
 
-
 		ModRegistry.RECIPES_2.values().forEach(v -> {
-			v.forEach(v2 -> {
+			v.forEach(craftRecipe -> {
 
-				craftable_items.add(
-					new ItemStack(v2.result.toItem())
+				displayedItems.add(
+					craftRecipe.toDisplay()
 				);
 
 			});
 		});
 	}
+
+	public record RecipesPair() {};
 
 	private double dist(float a, float b) {
         double c = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) );
@@ -84,6 +89,10 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		super.init();
 		
 		RecipeBookButton BOOK_BTN = new RecipeBookButton(RECIPES_BTN_X, RECIPES_BTN_Y, SLOT_SIZE, SLOT_SIZE, Component.literal("clek me"));
+		TheRecipeBook RECIPEBOOK = new TheRecipeBook(() -> BOOK_BTN.bookOpened, RECIPES_BTN_X+16, RECIPES_BTN_Y, 149, 168, Component.literal("what"), AbstractScrollArea.defaultSettings(20), () -> time);
+
+		CraftGridWidget CRAFT_GRID = new CraftGridWidget(() -> RECIPEBOOK.getSelected(), RECIPES_BTN_X, RECIPES_BTN_Y-10-74, 149, 74, Component.literal("what"));
+
 		this.addRenderableWidget(
 			BOOK_BTN
 		);
@@ -91,8 +100,69 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 			() -> distanceValue, RECIPES_BTN_X-20, RECIPES_BTN_Y-20, 9, 60
 		));
 		this.addRenderableWidget(
-			new TheRecipeBook(() -> BOOK_BTN.bookOpened, RECIPES_BTN_X+16, RECIPES_BTN_Y, 149, 168, Component.literal("what"), AbstractScrollArea.defaultSettings(20), () -> time)
+			RECIPEBOOK
 		);
+		this.addRenderableWidget(
+			CRAFT_GRID
+		);
+	}
+
+	private class CraftGridWidget extends AbstractWidget {
+    	private final static int CELL_SIZE = 22;
+    	private final static int EDGES_OFFSET = 8;
+    	private final static int X_OFFSET = EDGES_OFFSET;
+    	private final static int Y_OFFSET = EDGES_OFFSET;
+		private final Supplier<Optional<CraftDisplay>> recipe_getter;
+
+		public CraftGridWidget(Supplier<Optional<CraftDisplay>> recipe_getter, int x, int y, int width, int height, Component message) {
+			this.recipe_getter = recipe_getter;
+			super(x, y, width, height, message);
+		}
+
+		@Override
+		protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, EXAMPLE_CRAFT_GRID_SPRITE, this.getX(), this.getY(), 256, 256);
+
+			Optional<CraftDisplay> opt_disp = recipe_getter.get();
+
+			if (opt_disp.isPresent()) {
+
+				// for (int i = 0; i < MAX_ITEMS; i++) {
+				// 	int oX = CELL_SIZE * (i%COLUMNS) + (int)(Mth.sin(time*2 + i*0.5)*2);
+				// 	int oY = CELL_SIZE * (i/COLUMNS) + (int)(Mth.cos(time*2 + i*0.5)*2);
+
+				// 	graphics.item(opt_disp.get().result, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY);
+				// }
+
+				CraftDisplay disp = opt_disp.get();
+
+
+				for (int y = 0; y < disp.cols; y++) {
+					for (int x = 0; x < disp.rows; x++) {
+
+						int oX = CELL_SIZE * (x) + (int)(Mth.sin(time*2 + x*0.5)*2);
+						int oY = CELL_SIZE * (y) + (int)(Mth.cos(time*2 + y*0.5)*2);
+
+						ItemStack stack = disp.getItem(x, y);
+						int count = stack.count();
+
+						graphics.item(stack, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY);
+
+						if (count > 1) {
+							graphics.text(font, count+"", getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, ARGB.color(255,255,255));
+						}
+						
+					}
+				}
+
+			}
+
+
+		}
+
+		@Override
+		protected void updateWidgetNarration(NarrationElementOutput output) {}
+		
 	}
 
 	private class TheRecipeBook extends AbstractWidget {
@@ -134,6 +204,14 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 			choosed = cellX + cellY * COLUMNS;
 		}
 
+		public Optional<CraftDisplay> getSelected() {
+			if (choosed < 0 || choosed >= displayedItems.size()) {
+				return Optional.empty();
+			} else {
+				return Optional.of(displayedItems.get(choosed));
+			}
+		}
+
 		@Override
 		public void onClick(final MouseButtonEvent event, final boolean doubleClick) {
 			clickOnSmthing(event);
@@ -160,19 +238,18 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 
 
-					ItemStack disp;
-					if (i < craftable_items.size()) {
-						disp = craftable_items.get(i);
+					if (i < displayedItems.size()) {
+						CraftDisplay cdisplay = displayedItems.get(i);
 
 						graphics.blitSprite(
 							RenderPipelines.GUI_TEXTURED, sprite, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, 16, 16
 						);
 
-						graphics.item(disp, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY);
-
+						graphics.item(cdisplay.result, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY);
+						if ( cdisplay.result.count() != 1) {
+							graphics.text(font, cdisplay.result.count()+"", getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, ARGB.color(255,255,255));
+						}
 					}
-
-
 
 					// graphics.text(font, "1", getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY, ARGB.color(255,255,0));
 

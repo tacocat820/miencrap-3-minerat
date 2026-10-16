@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -64,7 +66,7 @@ public class ModRegistry {
     private static final Gson gson = new GsonBuilder()
         .create(); //.setPrettyPrinting()
 
-    //public static ArrayList<CTableMenu.CraftRecipe> RECIPES_2 = new ArrayList<CTableMenu.CraftRecipe>();
+
     public static Recipe2_Registry RECIPES_2 = new Recipe2_Registry();
     public static ConvertableToMiniblocks_Registry MINIBLOCKS = new ConvertableToMiniblocks_Registry();
 
@@ -120,12 +122,16 @@ public class ModRegistry {
     }
 
     public static class Recipe2_Registry { //реестр
-        private HashMap<Integer, ArrayList<CraftRecipe>> recipes = new HashMap<>();
+        private Map<ItemsSet, ArrayList<CraftRecipe>> recipes = new HashMap<>();
         
         public Recipe2_Registry() { /* хз */}
 
         public Collection<ArrayList<CraftRecipe>> values() {
             return recipes.values();
+        }
+
+        public Set<Entry<ItemsSet, ArrayList<CraftRecipe>>> entrySet() {
+            return recipes.entrySet();
         }
 
         public Optional<CraftRecipe> get(CTableMenu.ItemsGrid optimizedGrid) {
@@ -135,8 +141,9 @@ public class ModRegistry {
             //     optimizedGrid.display();
             // }
             ArrayList<CraftRecipe> matched_recipes = recipes.getOrDefault(
-                itemset.hashCode(), /* default: */ new ArrayList<>()
+                itemset, /* default: */ new ArrayList<>()
             );
+            MIENCRAP3MINERAT.LOGGER.info( "RECIPES:" + recipes.keySet() + "\nRECIPE:" + itemset);
 
 			for (CraftRecipe recipe : matched_recipes) {
 				MIENCRAP3MINERAT.LOGGER.info("(#) matched: " + recipe);
@@ -158,10 +165,9 @@ public class ModRegistry {
         };
 
         public void add(CraftRecipe recipe) {
-            CTableMenu.ItemsSet set = recipe.toItemsSet();
-            MIENCRAP3MINERAT.LOGGER.debug(set.items+" iiiii");
+            ItemsSet set = recipe.toItemsSet();
 
-            ArrayList<CraftRecipe> arr = recipes.computeIfAbsent(set.hashCode(), k -> new ArrayList<>());
+            ArrayList<CraftRecipe> arr = recipes.computeIfAbsent(set, k -> new ArrayList<>());
 
             if (recipe instanceof CTableMenu.ShapedRecipe) {
                 arr
