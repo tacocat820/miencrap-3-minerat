@@ -75,8 +75,8 @@ public class Psychotherapist extends PathfinderMob {
 	@Override
 	protected void addAdditionalSaveData(final ValueOutput output) {
 		super.addAdditionalSaveData(output);
-		output.store("homePos", Vec3.CODEC, home);
-		output.store("cellPos", Vec3.CODEC, cell);
+		if (home != null) output.store("homePos", Vec3.CODEC, home);
+		if (cell != null) output.store("cellPos", Vec3.CODEC, cell);
 	}
 
 	@Override

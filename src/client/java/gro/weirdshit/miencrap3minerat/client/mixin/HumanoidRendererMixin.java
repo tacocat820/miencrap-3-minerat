@@ -48,21 +48,6 @@ public abstract class HumanoidRendererMixin<T extends HumanoidRenderState> {
     @Inject(at = @At("TAIL"), method = "setupAnim")
 	public void setupAnim(final T state, CallbackInfo info) {
         HumanoidRenderStateMixinInterface i = (HumanoidRenderStateMixinInterface)(Object)state;
-        
-        if (i.isRidingBlimp()) {
-            this.getLeftArm().xRot = 3.0f;
-            this.getLeftArm().yScale = 2.0f;
-            this.getLeftLeg().zRot = 0.3f;
-            this.getLeftLeg().yRot = 0.0f;
-
-            this.getLeftLeg().xRot = Mth.sin(state.ageInTicks * 0.1f);
-            this.getLeftLeg().zRot = Mth.sin(state.ageInTicks * 0.07f);
-
-            this.getRightLeg().xRot = Mth.sin(state.ageInTicks * 0.12f);
-            this.getRightLeg().zRot = Mth.sin(state.ageInTicks * 0.18f);
-            
-            this.getRightLeg().xRot = 0f;
-        }
 
         if (i.getPsycho() > 0.0f) {
             
@@ -82,6 +67,21 @@ public abstract class HumanoidRendererMixin<T extends HumanoidRenderState> {
                 part.yRot += Mth.cos(AnimationProgressY +n) * p;
                 part.zRot += Mth.cos(AnimationProgressZ +n) * p;
             }
+        }
+        
+        if (i.isRidingBlimp()) {
+            this.getLeftArm().xRot = 3.0f;
+            this.getLeftArm().yScale = 2.0f;
+            this.getLeftLeg().zRot = 0.3f;
+            this.getLeftLeg().yRot = 0.0f;
+
+            this.getLeftLeg().xRot = Mth.sin(state.ageInTicks * 0.1f);
+            this.getLeftLeg().zRot = Mth.sin(state.ageInTicks * 0.07f);
+
+            this.getRightLeg().xRot = Mth.sin(state.ageInTicks * 0.12f);
+            this.getRightLeg().zRot = Mth.sin(state.ageInTicks * 0.18f);
+            
+            this.getRightLeg().xRot = 0f;
         }
     }
     

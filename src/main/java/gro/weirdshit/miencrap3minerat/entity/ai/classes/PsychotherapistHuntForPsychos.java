@@ -1,8 +1,14 @@
 package gro.weirdshit.miencrap3minerat.entity.ai.classes;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.HospitalMarker;
 import gro.weirdshit.miencrap3minerat.entity.Psycho;
 import gro.weirdshit.miencrap3minerat.entity.Psychotherapist;
@@ -12,6 +18,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
 public class PsychotherapistHuntForPsychos implements InnovationalBehavior<Psychotherapist> {
@@ -19,16 +27,28 @@ public class PsychotherapistHuntForPsychos implements InnovationalBehavior<Psych
 	//private static final TargetingConditions.Selector LIVING_ENTITY_SELECTOR = (target, level) ->  true;
 	//private static final TargetingConditions TARGETING_CONDITIONS = TargetingConditions.forNonCombat().range(30.0).selector(LIVING_ENTITY_SELECTOR);
 
-    Psycho target;
+    LivingEntity target;
     int laserCooldown = 0;
 
     public boolean start(ServerLevel level, Psychotherapist therapist) {
 
         List<Psycho> psychos = level.getEntitiesOfClass(Psycho.class, therapist.getBoundingBox().inflate(100.0));
+        List<Player> players = level.getEntitiesOfClass(Player.class, therapist.getBoundingBox().inflate(100.0));
 
-        for (Psycho psycho : psychos) {
+        List<LivingEntity> targets = new ArrayList<LivingEntity>(Stream.concat(psychos.stream(), players.stream()).toList());
+        Collections.sort(targets, Comparator.comparing(p -> {
+            return Math.round(therapist.distanceTo(p));
+        }));
+
+        for (LivingEntity psycho : targets) {
+            if (psycho instanceof Player player) {
+                MIENCRAP3MINERAT.LOGGER.info("player!!!");
+                if (!player.hasEffect(ModEffects.PSYCHO)) continue;
+                MIENCRAP3MINERAT.LOGGER.info("A PSYCHO PLAYER!!");
+            }
+
             List<HospitalMarker> h = level.getEntitiesOfClass(HospitalMarker.class, psycho.getBoundingBox().inflate(5.0));
-    
+
             if (h.isEmpty()) {
                 target = psycho;
                 return true;
