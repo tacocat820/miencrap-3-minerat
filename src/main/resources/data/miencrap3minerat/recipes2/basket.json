@@ -1,0 +1,25 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:basket","count":1},
+    "grid": {
+        "cols":4,
+        "rows":3,
+        "items": [
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:air","count":0},
+
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:wheat","count":1},
+
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:wheat","count":1},
+            {"id":"minecraft:wheat","count":1}
+        ]
+    }
+
+}

@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:caramel_bricks","count":1},
+    "set": {
+        "items": {
+            "miencrap3minerat:caramel": 4
+        }
+    }
+
+}

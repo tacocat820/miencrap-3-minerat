@@ -1,0 +1,13 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:table","count":1},
+    "grid": {
+        "cols":1,
+        "rows":2,
+        "items": [
+            {"id":"minecraft:oak_pressure_plate","count":1},
+            {"id":"minecraft:spruce_fence","count":1}
+        ]
+    }
+
+}

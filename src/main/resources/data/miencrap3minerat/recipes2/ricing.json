@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:rice","count":1},
+    "set": {
+        "items": {
+            "miencrap3minerat:bowl_of_rice": 4
+        }
+    }
+
+}

@@ -242,7 +242,8 @@ public class ModItems {
 	public static RegisteredItem<?> NOKIA = ModItems.register("nokia", Item::new, new Item.Properties());
 	public static RegisteredItem<?> CUCUMBER = ModItems.register("cucumber", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLUE_TAPE = ModItems.register("blue_tape", Item::new, new Item.Properties());
-
+	public static RegisteredItem<?> KNIFE = ModItems.register("knife", Item::new, new Item.Properties());
+	
 	public static void generate() {
 		// Items.CHEST
 	}

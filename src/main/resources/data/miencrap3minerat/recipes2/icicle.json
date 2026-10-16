@@ -1,0 +1,13 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:icicle","count":3},
+    "grid": {
+        "cols":1,
+        "rows":2,
+        "items": [
+            {"id":"minecraft:ice","count":1},
+            {"id":"minecraft:ice","count":1}
+        ]
+    }
+
+}

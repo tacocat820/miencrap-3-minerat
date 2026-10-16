@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:dust_block","count":1},
+    "set": {
+        "items": {
+            "miencrap3minerat:dust": 4
+        }
+    }
+
+}

@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"minecraft:obsidian","count":1},
+    "set": {
+        "items": {
+            "minecraft:dragon_egg": 1
+        }
+    }
+
+}
