@@ -32,8 +32,8 @@ public class PsychotherapistHuntForPsychos implements InnovationalBehavior<Psych
 
     public boolean start(ServerLevel level, Psychotherapist therapist) {
 
-        List<Psycho> psychos = level.getEntitiesOfClass(Psycho.class, therapist.getBoundingBox().inflate(100.0));
-        List<Player> players = level.getEntitiesOfClass(Player.class, therapist.getBoundingBox().inflate(100.0));
+        List<Psycho> psychos = level.getEntitiesOfClass(Psycho.class, therapist.getBoundingBox().inflate(30.0));
+        List<Player> players = level.getEntitiesOfClass(Player.class, therapist.getBoundingBox().inflate(40.0));
 
         List<LivingEntity> targets = new ArrayList<LivingEntity>(Stream.concat(psychos.stream(), players.stream()).toList());
         Collections.sort(targets, Comparator.comparing(p -> {
