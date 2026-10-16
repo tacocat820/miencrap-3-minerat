@@ -1,0 +1,11 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:baguette","count":1},
+    "set": {
+        "items": {
+            "miencrap3minerat:french": 1,
+            "minecraft:bread": 1
+        }
+    }
+
+}

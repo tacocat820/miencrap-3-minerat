@@ -1,0 +1,11 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:vodka_bottle","count":1},
+    "set": {
+        "items": {
+            "miencrap3minerat:ethanol": 3,
+            "miencrap3minerat:cup_of_water": 9
+        }
+    }
+
+}

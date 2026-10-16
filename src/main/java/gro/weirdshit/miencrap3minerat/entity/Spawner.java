@@ -57,8 +57,6 @@ public class Spawner extends Marker {
 
 		if (this.level().getGameTime() % (20 * rate) == 0) {
 
-			MIENCRAP3MINERAT.LOGGER.info("spoon");
-
 			if (!(this.level() instanceof ServerLevel serverLevel)) return;
 			boolean mobSpawning = serverLevel.getGameRules().get(GameRules.SPAWN_MOBS);
 			if (!mobSpawning) return;

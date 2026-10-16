@@ -1,0 +1,19 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:computer_soup","count":1},
+    "set": {
+        "items": {
+            "minecraft:bowl": 1,
+            "miencrap3minerat:ram": 3,
+            "miencrap3minerat:aux": 1,
+            "miencrap3minerat:blue_tape": 1,
+            "miencrap3minerat:rtx": 1,
+            "miencrap3minerat:staple": 1,
+            "miencrap3minerat:ethanol": 1,
+            "miencrap3minerat:dvd": 1,
+            "miencrap3minerat:iphone": 1,
+            "miencrap3minerat:nokia": 1
+        }
+    }
+
+}

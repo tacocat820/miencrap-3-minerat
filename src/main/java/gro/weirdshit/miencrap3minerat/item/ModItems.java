@@ -244,6 +244,9 @@ public class ModItems {
 	public static RegisteredItem<?> BLUE_TAPE = ModItems.register("blue_tape", Item::new, new Item.Properties());
 	public static RegisteredItem<?> KNIFE = ModItems.register("knife", Item::new, new Item.Properties());
 	
+	public static RegisteredItem<?> COW_CORPSE = ModItems.register("cow_corpse", Item::new, new Item.Properties());
+	public static RegisteredItem<?> COOKED_COW_CORPSE = ModItems.register("cooked_cow_corpse", Item::new, new Item.Properties());
+	
 	public static void generate() {
 		// Items.CHEST
 	}

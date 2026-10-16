@@ -1,0 +1,15 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:jelly_block","count":1},
+    "grid": {
+        "cols":2,
+        "rows":2,
+        "items": [
+            {"id":"miencrap3minerat:cow_corpse","count":1},
+            {"id":"miencrap3minerat:cow_corpse","count":1},
+            {"id":"miencrap3minerat:cow_corpse","count":1},
+            {"id":"miencrap3minerat:cow_corpse","count":1}
+        ]
+    }
+
+}
