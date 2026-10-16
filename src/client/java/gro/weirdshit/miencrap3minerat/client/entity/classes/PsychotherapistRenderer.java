@@ -87,6 +87,8 @@ public class PsychotherapistRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
+            this.head.xRot = state.xRot * (float) (Math.PI / 180.0);
+            this.head.yRot = state.yRot * (float) (Math.PI / 180.0);
         
             float limbSwingAmplitude = state.walkAnimationSpeed;
             float limbSwingAnimationProgress = state.walkAnimationPos * 4.0f;

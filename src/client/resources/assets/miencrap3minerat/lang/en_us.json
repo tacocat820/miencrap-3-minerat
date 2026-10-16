@@ -275,6 +275,9 @@
   "entity.miencrap3minerat.float": "Float",
   "entity.miencrap3minerat.puffercopter": "Puffercopter",
   "entity.miencrap3minerat.repeer": "Repeer",
+
+  "effect.miencrap3minerat.bloom": "Bloom",
+  "effect.miencrap3minerat.psycho": "Psycho",
   
   "adv.miencrap3minerat.hello": "WELCOM!!!!!11",
   "adv.miencrap3minerat.hello.desc": "transition from microdosing to megadosing",

@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.mixin.HumanoidRenderStateMixin;
 import gro.weirdshit.miencrap3minerat.client.special.HumanoidRenderStateMixinInterface;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.Blimp;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
@@ -25,6 +26,10 @@ public class HumanoidMobRendererMixin {
 		final LivingEntity entity, final HumanoidRenderState state, final float partialTicks, final ItemModelResolver itemModelResolver, CallbackInfo info
 	) {
         ((HumanoidRenderStateMixinInterface)(Object)state).setRidingBlimp(entity.getControlledVehicle() instanceof Blimp);
+		((HumanoidRenderStateMixinInterface)(Object)state).setPsycho(
+			entity.getEffectBlendFactor(ModEffects.PSYCHO, 
+				Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false))
+			);
     }
     
 }
