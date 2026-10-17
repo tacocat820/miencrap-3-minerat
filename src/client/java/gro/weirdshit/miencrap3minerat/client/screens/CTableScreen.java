@@ -64,6 +64,9 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private float time = 0.0f;
 	public Float distanceValue = 3.0f;
 
+	private boolean widthTooNarrow = false;
+	private boolean recipesWindowActive = false;
+
 	private ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
 
 	public CTableScreen(CTableMenu abstractContainerMenu, Inventory inventory, Component component) {
@@ -93,15 +96,54 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	@Override
 	protected void init() {
 		super.init();
+
+		this.widthTooNarrow = this.width < 479;
+
+		final int RECIPES_BTN_X = this.leftPos + this.imageWidth - 16;
+		final int RECIPES_BTN_Y = this.topPos;
 		
-		TheRecipeBook RECIPEBOOK = new TheRecipeBook(() -> {return true;}, RECIPES_BTN_X+16, RECIPES_BTN_Y, 149, 168, Component.literal("what"), AbstractScrollArea.defaultSettings(20), () -> time);
-		CraftGridWidget CRAFT_GRID = new CraftGridWidget(() -> RECIPEBOOK.getSelected(), RECIPES_BTN_X, RECIPES_BTN_Y-10-74, 149, 74, Component.literal("what"));
+		final int RECIPEBOOK_X;
+		final int RECIPEBOOK_Y;
+
+		if (this.widthTooNarrow) {
+			RECIPEBOOK_X = this.width/3 - TheRecipeBook.WIDTH/2;
+			RECIPEBOOK_Y = this.height/2 - TheRecipeBook.HEIGHT/2;
+		} else {
+			RECIPEBOOK_X = RECIPES_BTN_X+16;
+			RECIPEBOOK_Y = RECIPES_BTN_Y+16;
+		}
+
+		TheRecipeBook RECIPEBOOK = new TheRecipeBook(
+			() -> {return true;}, RECIPEBOOK_X, RECIPEBOOK_Y, 149, 168, Component.literal("what"), AbstractScrollArea.defaultSettings(20), () -> time
+		);
+
+		final Function<Integer, Integer> CRAFT_GRID_X_POS;
+		final Function<Integer, Integer> CRAFT_GRID_Y_POS;
+		if (this.widthTooNarrow) {
+			CRAFT_GRID_X_POS = (x_size) -> RECIPEBOOK.getX() + RECIPEBOOK.getWidth();
+			CRAFT_GRID_Y_POS = (y_size) -> this.topPos;
+		} else {
+			CRAFT_GRID_X_POS = (x_size) -> RECIPEBOOK.getX() + RECIPEBOOK.getWidth() - x_size ;
+			CRAFT_GRID_Y_POS = (y_size) -> this.topPos - y_size ;
+		}
+
+		CraftGridWidget CRAFT_GRID = new CraftGridWidget(
+			() -> RECIPEBOOK.getSelected(),
+			CRAFT_GRID_X_POS , CRAFT_GRID_Y_POS,
+			149, 74, Component.literal("what")
+		);
 		CRAFT_GRID.active = false;
 
 		RecipeBookButton BOOK_BTN = new RecipeBookButton((is_visible) -> {
+			this.recipesWindowActive = is_visible;
+
 			RECIPEBOOK.visible = is_visible;
+
+			RECIPEBOOK.setFocused(is_visible);
+			this.setFocused(!is_visible);
+
 			CRAFT_GRID.visible = is_visible;
-		}, false, RECIPES_BTN_X, RECIPES_BTN_Y, SLOT_SIZE, SLOT_SIZE, Component.literal("clek me"));
+		}, recipesWindowActive, RECIPES_BTN_X, RECIPES_BTN_Y, SLOT_SIZE, SLOT_SIZE, Component.literal("clek me"));
 
 		this.addRenderableWidget(
 			BOOK_BTN
@@ -119,20 +161,38 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 	private class CraftGridWidget extends AbstractWidget {
     	private final static int CELL_SIZE = 24;
-    	private final static int EDGES_OFFSET = 10;
+    	private final static int EDGES_OFFSET = 5;
     	private final static int X_OFFSET = EDGES_OFFSET;
     	private final static int Y_OFFSET = EDGES_OFFSET;
 		private final Supplier<Optional<CraftDisplay>> recipe_getter;
+		private final Function<Integer, Integer> x_position;
+		private final Function<Integer, Integer> y_position;
 
+		//hmm
 		void drawGridWindow(GuiGraphicsExtractor graphics, int cols, int rows) {
-			ClientHelpers.drawGradientWindow(
-				graphics, this.getX()+2, this.getY()+2, this.getX()+rows*CELL_SIZE+EDGES_OFFSET*2 -4, this.getY()+cols*CELL_SIZE+EDGES_OFFSET*2 -8, ARGB.color(71,80,125), ARGB.color(39,42,67)
+			
+			ClientHelpers.drawGradientWindow_2(
+				graphics,
+				this.getX(), this.getY(),
+				this.getX()+rows*CELL_SIZE+EDGES_OFFSET*2 -8, this.getY()+cols*CELL_SIZE+EDGES_OFFSET*2 -8,
+				
+				ARGB.color(122,68,81), ARGB.color(37,4,8),
+
+				ARGB.color(79,14,52), ARGB.color(86,62,65)
 			);
 		}
 
-		public CraftGridWidget(Supplier<Optional<CraftDisplay>> recipe_getter, int x, int y, int width, int height, Component message) {
+		public CraftGridWidget(
+			Supplier<Optional<CraftDisplay>> recipe_getter,
+			Function<Integer, Integer> x_position,
+			Function<Integer, Integer> y_position,
+			// int x, int y,
+			int width, int height, Component message
+		) {
 			this.recipe_getter = recipe_getter;
-			super(x, y, width, height, message);
+			this.x_position = x_position;
+			this.y_position = y_position;
+			super(x_position.apply(0), y_position.apply(0), width, height, message);
 		}
 
 		@Override
@@ -142,6 +202,10 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 			if (opt_disp.isPresent()) {
 				CraftDisplay disp = opt_disp.get();
+
+				// setSize(disp.rows*CELL_SIZE+EDGES_OFFSET*2 -10, disp.cols*CELL_SIZE+EDGES_OFFSET*2 -10);
+				setX( x_position.apply( disp.rows*CELL_SIZE+EDGES_OFFSET*2 -8 ) );
+				setY( y_position.apply( disp.cols*CELL_SIZE+EDGES_OFFSET*2 -8 ) );
 
 				// graphics.blitSprite(RenderPipelines.GUI_TEXTURED, EXAMPLE_CRAFT_GRID_SPRITE, this.getX(), this.getY(), 256, 256);
 				// graphics.fillGradient(this.getX(), this.getY(), mouseY, mouseX, mouseY);
@@ -157,10 +221,9 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 						ItemStack stack = disp.getItem(x, y);
 						int count = stack.count();
 
-
 						int textOffset;
 						if (count > 1) {
-							textOffset = font.width(""+count);
+							textOffset = font.width(""+count) -4;
 						} else {
 							textOffset = 0;
 						}
@@ -172,7 +235,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 						graphics.item(stack, getX()+X_OFFSET + oX +textOffset, getY()+Y_OFFSET + oY);
 
 						if (count > 1) {
-							graphics.text(font, ""+count, getX()+X_OFFSET + oX, getY()+Y_OFFSET + oY + 5, ARGB.color(255,255,255));
+							graphics.text(font, ""+count, getX()+X_OFFSET -4 + oX, getY()+Y_OFFSET + oY + 5, ARGB.color(255,255,255));
 						}
 						
 					}
@@ -207,6 +270,9 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 		public Point2i cursor = new Point2i(-1,-1);
 		public int choosed = -1;
+
+		public final static int WIDTH = 149;
+		public final static int HEIGHT = 168;
 
 		public TheRecipeBook(Supplier<Boolean> is_visible, int x, int y, int width, int height, Component message,
 				ScrollbarSettings scrollbarSettings, Supplier<Float> time) {
@@ -326,10 +392,26 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	}
 
 	@Override
+	protected void extractTooltip(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY) {
+		if (!(this.recipesWindowActive && this.widthTooNarrow)) {
+			super.extractTooltip(graphics, mouseX, mouseY);
+		}
+	}
+
+	@Override
+	protected void extractSlots(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY) {
+		if (!(this.recipesWindowActive && this.widthTooNarrow)) {
+			super.extractSlots(graphics, mouseX, mouseY);
+		}
+	}
+
+	@Override
 	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
 		distanceValue = (float) Math.clamp( 1.0 / (dist(RECIPES_BTN_X-mouseX, RECIPES_BTN_Y-mouseY)/50f), 0.01, 1 );
 		
 		super.extractBackground(graphics, mouseX, mouseY, delta);
+
 		graphics.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_TEXTURE, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight+40, BACKGROUND_TEXTURE_WIDTH, BACKGROUND_TEXTURE_HEIGHT);
+		graphics.text(font, "("+mouseX+", "+mouseY+")", 10, 10, ARGB.white(200));
 	}
 }

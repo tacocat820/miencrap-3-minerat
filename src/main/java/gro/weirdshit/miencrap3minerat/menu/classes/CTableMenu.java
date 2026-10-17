@@ -103,9 +103,16 @@ public class CTableMenu extends AbstractContainerMenu {
 		public void take_from() {
 			for (int slot = 0; slot < 12; slot++) {
 				ItemStack stack = this.container.getItem(slot);
-				stack.setCount(
-					stack.getCount() - 1
-				);
+				int count = stack.getCount();
+				if (count == 1) {
+					// this.container.setItem(slot, new ItemStack(Helpers.parse_item(null)));
+					stack.setCount(0);
+				}
+				else {
+					stack.setCount(
+						count - 1
+					);
+				}
 			}
 		}
 
@@ -317,6 +324,7 @@ public class CTableMenu extends AbstractContainerMenu {
 	}
 	public class GridItem {
 		public String id = "minecraft:air";
+		public String replacer_id = "minecraft:apple";
 		public int count = 0;
 
 		public GridItem(String id, int count) {

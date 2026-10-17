@@ -1,0 +1,10 @@
+{
+    "type":"shapeless",
+    "result": {"id":"miencrap3minerat:mashed_potatoes","count":1},
+    "set": {
+        "items": {
+            "minecraft:potato": 4
+        }
+    }
+
+}
