@@ -15,7 +15,9 @@ import com.mojang.authlib.minecraft.client.MinecraftClient;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModRegistry;
 import gro.weirdshit.miencrap3minerat.block.classes.HorizontallyRotShapeBlock;
+import gro.weirdshit.miencrap3minerat.client.etc.ClientHelpers;
 import gro.weirdshit.miencrap3minerat.client.widgets.RadarWidget;
+import gro.weirdshit.miencrap3minerat.etc.Helpers;
 import gro.weirdshit.miencrap3minerat.etc.ModShapes;
 import gro.weirdshit.miencrap3minerat.etc.Point2i;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
@@ -122,6 +124,12 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
     	private final static int Y_OFFSET = EDGES_OFFSET;
 		private final Supplier<Optional<CraftDisplay>> recipe_getter;
 
+		void drawGridWindow(GuiGraphicsExtractor graphics, int cols, int rows) {
+			ClientHelpers.drawGradientWindow(
+				graphics, this.getX()+2, this.getY()+2, this.getX()+rows*CELL_SIZE+EDGES_OFFSET*2 -4, this.getY()+cols*CELL_SIZE+EDGES_OFFSET*2 -8, ARGB.color(71,80,125), ARGB.color(39,42,67)
+			);
+		}
+
 		public CraftGridWidget(Supplier<Optional<CraftDisplay>> recipe_getter, int x, int y, int width, int height, Component message) {
 			this.recipe_getter = recipe_getter;
 			super(x, y, width, height, message);
@@ -133,9 +141,12 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 			Optional<CraftDisplay> opt_disp = recipe_getter.get();
 
 			if (opt_disp.isPresent()) {
-				graphics.blitSprite(RenderPipelines.GUI_TEXTURED, EXAMPLE_CRAFT_GRID_SPRITE, this.getX(), this.getY(), 256, 256);
-
 				CraftDisplay disp = opt_disp.get();
+
+				// graphics.blitSprite(RenderPipelines.GUI_TEXTURED, EXAMPLE_CRAFT_GRID_SPRITE, this.getX(), this.getY(), 256, 256);
+				// graphics.fillGradient(this.getX(), this.getY(), mouseY, mouseX, mouseY);
+				drawGridWindow(graphics, disp.cols, disp.rows);
+
 
 				for (int y = 0; y < disp.cols; y++) {
 					for (int x = 0; x < disp.rows; x++) {
