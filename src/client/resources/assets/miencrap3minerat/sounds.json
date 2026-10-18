@@ -263,6 +263,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/oapple","stream": true}]},
 	"ost.do":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/do","stream": true}]},
+	"tacobell":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:tacobell","stream": false}]},
 
 
 	"ed2_scream": {

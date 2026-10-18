@@ -32,6 +32,7 @@ public class ModSounds {
     public static final SoundEvent PUFF = registerSound("puff");
     public static final SoundEvent GASTER = registerSound("gaster");
     public static final SoundEvent VANISH = registerSound("vanish");
+    public static final SoundEvent TACOBELL = registerSound("tacobell");
 
     public static final SoundType FRANCE_SOUND_TYPE = new SoundType(
 		1.0F, 1.0F, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.WRENCH, ModSounds.LEFISHE

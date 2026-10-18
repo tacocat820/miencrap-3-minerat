@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.item.classes.BigBenenaItem;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.ChiselItem;
 import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
@@ -251,6 +252,7 @@ public class ModItems {
 		new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(999).saturationModifier(9f).build())
 	);
+	public static RegisteredItem<?> BIG_BENENA = ModItems.register("big_benena", BigBenenaItem::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST
