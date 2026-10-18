@@ -65,6 +65,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	public Float distanceValue = 3.0f;
 
 	private boolean widthTooNarrow = false;
+	private boolean heightTooNarrow = false;
 	private boolean recipesWindowActive = false;
 
 	private ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
@@ -78,12 +79,17 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		ModRegistry.RECIPES_2.values().forEach(v -> {
 			v.forEach(craftRecipe -> {
 
+				
 				displayedItems.add(
 					craftRecipe.toDisplay()
 				);
 
 			});
 		});
+
+		// System.out.println("\nbefore:"); for (CraftDisplay iterable_element : displayedItems) {System.out.print(" "+iterable_element.importance);}
+		displayedItems.sort( (a, b) -> { return -1 * ((Integer)a.importance).compareTo(b.importance);} );		
+		// System.out.println("\nafter:"); for (CraftDisplay iterable_element : displayedItems) {System.out.print(" "+iterable_element.importance);}
 	}
 
 	public record RecipesPair() {};
@@ -98,6 +104,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		super.init();
 
 		this.widthTooNarrow = this.width < 479;
+		this.heightTooNarrow = this.height < 313;
 
 		final int RECIPES_BTN_X = this.leftPos + this.imageWidth - 16;
 		final int RECIPES_BTN_Y = this.topPos;
@@ -105,12 +112,13 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		final int RECIPEBOOK_X;
 		final int RECIPEBOOK_Y;
 
-		if (this.widthTooNarrow) {
+		if (this.widthTooNarrow || this.heightTooNarrow) {
 			RECIPEBOOK_X = this.width/3 - TheRecipeBook.WIDTH/2;
 			RECIPEBOOK_Y = this.height/2 - TheRecipeBook.HEIGHT/2;
-		} else {
+		}
+		else {
 			RECIPEBOOK_X = RECIPES_BTN_X+16;
-			RECIPEBOOK_Y = RECIPES_BTN_Y+16;
+			RECIPEBOOK_Y = RECIPES_BTN_Y;
 		}
 
 		TheRecipeBook RECIPEBOOK = new TheRecipeBook(
@@ -119,7 +127,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 		final Function<Integer, Integer> CRAFT_GRID_X_POS;
 		final Function<Integer, Integer> CRAFT_GRID_Y_POS;
-		if (this.widthTooNarrow) {
+		if (this.widthTooNarrow || this.heightTooNarrow) {
 			CRAFT_GRID_X_POS = (x_size) -> RECIPEBOOK.getX() + RECIPEBOOK.getWidth();
 			CRAFT_GRID_Y_POS = (y_size) -> this.topPos;
 		} else {

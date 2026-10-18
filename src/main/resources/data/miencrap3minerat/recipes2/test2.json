@@ -5,6 +5,7 @@
         "items": {
             "minecraft:apple": 4
         }
-    }
+    },
+    "importance": 3
 
 }

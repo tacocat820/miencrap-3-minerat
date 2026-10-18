@@ -231,15 +231,17 @@ public class CTableMenu extends AbstractContainerMenu {
 	}
 	//-------class
 	static public class CraftDisplay {
+		final public int importance;
 		final public int cols;
 		final public int rows;
 		public ItemStack result;
 		public ItemStack[] items;
 
-		public CraftDisplay(int h, int w, ItemStack result) {
+		public CraftDisplay(int h, int w, ItemStack result, int importance) {
 			this.rows = h;
 			this.cols = w;
 			this.result = result;
+			this.importance = importance;
 
 			this.items = new ItemStack[h*w];
 			Arrays.fill(this.items, ItemStack.EMPTY);
@@ -261,6 +263,7 @@ public class CTableMenu extends AbstractContainerMenu {
 	}
 	public abstract class CraftRecipe {
 		public static final String type = "none";
+		public int importance = 0;
 		public GridItem result = new GridItem("minecraft:air", 1);
 
 		public abstract ItemsSet toItemsSet();
@@ -287,7 +290,7 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		@Override
 		public CraftDisplay toDisplay() {
-			CraftDisplay cdisp = new CraftDisplay(grid.cols, grid.rows, this.result.toItemStack());
+			CraftDisplay cdisp = new CraftDisplay(grid.cols, grid.rows, this.result.toItemStack(), this.importance);
 			for (int i = 0; i < this.grid.items.length; i++) {
 				
 				ItemStack stack = new ItemStack( Helpers.parse_item(this.grid.items[i].id) );
@@ -307,7 +310,7 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		@Override
 		public CraftDisplay toDisplay() {
-			CraftDisplay cdisp = new CraftDisplay(set.items.size(), 1, this.result.toItemStack());
+			CraftDisplay cdisp = new CraftDisplay(set.items.size(), 1, this.result.toItemStack(), this.importance);
 			Set<Entry<String, Integer>> entries = set.items.entrySet();
 			
 			int i = 0;
