@@ -247,6 +247,11 @@ public class ModItems {
 	public static RegisteredItem<?> COW_CORPSE = ModItems.register("cow_corpse", Item::new, new Item.Properties());
 	public static RegisteredItem<?> COOKED_COW_CORPSE = ModItems.register("cooked_cow_corpse", Item::new, new Item.Properties());
 	
+	public static RegisteredItem<?> PURPLE_BANANA = ModItems.register("purple_banana", Item::new, 
+		new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(999).saturationModifier(9f).build())
+	);
+
 	public static void generate() {
 		// Items.CHEST
 	}

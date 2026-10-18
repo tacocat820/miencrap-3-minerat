@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
@@ -34,7 +35,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class TheBasketBlock {
 
-    static public class Blk extends HorizontallyRotatingBlock implements EntityBlock, SimpleWaterloggedBlock {
+    static public class Blk extends HorizontallyRotatingBlock implements EntityBlock {
         public Blk(Properties properties) {
             super(properties);
         }
@@ -66,6 +67,7 @@ public class TheBasketBlock {
             
             return InteractionResult.PASS;
         }
+
 
     }
 
