@@ -55,8 +55,8 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 	public static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(MIENCRAP3MINERAT.MOD_ID + "-screens");
 
-	private static final int RECIPES_BTN_X = 100;
-	private static final int RECIPES_BTN_Y = 100;
+	private static int RECIPES_BTN_X = 100;
+	private static int RECIPES_BTN_Y = 100;
 
 	public int startColor = 0xA0345FDA;
 	public int endColor = 0xA0344875; 
@@ -66,6 +66,9 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 	private boolean widthTooNarrow = false;
 	private boolean heightTooNarrow = false;
+
+	private boolean screenTooSmall = false;
+
 	private boolean recipesWindowActive = false;
 
 	private ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
@@ -106,19 +109,27 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		this.widthTooNarrow = this.width < 479;
 		this.heightTooNarrow = this.height < 313;
 
-		final int RECIPES_BTN_X = this.leftPos + this.imageWidth - 16;
-		final int RECIPES_BTN_Y = this.topPos;
+		this.screenTooSmall = (this.widthTooNarrow || this.heightTooNarrow);
+
+		RECIPES_BTN_Y = this.topPos;
+
+		if (this.screenTooSmall) {
+			RECIPES_BTN_X = this.leftPos + this.imageWidth + 1;
+		}
+		else {
+			RECIPES_BTN_X = this.leftPos - 16 - 2;
+		}
 		
 		final int RECIPEBOOK_X;
 		final int RECIPEBOOK_Y;
 
-		if (this.widthTooNarrow || this.heightTooNarrow) {
+		if (this.screenTooSmall) {
 			RECIPEBOOK_X = this.width/3 - TheRecipeBook.WIDTH/2;
 			RECIPEBOOK_Y = this.height/2 - TheRecipeBook.HEIGHT/2;
 		}
 		else {
-			RECIPEBOOK_X = RECIPES_BTN_X+16;
-			RECIPEBOOK_Y = RECIPES_BTN_Y;
+			RECIPEBOOK_X = this.leftPos + this.imageWidth + 2;
+			RECIPEBOOK_Y = RECIPES_BTN_Y - 1;
 		}
 
 		TheRecipeBook RECIPEBOOK = new TheRecipeBook(
@@ -127,7 +138,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 		final Function<Integer, Integer> CRAFT_GRID_X_POS;
 		final Function<Integer, Integer> CRAFT_GRID_Y_POS;
-		if (this.widthTooNarrow || this.heightTooNarrow) {
+		if (this.screenTooSmall) {
 			CRAFT_GRID_X_POS = (x_size) -> RECIPEBOOK.getX() + RECIPEBOOK.getWidth();
 			CRAFT_GRID_Y_POS = (y_size) -> this.topPos;
 		} else {
@@ -156,8 +167,16 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		this.addRenderableWidget(
 			BOOK_BTN
 		);
+
+		final int RADAR_X;
+		if (this.screenTooSmall) {
+			RADAR_X = RECIPES_BTN_X + 20;
+		} else {
+			RADAR_X =  RECIPES_BTN_X - 20;
+		}
+
 		this.addRenderableWidget(new RadarWidget(
-			() -> distanceValue, RECIPES_BTN_X-20, RECIPES_BTN_Y-20, 9, 60
+			() -> distanceValue, RADAR_X, RECIPES_BTN_Y-20, 9, 60
 		));
 		this.addRenderableWidget(
 			RECIPEBOOK
@@ -222,11 +241,15 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 				for (int y = 0; y < disp.cols; y++) {
 					for (int x = 0; x < disp.rows; x++) {
+						ItemStack stack = disp.getItem(x, y);
+
+						if (stack == ItemStack.EMPTY) {
+							continue;
+						}
 
 						int oX = CELL_SIZE * (x) + (int)(Mth.sin(time*2 + x*0.5)*2);
 						int oY = CELL_SIZE * (y) + (int)(Mth.cos(time*2 + y*0.5)*2);
 
-						ItemStack stack = disp.getItem(x, y);
 						int count = stack.count();
 
 						int textOffset;
@@ -399,19 +422,23 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		time = time += 0.05F;
 	}
 
+	//#region hide tooltips & items
+
 	@Override
 	protected void extractTooltip(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY) {
-		if (!(this.recipesWindowActive && this.widthTooNarrow)) {
+		if (!(this.recipesWindowActive && this.screenTooSmall)) {
 			super.extractTooltip(graphics, mouseX, mouseY);
 		}
 	}
 
 	@Override
 	protected void extractSlots(final GuiGraphicsExtractor graphics, final int mouseX, final int mouseY) {
-		if (!(this.recipesWindowActive && this.widthTooNarrow)) {
+		if (!(this.recipesWindowActive && this.screenTooSmall)) {
 			super.extractSlots(graphics, mouseX, mouseY);
 		}
 	}
+
+	//#endregion
 
 	@Override
 	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {

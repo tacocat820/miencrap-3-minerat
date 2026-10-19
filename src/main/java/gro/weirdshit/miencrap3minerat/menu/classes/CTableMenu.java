@@ -237,7 +237,7 @@ public class CTableMenu extends AbstractContainerMenu {
 		public ItemStack result;
 		public ItemStack[] items;
 
-		public CraftDisplay(int h, int w, ItemStack result, int importance) {
+		public CraftDisplay(int w, int h, ItemStack result, int importance) {
 			this.rows = h;
 			this.cols = w;
 			this.result = result;
@@ -290,7 +290,7 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		@Override
 		public CraftDisplay toDisplay() {
-			CraftDisplay cdisp = new CraftDisplay(grid.cols, grid.rows, this.result.toItemStack(), this.importance);
+			CraftDisplay cdisp = new CraftDisplay(grid.rows, grid.cols, this.result.toItemStack(), this.importance);
 			for (int i = 0; i < this.grid.items.length; i++) {
 				
 				ItemStack stack = new ItemStack( Helpers.parse_item(this.grid.items[i].id) );
@@ -310,7 +310,13 @@ public class CTableMenu extends AbstractContainerMenu {
 
 		@Override
 		public CraftDisplay toDisplay() {
-			CraftDisplay cdisp = new CraftDisplay(set.items.size(), 1, this.result.toItemStack(), this.importance);
+			int size = set.items.size();
+			int width = Math.min(4, size);
+			int height = (size+3)/4;
+
+			System.out.println(width+" "+height);
+
+			CraftDisplay cdisp = new CraftDisplay(width, height, this.result.toItemStack(), this.importance);
 			Set<Entry<String, Integer>> entries = set.items.entrySet();
 			
 			int i = 0;
