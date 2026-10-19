@@ -24,6 +24,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.GigachickenRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HangingVillagerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HappyGhastRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HmmmRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.HomelessRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.LefisheRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
@@ -72,6 +73,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation HMMM = createMain("hmmm");
 	public static final ModelLayerLocation WATER_DEER = createMain("water_deer");
 	public static final ModelLayerLocation SLAVE = createMain("slave");
+	public static final ModelLayerLocation HOMELESS = createMain("homeless");
 	public static final ModelLayerLocation ENDER_DRAGON = createMain("ender_dragon");
 	public static final ModelLayerLocation POL_POT = createMain("pol_pot");
 	public static final ModelLayerLocation TETO = createMain("teto");
@@ -118,6 +120,7 @@ public class ModEntityModelLayers {
 		WaterDeerRenderer.register(WATER_DEER);
 		EnderDragonRenderer.register(ENDER_DRAGON);
 		SlaveRenderer.register(SLAVE);
+		HomelessRenderer.register(HOMELESS);
 		PolPotRenderer.register(POL_POT);
 		TetoRenderer.register(TETO);
 		AnglerfishRenderer.register(ANGLERFISH);

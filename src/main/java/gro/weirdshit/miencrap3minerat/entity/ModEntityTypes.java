@@ -148,6 +148,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Slave>of(Slave::new, MobCategory.CREATURE)
 					.sized(0.7f, 2.0f)
 	);
+	public static final EntityType<Homeless> HOMELESS = register(
+			"homeless",
+			EntityType.Builder.<Homeless>of(Homeless::new, MobCategory.CREATURE)
+					.sized(0.7f, 2.0f)
+	);
 	public static final EntityType<PolPot> POL_POT = register(
 			"pol_pot",
 			EntityType.Builder.<PolPot>of(PolPot::new, MobCategory.CREATURE)
@@ -263,6 +268,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(POL_POT, PolPot.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ENDER_DRAGON, EnderDragon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(SLAVE, Slave.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(HOMELESS, Homeless.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(TETO, Teto.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ANGLERFISH, Anglerfish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DAMN, Damn.createCubeAttributes());

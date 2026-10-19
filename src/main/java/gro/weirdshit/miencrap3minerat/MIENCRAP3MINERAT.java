@@ -6,10 +6,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 //import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.commands.SpreadPlayersCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.feline.Cat;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +33,11 @@ import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.RegisteredBlock;
 import gro.weirdshit.miencrap3minerat.datagen.ModPlacedFeatures;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
+import gro.weirdshit.miencrap3minerat.entity.Homeless;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.Notjuan;
+import gro.weirdshit.miencrap3minerat.etc.FlatPosition;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MerlChain;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
@@ -93,6 +98,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 			if (m.overworld().getGameTime() % 200 == 0) {
 
+				// send wtf level
+
 				WtfPayload payload = new WtfPayload((int)Math.floor(wtf.getWtf(m.overworld()) / 220));
 				PlayerList p = m.getPlayerList();
 
@@ -100,7 +107,36 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					if (!(player instanceof ServerPlayer serverPlayer)) continue;
 					ServerPlayNetworking.send(serverPlayer, payload);
 				}
+
+				// do smth for every player...
+
+				RandomSource random = RandomSource.createThreadLocalInstance();
+
+				for (Player player : p.getPlayers()) {
+					
+					MIENCRAP3MINERAT.LOGGER.info("a1323");
+					
+					if (player.getInventory().hasAnyOf(Set.of(ModItems.CHEESEBURGER_CRUMBS.item))) {
+						// spawn homeless villagers
+
+						MIENCRAP3MINERAT.LOGGER.info("I AM SPOONING");
+
+						for (int v = 0; v < 4; ++v) {
+							FlatPosition position = new FlatPosition();
+							for (int i = 0; i < 60; ++i) {
+								position.randomizeDistant(random, 10.0, 10.0, 10.0, 10.0);
+								position.x += player.getX(); position.z += player.getZ();
+								if (position.isSafe(player.level(), 300)) break;
+							}	
+							Homeless homeless = new Homeless(player.level());
+							homeless.setPos(position.x, position.getSpawnY(player.level(), 300), position.z);
+							player.level().addFreshEntity(homeless);
+						}
+					} 
+				}
+
 			}
+
 		});
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			
 
