@@ -6,4 +6,5 @@ import net.minecraft.world.phys.Vec3;
 
 public interface TransitionsMixinInterface {
     public void teleportTo(ResourceKey<Level> dimension, Vec3 pos, int when);
+    public boolean isTrans();
 }

@@ -10,8 +10,10 @@ import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.Skyboxes.SkyboxState;
 import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MappableRingBuffer;
 import net.minecraft.client.renderer.texture.AbstractTexture;
@@ -21,6 +23,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.phys.Vec3;
 
 class SkyboxTexture {
     private final Identifier textureIdentifier;
@@ -96,13 +99,41 @@ public class OverworldSkybox extends Skybox {
     TagKey<Biome> PINK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_pink_sky"));
     TagKey<Biome> BLACK_SKY_BIOME = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "has_black_sky"));
 
+    double blend(double t) {
+        if (t <= 0.5f)
+            return 2.0 * t * t;
+        t -= 0.5;
+        return 2.0 * t * (1.0 - t) + 0.5;
+    }
+
+    public SkyboxState extractSkyboxState(LevelExtractionContext context) {
+        Vec3 playerPos = context.levelState().cameraRenderState.pos;
+
+        if (playerPos.y() < 4000.0) return super.extractSkyboxState(context);
+        else {
+
+            double mouthPosModifier = blend(Math.min((playerPos.y() - 4000.0) / 1000.0, 10.0) / 10.0) * 10.0;
+
+            double heightModifier = Math.min((playerPos.y() - 4000.0) / 1000.0, 63.5);
+
+            double xzOffset = 350.0;
+            double yOffset = 256.0;
+
+            return new SkyboxState(
+                playerPos.x - xzOffset, playerPos.y - yOffset - heightModifier * 4.0, playerPos.z - xzOffset - mouthPosModifier * 15.0,
+                playerPos.x + xzOffset, playerPos.y + yOffset - heightModifier * 4.0, playerPos.z + xzOffset - mouthPosModifier * 15.0
+            );
+        }
+    }
+
     public void preRenderPass() {
 
         this.ubo.rotate();
 
         float dt = Minecraft.getInstance().level.getOverworldClockTime() % 24000;
 
-        if (ClientWtf.wtf >= 4) transition(Sky.NIGHT_BIGCITY);
+        if (Minecraft.getInstance().player.getY() > 3000.0) transition(Sky.NIGHT);
+        else if (ClientWtf.wtf >= 4) transition(Sky.NIGHT_BIGCITY);
         else if (dt < 10_000) {
             if (ClientWtf.wtf >= 3) transition(Sky.DAY_INVERTED);
             else if (ClientWtf.wtf >= 2 && CurrentBiome.is(Biomes.DESERT)) transition(Sky.DAY_2); 

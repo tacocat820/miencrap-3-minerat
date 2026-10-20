@@ -84,6 +84,7 @@ public class MusicSounds {
     public static final SoundEvent TWEETERER_ALARM = registerSound("ost.tweeterer_alarm");
     public static final SoundEvent OAPPLE = registerSound("ost.oapple");
     public static final SoundEvent DESIRABLE_ORANGE = registerSound("ost.do");
+    public static final SoundEvent A_CAT_ATE_ME = registerSound("ost.a_cat_ate_me");
     
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

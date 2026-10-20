@@ -18,5 +18,9 @@ public class PlayerStartTransition {
         if (player instanceof ServerPlayer serverPlayer) {
             ServerPlayNetworking.send(serverPlayer, payload);
         }
-}    
+    }    
+
+    public static boolean isTrans(Player player) {
+        return ((TransitionsMixinInterface)(Object)player).isTrans();
+    }
 }

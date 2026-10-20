@@ -72,6 +72,9 @@ public abstract class TransitionsMixin implements TransitionsMixinInterface {
 
     }    
 
+    public boolean isTrans() {
+        return this.transition > -1;
+    }
 
     public void teleportTo(ResourceKey<Level> dimension, Vec3 pos, int when) {
         this.transitionDimension = dimension; this.transitionPos = pos;

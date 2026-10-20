@@ -5,13 +5,19 @@ import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
+import gro.weirdshit.miencrap3minerat.entity.Sacabambaspis;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
@@ -53,6 +59,31 @@ public class SpecificDieBlock extends HorizontallyRotatingBlock {
     @Override 
     public void entityInside(final BlockState state, final Level level, final BlockPos pos, final Entity entity, final InsideBlockEffectApplier effectApplier, final boolean isPrecise) {
     
+        if (entity instanceof Sacabambaspis sacabambaspis) {
+            MobEffectInstance instance = new MobEffectInstance(ModEffects.LIVEITATION, 5 * 60 * 20, 0, false, true, true);
+            sacabambaspis.addEffect(instance);
+            entity.playSound(ModSounds.TADAAA);
+            entity.playSound(SoundEvents.GENERIC_EXPLODE.value());
+            entity.setPos(entity.getX(), entity.getY() + 1.0, entity.getZ());
+
+            level.setBlockAndUpdate(pos, ModBlocks.LIVE.block.defaultBlockState());
+            if (level instanceof ServerLevel serverLevel) {
+
+                serverLevel.sendParticles(ParticleTypes.EXPLOSION, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 
+                    30, 0.3, 0.3, 0.3, 0.1);
+                serverLevel.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 
+                    30, 0.3, 0.3, 0.3, 0.1);
+                serverLevel.sendParticles(ParticleTypes.CRIT, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 
+                    30, 0.3, 0.3, 0.3, 0.1);
+                serverLevel.sendParticles(ParticleTypes.WAX_ON, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 
+                    30, 0.3, 0.3, 0.3, 0.1);
+                serverLevel.sendParticles(ParticleTypes.CLOUD, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 
+                    30, 0.3, 0.3, 0.3, 0.1);
+            }
+            
+            return;
+        }
+
         Vec3 d = entity.getDeltaMovement();
         entity.playSound(ModSounds.SCREAM);
         entity.setDeltaMovement(d.x, 10.0f, d.z);

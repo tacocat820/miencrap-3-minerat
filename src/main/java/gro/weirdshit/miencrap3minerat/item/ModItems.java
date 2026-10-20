@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.item.classes.BigBenenaItem;
 import gro.weirdshit.miencrap3minerat.item.classes.BreadSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.ChiselItem;
@@ -207,10 +208,15 @@ public class ModItems {
 
 	public static RegisteredItem<?> COMPUTER_SOUP = ModItems.register("computer_soup", Item::new, new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(100).saturationModifier(0f).build()).usingConvertsTo(Items.BOWL));
+	
 	public static RegisteredItem<?> ETHANOL = ModItems.register("ethanol", Item::new, new Item.Properties()
 		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(Items.GLASS_BOTTLE));  // TODO: make it make you drunk
 	public static RegisteredItem<?> CHLORAMPHENICOL = ModItems.register("chloramphenicol", Item::new, new Item.Properties()
 		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink().build()).usingConvertsTo(Items.GLASS_BOTTLE)); // TODO: make it kill you ig
+	public static RegisteredItem<?> HYDROGEN_PSYCHOXIDE = ModItems.register("hydrogen_psychoxide", Item::new, new Item.Properties()
+		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink()
+		.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(ModEffects.PSYCHO, 1000))).build()).usingConvertsTo(Items.GLASS_BOTTLE));
+	
 	public static RegisteredItem<?> CHOCCY_MILK = ModItems.register("choccy_milk", Item::new, new Item.Properties()
 		.component(DataComponents.CONSUMABLE, Consumables.defaultDrink()
 		.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.ABSORPTION, 200))).build()));
@@ -253,6 +259,7 @@ public class ModItems {
 		.Builder().nutrition(999).saturationModifier(9f).build())
 	);
 	public static RegisteredItem<?> BIG_BENENA = ModItems.register("big_benena", BigBenenaItem::new, new Item.Properties());
+	public static RegisteredItem<?> SACABAMBASPIS = ModItems.register("sacabambaspis_item", Item::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST

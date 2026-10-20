@@ -7,6 +7,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.BrainMarker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -24,7 +25,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
-    MENU, PEACEFUL, BATTLE;
+    MENU, PEACEFUL, BATTLE, LIVEITATION;
 }
 
 public class Music {
@@ -86,6 +87,9 @@ public class Music {
     private static MusicType getMusicType(Minecraft minecraft) {
         if (minecraft.level == null) {
             return MusicType.MENU;
+        }
+        if (minecraft.player != null && minecraft.player.getEffectBlendFactor(ModEffects.LIVEITATION, 0.0f) > 0) {
+            return MusicType.LIVEITATION;
         }
         if (battle) {
             return MusicType.BATTLE;
@@ -280,7 +284,9 @@ public class Music {
                     MusicSounds.CALM5,
                     MusicSounds.FARD,
                 });
-        
+            case LIVEITATION:
+                return MusicSounds.A_CAT_ATE_ME;
+
             default:
                 break;
         }

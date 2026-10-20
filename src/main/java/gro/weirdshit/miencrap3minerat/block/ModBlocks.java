@@ -29,6 +29,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificLiveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificObamiumBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPackageBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
@@ -320,7 +321,7 @@ public class ModBlocks {
 	public static RegisteredBlock PC_MINIBLOCKS = new GenericBlock("pc_miniblocks", p -> new MiniBlocksBlock(p)).tool(WithTool.PICKAXE).copyOf(PC.block).reg();
 
 	public static RegisteredBlock ROTTEN_FLESH_BLOCK = new GenericBlock("rotten_flesh_block", Block::new, SoundType.MUD, 0.5f,1.0f, WithTool.HOE).reg();
-	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.STONE, 0.0f,0.0f).noCollision().noOcclusion().reg();
+	public static RegisteredBlock DIE = new GenericBlock("die", SpecificDieBlock::new, SoundType.GRASS, 0.0f,0.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock ICICLE = new GenericBlock("icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(3507428), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock CURSED_DIRT = new GenericBlock("cursed_dirt", Block::new, SoundType.AMETHYST, 5.0f,0.0f, WithTool.HOE).noOcclusion().reg();
 	public static RegisteredBlock EPIC_LEAVES = new GenericBlock("epic_leaves", Block::new, SoundType.GRASS, 0.5f,0.5f).noOcclusion().reg();
@@ -419,6 +420,8 @@ public class ModBlocks {
 	public static RegisteredBlock ORANGE_GRASS_BLOCK = new GenericBlock("orange_grass_block", GrassBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
 	public static RegisteredBlock PASTEL_WOOL = new GenericBlock("pastel_wool", Block::new).copyOf(Blocks.WHITE_WOOL).reg();
 	public static RegisteredBlock BASKET = new GenericBlock("basket", TheBasketBlock.Blk::new, SoundType.WET_GRASS, 0.4f,1.0f, WithTool.HOE).noOcclusion().noCollision().reg();
+
+	public static RegisteredBlock LIVE = new GenericBlock("live", SpecificLiveBlock::new, SoundType.GRASS, 0.0f,0.0f).noCollision().noOcclusion().reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
