@@ -1,6 +1,5 @@
 package gro.weirdshit.miencrap3minerat.entity;
 
-import net.minecraft.world.entity.Marker;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.ValueInput;
