@@ -9,6 +9,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -39,7 +41,7 @@ public class SpecificKebabBlock extends RotatedPillarBlock {
     protected void randomTick(final BlockState state, final ServerLevel level, final BlockPos pos, final RandomSource random) {
         
         BlockState below = level.getBlockState(pos.below());
-		if (below.is(HOT)) {
+		if (below.is(HOT) && !(below.is(Blocks.CAMPFIRE) && !below.getValue(CampfireBlock.LIT))) {
             int progress = state.getValue(COOKING) + 1;
 
             if (progress > 3 )  {
