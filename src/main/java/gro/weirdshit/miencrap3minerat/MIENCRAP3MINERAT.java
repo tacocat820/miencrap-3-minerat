@@ -10,11 +10,14 @@ import net.minecraft.server.commands.SpreadPlayersCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.feline.Cat;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -69,6 +72,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 
@@ -114,12 +118,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 				for (Player player : p.getPlayers()) {
 					
-					MIENCRAP3MINERAT.LOGGER.info("a1323");
-					
 					if (player.getInventory().hasAnyOf(Set.of(ModItems.CHEESEBURGER_CRUMBS.item))) {
 						// spawn homeless villagers
-
-						MIENCRAP3MINERAT.LOGGER.info("I AM SPOONING");
 
 						for (int v = 0; v < 4; ++v) {
 							FlatPosition position = new FlatPosition();
@@ -133,6 +133,23 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 							player.level().addFreshEntity(homeless);
 						}
 					} 
+
+					if (player.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier())
+						&& player.getRandom().nextInt(10) >= 6
+					) {
+						ItemStack bed = new ItemStack(ModBlocks.NETHER_BED.item, 1);
+
+						boolean added = player.getInventory().add(bed);
+						if (added) {
+							ItemEntity drop = player.drop(new ItemStack(ModBlocks.NETHER_BED.item, 1), false);
+							if (drop != null) {
+								drop.makeFakeItem();
+							}
+
+							player.containerMenu.broadcastChanges();
+						}
+					}
+
 				}
 
 			}

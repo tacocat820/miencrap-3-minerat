@@ -30,6 +30,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLiveBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificNetherBedBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificObamiumBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPackageBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
@@ -422,6 +423,7 @@ public class ModBlocks {
 	public static RegisteredBlock BASKET = new GenericBlock("basket", TheBasketBlock.Blk::new, SoundType.WET_GRASS, 0.4f,1.0f, WithTool.HOE).noOcclusion().noCollision().reg();
 
 	public static RegisteredBlock LIVE = new GenericBlock("live", SpecificLiveBlock::new, SoundType.GRASS, 0.0f,0.0f).noCollision().noOcclusion().reg();
+	public static RegisteredBlock NETHER_BED = new GenericBlock("nether_bed", SpecificNetherBedBlock::new, SoundType.VAULT, 0.1f,1.0f).reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
