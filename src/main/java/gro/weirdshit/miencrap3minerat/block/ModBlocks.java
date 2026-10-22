@@ -424,6 +424,7 @@ public class ModBlocks {
 
 	public static RegisteredBlock LIVE = new GenericBlock("live", SpecificLiveBlock::new, SoundType.GRASS, 0.0f,0.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock NETHER_BED = new GenericBlock("nether_bed", SpecificNetherBedBlock::new, SoundType.VAULT, 0.1f,1.0f).reg();
+	public static RegisteredBlock EYE = new GenericBlock("eye", Block::new, SoundType.SOUL_SAND, -1.0f,1000.0f).reg();
 
 	// VANILLA MINIBLOCKS //
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
