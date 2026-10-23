@@ -16,6 +16,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LefisheItem;
 import gro.weirdshit.miencrap3minerat.item.classes.NetherPortalItem;
+import gro.weirdshit.miencrap3minerat.item.classes.PenItem;
 import gro.weirdshit.miencrap3minerat.item.classes.SteeringWheelItem;
 import gro.weirdshit.miencrap3minerat.item.classes.UraniumLollipopItem;
 import gro.weirdshit.miencrap3minerat.item.classes.WrenchItem;
@@ -161,7 +162,7 @@ public class ModItems {
 	public static RegisteredItem<?> PLASTIC_SWORD = ModItems.register("plastic_sword", Item::new, new Item.Properties()
 		.sword(ToolMaterial.WOOD, 1.11F, -1.2F).durability(1000)
 	);
-	public static RegisteredItem<?> PEN = ModItems.register("pen", Item::new, new Item.Properties());
+	public static RegisteredItem<?> PEN = ModItems.register("pen", PenItem::new, new Item.Properties().durability(30));
 	public static RegisteredItem<?> METH = ModItems.register("meth", Item::new, new Item.Properties());
 	
 	public static RegisteredItem<?> FIRE = ModItems.register("fire", Item::new, new Item.Properties());
@@ -182,8 +183,11 @@ public class ModItems {
 	public static RegisteredItem<?> WHEEL = ModItems.register("wheel", SteeringWheelItem::new, new Item.Properties());
 	public static RegisteredItem<?> SAND_INGOT = ModItems.register("sand_ingot", Item::new, new Item.Properties());
 
-	public static RegisteredItem<?> CHEESEBURGER = ModItems.register("cheeseburger", Item::new, new Item.Properties());
-	public static RegisteredItem<?> CHEESEBURGER_CRUMBS = ModItems.register("cheeseburger_crumbs", Item::new, new Item.Properties());
+	public static RegisteredItem<?> CHEESEBURGER_CRUMBS = ModItems.register("cheeseburger_crumbs", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(1).saturationModifier(0.1f).build()));
+	public static RegisteredItem<?> CHEESEBURGER = ModItems.register("cheeseburger", Item::new, 
+		new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(5).saturationModifier(1.0f).build()).usingConvertsTo(CHEESEBURGER_CRUMBS.item));
 
 	public static RegisteredItem<?> COW_NFT = ModItems.register("cow_nft", Item::new, new Item.Properties());
 	public static RegisteredItem<?> CUBE_NFT = ModItems.register("cube_nft", Item::new, new Item.Properties());

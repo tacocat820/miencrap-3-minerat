@@ -35,7 +35,8 @@ public class WrenchItem extends Item {
     
     static Random rand = new Random();
 
-    static public ItemStack getBreakedItem(int damage, LivingEntity mob, ItemStack itemStack) {
+    static public ItemStack getBreakedItem(int damage, LivingEntity mob, ItemStack itemStack) { 
+        // tf does 'breaked' mean
         InteractionHand hand = mob.getUsedItemHand();
         EquipmentSlot slot = hand.asEquipmentSlot();
         ItemStack result = itemStack.hurtAndConvertOnBreak(damage, Items.AIR, mob, slot);
