@@ -22,6 +22,7 @@ import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
@@ -102,6 +103,10 @@ public class Music {
         switch (type) {
             case MENU:
                 if (welcome > 0) {
+
+                    if (Minecraft.getInstance().options.getSoundSourceOptionInstance(SoundSource.MUSIC).get() <= 0.2)
+                        Minecraft.getInstance().options.getSoundSourceOptionInstance(SoundSource.MUSIC).set(0.2);
+                    
                     --welcome; return MusicSounds.MINERAT2;
                 }
 

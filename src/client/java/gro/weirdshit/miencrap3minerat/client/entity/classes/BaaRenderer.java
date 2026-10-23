@@ -5,13 +5,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.MobRenderInterface;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.entity.Baa;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
-import gro.weirdshit.miencrap3minerat.entity.Puffercopter;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
-import net.minecraft.client.animation.AnimationChannel;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.animation.Keyframe;
-import net.minecraft.client.animation.KeyframeAnimation;
-import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -27,7 +21,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.AnimationState;
 
 public class BaaRenderer extends MobRenderInterface {
 

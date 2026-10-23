@@ -2,12 +2,16 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import java.util.Random;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -21,8 +25,11 @@ import net.minecraft.world.entity.animal.fish.WaterAnimal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.material.Fluids;
 
 public class ModEntitySpawning {
 
@@ -35,12 +42,21 @@ public class ModEntitySpawning {
     public static boolean checkCrishSpawnRules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
         return level.getBlockState(pos.below()).is(Blocks.WATER);
     }
+    
+    private static TagKey<Biome> NETHER = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "nether_main"));    
 
     public static boolean checkPuffercopterSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
+        MIENCRAP3MINERAT.LOGGER.info("pee");
+        if (level.getBiome(pos).is(NETHER)) return random.nextFloat() < 0.25f;
         float wtf = Math.max(0.0f, WtfLevel.getWtfForServer(level.getServer()) - 200.0f);
 
         
         return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && random.nextFloat() < wtf;
+    }
+    public static boolean checkDemonSpawnRules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
+        
+        
+        return true;
     }
 
     public static boolean checkMonsterSpawnRulesWithWtf(final EntityType<? extends PathfinderMob> type, final ServerLevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random, float minWtf) {
@@ -58,6 +74,7 @@ public class ModEntitySpawning {
         return  checkNotjuanSpawnrules(type, level, spawnReason, pos, random) && wtf >= minWtf;
 
     }
+     
 
     public static void generate() {
         SpawnPlacements.register(ModEntityTypes.NOTJUAN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkNotjuanSpawnrules);
@@ -70,6 +87,7 @@ public class ModEntitySpawning {
         SpawnPlacements.register(ModEntityTypes.PUFFERCOPTER, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkPuffercopterSpawnrules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(NETHER), MobCategory.CREATURE, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
 
         SpawnPlacements.register(ModEntityTypes.DOLPHIN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.DOLPHIN, 100, 1, 3);
@@ -92,6 +110,9 @@ public class ModEntitySpawning {
         SpawnPlacements.register(ModEntityTypes.CABLE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (t, l, s, p, r) -> checkAnimalSpawnRulesWithWtf(t, l, s, p, r, 500));
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.CREATURE, ModEntityTypes.CABLE, 80, 1, 5);
 
+        SpawnPlacements.register(ModEntityTypes.CEEL, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+        SpawnPlacements.register(ModEntityTypes.DEMON, SpawnPlacementTypes.IN_LAVA, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkDemonSpawnRules);
+        
         //SpawnPlacements.register(ModEntityTypes.ANGLERFISH, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Anglerfish::checkAnglerfishSpawnRules);
         //BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.WATER_CREATURE, ModEntityTypes.ANGLERFISH, 1, 1, 2);
 

@@ -43,7 +43,6 @@ public class Spawner extends Marker {
 		super.readAdditionalSaveData(input);
 		
 		String t = input.getStringOr("t", "minecraft:cat");
-		MIENCRAP3MINERAT.LOGGER.info(t);
 		this.type = registryAccess().get(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.parse(t))).get().value();
 		
 		range = input.getDoubleOr("range", 8.0);

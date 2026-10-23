@@ -36,18 +36,42 @@
           "weight": 1,
           "minCount": 1,
           "maxCount": 1
+        },
+        {
+          "type": "miencrap3minerat:puffercopter",
+          "weight": 10,
+          "minCount": 1,
+          "maxCount": 1
         }
       ],
       "misc": [],
       "monster": [
+        {
+          "type": "miencrap3minerat:ceel",
+          "maxCount": 2,
+          "minCount": 1,
+          "weight": 10
+        },
+        {
+          "type": "miencrap3minerat:demon",
+          "maxCount": 2,
+          "minCount": 1,
+          "weight": 3
+        },
+        {
+          "type": "miencrap3minerat:ender_dragon",
+          "maxCount": 2,
+          "minCount": 1,
+          "weight": 10
+        },
+        {
+          "type": "miencrap3minerat:gigachicken",
+          "maxCount": 2,
+          "minCount": 1,
+          "weight": 5
+        }
       ],
       "underground_water_creature": [
-        {
-          "type": "minecraft:glow_squid",
-          "weight": 10,
-          "minCount": 4,
-          "maxCount": 6
-        }
       ],
       "water_ambient": [],
       "water_creature": []

@@ -54,6 +54,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec2;
@@ -127,6 +128,8 @@ public class Puffercopter extends PathfinderMob {
 		List<Puffercopter> puffercopters = level.getEntitiesOfClass(Puffercopter.class, this.getBoundingBox().inflate(inflate, inflate, inflate));
 		for (Puffercopter puffercopter : puffercopters) if (puffercopter.isAlive()) ++count; 
 		
+		if (this.level().dimension().equals(BuiltinDimensionTypes.NETHER)) maxCount = 2;
+
 		if (count > maxCount && count != 1)
 			this.kill(level);
 	}

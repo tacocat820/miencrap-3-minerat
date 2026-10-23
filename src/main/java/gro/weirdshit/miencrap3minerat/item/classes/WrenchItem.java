@@ -4,6 +4,7 @@ import java.util.Random;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.entity.Lefishe;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -79,7 +80,7 @@ public class WrenchItem extends Item {
 
         BreadSwordItem.breakitem(65536, attacker, itemStack);
 
-        if (!itemStack.is(ModItems.FRENCH.item)) {
+        if (itemStack.is(ModItems.WRENCH.item) && mob instanceof Lefishe) {
             attacker.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.FRENCH.item));
             MIENCRAP3MINERAT.LOGGER.info("france");
         }

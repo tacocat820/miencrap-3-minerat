@@ -183,6 +183,7 @@ public class EnderDragon extends Monster {
 		return PathfinderMob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10)
 				.add(Attributes.TEMPT_RANGE, 10)
+				.add(Attributes.FOLLOW_RANGE, 20)
 				.add(Attributes.MOVEMENT_SPEED, 0.4)
 				.add(Attributes.FLYING_SPEED, 2.0)
 				.add(Attributes.ATTACK_DAMAGE, 4.0);

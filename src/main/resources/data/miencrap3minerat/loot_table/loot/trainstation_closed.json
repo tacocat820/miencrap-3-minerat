@@ -59,6 +59,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "miencrap3minerat:fire_extinguisher",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
           "name": "miencrap3minerat:pc",
           "weight": 8,
           "functions": [
