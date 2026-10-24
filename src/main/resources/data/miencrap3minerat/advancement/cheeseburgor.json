@@ -1,0 +1,24 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{
+                    "items": ["miencrap3minerat:cheeseburger"]
+                }]
+            }
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:cheeseburger"
+        },
+        "title": {"color": "#5e0a74", "bold": true, "translate": "adv.miencrap3minerat.cheeseburgor"},
+        "description": {"color": "#d18f14", "underlined": true, "italic": true, "translate": "adv.miencrap3minerat.cheeseburgor.desc"},
+        "frame": "goal",
+        "announce_to_chat": true,
+        "show_toast": true
+    },
+    "parent": "miencrap3minerat:hello"
+}

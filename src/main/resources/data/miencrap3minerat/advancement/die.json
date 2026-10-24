@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "impossible"
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "miencrap3minerat:die"
+        },
+        "title": {"color": "#058d34","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.die"},
+        "description": {"color": "#4df888", "bold": true, "translate": "adv.miencrap3minerat.die.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:l"
+}

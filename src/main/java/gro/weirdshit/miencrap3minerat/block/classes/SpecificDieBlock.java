@@ -8,20 +8,19 @@ import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.Sacabambaspis;
+import gro.weirdshit.miencrap3minerat.etc.GrantAdvancement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -29,12 +28,8 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SpecificDieBlock extends HorizontallyRotatingBlock {
@@ -87,6 +82,10 @@ public class SpecificDieBlock extends HorizontallyRotatingBlock {
         Vec3 d = entity.getDeltaMovement();
         entity.playSound(ModSounds.SCREAM);
         entity.setDeltaMovement(d.x, 10.0f, d.z);
+
+        if (entity instanceof ServerPlayer player) {
+            GrantAdvancement.grant(player, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "die"));
+        }
     }
     
 }

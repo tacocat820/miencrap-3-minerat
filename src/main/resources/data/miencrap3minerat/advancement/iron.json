@@ -1,0 +1,23 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{"items": ["iron_ingot"]}]
+            }
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "iron_ingot"
+        },
+        "title": {"color": "#be4a14", "translate": "adv.miencrap3minerat.iron"},
+        "description": {"color": "#f09696", "bold": true, "underlined":true, "translate": "adv.miencrap3minerat.iron.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat/stone"
+}

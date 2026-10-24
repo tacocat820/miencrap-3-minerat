@@ -1,0 +1,32 @@
+{
+    "criteria": {
+        "e": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "structures": "miencrap3minerat:bigbrain"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "brain_coral_block"
+        },
+        "title": {"color": "#a28098", "bold": true, "translate": "adv.miencrap3minerat.bigbrain", "font":"minecraft:slim"},
+        "description": {"color": "#69164b", "underlined": false, "italic": true, "translate": "adv.miencrap3minerat.bigbrain.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true
+    },
+    "parent": "miencrap3minerat:cheeseburgor"
+}

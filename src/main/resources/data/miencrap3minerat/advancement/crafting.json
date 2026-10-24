@@ -1,0 +1,41 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{"items": [
+                    "crafting_table",
+                    "miencrap3minerat:white_crafting_table",
+                    "miencrap3minerat:orange_crafting_table",
+                    "miencrap3minerat:magenta_crafting_table",
+                    "miencrap3minerat:light_blue_crafting_table",
+                    "miencrap3minerat:yellow_crafting_table",
+                    "miencrap3minerat:lime_crafting_table",
+                    "miencrap3minerat:pink_crafting_table",
+                    "miencrap3minerat:gray_crafting_table",
+                    "miencrap3minerat:light_gray_crafting_table",
+                    "miencrap3minerat:cyan_crafting_table",
+                    "miencrap3minerat:purple_crafting_table",
+                    "miencrap3minerat:blue_crafting_table",
+                    "miencrap3minerat:brown_crafting_table",
+                    "miencrap3minerat:green_crafting_table",
+                    "miencrap3minerat:red_crafting_table",
+                    "miencrap3minerat:black_crafting_table",
+                    "miencrap3minerat:neon_crafting_table"
+                ]}]
+            }
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "crafting_table"
+        },
+        "title": {"color": "#15bda6","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.crafting"},
+        "description": {"color": "#a0bd97", "bold": true, "strikethrough":true, "translate": "adv.miencrap3minerat.crafting.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:bigbrain"
+}

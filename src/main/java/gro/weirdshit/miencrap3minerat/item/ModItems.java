@@ -198,11 +198,11 @@ public class ModItems {
 	public static RegisteredItem<?> ROCK = ModItems.register("rock", Item::new, new Item.Properties());
 	public static RegisteredItem<?> DUST = ModItems.register("dust", Item::new, new Item.Properties());
 	
-	public static RegisteredItem<?> DIRT_SWORD = ModItems.register("dirt_sword", Item::new, new Item.Properties().sword(ToolMaterial.WOOD, 1.1f, 1).durability(6));
-	public static RegisteredItem<?> DIRT_AXE = ModItems.register("dirt_axe", Item::new, new Item.Properties().axe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
-	public static RegisteredItem<?> DIRT_PICKAXE = ModItems.register("dirt_pickaxe", Item::new, new Item.Properties().pickaxe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
-	public static RegisteredItem<?> DIRT_SHOVEL = ModItems.register("dirt_shovel", Item::new, new Item.Properties().shovel(ToolMaterial.WOOD, 1.1f, 1).durability(6));
-	public static RegisteredItem<?> DIRT_HOE = ModItems.register("dirt_hoe", Item::new, new Item.Properties().hoe(ToolMaterial.WOOD, 1.1f, 1).durability(6));
+	public static RegisteredItem<?> DIRT_SWORD = ModItems.register("dirt_sword", Item::new, new Item.Properties().sword(ToolMaterial.WOOD, 1.1f, 1).durability(3));
+	public static RegisteredItem<?> DIRT_AXE = ModItems.register("dirt_axe", Item::new, new Item.Properties().axe(ToolMaterial.WOOD, 1.1f, 1).durability(3));
+	public static RegisteredItem<?> DIRT_PICKAXE = ModItems.register("dirt_pickaxe", Item::new, new Item.Properties().pickaxe(ToolMaterial.WOOD, 1.1f, 1).durability(3));
+	public static RegisteredItem<?> DIRT_SHOVEL = ModItems.register("dirt_shovel", Item::new, new Item.Properties().shovel(ToolMaterial.WOOD, 1.1f, 1).durability(3));
+	public static RegisteredItem<?> DIRT_HOE = ModItems.register("dirt_hoe", Item::new, new Item.Properties().hoe(ToolMaterial.WOOD, 1.1f, 1).durability(3));
 
 	public static RegisteredItem<?> KETCHUP = ModItems.register("ketchup", Item::new, new Item.Properties().food(new FoodProperties
 		.Builder().nutrition(8).saturationModifier(4.0f).build()));

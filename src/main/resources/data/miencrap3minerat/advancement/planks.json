@@ -1,0 +1,65 @@
+{
+  "criteria": {
+    "e": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "oak_planks",
+              "birch_planks",
+              "acacia_planks",
+              "bamboo_planks",
+              "cherry_planks",
+              "jungle_planks",
+              "spruce_planks",
+              "warped_planks",
+              "crimson_planks",
+              "dark_oak_planks",
+              "miencrap3minerat:orange_planks",
+              "miencrap3minerat:maple_planks",
+              "miencrap3minerat:fall_planks",
+              "miencrap3minerat:cold_planks",
+              "miencrap3minerat:connected_oak_planks"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "hidden": false,
+    "icon": {
+      "id": "miencrap3minerat:cursed_planks"
+    },
+    "title": {
+      "color": "#9d7a58",
+      "bold": true,
+      "italic": true,
+      "translate": "adv.miencrap3minerat.planks"
+    },
+    "description": {
+      "color": "#7f4f25",
+      "underlined": true,
+      "translate": "adv.miencrap3minerat.planks.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true
+  },
+  "parent": "miencrap3minerat:crafting",
+  "requirements": [
+    [
+      "e"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "miencrap3minerat:dirt_pickaxe",
+      "miencrap3minerat:dirt_sword",
+      "miencrap3minerat:dirt_axe",
+      "miencrap3minerat:dirt_shovel",
+      "miencrap3minerat:dirt_hoe",
+      "miencrap3minerat:cobblestone"
+    ]
+  }
+}

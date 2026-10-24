@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "player_killed_entity"
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:knife"
+        },
+        "title": {"color": "#c884ff","underlined":true, "bold":true, "italic": true, "translate": "adv.miencrap3minerat.murderer"},
+        "description": {"color": "#fd0a0a", "bold": true, "strikethrough": true, "translate": "adv.miencrap3minerat.murderer.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:hello"
+}
