@@ -29,7 +29,7 @@
           "then": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "minecraft:sandstone"
+              "Name": "miencrap3minerat:stonestone"
             }
           }
         }

@@ -37,5 +37,10 @@
         "announce_to_chat": true,
         "background": "minecraft:textures/item/block/obama.png"
     },
-    "parent": "miencrap3minerat:bigbrain"
+    "parent": "miencrap3minerat:bigbrain",
+    "rewards": {
+        "recipes": [
+            "miencrap3minerat:pink_crafting_table"
+        ]
+    }
 }

@@ -1,0 +1,11 @@
+{
+   "parent": "miencrap3minerat:templates/block_6s",
+    "textures": {
+	   "north": "miencrap3minerat:block/stonestone",
+	   "east": "miencrap3minerat:block/stonestone",
+	   "south": "miencrap3minerat:block/stonestone",
+	   "west": "miencrap3minerat:block/stonestone",
+	   "up": "miencrap3minerat:block/stonestone_top",
+	   "down": "miencrap3minerat:block/stonestone_bottom"
+    }
+}

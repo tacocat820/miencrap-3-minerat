@@ -425,8 +425,7 @@ public class ModBlocks {
 	public static RegisteredBlock LIVE = new GenericBlock("live", SpecificLiveBlock::new, SoundType.GRASS, 0.0f,0.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock NETHER_BED = new GenericBlock("nether_bed", SpecificNetherBedBlock::new, SoundType.VAULT, 0.1f,1.0f).reg();
 	public static RegisteredBlock EYE = new GenericBlock("eye", Block::new, SoundType.SOUL_SAND, -1.0f,1000.0f).reg();
-
-	// VANILLA MINIBLOCKS //
+	
 	public static RegisteredBlock CERAMIC_TILES = new GenericBlock("ceramic_tiles", Block::new, SoundType.STONE, 2.0f,1.0f).reg();
 	public static RegisteredBlock CERAMIC_TILES_MINIBLOCKS = new GenericBlock("ceramic_tiles_miniblocks", p -> new MiniBlocksBlock(p, CERAMIC_TILES.block)).copyOf(CERAMIC_TILES.block).reg();
 	public static RegisteredBlock CONVEYOR_BELT = new GenericBlock("conveyor_belt", SpecificConveyorBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
@@ -435,6 +434,10 @@ public class ModBlocks {
 	public static RegisteredBlock GRASSBLOCKMOND_BLOCK = new GenericBlock("grassblockmond_block", Block::new, SoundType.IRON, 1.0f,1.0f).reg();
 	public static RegisteredBlock CARAMEL_BRICKS = new GenericBlock("caramel_bricks", EdibleBlock::new, SoundType.CALCITE, 1.0f,1.0f).reg();
 	public static RegisteredBlock CARAMEL_BRICKS_MINIBLOCKS = new GenericBlock("caramel_bricks_miniblocks", p -> new EdibleMiniBlocksBlock(p, CARAMEL_BRICKS.block)).copyOf(CARAMEL_BRICKS.block).reg();
+	
+	public static RegisteredBlock STONESTONE = new GenericBlock("stonestone", Block::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).reg();
+
+	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
 	public static RegisteredBlock DIRT_MINIBLOCKS = new GenericBlock("dirt_miniblocks", p -> new MiniBlocksBlock(p, Blocks.DIRT)).copyOf(Blocks.DIRT).reg();
