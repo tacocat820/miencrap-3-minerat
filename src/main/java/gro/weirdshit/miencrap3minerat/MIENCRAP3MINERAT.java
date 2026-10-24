@@ -51,10 +51,13 @@ import gro.weirdshit.miencrap3minerat.worldgen.foliage.ModWorldgenFoliage;
 import gro.weirdshit.miencrap3minerat.worldgen.structure.placements.ModStructurePlacementType;
 import gro.weirdshit.miencrap3minerat.worldgen.trunk.ModWorldgenTrunk;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -249,6 +252,23 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 
 			
+		});
+		ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {
+			if (entity instanceof ServerPlayer serverPlayer) {
+				try {
+					AdvancementHolder adv = serverPlayer.level().getServer().getAdvancements().get(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "l"));
+
+					AdvancementProgress progress = serverPlayer.getAdvancements().getOrStartProgress(adv);
+
+					for (String criterion : progress.getRemainingCriteria()) {
+						serverPlayer.getAdvancements().award(adv, criterion);
+					}
+
+					MIENCRAP3MINERAT.LOGGER.info("granded");
+				} catch (Exception e) {
+					MIENCRAP3MINERAT.LOGGER.info(e.toString());
+				}
+			}
 		});
 
 		ModBlocks.generate();

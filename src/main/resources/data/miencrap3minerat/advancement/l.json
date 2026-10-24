@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "impossible"
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "miencrap3minerat:death_nft"
+        },
+        "title": {"color": "#ff0003","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.l"},
+        "description": {"color": "#ff0003", "bold": true, "translate": "adv.miencrap3minerat.l.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:hello"
+}
