@@ -1,9 +1,7 @@
 package gro.weirdshit.miencrap3minerat;
-import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.core.Registry;
 

@@ -19,21 +19,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import gro.weirdshit.miencrap3minerat.ModRegistry.Recipe2_Registry;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftRecipe;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsSet;
-import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ShapedRecipe;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.feline.Cat;
 import net.minecraft.world.level.block.Block;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 

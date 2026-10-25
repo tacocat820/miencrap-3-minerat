@@ -33,6 +33,7 @@ import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.Homeless;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
+import gro.weirdshit.miencrap3minerat.entity.PlayerDeathMarker;
 import gro.weirdshit.miencrap3minerat.etc.FlatPosition;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MerlChain;
@@ -89,6 +90,24 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);
 			wtf.tick(m.getLevel(WtfLevel.OVERWORLD_KEY));
 
+
+			if (m.overworld().getGameTime() % 40 == 0) {
+
+				PlayerList p = m.getPlayerList();
+
+				for (Player player : p.getPlayers()) {
+					
+					ItemStack rickroll = new ItemStack(ModItems.RICKROLL.item, 1);
+
+					boolean added = player.getInventory().add(rickroll);
+					if (added) {
+						player.containerMenu.broadcastChanges();
+					}
+
+				}
+
+			}
+
 			if (m.overworld().getGameTime() % 200 == 0) {
 
 				// send wtf level
@@ -100,6 +119,29 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					if (!(player instanceof ServerPlayer serverPlayer)) continue;
 					ServerPlayNetworking.send(serverPlayer, payload);
 				}
+
+				m.getAllLevels().forEach(level -> {
+
+					// maybe datapacks are actually sometimes better
+					ArrayList<Entity> killList = new ArrayList<>();
+
+					level.getAllEntities().forEach(e -> {
+						// TODO: optimize if possible
+						if (e instanceof ItemEntity) {
+							if (
+								level.getEntitiesOfClass(Player.class, e.getBoundingBox().inflate(17.0)).isEmpty() &&
+								level.getEntitiesOfClass(PlayerDeathMarker.class, e.getBoundingBox().inflate(14.0)).isEmpty()
+							) {
+								killList.add(e);
+							}
+						}
+					});
+
+					for (Entity e : killList) {
+						e.kill(level);
+					}
+				
+				});
 
 				// do smth for every player...
 
@@ -265,6 +307,10 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					}
 
 					MIENCRAP3MINERAT.LOGGER.info("granded");
+
+					PlayerDeathMarker playerDeathMarker = new PlayerDeathMarker(ModEntityTypes.PLAYER_DEATH_MARKER, serverPlayer.level());
+					playerDeathMarker.setPos(serverPlayer.position());
+					serverPlayer.level().addFreshEntity(playerDeathMarker);
 				} catch (Exception e) {
 					MIENCRAP3MINERAT.LOGGER.info(e.toString());
 				}

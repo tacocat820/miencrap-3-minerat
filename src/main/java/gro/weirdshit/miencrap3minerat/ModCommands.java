@@ -2,35 +2,25 @@ package gro.weirdshit.miencrap3minerat;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
-import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
-import gro.weirdshit.miencrap3minerat.mixin.ThirstMixin;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
-import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.commands.Commands;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.phys.Vec3;
 

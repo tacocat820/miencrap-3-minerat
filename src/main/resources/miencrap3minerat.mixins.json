@@ -17,7 +17,8 @@
 		"FartlandsMixin",
 		"JigsawPlacementMixin",
 		"StonecutterMixin",
-		"ChangeItemDroppingMixin"
+		"ChangeItemDroppingMixin",
+		"FuckSpawnProtectionMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
