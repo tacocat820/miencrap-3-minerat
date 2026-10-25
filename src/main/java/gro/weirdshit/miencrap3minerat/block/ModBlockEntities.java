@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMicrowaveBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.ThePlateBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheWaveBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.world.level.block.Block;
@@ -43,6 +44,9 @@ public class ModBlockEntities {
 
   public static final BlockEntityType<TheBasketBlock.BlockEnt> BASKET_ENTITY_TYPE =
   register("basket", TheBasketBlock.BlockEnt::new, ModBlocks.BASKET.block);
+
+  public static final BlockEntityType<ThePlateBlock.BlockEnt> PLATE_ENTITY_TYPE =
+  register("plate", ThePlateBlock.BlockEnt::new, ModBlocks.DINNER_PLATE.block);
 
   public static final BlockEntityType<TheMicrowaveBlock.BlockEnt> MICROWAVE_ENTITY_TYPE =
   register("microwave", TheMicrowaveBlock.BlockEnt::new, ModBlocks.MICROWAVE.block);

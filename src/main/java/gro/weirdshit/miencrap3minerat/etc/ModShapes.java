@@ -27,6 +27,8 @@ public class ModShapes {
         );
     });
 
+    public static final VoxelShape TAPEPLAYER = Block.box(-4, 0, 3, 20, 16, 14);
+
     public static final VoxelShape CARPET_SHAPE = (VoxelShape)Util.make(() -> {
         return Block.box(0, 0, 0, 16, 2, 16);
     });
