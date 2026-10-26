@@ -33,13 +33,14 @@ public class SpecificObamiumBlock extends HorizontallyRotatingBlock {
     public static final MapCodec<HorizontallyRotatingBlock> CODEC = simpleCodec(HorizontallyRotatingBlock::new);
     public static final ResourceKey<DamageType> OBAMIUM_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "obamium"));
 
-    private static final VoxelShape SHAPE = Block.column(10.0, 0.0, 8.0);
+    private final VoxelShape SHAPE;
     @Override
     protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
         return SHAPE;
     }
 
-    public SpecificObamiumBlock(BlockBehaviour.Properties properties) {
+    public SpecificObamiumBlock(BlockBehaviour.Properties properties, VoxelShape shape) {
+        this.SHAPE = shape;
         super(properties);
     }
 
@@ -55,7 +56,7 @@ public class SpecificObamiumBlock extends HorizontallyRotatingBlock {
 					level.registryAccess()
 							.lookupOrThrow(Registries.DAMAGE_TYPE)
 							.get(OBAMIUM_DAMAGE.identifier()).orElseThrow());
-			entity.hurtServer(serverLevel, damageSource, 15.0f);
+			entity.hurtServer(serverLevel, damageSource, 19.4f);
 		}
     }
     
