@@ -5,7 +5,6 @@ import gro.weirdshit.miencrap3minerat.client.entity.MobRenderInterface;
 import gro.weirdshit.miencrap3minerat.client.entity.ModEntityModelLayers;
 import gro.weirdshit.miencrap3minerat.entity.Anglerfish;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
-import gro.weirdshit.miencrap3minerat.entity.Puffercopter;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;

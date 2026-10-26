@@ -9,7 +9,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Marker;
 import net.minecraft.world.entity.MobCategory;
 
 class GenericEntity {
@@ -63,6 +62,10 @@ public class ModEntityTypes {
 			"cable",
 			EntityType.Builder.<Cable>of(Cable::new, MobCategory.MONSTER)
 					.sized(1.4f, 1.0f));
+	public static final EntityType<Shrek> SHREK = register(
+			"shrek",
+			EntityType.Builder.<Shrek>of(Shrek::new, MobCategory.MONSTER)
+					.sized(0.9f, 3.0f));
 	public static final EntityType<Brothers> BROTHERS = register(
 			"brothers",
 			EntityType.Builder.<Brothers>of(Brothers::new, MobCategory.MONSTER)
@@ -91,6 +94,10 @@ public class ModEntityTypes {
 			"actual_fish",
 			EntityType.Builder.<ActualFish>of(ActualFish::new, MobCategory.CREATURE)
 					.sized(1.4f, 0.7f));
+	public static final EntityType<Sssdfg> SSSDFG = register(
+			"sssdfg",
+			EntityType.Builder.<Sssdfg>of(Sssdfg::new, MobCategory.CREATURE)
+					.sized(1.1f, 1.0f));
 	public static final EntityType<HappyGhast> HAPPY_GHAST = register(
 			"happy_ghast",
 			EntityType.Builder.<HappyGhast>of(HappyGhast::new, MobCategory.CREATURE)
@@ -227,12 +234,14 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(BAA, Baa.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(LEFISHE, Lefishe.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CABLE, Cable.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(SHREK, Shrek.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BROTHERS, Brothers.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DEMON, Demon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GIGACHICKEN, Gigachicken.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PTL, Ptl.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CRISH, Crish.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ACTUAL_FISH, ActualFish.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(SSSDFG, Sssdfg.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BLIMP, Blimp.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HAPPY_GHAST, HappyGhast.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(HOOORSE, Hooorse.createCubeAttributes());

@@ -62,7 +62,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biomes;
@@ -175,8 +174,6 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 				float bloomIntensity = Minecraft.getInstance().player.getEffectBlendFactor(ModEffects.BLOOM, 1.0F);
 				
 				if (bloomIntensity > 0.0f) {
-
-					MIENCRAP3MINERAT.LOGGER.info("bloo");
 
 					MakeSetPostEffectPublicMixin postEffect = (MakeSetPostEffectPublicMixin)(Minecraft.getInstance().gameRenderer);
 					postEffect.miencrap3minerat$setPostEffect(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "bloom"));

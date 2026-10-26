@@ -3,10 +3,12 @@ package gro.weirdshit.miencrap3minerat.entity;
 import java.util.List;
 
 import gro.weirdshit.miencrap3minerat.item.ModItems;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
@@ -201,6 +203,9 @@ public class Homeless extends PathfinderMob {
 
 		if (level() instanceof ServerLevel serverLevel) {
 
+			if (hungwy) for (Player player : level().getEntitiesOfClass(Player.class, getBoundingBox().inflate(6.0, 6.0, 6.0))) {
+				player.sendSystemMessage(Component.translatable("msg.miencrap3minerat.homeless"));
+			}
 
 			List<ItemEntity> items = this.level().getEntitiesOfClass(ItemEntity.class, getBoundingBox());
 			for (ItemEntity item : items) {

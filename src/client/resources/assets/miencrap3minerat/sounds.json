@@ -267,6 +267,10 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/a_cat_ate_me","stream": true}]},
 	"tacobell":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:tacobell","stream": false}]},
+	"plumber":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:plumber","stream": false}]},
+	"damn":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:damn","stream": false}]},
 
 
 	"ed2_scream": {
