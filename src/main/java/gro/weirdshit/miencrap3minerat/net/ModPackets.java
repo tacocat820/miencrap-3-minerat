@@ -14,14 +14,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerUsePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.vehicle.minecart.Minecart;
-import net.minecraft.world.inventory.BeaconMenu;
 
 public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> WATERCOOLER_PUT_PAYLOAD = PayloadTypeRegistry.serverboundPlay().register(WatercoolerPutPayload.TYPE, WatercoolerPutPayload.CODEC);
@@ -35,6 +28,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> BOX_TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartBoxTransitionPayload.TYPE, StartBoxTransitionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartTransitionPayload.TYPE, StartTransitionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> REVERSE_TRANSITION_TELEPORTING_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ReverseTransitionTeleportingPayload.TYPE, ReverseTransitionTeleportingPayload.CODEC);
+    //public static CustomPacketPayload.TypeAndCodec<?, ?> MICROWAVE_SOUND_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(MicrowaveSoundPayload.TYPE, MicrowaveSoundPayload.CODEC);
 
     public static void clientGenerate() {}
     public static void generate() {

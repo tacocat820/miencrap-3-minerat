@@ -25,6 +25,10 @@ public class ModEntityTypes {
 			"dolphin",
 			EntityType.Builder.<Dolphin>of(Dolphin::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f));
+	public static final EntityType<Blays> BLAYS = register(
+			"blays",
+			EntityType.Builder.<Blays>of(Blays::new, MobCategory.MONSTER)
+					.sized(1.4f, 0.7f));
 	public static final EntityType<Ceel> CEEL = register(
 			"ceel",
 			EntityType.Builder.<Ceel>of(Ceel::new, MobCategory.MONSTER)
@@ -224,6 +228,7 @@ public class ModEntityTypes {
 	public static void registerAttributes() {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(BLAYS, Blays.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CEEL, Ceel.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DEATH, Death.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FATE, Fate.createCubeAttributes());

@@ -441,7 +441,8 @@ public class ModBlocks {
 	public static RegisteredBlock DINNER_PLATE = new GenericBlock("dinner_plate", ThePlateBlock.Blk::new, SoundType.STONE, 1.0f,1.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock SSSDFG = new GenericBlock("sssdfg", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock SHORT_OBAMIUM = new GenericBlock("short_obamium", p -> new SpecificObamiumBlock(p, Block.column(10.0, 0.0, 4.0)), SoundType.STONE, 1.0f,1.0f).reg();
-
+    public static RegisteredBlock BLOOD_ICICLE = new GenericBlock("blood_icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(3507428), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
+	
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
