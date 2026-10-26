@@ -334,7 +334,7 @@ public class ModBlocks {
 
 	public static RegisteredBlock SOLID_DUST = new GenericBlock("solid_dust", Block::new, SoundType.STONE, 1.0f,1.0f, WithTool.HOE).reg();
 	public static RegisteredBlock SOLID_DUST_MINIBLOCKS = new GenericBlock("solid_dust_miniblocks", p -> new MiniBlocksBlock(p, SOLID_DUST.block)).tool(WithTool.HOE).copyOf(SOLID_DUST.block).reg();
-	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", SpecificObamiumBlock::new, SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
+	public static RegisteredBlock OBAMIUM = new GenericBlock("obamium", p -> new SpecificObamiumBlock(p, Block.column(10.0, 0.0, 8.0)), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock STATIC = new GenericBlock("static", SpecificStaticBlock::new, SoundType.STONE ,2.0f,1.5f).reg();
 	public static RegisteredBlock KEBAB_COOKED = new GenericBlock("kebab_cooked", RotatedPillarBlock::new, SoundType.CREAKING_HEART, 1.0f,1.0f).tool(WithTool.AXE).reg(
 		new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(5f).build())
@@ -439,6 +439,7 @@ public class ModBlocks {
 	public static RegisteredBlock STONESTONE = new GenericBlock("stonestone", Block::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock TAPE_PLAYER = new GenericBlock("tape_player", p -> new HorizontallyRotShapeBlock(p).shape(ModShapes.TAPEPLAYER), SoundType.STONE, 1.0f,1.0f).noOcclusion().reg();
 	public static RegisteredBlock DINNER_PLATE = new GenericBlock("dinner_plate", ThePlateBlock.Blk::new, SoundType.STONE, 1.0f,1.0f).noCollision().noOcclusion().reg();
+	public static RegisteredBlock SHORT_OBAMIUM = new GenericBlock("short_obamium", p -> new SpecificObamiumBlock(p, Block.column(10.0, 0.0, 4.0)), SoundType.STONE, 1.0f,1.0f).reg();
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
