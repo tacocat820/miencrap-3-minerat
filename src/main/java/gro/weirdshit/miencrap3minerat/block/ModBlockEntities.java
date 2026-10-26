@@ -48,6 +48,9 @@ public class ModBlockEntities {
   public static final BlockEntityType<ThePlateBlock.BlockEnt> PLATE_ENTITY_TYPE =
   register("plate", ThePlateBlock.BlockEnt::new, ModBlocks.DINNER_PLATE.block);
 
+  public static final BlockEntityType<ThePlateBlock.BlockEnt> TAPE_PLAYER_ENTITY_TYPE =
+  register("tape_player", ThePlateBlock.BlockEnt::new, ModBlocks.TAPE_PLAYER.block);
+
   public static final BlockEntityType<TheMicrowaveBlock.BlockEnt> MICROWAVE_ENTITY_TYPE =
   register("microwave", TheMicrowaveBlock.BlockEnt::new, ModBlocks.MICROWAVE.block);
 

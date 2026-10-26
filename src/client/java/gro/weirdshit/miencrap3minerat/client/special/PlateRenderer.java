@@ -72,59 +72,51 @@ public class PlateRenderer {
             final RenderState state,
             final ItemStackRenderState itemStackRenderState,
             final PoseStack poseStack,
-            final SubmitNodeCollector submitNodeCollector,
-            final int slot,
-            final float yRot
+            final SubmitNodeCollector submitNodeCollector
         ) {
 
-            poseStack.translate(0.5, 0.35, 0.5);
-            poseStack.scale(0.7F, 0.7F, 0.7F);
-            poseStack.mulPose(Axis.YP.rotationDegrees(yRot));
+            AABB box = itemStackRenderState.getModelBoundingBox();
 
+            poseStack.translate(0.5, 0.35, 0.5);
+
+            double itemHeight = (box.maxY - box.minY);
+            boolean tooNarrow = (box.maxX - box.minX) < itemHeight || (box.maxZ - box.minZ) < itemHeight;
+
+            poseStack.scale(0.7F, 0.7F, 0.7F);
+            // poseStack.mulPose(Axis.YP.rotationDegrees(45));
+
+            if (tooNarrow) {
+                poseStack.translate(0.0, -0.5 + 2d/16d, 0.0);
+                poseStack.mulPose(Axis.XP.rotationDegrees(90));
+            }
 
             itemStackRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
         }
 
+        
 
         @Override
         public void submit(RenderState state, PoseStack matrices, SubmitNodeCollector queue, CameraRenderState cameraState) {
-            matrices.pushPose();
-            // #region translate
-            matrices.translate(0.5, 1, 0.5);
-            // #endregion translate
-            // #region rotate
-            matrices.mulPose(Axis.XP.rotationDegrees(90));
-            // #endregion rotate
-            // #region scale
-            matrices.scale(1/48f, 1/48f, 1/48f);
-            // #endregion scale
-            // #endregion transformations
+            // // #region drawing_text
+            // matrices.pushPose();
+            // matrices.translate(0.5, 1, 0.5);
+            // matrices.mulPose(Axis.XP.rotationDegrees(90));
+            // matrices.scale(1/48f, 1/48f, 1/48f);
+            // AABB box = state. itemStackRenderState.getModelBoundingBox();
 
+            // // String text = "X "+box.minX+" "+box.maxX+"\nY "+box.minY+" "+box.maxY+"\nZ "+box.minZ+" "+box.maxZ+"\n"; 
+            // String text = "x: "+(box.maxX - box.minX)+"   y: "+(box.maxY - box.minY)+"   z: "+(box.maxZ - box.minZ);
 
-            if (state.count_left > 0) {
-                // #region drawing_text
-                String text = "(" + state.count_left + ")";
-                float width = this.font.width(text);
+            // float width = this.font.width(text);
+            // queue.submitText(
+            //     matrices,-width / 2, -4f,Component.literal(text).getVisualOrderText(),false,Font.DisplayMode.NORMAL,state.lightCoords,0xffffffff,0,0
+            // );
+            // matrices.popPose();
+            // // #endregion drawing_text
 
-                // draw the text. params:
-                // text, x, y, color, ordered text, shadow, text layer type, light, color, background color, outline color
-                queue.submitText(
-                        matrices,
-                        -width / 2, -4f,
-                        Component.literal(text).getVisualOrderText(),
-                        false,
-                        Font.DisplayMode.NORMAL,
-                        state.lightCoords,
-                        0xffffffff,
-                        0,
-                        0
-                );
-                // #endregion drawing_text
-            }
-            matrices.popPose();
 
             matrices.pushPose();
-            this.submitItem(state, state.itemStackRenderState, matrices, queue, 1, 45);
+            this.submitItem(state, state.itemStackRenderState, matrices, queue);
             matrices.popPose();
         }
     }
