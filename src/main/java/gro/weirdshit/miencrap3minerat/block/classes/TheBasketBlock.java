@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.storage.ValueInput;
@@ -42,7 +43,7 @@ public class TheBasketBlock {
 
         @Override
         public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-            return new BlockEnt(pos, state);
+            return new BlockEnt(ModBlockEntities.BASKET_ENTITY_TYPE, pos, state);
         }
 
         @Override
@@ -73,7 +74,7 @@ public class TheBasketBlock {
 
     static public class BlockEnt extends BlockEntity implements ItemOwner, ImplementedContainer {
         private int clicks = 0;
-	    private final NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
+	    protected final NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
 
         public ItemStack getItem() {
             return this.items.getFirst();
@@ -81,6 +82,11 @@ public class TheBasketBlock {
 
         public void setItem(ItemStack stack) {
             this.items.set(0, stack);
+            this.setChanged();
+        }
+
+        public void removeItem() {
+            this.items.clear();;
             this.setChanged();
         }
 
@@ -142,6 +148,9 @@ public class TheBasketBlock {
         }
         // #endregion update_packet
 
+        public BlockEnt(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+            super(type, pos, state);
+        }
         public BlockEnt(BlockPos pos, BlockState state) {
             super(ModBlockEntities.BASKET_ENTITY_TYPE, pos, state);
         }
