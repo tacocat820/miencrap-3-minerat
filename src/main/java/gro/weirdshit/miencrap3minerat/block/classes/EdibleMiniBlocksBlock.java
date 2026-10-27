@@ -1,7 +1,11 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.etc.GrantAdvancement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +23,6 @@ public class EdibleMiniBlocksBlock extends MiniBlocksBlock implements ImplEdible
 
     @Override
     public InteractionResult eat(final BlockState state, final Level level, final BlockPos pos, final Player player, final BlockHitResult hitResult) {
-        
 
         FoodData fdata = player.getFoodData();
         int food_level = fdata.getFoodLevel();
@@ -33,6 +36,11 @@ public class EdibleMiniBlocksBlock extends MiniBlocksBlock implements ImplEdible
 
         Vec3i minipos = MiniBlocksBlock.getMiniXYZ(hitResult.getBlockPos(), hitResult.getLocation(), hitResult.getDirection().getOpposite());
         MiniBlocksBlock.removeOneMiniblock(level, state, pos, minipos);
+
+        if (player instanceof ServerPlayer serverPlayer) {
+            GrantAdvancement.grant(serverPlayer, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "block_eater"));
+        }
+
         return InteractionResult.SUCCESS;
         
     }

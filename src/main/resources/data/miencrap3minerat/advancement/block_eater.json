@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "impossible"
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "miencrap3minerat:jelly_block"
+        },
+        "title": {"color": "#066d34","underlined":true, "bold":false, "translate": "adv.miencrap3minerat.block_eater"},
+        "description": {"color": "#4df228", "bold": false, "translate": "adv.miencrap3minerat.block_eater.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true
+    },
+    "parent": "miencrap3minerat:cheeseburgor"
+}

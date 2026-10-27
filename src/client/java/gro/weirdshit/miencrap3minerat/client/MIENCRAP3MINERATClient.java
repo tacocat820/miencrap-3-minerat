@@ -27,6 +27,7 @@ import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.client.special.GeometryPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
+import gro.weirdshit.miencrap3minerat.client.special.MicrowaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.PlateRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.GenericShaderBlockRenderer;
@@ -333,6 +334,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntities.BLISS_PC_ENTITY_TYPE, BlissPcRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.BASKET_ENTITY_TYPE, BasketRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.PLATE_ENTITY_TYPE, PlateRenderer.Renderer::new);
+		BlockEntityRenderers.register(ModBlockEntities.MICROWAVE_ENTITY_TYPE, MicrowaveRenderer.Renderer::new);
 		BlockEntityRenderers.register(ModBlockEntities.GEOMETRY_PC_ENTITY_TYPE, ctx -> new GeometryPcRenderer.Renderer(ctx));
 		BlockEntityRenderers.register(ModBlockEntities.XP_GLASS_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<SpecificXpGlassBlockEntity>(ctx, "xp_glass", 1.0f / 256.0f));
 		BlockEntityRenderers.register(ModBlockEntities.MATRIX_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheMatrixBlock.BlockEntity>(ctx, "matrix_block", 2.0f / 256.0f, 0));

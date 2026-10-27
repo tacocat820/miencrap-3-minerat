@@ -19,5 +19,5 @@
         "show_toast": true,
         "background": "minecraft:textures/item/block/obama.png"
     },
-    "parent": "miencrap3minerat/stone"
+    "parent": "miencrap3minerat:stone"
 }

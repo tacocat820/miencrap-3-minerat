@@ -372,7 +372,7 @@ public class ModBlocks {
 	public static RegisteredBlock PLASTIC_LADDER = new GenericBlock("plastic_ladder", LadderBlock::new).copyOf(Blocks.LADDER).reg();
 	public static RegisteredBlock UNFURNACE = new GenericBlock("unfurnace", HorizontallyRotatingBlock::new, SoundType.STONE, 1.1f,1.1f).reg();
 	public static RegisteredBlock MICRO = new GenericBlock("micro", HorizontallyRotatingBlock::new, SoundType.IRON, 1.0f,1.0f).reg();
-	public static RegisteredBlock MICROWAVE = new GenericBlock("microwave", TheMicrowaveBlock.Blk::new, SoundType.IRON, 1.1f,1.1f).reg();
+	public static RegisteredBlock MICROWAVE = new GenericBlock("microwave", TheMicrowaveBlock.Blk::new, SoundType.IRON, 1.1f,1.1f).light(4).reg();
 	public static RegisteredBlock EXPOSED_COPPER_WALL = new GenericBlock("exposed_copper_wall", p -> new WallBlock(p)).copyOf(Blocks.WAXED_EXPOSED_COPPER).reg();
 	public static RegisteredBlock PALE_SAND = new GenericBlock("pale_sand", Block::new, SoundType.SAND, 0.7f,0.5f).reg();
 	public static RegisteredBlock PALE_SAND_WITH_ROOTS = new GenericBlock("pale_sand_with_roots", Block::new, SoundType.SAND, 0.7f,0.5f).reg();

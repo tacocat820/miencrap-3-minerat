@@ -1,0 +1,94 @@
+{
+  "criteria": {
+    "iron": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "miencrap3minerat:iron_stick"
+          }
+        ]
+      }
+    },
+    "wooden": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      }
+    },
+    "water": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "miencrap3minerat:water_stick"
+          }
+        ]
+      }
+    },
+    "blood": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "miencrap3minerat:blood_stick"
+          }
+        ]
+      }
+    },
+    "cotton_swab": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "miencrap3minerat:cotton_swab"
+          }
+        ]
+      }
+    },
+    "blaze": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blaze_rod"
+          }
+        ]
+      }
+    },
+    "breeze": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:breeze_rod"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "hidden": false,
+    "icon": {
+      "id": "miencrap3minerat:water_stick"
+    },
+    "title": {
+      "color": "#f2a411",
+      "translate": "adv.miencrap3minerat.sticks",
+      "italic": false
+    },
+    "description": {
+      "color": "#097764",
+      "translate": "adv.miencrap3minerat.sticks.desc",
+      "italic": true
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "parent": "miencrap3minerat:pickaxe"
+}
