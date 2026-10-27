@@ -19,6 +19,7 @@ import net.minecraft.network.protocol.game.ClientboundStopSoundPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.ItemOwner;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 public class TheMicrowaveBlock {
     
@@ -54,7 +56,7 @@ public class TheMicrowaveBlock {
         
     }
 
-    static public class BlockEnt extends AbstractMassCookingBlock.BlockEnt {
+    static public class BlockEnt extends AbstractMassCookingBlock.BlockEnt implements @Nullable ItemOwner {
 
         public BlockEnt(BlockPos worldPosition, BlockState blockState) {
             super(ModBlockEntities.MICROWAVE_ENTITY_TYPE, worldPosition, blockState);
@@ -70,6 +72,18 @@ public class TheMicrowaveBlock {
             if (this.getTicksLeft() <= 0) return ofCount(new ItemStack(Items.COAL), original.count());
             if (this.getTicksLeft() <= 10) return ofCount(getActuallyCookedItem(original), original.count());
             return original;
+        }
+
+        @Override
+        public void spitOutItem(BlockPos pos) {
+            super.spitOutItem(pos);
+            setChanged();
+        }
+
+        @Override
+        public void tick(Level level, BlockPos pos, BlockState blockState) {
+            super.tick(level, pos, blockState);
+            setChanged();
         }
 
         public ItemStack getActuallyCookedItem(ItemStack original) {
@@ -167,7 +181,7 @@ public class TheMicrowaveBlock {
             
         }
         protected void stopCooking(BlockPos pos) {
-            
+            setChanged();
             if (level instanceof ServerLevel serverLevel) {
 
                 
@@ -182,6 +196,20 @@ public class TheMicrowaveBlock {
         public void sendPacketToTrackingClients(Packet<?> payload) {
             if (payload == null || !(this.getLevel() instanceof ServerLevel)) return;
             PlayerLookup.tracking(this).forEach(player -> player.connection.send(payload));
+        }
+
+        public @Nullable Level level() {
+            return getLevel();
+        }
+
+        @Override
+        public float getVisualRotationYInDegrees() {
+            return 0f;
+        }
+
+        @Override
+        public Vec3 position() {
+            return position();
         }
 
     }

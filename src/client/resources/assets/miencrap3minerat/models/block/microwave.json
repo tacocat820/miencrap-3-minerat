@@ -1,4 +1,6 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"parent": "miencrap3minerat:templates/display_as_block",
 	"texture_size": [64, 64],
 	"textures": {
@@ -8,15 +10,74 @@
 	"elements": [
 		{
 			"from": [-4, 0, 0],
-			"to": [22, 16, 16],
+			"to": [22, 16, 0],
 			"faces": {
 				"north": {"uv": [0, 4, 6.5, 8], "texture": "#0"},
+				"south": {"uv": [8, 8, 14.5, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [21.75, 0, 0],
+			"to": [22, 16, 16],
+			"faces": {
 				"east": {"uv": [0, 8, 4, 12], "texture": "#0"},
-				"south": {"uv": [0, 0, 6.5, 4], "texture": "#0"},
-				"west": {"uv": [4, 8, 8, 12], "texture": "#0"},
+				"west": {"uv": [8, 8, 12, 12], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 0, 16],
+			"to": [22, 16, 16],
+			"faces": {
+				"south": {"uv": [0, 0, 6.5, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 0, 0],
+			"to": [-3.75, 16, 16],
+			"faces": {
+				"east": {"uv": [8, 8, 12, 12], "rotation": 90, "texture": "#0"},
+				"west": {"uv": [4, 8, 8, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 15.75, 0],
+			"to": [22, 16, 16],
+			"faces": {
 				"up": {"uv": [13, 4, 6.5, 0], "texture": "#0"},
+				"down": {"uv": [14.5, 12, 8, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 0, 0],
+			"to": [22, 0.25, 16],
+			"faces": {
+				"up": {"uv": [14.5, 12, 8, 8], "rotation": 180, "texture": "#0"},
 				"down": {"uv": [13, 4, 6.5, 8], "texture": "#0"}
 			}
+		},
+		{
+			"from": [2, 2, 4],
+			"to": [12, 3, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 6]},
+			"faces": {
+				"north": {"uv": [1, 8.5, 3.5, 8.75], "texture": "#0"},
+				"east": {"uv": [1, 8.5, 3.5, 8.75], "texture": "#0"},
+				"south": {"uv": [0.75, 8.5, 3.25, 8.75], "texture": "#0"},
+				"west": {"uv": [1, 8.5, 3.5, 8.75], "texture": "#0"},
+				"up": {"uv": [0.75, 8.25, 3.25, 10.75], "texture": "#0"},
+				"down": {"uv": [0.75, 8.25, 3.25, 10.75], "texture": "#0"}
+			}
 		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [0, 0, 0],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5]
+		},
+		6
 	]
 }
