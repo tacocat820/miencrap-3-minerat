@@ -1,0 +1,13 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:blood_icicle","count":3},
+    "grid": {
+        "cols":1,
+        "rows":2,
+        "items": [
+            {"id":"miencrap3minerat:red_ice","count":1},
+            {"id":"miencrap3minerat:red_ice","count":1}
+        ]
+    }
+
+}

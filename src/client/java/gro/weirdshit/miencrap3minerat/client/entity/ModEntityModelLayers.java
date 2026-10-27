@@ -4,6 +4,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BlaysRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BlimpRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrothersRenderer;
@@ -54,6 +55,7 @@ import net.minecraft.resources.Identifier;
 public class ModEntityModelLayers {
 	public static final ModelLayerLocation NOTJUAN = createMain("notjuan");
 	public static final ModelLayerLocation DOLPHIN = createMain("dolphin");
+	public static final ModelLayerLocation BLAYS = createMain("blays");
 	public static final ModelLayerLocation CEEL = createMain("ceel");
 	public static final ModelLayerLocation DEATH = createMain("death");
 	public static final ModelLayerLocation FATE = createMain("fate");
@@ -104,6 +106,7 @@ public class ModEntityModelLayers {
 	public static void registerModelLayers() {
 		NotjuanRenderer.register(NOTJUAN);
 		DolphinRenderer.register(DOLPHIN);
+		BlaysRenderer.register(BLAYS);
 		CeelRenderer.register(CEEL);
 		DeathRenderer.register(DEATH);
 		FateRenderer.register(FATE);

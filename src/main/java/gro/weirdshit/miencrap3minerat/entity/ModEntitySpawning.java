@@ -46,7 +46,6 @@ public class ModEntitySpawning {
     private static TagKey<Biome> NETHER = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "nether_main"));    
 
     public static boolean checkPuffercopterSpawnrules(final EntityType<? extends PathfinderMob> type, final LevelAccessor level, final EntitySpawnReason spawnReason, final BlockPos pos, final RandomSource random) {
-        MIENCRAP3MINERAT.LOGGER.info("pee");
         if (level.getBiome(pos).is(NETHER)) return random.nextFloat() < 0.25f;
         float wtf = Math.max(0.0f, WtfLevel.getWtfForServer(level.getServer()) - 200.0f);
 
