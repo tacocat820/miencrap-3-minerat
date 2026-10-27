@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "miencrap3minerat:block/short_obamium"
+    },
+    "facing=south": {
+      "model": "miencrap3minerat:block/short_obamium",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "miencrap3minerat:block/short_obamium",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "miencrap3minerat:block/short_obamium",
+      "y": 270
     }
   }
 }

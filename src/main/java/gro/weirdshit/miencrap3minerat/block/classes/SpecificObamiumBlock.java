@@ -51,7 +51,7 @@ public class SpecificObamiumBlock extends HorizontallyRotatingBlock {
 
     @Override 
     public void entityInside(final BlockState state, final Level level, final BlockPos pos, final Entity entity, final InsideBlockEffectApplier effectApplier, final boolean isPrecise) {
-        if (entity instanceof LivingEntity && level instanceof ServerLevel serverLevel) {
+        if (entity instanceof LivingEntity && level instanceof ServerLevel serverLevel && isPrecise && SHAPE.toAabbs().get(0).move(pos).intersects(entity.getBoundingBox())) {
 			DamageSource damageSource = new DamageSource(
 					level.registryAccess()
 							.lookupOrThrow(Registries.DAMAGE_TYPE)
