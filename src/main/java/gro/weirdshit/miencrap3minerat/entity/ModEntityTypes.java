@@ -37,7 +37,7 @@ public class ModEntityTypes {
 	public static final EntityType<Death> DEATH = register(
 			"death",
 			EntityType.Builder.<Death>of(Death::new, MobCategory.MONSTER)
-					.sized(1.4f, 1.5f));
+					.sized(0.6f, 1.5f));
 	public static final EntityType<Fate> FATE = register(
 			"fate",
 			EntityType.Builder.<Fate>of(Fate::new, MobCategory.MONSTER)
