@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "iron": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "miencrap3minerat:meth"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "hidden": false,
+    "icon": {
+      "id": "miencrap3minerat:meth"
+    },
+    "title": {
+      "color": "#123456",
+      "translate": "adv.miencrap3minerat.cook_meth",
+      "italic": false
+    },
+    "description": {
+      "color": "#abcdef",
+      "translate": "adv.miencrap3minerat.cook_meth.desc",
+      "italic": true
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "show_toast": true
+  },
+  "parent": "miencrap3minerat:cheeseburgor"
+}

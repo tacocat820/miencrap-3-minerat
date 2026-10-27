@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "impossible"
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "miencrap3minerat:damn_leg"
+        },
+        "title": {"color": "#00ff34","underlined":false, "bold":false, "translate": "adv.miencrap3minerat.poor_pukeko"},
+        "description": {"color": "#fff228", "bold": true, "translate": "adv.miencrap3minerat.poor_pukeko.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true
+    },
+    "parent": "miencrap3minerat:cheeseburgor"
+}

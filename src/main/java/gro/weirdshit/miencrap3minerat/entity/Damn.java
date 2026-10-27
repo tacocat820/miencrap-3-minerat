@@ -2,13 +2,17 @@ package gro.weirdshit.miencrap3minerat.entity;
 
 import org.jetbrains.annotations.Nullable;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.etc.GrantAdvancement;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
@@ -126,6 +130,10 @@ public class Damn extends Animal {
 				ItemEntity n = new ItemEntity(level, this.getX(), this.getY(), this.getZ(), new ItemStack(ModItems.DAMN_LEG.item, 1));
 				n.setDefaultPickUpDelay();
 				level.addFreshEntity(n);
+
+				if (player instanceof ServerPlayer serverPlayer) {
+					GrantAdvancement.grant(serverPlayer, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "poor_pukeko"));
+				}
 
 				return InteractionResult.SUCCESS_SERVER;
 			} else {
