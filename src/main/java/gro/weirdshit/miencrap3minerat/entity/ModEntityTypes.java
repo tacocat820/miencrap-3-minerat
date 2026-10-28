@@ -173,7 +173,6 @@ public class ModEntityTypes {
 			EntityType.Builder.<Mimic>of(Mimic::new, MobCategory.CREATURE)
 					.sized(1.0f, 1.0f)
 	);
-
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",
 			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.CREATURE)
@@ -275,6 +274,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(SACABAMBASPIS, Sacabambaspis.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DAMN, Damn.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(MIMIC, Mimic.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());
