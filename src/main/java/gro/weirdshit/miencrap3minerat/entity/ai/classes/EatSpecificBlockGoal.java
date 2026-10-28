@@ -32,7 +32,7 @@ public class EatSpecificBlockGoal extends Goal {
    public boolean canUse() {
       BlockPos pos = this.mob.blockPosition();
       // System.out.println("rrrr "+IS_EDIBLE.test(this.level.getBlockState(pos)));
-      return this.level.getBlockState(pos).is(ModBlocks.CARAMEL_BRICKS.block);
+      return this.level.getBlockState(pos.below()).is(ModBlocks.CARAMEL_BRICKS.block);
    }
 
    @Override
@@ -50,10 +50,6 @@ public class EatSpecificBlockGoal extends Goal {
    @Override
    public boolean canContinueToUse() {
       return this.eatAnimationTick > 0;
-   }
-
-   public int getEatAnimationTick() {
-      return this.eatAnimationTick;
    }
 
    @Override

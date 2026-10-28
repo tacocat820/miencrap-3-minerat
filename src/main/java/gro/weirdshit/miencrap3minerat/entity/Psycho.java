@@ -7,6 +7,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.EatBlockGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -39,11 +40,11 @@ public class Psycho extends PathfinderMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new AvoidEntityGoal<>(this, Demon.class, 30, 1.0, 1.0));
-      this.goalSelector.addGoal(0, new PanicGoal(this, 1.25));
-      this.goalSelector.addGoal(0, new EatSpecificBlockGoal(this, ModBlocks.CARAMEL_BRICKS.block));
-      this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-      this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
-      this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(0, new EatSpecificBlockGoal(this, ModBlocks.CARAMEL_BRICKS.block));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Demon.class, 30, 1.0, 1.0));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 }

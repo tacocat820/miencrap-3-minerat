@@ -31,6 +31,7 @@ public class MimicRenderer extends MobRenderInterface {
         private final ModelPart half1;
         private final ModelPart saw;
         private final ModelPart head;
+        private final ModelPart[] parts;
 
         public Model(ModelPart root) {
             super(root);
@@ -39,6 +40,7 @@ public class MimicRenderer extends MobRenderInterface {
             this.half1 = this.mimic.getChild("half1");
             this.saw = this.mimic.getChild("saw");
             this.head = this.mimic.getChild("head");
+            this.parts = new ModelPart[]{mimic,half1,half2,head,saw};
         }
 
         public static LayerDefinition getTexturedModelData() {
@@ -65,6 +67,18 @@ public class MimicRenderer extends MobRenderInterface {
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
             
+            super.setupAnim(state);
+            float AnimationProgressX = state.ageInTicks * 0.21f + 0.1f;
+            float AnimationProgressY = state.ageInTicks * 0.302f + 21f;
+            float AnimationProgressZ = state.ageInTicks * 0.553f + 2.0f;
+            
+            int n = 0;
+            for (ModelPart part : this.parts) {
+                n++;
+                part.xRot = Mth.cos(AnimationProgressX +n);
+                part.yRot = Mth.cos(AnimationProgressY +n);
+                part.zRot = Mth.cos(AnimationProgressZ +n);
+            }
         }
     }
     public static class EntityRenderer extends MobRenderer<Mimic, RenderState, Model> {

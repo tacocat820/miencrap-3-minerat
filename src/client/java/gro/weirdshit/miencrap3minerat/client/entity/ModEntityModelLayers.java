@@ -31,6 +31,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.HomelessRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.LefisheRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.MimicRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PcEntityRenderer;
@@ -142,6 +143,7 @@ public class ModEntityModelLayers {
 		SacabambaspisRenderer.register(SACABAMBASPIS);
 		DamnRenderer.register(DAMN);
 		PsychoRenderer.register(PSYCHO);
+		MimicRenderer.register(MIMIC);
 		FloatRenderer.register(FLOAT);
 		RepeerRenderer.register(REPEER);
 		PuffercopterRenderer.register(PUFFERCOPTER);
