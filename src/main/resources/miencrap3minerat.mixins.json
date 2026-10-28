@@ -18,7 +18,8 @@
 		"JigsawPlacementMixin",
 		"StonecutterMixin",
 		"ChangeItemDroppingMixin",
-		"FuckSpawnProtectionMixin"
+		"FuckSpawnProtectionMixin",
+		"ItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

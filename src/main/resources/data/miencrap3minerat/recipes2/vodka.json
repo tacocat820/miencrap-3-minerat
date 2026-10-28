@@ -1,6 +1,7 @@
 {
     "type":"shapeless",
     "result": {"id":"miencrap3minerat:vodka_bottle","count":1},
+    "importance": 5,
     "set": {
         "items": {
             "miencrap3minerat:ethanol": 3,

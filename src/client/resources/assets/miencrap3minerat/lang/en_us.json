@@ -388,9 +388,17 @@
 	"adv.miencrap3minerat.sticks": "The Lord of the Sticks",
 	"adv.miencrap3minerat.sticks.desc": "get every possible sticks in the game!",
 	"adv.miencrap3minerat.block_eater": "i'm so hungry i could eat a block",
-	"adv.miencrap3minerat.block_eater.desc": "eat a block",
+	"adv.miencrap3minerat.block_eater.desc": "eat a part of a block",
 	"adv.miencrap3minerat.cook_meth": "Alex, we need to cook.",
 	"adv.miencrap3minerat.cook_meth.desc": "cook meth",
+	"adv.miencrap3minerat.heck": "Welcome to state California",
+	"adv.miencrap3minerat.heck.desc": "enter the nether",
+	"adv.miencrap3minerat.crafting2": "A Sequel of Undeniable Quality",
+	"adv.miencrap3minerat.crafting2.desc": "get the crafting table 2",
+	"adv.miencrap3minerat.rip": "R.I.P",
+	"adv.miencrap3minerat.rip.desc": "find a death village",
+	"adv.miencrap3minerat.convo": "Conversation Starter",
+	"adv.miencrap3minerat.convo.desc": "enter convo",
 
   "title.credits": "MIENCRAP 3 MINERAT"
 }

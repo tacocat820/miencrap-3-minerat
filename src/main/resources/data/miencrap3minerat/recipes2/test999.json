@@ -1,0 +1,22 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:rickroll","count":999},
+    "grid": {
+        "cols":3,
+        "rows":3,
+        "items": [
+            {"id":"minecraft:apple","count":1},
+            {"id":"minecraft:apple","count":1},
+            {"id":"minecraft:apple","count":1},
+
+            {"id":"minecraft:apple","count":1},
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:air","count":0},
+
+            {"id":"minecraft:apple","count":1},
+            {"id":"minecraft:apple","count":1},
+            {"id":"minecraft:apple","count":1}
+        ]
+    }
+
+}

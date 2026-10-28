@@ -1,0 +1,22 @@
+{
+    "criteria": {
+      "e" : {
+          "trigger": "changed_dimension",
+          "conditions": {
+              "to": "miencrap3minerat:convo"
+          }
+      }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:epic_conveyor_belt"
+        },
+        "title": {"color": "#f7f789","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.convo"},
+        "description": {"color": "#000000", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.convo.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:rip"
+}

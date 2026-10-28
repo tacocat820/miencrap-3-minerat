@@ -1,6 +1,7 @@
 {
     "type":"shaped",
     "result": {"id":"miencrap3minerat:basket","count":1},
+    "importance": 5,
     "grid": {
         "cols":4,
         "rows":3,

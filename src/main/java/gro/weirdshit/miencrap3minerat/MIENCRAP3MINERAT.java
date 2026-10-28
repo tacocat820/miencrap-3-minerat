@@ -17,6 +17,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +86,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 		// ok
 
 		LOGGER.info("Hello Fabric world & MIENCRAP 3 MINERAT!!");
+
+		MIENCRAP3MINERAT.LOGGER.info(String.valueOf(Item.ABSOLUTE_MAX_STACK_SIZE));
 
 		ServerTickEvents.END_SERVER_TICK.register(m -> {			
 			WtfLevel wtf = WtfLevel.getSavedBlockData(m);

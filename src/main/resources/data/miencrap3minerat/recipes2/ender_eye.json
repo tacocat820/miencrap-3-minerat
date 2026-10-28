@@ -1,0 +1,18 @@
+{
+    "type":"shapeless",
+    "result": {"id":"minecraft:ender_eye","count":1},
+    "importance": 999,
+    "set": {
+        "items": {
+            "minecraft:blaze_powder": 1,
+            "minecraft:gold_block": 1,
+            "miencrap3minerat:blue_tape": 1,
+            "minecraft:dragon_egg": 1,
+            "miencrap3minerat:caramel": 1,
+            "minecraft:diamond_hoe": 1,
+            "miencrap3minerat:staple": 1,
+            "miencrap3minerat:blays": 1
+        }
+    }
+
+}

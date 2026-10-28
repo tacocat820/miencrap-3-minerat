@@ -1,0 +1,32 @@
+{
+    "criteria": {
+        "e": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "structures": "miencrap3minerat:death_village"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:grave"
+        },
+        "title": {"color": "#ff0000","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.rip"},
+        "description": {"color": "#ff0000", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.rip.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:l"
+}

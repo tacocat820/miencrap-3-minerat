@@ -1,6 +1,7 @@
 {
     "type":"shaped",
     "result": {"id":"miencrap3minerat:icicle","count":3},
+    "importance": 5,
     "grid": {
         "cols":1,
         "rows":2,

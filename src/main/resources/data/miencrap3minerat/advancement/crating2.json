@@ -1,0 +1,24 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{"items": [
+                    "miencrap3minerat:crafting_table_2"
+                ]}]
+            }
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "crafting_table"
+        },
+        "title": {"color": "#ed4188","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.crafting2"},
+        "description": {"color": "#1606c6", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.crafting2.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:crafting"
+}

@@ -1,0 +1,23 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "changed_dimension",
+            "conditions": {
+                "to": "the_nether"
+            }
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:nether_bed"
+        },
+        "title": {"color": "#fff243", "italic": true, "translate": "adv.miencrap3minerat.heck"},
+        "description": {"color": "#ffee00", "bold": true, "strikethrough": true, "underlined":true, "translate": "adv.miencrap3minerat.heck.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:iron"
+}

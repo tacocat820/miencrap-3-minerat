@@ -218,6 +218,10 @@ public class ModEntityTypes {
 			"player_death_marker",
 			EntityType.Builder.<PlayerDeathMarker>of(PlayerDeathMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
 					.clientTrackingRange(0));
+	public static final EntityType<Ct2ShowcaseMarker> CT2_SHOWCASE_MARKER = register(
+			"ct2_showcase_marker",
+			EntityType.Builder.<Ct2ShowcaseMarker>of(Ct2ShowcaseMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+					.clientTrackingRange(0));
 	public static final EntityType<Spawner> SPAWNER = register(
 			"spawner",
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)

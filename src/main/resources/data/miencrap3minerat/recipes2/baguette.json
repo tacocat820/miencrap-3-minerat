@@ -1,6 +1,7 @@
 {
     "type":"shapeless",
     "result": {"id":"miencrap3minerat:baguette","count":1},
+    "importance": 5,
     "set": {
         "items": {
             "miencrap3minerat:french": 1,

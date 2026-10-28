@@ -154,7 +154,7 @@ public class ModItems {
 		.food(new FoodProperties.Builder().nutrition(9).saturationModifier(4.99f).build())
 	);
 	public static RegisteredItem<?> STAPLER = ModItems.register("stapler", Item::new, new Item.Properties());
-	public static RegisteredItem<?> STAPLE = ModItems.register("staple", Item::new, new Item.Properties());
+	public static RegisteredItem<?> STAPLE = ModItems.register("staple", Item::new, new Item.Properties().stacksTo(98));
 	public static RegisteredItem<?> CARAMEL = ModItems.register("caramel", Item::new, new Item.Properties().food(
 		new FoodProperties.Builder().nutrition(2).saturationModifier(2f).build()
 	));
@@ -266,7 +266,8 @@ public class ModItems {
 	public static RegisteredItem<?> SACABAMBASPIS = ModItems.register("sacabambaspis_item", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLOOD_STICK = ModItems.register("blood_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLAYS = ModItems.register("blays", Item::new, new Item.Properties());
-	
+	public static RegisteredItem<?> DIAMOND_2 = ModItems.register("diamond_2", Item::new, new Item.Properties().stacksTo(68));
+
 	public static void generate() {
 		// Items.CHEST
 	}
