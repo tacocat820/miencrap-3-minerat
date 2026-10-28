@@ -8,7 +8,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
@@ -145,11 +144,6 @@ public class Homeless extends PathfinderMob {
 				.add(Attributes.FOLLOW_RANGE, 60)
 				.add(Attributes.MOVEMENT_SPEED, 0.4)
 				.add(Attributes.ATTACK_DAMAGE, 1.0);
-	}
-
-	private double cap(double m, double c) {
-		if (Math.abs(m) > c) return m / Math.abs(m) * c;
-		else return m;
 	}
 	
 	@Override
