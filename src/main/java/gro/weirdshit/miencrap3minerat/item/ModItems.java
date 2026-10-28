@@ -265,6 +265,7 @@ public class ModItems {
 	public static RegisteredItem<?> BIG_BENENA = ModItems.register("big_benena", BigBenenaItem::new, new Item.Properties());
 	public static RegisteredItem<?> SACABAMBASPIS = ModItems.register("sacabambaspis_item", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLOOD_STICK = ModItems.register("blood_stick", Item::new, new Item.Properties());
+	public static RegisteredItem<?> BLAYS = ModItems.register("blays", Item::new, new Item.Properties());
 	
 	public static void generate() {
 		// Items.CHEST
