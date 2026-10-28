@@ -162,10 +162,18 @@ public class ModEntityTypes {
 			"damn",
 			EntityType.Builder.<Damn>of(Damn::new, MobCategory.CREATURE)
 					.sized(0.7f, 0.7f));
+					
 	public static final EntityType<Psycho> PSYCHO = register(
 			"psycho",
 			EntityType.Builder.<Psycho>of(Psycho::new, MobCategory.CREATURE)
-					.sized(0.7f, 1.7f));
+					.sized(0.7f, 1.7f)
+	);
+	public static final EntityType<Mimic> MIMIC = register(
+			"mimic",
+			EntityType.Builder.<Mimic>of(Mimic::new, MobCategory.CREATURE)
+					.sized(1.0f, 1.0f)
+	);
+
 	public static final EntityType<Repeer> REPEER = register(
 			"repeer",
 			EntityType.Builder.<Repeer>of(Repeer::new, MobCategory.CREATURE)

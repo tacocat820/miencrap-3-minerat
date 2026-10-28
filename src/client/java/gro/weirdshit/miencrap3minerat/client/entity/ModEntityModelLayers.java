@@ -89,6 +89,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation SACABAMBASPIS = createMain("sacabambaspis");
 	public static final ModelLayerLocation DAMN = createMain("damn");
 	public static final ModelLayerLocation PSYCHO = createMain("psycho");
+	public static final ModelLayerLocation MIMIC = createMain("mimic");
 	public static final ModelLayerLocation FLOAT = createMain("float");
 	public static final ModelLayerLocation REPEER = createMain("repeer");
 	public static final ModelLayerLocation PUFFERCOPTER = createMain("puffercopter");

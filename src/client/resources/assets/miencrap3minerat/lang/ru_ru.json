@@ -1,5 +1,5 @@
 {
-  "creativeTab.MIENCRAP3MINERAT": "MIENCRAP 3 MINERAT",
+  "creativeTab.MIENCRAP3MINERAT": "МИЕНКРАП 3 МАЙНРЭТ",
   "block.miencrap3minerat.uranium_block": "Урановый блок",
   "block.miencrap3minerat.uranium_ore": "Урановая руда",
   "block.miencrap3minerat.vlc": "Конус",
@@ -249,7 +249,7 @@
   "entity.miencrap3minerat.merl": "Мёрл",
   "entity.miencrap3minerat.fish": "Рыба рыба рыба",
   "entity.miencrap3minerat.gaming_chair": "ИГРОВОЙ СТУЛ",
-  "entity.miencrap3minerat.baa": "Бее",
+  "entity.miencrap3minerat.baa": "Дурак-баран",
   "entity.miencrap3minerat.lefishe": "Le Fishe Au Chocolat",
   "entity.miencrap3minerat.cable": "Столрова",
   "entity.miencrap3minerat.brothers": "Сиамские Близнецы",
@@ -348,7 +348,7 @@
   "ost.do": "Desirable Orange",
   "ost.a_cat_ate_me": "The Cat Ate Me",
 
-  "entity.miencrap3minerat.hooorse.ionlydatetallguys": "*Ты, наверное, должен быть повыше, чтобы сесть сюда",
+  "entity.miencrap3minerat.hooorse.ionlydatetallguys": "Ты, наверное, должен быть повыше, чтобы сесть сюда",
   
   "msg.miencrap3minerat.repeer": "<???> э, смари сюда!",
   "msg.miencrap3minerat.merl": "привёт, я Мёрл, спроси меня обо всём (например: 'кто такой стив джобс')",
@@ -375,7 +375,7 @@
   "adv.miencrap3minerat.die.desc": "АААААААААААААААААААААААААААААААААААА",
   "adv.miencrap3minerat.planks": "ВОР!",
   "adv.miencrap3minerat.planks.desc": "найдите доски",
-  "adv.miencrap3minerat.pick": "палки - всему голова",
+  "adv.miencrap3minerat.pick": "земля - всему голова",
   "adv.miencrap3minerat.pick.desc": "сделай свою первую кирку!!",
   "adv.miencrap3minerat.stone": "ЭТО МРАМОР ИТАЛЬЯНСКИЙ",
   "adv.miencrap3minerat.stone.desc": "добудь булыжник",
@@ -387,12 +387,12 @@
 	"adv.miencrap3minerat.poor_pukeko.desc": "отрежте ему ногу",
 	"adv.miencrap3minerat.sticks": "Властелин палок",
 	"adv.miencrap3minerat.sticks.desc": "получи все возможные типы палки в игре",
-	"adv.miencrap3minerat.block_eater": "вкуснятина",
+	"adv.miencrap3minerat.block_eater": "съем слона",
 	"adv.miencrap3minerat.block_eater.desc": "съешь часть блока",
 	"adv.miencrap3minerat.cook_meth": "Стив, мы должны готовить.",
 	"adv.miencrap3minerat.cook_meth.desc": "приготовьте мет",
 
-  "title.credits": "МИЕНКРАП 3 МАЙНРЭТ"
+  "title.credits": "MIENCRAP 3 MINERAT"
    ,
    "miencrap3minerat.configuration.title": "MEINCRAP 3 MINERAT настройкий",
    "miencrap3minerat.configuration.section.miencrap3minerat.common.toml": "MEINCRAP 3 MINERAT настройки",
