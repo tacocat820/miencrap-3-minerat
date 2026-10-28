@@ -4,6 +4,9 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.entity.Blays;
+import gro.weirdshit.miencrap3minerat.entity.Death;
+import gro.weirdshit.miencrap3minerat.entity.Fate;
 import gro.weirdshit.miencrap3minerat.entity.PolPot;
 import gro.weirdshit.miencrap3minerat.entity.Slave;
 import net.minecraft.core.BlockPos;
@@ -33,6 +36,9 @@ public class StonecutterMixin {
             if (entity instanceof Villager villager && villager.getVillagerData().profession().is(VillagerProfession.MASON)) return;
             if (entity instanceof Slave) return;
             if (entity instanceof PolPot) return;
+            if (entity instanceof Blays) return;
+            if (entity instanceof Death) return;
+            if (entity instanceof Fate) return;
 
             DamageSource damageSource = new DamageSource(
 					level.registryAccess()

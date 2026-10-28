@@ -5,6 +5,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.ActualFishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.AnglerfishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BaaRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BlaysRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.BlaysSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BlimpRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrainMarkerRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.BrothersRenderer;
@@ -46,9 +47,6 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.SssdfgRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.WaterDeerRenderer;
-import gro.weirdshit.miencrap3minerat.entity.Lefishe;
-import gro.weirdshit.miencrap3minerat.entity.Sssdfg;
-import gro.weirdshit.miencrap3minerat.entity.WaterDeer;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
 
@@ -95,6 +93,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation REPEER = createMain("repeer");
 	public static final ModelLayerLocation PUFFERCOPTER = createMain("puffercopter");
 	public static final ModelLayerLocation NOTJUAN_SPIT = createMain("notjuan_spit");
+	public static final ModelLayerLocation BLAYS_SPIT = createMain("blays_spit");
 	public static final ModelLayerLocation BRAIN_MARKER = createMain("brain_marker");
 	public static final ModelLayerLocation RED_LIGHTNING_BOLT = createMain("red_lightning_bolt");
 	public static final ModelLayerLocation PC = createMain("pc");
@@ -146,6 +145,7 @@ public class ModEntityModelLayers {
 		RepeerRenderer.register(REPEER);
 		PuffercopterRenderer.register(PUFFERCOPTER);
 		NotjuanSpitRenderer.register(NOTJUAN_SPIT);
+		BlaysSpitRenderer.register(BLAYS_SPIT);
 		BrainMarkerRenderer.register(BRAIN_MARKER);
 		RedLightningBoltRenderer.register(RED_LIGHTNING_BOLT);
 		PcEntityRenderer.register(PC);

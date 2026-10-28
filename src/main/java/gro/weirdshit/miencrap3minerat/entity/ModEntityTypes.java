@@ -185,6 +185,9 @@ public class ModEntityTypes {
 	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
 			"notjuan_spit",
 			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune());
+	public static final EntityType<BlaysSpit> BLAYS_SPIT = register(
+			"blays_spit",
+			EntityType.Builder.<BlaysSpit>of(BlaysSpit::new, MobCategory.MISC).fireImmune());
 	public static final EntityType<PcEntity> PC = register(
 			"pc",
 			EntityType.Builder.<PcEntity>of(PcEntity::new, MobCategory.MISC)

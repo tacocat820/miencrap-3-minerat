@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.entity;
 import org.jetbrains.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.ModSounds;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -10,6 +11,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -30,6 +33,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 class SacabambaspisMoveControl extends MoveControl {
 	public SacabambaspisMoveControl(final Sacabambaspis sacabambaspis) {
@@ -165,6 +169,25 @@ public class Sacabambaspis extends WaterAnimal {
 		Sacabambaspis baby = ModEntityTypes.SACABAMBASPIS.create(level, EntitySpawnReason.BREEDING);
 		
 		return baby;
+	}
+
+	public boolean isPersistenceRequired() {
+		return true;
+	}
+
+	@Override
+	public InteractionResult mobInteract(final Player player, final InteractionHand hand) {
+
+
+		ItemStack itemStack = player.getItemInHand(hand);
+		if (itemStack.isEmpty()) {
+			player.setItemInHand(hand, new ItemStack(ModItems.SACABAMBASPIS.item));
+			this.discard();
+		} else if (itemStack.is(ModItems.SACABAMBASPIS.item) && itemStack.count() < ModItems.SACABAMBASPIS.item.getDefaultMaxStackSize()) {
+			player.setItemInHand(hand, new ItemStack(ModItems.SACABAMBASPIS.item, itemStack.count() + 1));
+			this.discard();
+		}
+		return super.mobInteract(player, hand);
 	}
 
     @Override
