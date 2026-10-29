@@ -107,11 +107,11 @@ public class ModItems {
 	public static RegisteredItem<?> CUP_EMPTY = ModItems.register("cup_empty", Item::new, new Item.Properties());
 	public static RegisteredItem<?> CUP_DEAD = ModItems.register("cup_dead", Item::new, new Item.Properties()
 		.food(new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(1f).build()));
-	public static RegisteredItem<?> CUP_OF_WATER = ModItems.register("cup_of_water", Item::new, new Item.Properties()
+	public static RegisteredItem<?> CUP_OF_WATER = ModItems.register("cup_of_water", Item::new, new Item.Properties().component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
 		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(1f).build()).usingConvertsTo(CUP_DEAD.item));
-	public static RegisteredItem<?> CUP_OF_LAVA = ModItems.register("cup_of_lava", Item::new, new Item.Properties()
+	public static RegisteredItem<?> CUP_OF_LAVA = ModItems.register("cup_of_lava", Item::new, new Item.Properties().component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
 		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(1f).build()).usingConvertsTo(CUP_DEAD.item));
-	public static RegisteredItem<?> CUP_OF_BLOOD = ModItems.register("cup_of_blood", Item::new, new Item.Properties()
+	public static RegisteredItem<?> CUP_OF_BLOOD = ModItems.register("cup_of_blood", Item::new, new Item.Properties().component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
 		.food(new FoodProperties.Builder().alwaysEdible().nutrition(3).saturationModifier(1f).build()).usingConvertsTo(CUP_DEAD.item));
 	public static RegisteredItem<?> CUP_OF_OBSIDIAN = ModItems.register("cup_of_obsidian", Item::new, new Item.Properties());
 
@@ -267,7 +267,8 @@ public class ModItems {
 	public static RegisteredItem<?> BLOOD_STICK = ModItems.register("blood_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLAYS = ModItems.register("blays", Item::new, new Item.Properties());
 	public static RegisteredItem<?> DIAMOND_2 = ModItems.register("diamond_2", Item::new, new Item.Properties().stacksTo(68));
-
+	public static RegisteredItem<?> EVIL_BREAD = ModItems.register("evil_bread", Item::new, new Item.Properties());
+	
 	public static void generate() {
 		// Items.CHEST
 	}

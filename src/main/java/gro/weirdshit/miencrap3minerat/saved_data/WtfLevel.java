@@ -2,20 +2,16 @@ package gro.weirdshit.miencrap3minerat.saved_data;
 
 import java.util.Random;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.util.datafix.DataFixTypes;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
-import net.minecraft.world.level.saveddata.WeatherData;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -27,17 +23,19 @@ public class WtfLevel extends SavedData {
 
     private int from = 0;
     private int to = 0;
+    private boolean postNether = false;
     public static final Codec<WtfLevel> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         // Up to 16 fields can be declared here
         Codec.INT.fieldOf("from").forGetter(WtfLevel::getFrom),
-        Codec.INT.fieldOf("to").forGetter(WtfLevel::getTo)
+        Codec.INT.fieldOf("to").forGetter(WtfLevel::getTo),
+        Codec.BOOL.fieldOf("postNether").forGetter(WtfLevel::getPostNether)
     ).apply(instance, WtfLevel::new));
 
     public WtfLevel() {
 
     }
-    public WtfLevel(int from, int to) {
-        this.from = from; this.to = to;
+    public WtfLevel(int from, int to, boolean postNether) {
+        this.from = from; this.to = to; this.postNether = postNether;
     }
 
     public float getWtf(Level level) {
@@ -48,6 +46,9 @@ public class WtfLevel extends SavedData {
         return y;
     }
     public float getWtf(LevelAccessor level) {
+
+        if (postNether) return 998.0f;
+
         float d = (level.getGameTime() % 10000) * 0.0001f / 2;
         float s = Mth.sin(Math.PI * d);
         float y = from + s * (to - from);
@@ -74,6 +75,18 @@ public class WtfLevel extends SavedData {
     public void setWtf(int set) {
         this.to = set; this.from = set;
         this.setDirty();
+    }
+
+    public void setPostNether() {
+        this.postNether = true;
+        this.setDirty();
+    }
+    public void unsetPostNether() {
+        this.postNether = false;
+        this.setDirty();
+    }
+    public boolean getPostNether() {
+        return this.postNether;
     }
 
     public int getFrom() { return this.from; }

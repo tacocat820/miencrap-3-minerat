@@ -12,7 +12,7 @@
     "display": {
         "hidden": false,
         "icon": {
-            "id": "crafting_table"
+            "id": "miencrap3minerat:crafting_table_2"
         },
         "title": {"color": "#ed4188","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.crafting2"},
         "description": {"color": "#1606c6", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.crafting2.desc"},

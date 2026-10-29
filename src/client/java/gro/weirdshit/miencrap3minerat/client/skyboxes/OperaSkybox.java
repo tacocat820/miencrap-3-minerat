@@ -26,7 +26,7 @@ public class OperaSkybox extends Skybox {
         return ((a % b) + b) % b;
     }
 
-    private static final int UBO_SIZE = new Std140SizeCalculator().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().get();
+    private static final int UBO_SIZE = new Std140SizeCalculator().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().putFloat().get();
     private final MappableRingBuffer ubo = new MappableRingBuffer(() -> "Underworld Skybox UBO", 130, UBO_SIZE);
 
     public OperaSkybox() {
@@ -45,16 +45,18 @@ public class OperaSkybox extends Skybox {
             .mapBuffer(this.ubo.currentBuffer(), false, true)) 
         {    
             Window win = Minecraft.getInstance().getWindow();
-            Vec3 camRot = Minecraft.getInstance().getCameraEntity().getViewVector(0.0f);
-            Vec3 cam = Minecraft.getInstance().getCameraEntity().getEyePosition(Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false));
+            //Vec3 camRot = Minecraft.getInstance().getCameraEntity().getViewVector(0.0f);
+            Vec2 camRot = Minecraft.getInstance().getCameraEntity().getRotationVector();
+            Vec3 cam = Minecraft.getInstance().gameRenderer.getMainCamera().position();
 
-            // MIENCRAP3MINERAT.LOGGER.info(String.valueOf(cam.y));
+            MIENCRAP3MINERAT.LOGGER.info(String.valueOf((float)camRot.y));
 
             Std140Builder.intoBuffer(view.data())
                 .putFloat(win.getWidth()).putFloat(win.getHeight())
-                .putFloat((float)camRot.x()).putFloat((float)camRot.y()).putFloat((float)camRot.z())
+                .putFloat((float)camRot.x).putFloat((float)camRot.y).putFloat(0.0f)
                 .putFloat((float)cam.x()).putFloat((float)cam.y()).putFloat((float)cam.z())
-                .putFloat(3.14f * ((Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false)) % 400) / 100.0f);
+                .putFloat(3.14f * ((Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false)) % 400) / 100.0f)
+                .putFloat(Minecraft.getInstance().gameRenderer.getMainCamera().getFov());
         }
 
     }

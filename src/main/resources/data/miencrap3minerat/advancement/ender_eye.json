@@ -1,0 +1,24 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{"items": [
+                    "minecraft:ender_eye"
+                ]}]
+            }
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "minecraft:ender_eye"
+        },
+        "title": {"color": "#e10a31","underlined":true, "bold":true, "italic":true, "translate": "adv.miencrap3minerat.ender_eye"},
+        "description": {"color": "#4bdaaa", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.ender_eye.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:heck"
+}

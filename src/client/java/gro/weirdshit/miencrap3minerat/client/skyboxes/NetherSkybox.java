@@ -41,14 +41,15 @@ public class NetherSkybox extends Skybox {
             .mapBuffer(this.ubo.currentBuffer(), false, true)) 
         {    
             Window win = Minecraft.getInstance().getWindow();
-            Vec3 camRot = Minecraft.getInstance().getCameraEntity().getViewVector(Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false));
-            Vec3 cam = Minecraft.getInstance().getCameraEntity().getEyePosition(Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false));
+            Vec2 camRot = Minecraft.getInstance().getCameraEntity().getRotationVector();
+            Vec3 cam = Minecraft.getInstance().gameRenderer.getMainCamera().position();
 
             // MIENCRAP3MINERAT.LOGGER.info(String.valueOf(cam.y));
 
             Std140Builder.intoBuffer(view.data())
                 .putFloat(win.getWidth()).putFloat(win.getHeight())
-                .putFloat((float)camRot.x()).putFloat((float)camRot.y()).putFloat((float)camRot.z())
+                .putFloat((float)camRot.x).putFloat((float)camRot.y)
+                .putFloat(Minecraft.getInstance().gameRenderer.getMainCamera().getFov())
                 .putFloat((float)cam.x()).putFloat((float)cam.y()).putFloat((float)cam.z());
         }
 

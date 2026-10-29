@@ -286,6 +286,7 @@
   "ost.pupepupe": "Pu pe pu pe",
   "ost.rat": "Rat",
   "ost.fard": "FARD",
+  "ost.fard_2": "FARD II",
   "ost.stal": "Stal",
   "ost.gromadji": "Gromadji",
   "ost.lavachickeb": "Lava Chickeb",
@@ -337,7 +338,7 @@
   "ost.sj": "SJ",
   "ost.stallat": "Stallat",
   "ost.br": "Biased Research",
-  "ost.aria_chemistry": "Aria Chemistry",
+  "ost.aria_chemistry": "ARIA CHEMISTRY",
   "ost.aria_math": "Aria Math",
   "ost.brain_rot": "Brain Rot",
   "ost.balladofthecat": "Ballad of the Cat",
@@ -399,6 +400,12 @@
 	"adv.miencrap3minerat.rip.desc": "find a death village",
 	"adv.miencrap3minerat.convo": "Conversation Starter",
 	"adv.miencrap3minerat.convo.desc": "enter convo",
+	"adv.miencrap3minerat.microwave": "Steve we need to cook",
+	"adv.miencrap3minerat.microwave.desc": "get a microwave",
+	"adv.miencrap3minerat.ender_eye": "gg ez lmfao",
+	"adv.miencrap3minerat.ender_eye.desc": "get an ender eye",
+	"adv.miencrap3minerat.end": "false advertising",
+	"adv.miencrap3minerat.end.desc": "enter the \"end\" dimension",
 
   "title.credits": "MIENCRAP 3 MINERAT"
 }

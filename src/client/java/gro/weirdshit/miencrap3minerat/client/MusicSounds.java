@@ -22,6 +22,7 @@ public class MusicSounds {
     public static final SoundEvent RAT = registerSound("ost.rat");
     public static final SoundEvent TETRIS = registerSound("ost.tetris");
     public static final SoundEvent FARD = registerSound("ost.fard");
+    public static final SoundEvent FARD2 = registerSound("ost.fard_2");
     public static final SoundEvent STAL = registerSound("ost.stal");
     public static final SoundEvent GROMADJI = registerSound("ost.gromadji");
     public static final SoundEvent LAVACHICKEB = registerSound("ost.lavachickeb");

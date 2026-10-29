@@ -85,6 +85,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/rat","stream": true}]},
 	"ost.fard":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fard","stream": true}]},
+	"ost.fard_2":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fard_2","stream": true}]},
 	"ost.fardium":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/fardium","stream": true}]},
 	"ost.boss":

@@ -1,0 +1,24 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "inventory_changed",
+            "conditions": {
+                "items": [{"items": [
+                    "miencrap3minerat:microwave"
+                ]}]
+            }
+        }
+    },
+    "display": {
+        "hidden": false,
+        "icon": {
+            "id": "miencrap3minerat:microwave"
+        },
+        "title": {"color": "#00734c","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.microwave"},
+        "description": {"color": "#4bdaaa", "bold": true, "italic":true, "translate": "adv.miencrap3minerat.microwave.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:crafting"
+}

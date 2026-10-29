@@ -8,7 +8,7 @@
         }
     },
     "display": {
-        "hidden": false,
+        "hidden": true,
         "icon": {
             "id": "iron_ingot"
         },

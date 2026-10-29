@@ -9,6 +9,7 @@ layout(std140) uniform Whatever {
     float CRX, CRY, CRZ;
     float CX, CY, CZ;
     float GT;
+    float FOV;
 };
 
 in vec2 texCoord0;
@@ -208,18 +209,22 @@ vec3 raymarching(in vec3 ro, in vec3 rd) {
 void main() {
 
 
-    vec2 screenPos = gl_FragCoord.xy / vec2(max(W,H), max(W,H));
+    vec2 screenPos = gl_FragCoord.xy / vec2(W, H);
     vec2 uv = screenPos * 2.0 - 1.0;
 
     vec3 cam = vec3(CX - 40.0, CY + 45.5, CZ - 40.0);
 
-    float fov = 1.0;
-    
-    vec3 forward = normalize(vec3(CRX, CRY + 0.35, CRZ));
-    vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
-    vec3 up = cross(right, forward);
+    float x = radians(CRX);
+    float y = radians(CRY);
+    vec3 forward = vec3(cos(x) * sin(y), -sin(x), cos(x) * cos(y));
+    vec3 right   = vec3(cos(y), 0.0, -sin(y));
+    vec3 up      = cross(forward, right);
 
-    vec3 rd = normalize(uv.x * right + uv.y * up + forward);
+    float ar = W / H;
+    float fov = tan(radians(FOV) * 0.5);
+
+    vec3 rd = forward + (right * uv.x * ar * fov) + (up * uv.y * fov);
+    rd.x = -rd.x;
 
     vec3 color = raymarching(cam, rd);
 

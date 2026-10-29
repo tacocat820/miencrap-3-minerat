@@ -7,6 +7,7 @@ import net.minecraft.world.phys.AABB;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 
 public class Ct2ShowcaseMarker extends Marker {
@@ -30,6 +31,21 @@ public class Ct2ShowcaseMarker extends Marker {
 			tnt.playSound(ModSounds.WING);
 
 			if (this.level() instanceof ServerLevel serverLevel) serverLevel.sendParticles(ParticleTypes.CLOUD, tnt.getX(), tnt.getY(), tnt.getZ(), 40, 0.0, 0.0, 0.0, 0.3);
+			tnt.setDeltaMovement(
+				launch(tnt.getX(), this.getX()) * 0.08, 
+				launch(tnt.getY(), this.getY()) * 0.08, 
+				launch(tnt.getZ(), this.getZ()) * 0.08);
+		}
+		for (Psychotherapist tnt : 
+			this.level().getEntitiesOfClass(Psychotherapist.class, AABB.ofSize(this.position(), 15.0, 15.0, 15.0))
+		) {
+			tnt.playSound(ModSounds.WING);
+
+			if (this.level() instanceof ServerLevel serverLevel) {
+				serverLevel.sendParticles(ParticleTypes.CLOUD, tnt.getX(), tnt.getY(), tnt.getZ(), 40, 0.0, 0.0, 0.0, 0.3);
+				tnt.hurtServer(serverLevel, this.damageSources().magic(), 7.0f);
+			}
+		
 			tnt.setDeltaMovement(
 				launch(tnt.getX(), this.getX()) * 0.08, 
 				launch(tnt.getY(), this.getY()) * 0.08, 

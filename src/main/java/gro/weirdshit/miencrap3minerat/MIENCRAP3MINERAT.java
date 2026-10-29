@@ -115,7 +115,9 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 				// send wtf level
 
-				WtfPayload payload = new WtfPayload((int)Math.floor(wtf.getWtf(m.overworld()) / 220));
+				int wtfSend =
+					wtf.getPostNether() ? 100 : (int)Math.floor(wtf.getWtf(m.overworld()) / 220);
+				WtfPayload payload = new WtfPayload(wtfSend);
 				PlayerList p = m.getPlayerList();
 
 				for (Player player : p.getPlayers()) {

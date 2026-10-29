@@ -27,7 +27,9 @@ import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.NetherSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.PostNetherOverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
+import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OperaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OrangeSkybox;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext;
@@ -50,6 +52,7 @@ public class Skyboxes {
 	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
 	private static final Skybox CONVO_SKYBOX = new ConvoSkybox();
 	private static final Skybox ORANGE_SKYBOX = new OrangeSkybox();
+	private static final Skybox POST_NETHER_OVERWORLD_SKYBOX = new PostNetherOverworldSkybox();
 	
 	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
 	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
@@ -63,6 +66,7 @@ public class Skyboxes {
 		//TODO: igduiqwdhuqgdqh
 
 		if (dimension.equals(BuiltinDimensionTypes.OVERWORLD.identifier())) {
+			if (ClientWtf.wtf == 100) return (T)POST_NETHER_OVERWORLD_SKYBOX;
 			return (T)OVERWORLD_SKYBOX;
 		} else if (dimension.equals(BuiltinDimensionTypes.NETHER.identifier())) {
 			return (T)NETHER_SKYBOX;

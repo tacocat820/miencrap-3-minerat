@@ -5,7 +5,7 @@
 uniform sampler2D Sampler0;
 layout(std140) uniform Whatever {
     float W, H;
-    float CRX, CRY, CRZ;
+    float CRX, CRY, FOV;
     float CX, CY, CZ;
 };
 
@@ -15,14 +15,20 @@ out vec4 fragColor;
 void main() {
 
 
-    vec2 screenPos = gl_FragCoord.xy / vec2(W, W);
+    vec2 screenPos = gl_FragCoord.xy / vec2(W, H);
     vec2 uv = screenPos * 2.0 - 1.0;
     
-    vec3 forward = normalize(vec3(CRX, CRY + 0.35, CRZ));
-    vec3 right = normalize(cross(forward, vec3(0.0, 1.0, 0.0)));
-    vec3 up = cross(right, forward);
+    float x = radians(CRX);
+    float y = radians(CRY);
+    vec3 forward = vec3(cos(x) * sin(y), -sin(x), cos(x) * cos(y));
+    vec3 right   = vec3(cos(y), 0.0, -sin(y));
+    vec3 up      = cross(forward, right);
 
-    vec3 rd = normalize(uv.x * right + uv.y * up + forward);
+    float ar = W / H;
+    float fov = tan(radians(FOV) * 0.5);
+
+    vec3 rd = forward + (right * uv.x * ar * fov) + (up * uv.y * fov);
+    rd.x = -rd.x;
 
     float h = 50.0;
     float pointX = (h / rd.y) * rd.x + CX;

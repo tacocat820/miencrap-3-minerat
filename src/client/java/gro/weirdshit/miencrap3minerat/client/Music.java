@@ -13,6 +13,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +23,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
-    MENU, PEACEFUL, BATTLE, LIVEITATION;
+    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV;
 }
 
 public class Music {
@@ -87,6 +88,11 @@ public class Music {
         }
         if (minecraft.player != null && minecraft.player.getEffectBlendFactor(ModEffects.LIVEITATION, 0.0f) > 0) {
             return MusicType.LIVEITATION;
+        }
+        if (minecraft.level.dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier())
+            && ClientWtf.wtf == 100
+        ) {
+            return MusicType.PNOV;
         }
         if (battle) {
             return MusicType.BATTLE;
@@ -287,6 +293,11 @@ public class Music {
                 });
             case LIVEITATION:
                 return MusicSounds.A_CAT_ATE_ME;
+            case PNOV:
+                return Choose(new SoundEvent[]{
+                    MusicSounds.ARIA_CHEMISTRY,
+                    MusicSounds.FARD2,
+                });
 
             default:
                 break;
