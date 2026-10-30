@@ -22,6 +22,18 @@ float sphere(in vec3 p, in vec3 c, float r) {
     return length(p - c) - r;
 }
 float flatThing(in vec3 p, in vec3 c, float r) {
+    
+    float ankle = 0.9;
+    //p.y += sin(p.x);
+    vec3 dif = p - vec3(0.0, 200.0, 0.0);
+    // x\ =\ \cos\left(b\right)\ \cdot\ q-\sin\left(b\right)\ \cdot\ w
+    vec3 rotated = vec3(
+        cos(ankle) * dif.x - sin(ankle) * dif.y, 
+        sin(ankle) * dif.x + cos(ankle) * dif.y, 
+        dif.z);
+    p = vec3(0.0, 200.0, 0.0) + rotated;
+    
+    
     vec3 pc = p - c;
     return max(max(length(pc) - r, p.y - c.y - 0.3), -p.y + c.y + 0.3);
 }
@@ -55,7 +67,7 @@ vec3 get_normal(vec3 position) {
 
 vec3 raymarching(in vec3 ro, in vec3 rd) {
     float travelled = 0.0;
-    const int STEPS = 100;
+    const int STEPS = 190;
     const float MIN_HIT_DISTANCE = 0.001;
     const float MAX_TRACE_DISTANCE = 200.0;
     const float FOG_DISTANCE = 190.0;
@@ -98,7 +110,7 @@ void main() {
     vec2 uv = screenPos * 2.0 - 1.0;
 
 
-    vec3 cam = vec3(CX, CY, CZ);
+    vec3 cam = vec3(45.0, 160.0 + CY * 0.1, 45.0);
     
     float x = radians(CRX);
     float y = radians(CRY);

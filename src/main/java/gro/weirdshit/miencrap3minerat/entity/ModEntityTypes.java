@@ -222,6 +222,10 @@ public class ModEntityTypes {
 			"ct2_showcase_marker",
 			EntityType.Builder.<Ct2ShowcaseMarker>of(Ct2ShowcaseMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
 					.clientTrackingRange(0));
+	public static final EntityType<PNOverworldEvent> PNOVERWORLD_EVENT = register(
+			"pnoverworld_event",
+			EntityType.Builder.<PNOverworldEvent>of(PNOverworldEvent::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+					.clientTrackingRange(0));
 	public static final EntityType<Spawner> SPAWNER = register(
 			"spawner",
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)

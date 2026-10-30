@@ -39,6 +39,9 @@ public class WtfLevel extends SavedData {
     }
 
     public float getWtf(Level level) {
+
+        if (postNether) return 995.0f;
+
         float d = (level.getGameTime() % 10000) * 0.0001f / 2;
         float s = Mth.sin(Math.PI * d);
         float y = from + s * (to - from);
@@ -47,7 +50,7 @@ public class WtfLevel extends SavedData {
     }
     public float getWtf(LevelAccessor level) {
 
-        if (postNether) return 998.0f;
+        if (postNether) return 995.0f;
 
         float d = (level.getGameTime() % 10000) * 0.0001f / 2;
         float s = Mth.sin(Math.PI * d);

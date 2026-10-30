@@ -125,6 +125,10 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					ServerPlayNetworking.send(serverPlayer, payload);
 				}
 
+				if (wtf.getPostNether())
+					if (!m.overworld().dimensionType().defaultClock().isEmpty())
+						m.overworld().clockManager().setTotalTicks(m.overworld().dimensionType().defaultClock().get(), 18000L);
+
 				m.getAllLevels().forEach(level -> {
 
 					// maybe datapacks are actually sometimes better
@@ -170,7 +174,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 						}
 					} 
 
-					if (player.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier())
+					if ((player.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier()) || player.level().dimension().identifier().equals(BuiltinDimensionTypes.END.identifier()) ||
+						(player.level().dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier()) && wtf.getPostNether()))
 						&& player.getRandom().nextInt(10) >= 6
 					) {
 						ItemStack bed = new ItemStack(ModBlocks.NETHER_BED.item, 1);
