@@ -1,4 +1,5 @@
 package gro.weirdshit.miencrap3minerat.client.entity.classes;
+import org.joml.Vector3f;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.entity.MobRenderInterface;
@@ -27,6 +28,7 @@ public class MimicRenderer extends MobRenderInterface {
 	
         // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
         private final ModelPart mimic;
+        private final float mimic_start_y;
         private final ModelPart half2;
         private final ModelPart half1;
         private final ModelPart saw;
@@ -36,6 +38,7 @@ public class MimicRenderer extends MobRenderInterface {
         public Model(ModelPart root) {
             super(root);
             this.mimic = root.getChild("mimic");
+            this.mimic_start_y = mimic.y;
             this.half2 = this.mimic.getChild("half2");
             this.half1 = this.mimic.getChild("half1");
             this.saw = this.mimic.getChild("saw");
@@ -49,9 +52,9 @@ public class MimicRenderer extends MobRenderInterface {
 
             PartDefinition mimic = partdefinition.addOrReplaceChild("mimic", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, -1.0F));
 
-            PartDefinition half2 = mimic.addOrReplaceChild("half2", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -6.0F, -7.0F, 14.0F, 7.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.4212F, 0.9364F));
+            PartDefinition half2 = mimic.addOrReplaceChild("half2", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -7.0F, -14.0F, 14.0F, 7.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -7.4212F, 7.9364F));
 
-            PartDefinition cube_r1 = half2.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(56, 16).addBox(0.0F, -2.0F, -1.0F, 1.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, -8.0F, 0.0F, -1.5708F, 0.0F));
+            PartDefinition cube_r1 = half2.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(56, 16).addBox(0.0F, -2.0F, -1.0F, 1.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, -15.0F, 0.0F, -1.5708F, 0.0F));
 
             PartDefinition half1 = mimic.addOrReplaceChild("half1", CubeListBuilder.create().texOffs(0, 21).addBox(-7.0F, 1.0F, -7.0F, 14.0F, 7.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -8.4212F, 0.9364F));
 
@@ -66,20 +69,24 @@ public class MimicRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
-            
-            super.setupAnim(state);
-            float AnimationProgressX = state.ageInTicks * 0.21f + 0.1f;
-            float AnimationProgressY = state.ageInTicks * 0.302f + 21f;
-            float AnimationProgressZ = state.ageInTicks * 0.553f + 2.0f;
-            
-            int n = 0;
-            for (ModelPart part : this.parts) {
-                n++;
-                part.xRot = Mth.cos(AnimationProgressX +n);
-                part.yRot = Mth.cos(AnimationProgressY +n);
-                part.zRot = Mth.cos(AnimationProgressZ +n);
-            }
+            float AnimationProgress = state.ageInTicks * 0.21f + 0.1f;
+            float speed = state.walkAnimationSpeed;
+            half2.xRot = -(Mth.cos(AnimationProgress)+1f)/5f * speed;
+            mimic.y = -Mth.abs(Mth.sin(AnimationProgress*3f))*17 * speed + 24;
+
+            // float AnimationProgressX = state.ageInTicks * 0.21f + 0.1f;
+            // float AnimationProgressY = state.ageInTicks * 0.302f + 21f;
+            // float AnimationProgressZ = state.ageInTicks * 0.553f + 2.0f;
+
+            // int n = 0;
+            // for (ModelPart part : this.parts) {
+            //     n++;
+            //     part.xRot = Mth.cos(AnimationProgressX +n);
+            //     part.yRot = Mth.cos(AnimationProgressY +n);
+            //     part.zRot = Mth.cos(AnimationProgressZ +n);
+            // }
         }
+
     }
     public static class EntityRenderer extends MobRenderer<Mimic, RenderState, Model> {
         private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "textures/entity/mimic.png");

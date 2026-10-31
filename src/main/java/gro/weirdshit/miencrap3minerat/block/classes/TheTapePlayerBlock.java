@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -18,6 +19,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class TheTapePlayerBlock {
@@ -84,7 +87,7 @@ public class TheTapePlayerBlock {
     }
 
     static public class BlockEnt extends TheBasketBlock.BlockEnt {
-        int ticksLeft = 0;
+        long ticksLeft = 0;
 
         public void tick() {
             if (ticksLeft >= 1) {
@@ -94,6 +97,22 @@ public class TheTapePlayerBlock {
             }
             
         }
+
+        // #region saving
+        @Override
+        protected void saveAdditional(ValueOutput output) {
+            super.saveAdditional(output);
+            output.putLong("ticks_left", this.ticksLeft);
+        }
+        // #endregion saving
+
+        // #region loading
+        @Override
+        protected void loadAdditional(ValueInput input) {
+            super.loadAdditional(input);
+            this.ticksLeft = input.getLongOr("ticks_left", 0L);
+        }
+        // #endregion loading
 
         public void play() {
             level.setBlockAndUpdate(worldPosition, getBlockState().setValue(Blk.HAS_RECORD, true));
@@ -109,7 +128,7 @@ public class TheTapePlayerBlock {
             ItemStack dropped = this.getItem().copy();
             this.setItem(ItemStack.EMPTY);
             
-            ItemEntity itemEntity = new ItemEntity(level, 1d*worldPosition.getX() - 0.4d*facing.getStepX(), worldPosition.getY(), 1d*worldPosition.getZ() - 0.4d*facing.getStepZ(), dropped);
+            ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX(), 1f*worldPosition.getY()+0.5f, worldPosition.getZ(), dropped);
             level.addFreshEntity(itemEntity);
         }
 

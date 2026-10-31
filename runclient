@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$#" -eq 0 ]; then
+    echo "[!!!!!!!] needs username! e.g. \`./runclient sus\`"
+    exit 1
+fi
+
+
+./gradlew runClient -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=4444 --args="--username $1" --stacktrace
