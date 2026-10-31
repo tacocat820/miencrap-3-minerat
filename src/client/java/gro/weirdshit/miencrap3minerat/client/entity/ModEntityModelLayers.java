@@ -32,6 +32,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.HooorseRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.LefisheRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MerlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.MimicRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.MosscowRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.NotjuanSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PcEntityRenderer;
@@ -99,6 +100,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation BRAIN_MARKER = createMain("brain_marker");
 	public static final ModelLayerLocation RED_LIGHTNING_BOLT = createMain("red_lightning_bolt");
 	public static final ModelLayerLocation PC = createMain("pc");
+	public static final ModelLayerLocation MOSSCOW = createMain("mosscow");
 
 	private static ModelLayerLocation createMain(String name) {
 		return new ModelLayerLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name), "main");
@@ -152,5 +154,6 @@ public class ModEntityModelLayers {
 		BrainMarkerRenderer.register(BRAIN_MARKER);
 		RedLightningBoltRenderer.register(RED_LIGHTNING_BOLT);
 		PcEntityRenderer.register(PC);
+		MosscowRenderer.register(MOSSCOW);
 	}
 }

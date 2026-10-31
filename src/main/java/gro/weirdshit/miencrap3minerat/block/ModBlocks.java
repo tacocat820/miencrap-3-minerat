@@ -480,6 +480,12 @@ public class ModBlocks {
 	public static RegisteredBlock OAK_LEAVES_MINIBLOCKS = new GenericBlock("oak_leaves_miniblocks", p -> new MiniBlocksBlock(p, Blocks.OAK_LEAVES)).copyOf(Blocks.OAK_LEAVES).reg();
 	public static RegisteredBlock NETHERRACK_MINIBLOCKS = new GenericBlock("netherrack_miniblocks", p -> new MiniBlocksBlock(p, Blocks.NETHERRACK)).copyOf(Blocks.NETHERRACK).reg();
 	public static RegisteredBlock SAND_MINIBLOCKS = new GenericBlock("sand_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SAND)).copyOf(Blocks.SAND).reg();
+	public static RegisteredBlock WHITE_WOOL_MINIBLOCKS = new GenericBlock("white_wool_miniblocks", p -> new MiniBlocksBlock(p, Blocks.WHITE_WOOL)).copyOf(Blocks.WHITE_WOOL).reg();
+	public static RegisteredBlock SNOW_MINIBLOCKS = new GenericBlock("snow_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SNOW_BLOCK)).copyOf(Blocks.SNOW_BLOCK).reg();
+	public static RegisteredBlock DIORITE_MINIBLOCKS = new GenericBlock("diorite_miniblocks", p -> new MiniBlocksBlock(p, Blocks.DIORITE)).copyOf(Blocks.DIORITE).reg();
+	public static RegisteredBlock SLIME_MINIBLOCKS = new GenericBlock("slime_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SLIME_BLOCK)).copyOf(Blocks.SLIME_BLOCK).reg();
+	public static RegisteredBlock RED_SAND_MINIBLOCKS = new GenericBlock("red_sand_miniblocks", p -> new MiniBlocksBlock(p, Blocks.RED_SAND)).copyOf(Blocks.RED_SAND).reg();
+	public static RegisteredBlock STONE_BRICKS_MINIBLOCKS = new GenericBlock("stone_bricks_miniblocks", p -> new MiniBlocksBlock(p, Blocks.STONE_BRICKS)).copyOf(Blocks.STONE_BRICKS).reg();
 	
 	public static RegisteredBlock SHROOMLIGHT_MINIBLOCKS = new GenericBlock("shroomlight_miniblocks", p -> new MiniBlocksBlock(p, Blocks.SHROOMLIGHT)).copyOf(Blocks.SHROOMLIGHT).reg();
 	public static RegisteredBlock ICE_MINIBLOCKS = new GenericBlock("ice_miniblocks", p -> new MiniBlocksBlock(p, Blocks.ICE)).copyOf(Blocks.ICE).reg();

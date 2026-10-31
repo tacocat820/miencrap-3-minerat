@@ -229,7 +229,13 @@ public class ModEntityTypes {
 	public static final EntityType<Spawner> SPAWNER = register(
 			"spawner",
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
-					.clientTrackingRange(0));
+					.clientTrackingRange(0)
+	);
+	public static final EntityType<Mosscow> MOSSCOW = register(
+			"mosscow",
+			EntityType.Builder.<Mosscow>of(Mosscow::new, MobCategory.CREATURE)
+					.sized(1.0f, 1.0f)
+	);
 
 	// .noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
 
@@ -283,6 +289,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(DAMN, Damn.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PSYCHO, Psycho.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(MIMIC, Mimic.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(MOSSCOW, Mosscow.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());

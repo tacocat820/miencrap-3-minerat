@@ -69,10 +69,10 @@ public class MimicRenderer extends MobRenderInterface {
         @Override
         public void setupAnim(RenderState state) {
             super.setupAnim(state);
-            float AnimationProgress = state.ageInTicks * 0.21f + 0.1f;
+            float progress = state.ageInTicks * 0.21f + 0.1f;
             float speed = state.walkAnimationSpeed;
-            half2.xRot = -(Mth.cos(AnimationProgress)+1f)/5f * speed;
-            mimic.y = -Mth.abs(Mth.sin(AnimationProgress*3f))*17 * speed + 24;
+            half2.xRot = -(Mth.cos(progress)+1f)/5f * speed;
+            mimic.y = -Mth.abs(Mth.sin(progress*3f))*17 * speed + 24;
 
             // float AnimationProgressX = state.ageInTicks * 0.21f + 0.1f;
             // float AnimationProgressY = state.ageInTicks * 0.302f + 21f;
