@@ -93,7 +93,7 @@ public class Blimp extends PathfinderMob implements PlayerRideable {
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 10)
+				.add(Attributes.MAX_HEALTH, 200)
 				.add(Attributes.TEMPT_RANGE, 10)
 				.add(Attributes.MOVEMENT_SPEED, 0.6)
 				.add(Attributes.FLYING_SPEED, 1.0)

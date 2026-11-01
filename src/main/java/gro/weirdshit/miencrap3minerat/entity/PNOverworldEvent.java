@@ -17,15 +17,20 @@ public class PNOverworldEvent extends Marker {
 		born = 0;
 	}
 
+	public PNOverworldEvent(final Level level) {
+		super(ModEntityTypes.PNOVERWORLD_EVENT, level);
+		this.noPhysics = true;
+		born = 0;
+	}
+
 	long born;
 
 	public void tick() {
 		super.tick();
 
-		if (level() instanceof ServerLevel) {
+		if (level() instanceof ServerLevel && level().getGameTime() % 7 == 0) {
 
 			if (born == 0) born = level().getGameTime();
-			MIENCRAP3MINERAT.LOGGER.info("adsd");
 			
 			float gtoff = (float)(level().getGameTime() % 5000L) / 50.0f * Mth.PI;
 			float gtoff2 = (float)(level().getGameTime() % 5000L) / 25.0f * Mth.PI;
@@ -34,9 +39,7 @@ public class PNOverworldEvent extends Marker {
 			double z = 60.0 * Mth.cos(gtoff2) * Mth.sin(gtoff3) + 60.0 * Mth.cos(gtoff);
 
 			//x = this.getX(); z = this.getZ();
-			MIENCRAP3MINERAT.LOGGER.info(String.valueOf(x));
-			MIENCRAP3MINERAT.LOGGER.info(String.valueOf(z));
-
+			
 			PrimedTnt tnt = new PrimedTnt(level(), this.getX() + x, this.getY() + 50.0, this.getZ() + z, null);
 			tnt.setFuse(100);
 			level().addFreshEntity(tnt);

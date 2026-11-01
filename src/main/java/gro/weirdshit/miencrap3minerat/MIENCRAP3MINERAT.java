@@ -34,6 +34,7 @@ import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.Homeless;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
+import gro.weirdshit.miencrap3minerat.entity.PNOverworldEvent;
 import gro.weirdshit.miencrap3minerat.entity.PlayerDeathMarker;
 import gro.weirdshit.miencrap3minerat.etc.FlatPosition;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
@@ -174,8 +175,14 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 						}
 					} 
 
-					if ((player.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier()) || player.level().dimension().identifier().equals(BuiltinDimensionTypes.END.identifier()) ||
-						(player.level().dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier()) && wtf.getPostNether()))
+					boolean pn = (player.level().dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier()) && wtf.getPostNether());
+					if (pn && m.overworld().getGameTime() % 400 == 0 && player.level().getEntitiesOfClass(PNOverworldEvent.class, player.getBoundingBox().inflate(60.0)).size() <= 1) {
+						PNOverworldEvent event = new PNOverworldEvent(player.level());
+						event.setPos(player.getX(), 70.0, player.getZ());
+						player.level().addFreshEntity(event);
+					}
+
+					if ((player.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier()) || player.level().dimension().identifier().equals(BuiltinDimensionTypes.END.identifier()) || pn)
 						&& player.getRandom().nextInt(10) >= 6
 					) {
 						ItemStack bed = new ItemStack(ModBlocks.NETHER_BED.item, 1);

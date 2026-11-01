@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
 
@@ -75,6 +76,12 @@ public class WtfLevel extends SavedData {
         return wtf.getWtf(server.getLevel(OVERWORLD_KEY));
     }
 
+    public static boolean getPostNetherForLevel(LevelAccessor level) {
+        //if (!level..equals(BuiltinDimensionTypes.OVERWORLD)) return false;
+        WtfLevel wtf = WtfLevel.getSavedBlockData(level.getServer());
+
+        return wtf.getPostNether();
+    }
     public void setWtf(int set) {
         this.to = set; this.from = set;
         this.setDirty();
