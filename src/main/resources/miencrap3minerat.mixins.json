@@ -19,7 +19,9 @@
 		"StonecutterMixin",
 		"ChangeItemDroppingMixin",
 		"FuckSpawnProtectionMixin",
-		"ItemMixin"
+		"ItemMixin",
+		"EndPodiumMixin",
+		"MakeFeatureMethodsPublicMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

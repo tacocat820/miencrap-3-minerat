@@ -1,8 +1,12 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
@@ -17,6 +21,8 @@ import net.minecraft.world.phys.Vec3;
 public class TheBackroomsPortalBlock {
     //blk
     static public class Block extends TransparentBlock implements EntityBlock {
+    	private static final ResourceKey<Level> META_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"));
+
         public Block(Properties properties) {
             super(properties);
         }
@@ -36,7 +42,7 @@ public class TheBackroomsPortalBlock {
             Vec3 movement = entity.getDeltaMovement();
             entity.setDeltaMovement(movement.x / 3, movement.y / 3, movement.z / 3);
             if (entity instanceof ServerPlayer player && !PlayerStartTransition.isTrans(player)) {
-                PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "rect_close", 20);
+                PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
             }
         }
     }
