@@ -21,7 +21,8 @@
 		"FuckSpawnProtectionMixin",
 		"ItemMixin",
 		"EndPodiumMixin",
-		"MakeFeatureMethodsPublicMixin"
+		"MakeFeatureMethodsPublicMixin",
+		"EnderDragonMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
