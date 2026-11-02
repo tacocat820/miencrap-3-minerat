@@ -37,6 +37,9 @@ void main() {
         // 
 
     }
+    else if (m3mType == 5) { // wtf block
+        CustomPosOffset = vec3(0, -0.3, 0);
+    }
     else if (m3mType == 3) { // wtf block
         CustomPosOffset = vec3(cos(Position.z) * 0.3, sin(Position.y) * 0.3 , cos(Position.x) * 0.3);
     }

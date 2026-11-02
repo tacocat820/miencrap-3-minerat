@@ -61,9 +61,10 @@ void main() {
         );
     }
     else if (m3mType == 5) { //BACKROOMS portal
-        float t0 = (vertexColor.r*6*3.145*2 + Pos.x+Pos.z);
-        float t1 = (vertexColor.r*6*3.145*2 + Pos.y+Pos.z);
-        float t2 = (vertexColor.r*6*3.145*2 + Pos.x+Pos.y);
+        vec3 Pos2 = Pos * 2;
+        float t0 = (vertexColor.r*6*3.145*2 + Pos2.x+Pos2.z);
+        float t1 = (vertexColor.r*6*3.145*2 + Pos2.y+Pos2.z);
+        float t2 = (vertexColor.r*6*3.145*2 + Pos2.x+Pos2.y);
         float r = sin(t0) + cos((t0)*6);
         float g = sin(t1) + cos((t1)*3);
         float b = sin(t2*3) + cos((t2)*6);
