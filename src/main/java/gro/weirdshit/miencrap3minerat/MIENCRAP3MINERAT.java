@@ -10,6 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.feline.Cat;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -64,6 +66,7 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.effects.AllOf.EntityEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 
@@ -107,6 +110,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 					if (added) {
 						player.containerMenu.broadcastChanges();
 					}
+
+					if (player.level().dimension().identifier().equals(BuiltinDimensionTypes.END.identifier())) player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 500, 3));
 
 				}
 

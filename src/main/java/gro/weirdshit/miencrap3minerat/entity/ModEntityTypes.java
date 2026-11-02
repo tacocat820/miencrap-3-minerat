@@ -29,6 +29,10 @@ public class ModEntityTypes {
 			"blays",
 			EntityType.Builder.<Blays>of(Blays::new, MobCategory.MONSTER)
 					.sized(1.4f, 0.7f));
+	public static final EntityType<NotBlaze> NOT_BLAZE = register(
+			"not_blaze",
+			EntityType.Builder.<NotBlaze>of(NotBlaze::new, MobCategory.MONSTER)
+					.sized(1.4f, 0.7f).clientTrackingRange(0));
 	public static final EntityType<Ceel> CEEL = register(
 			"ceel",
 			EntityType.Builder.<Ceel>of(Ceel::new, MobCategory.MONSTER)
@@ -69,6 +73,10 @@ public class ModEntityTypes {
 	public static final EntityType<Shrek> SHREK = register(
 			"shrek",
 			EntityType.Builder.<Shrek>of(Shrek::new, MobCategory.MONSTER)
+					.sized(0.9f, 3.0f));
+	public static final EntityType<Endershrek> ENDERSHREK = register(
+			"endershrek",
+			EntityType.Builder.<Endershrek>of(Endershrek::new, MobCategory.MONSTER)
 					.sized(0.9f, 3.0f));
 	public static final EntityType<Brothers> BROTHERS = register(
 			"brothers",
@@ -253,6 +261,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(NOTJUAN, Notjuan.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DOLPHIN, Dolphin.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BLAYS, Blays.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(NOT_BLAZE, NotBlaze.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CEEL, Ceel.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DEATH, Death.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(FATE, Fate.createCubeAttributes());
@@ -264,6 +273,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(LEFISHE, Lefishe.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(CABLE, Cable.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(SHREK, Shrek.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(ENDERSHREK, Endershrek.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BROTHERS, Brothers.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DEMON, Demon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GIGACHICKEN, Gigachicken.createCubeAttributes());

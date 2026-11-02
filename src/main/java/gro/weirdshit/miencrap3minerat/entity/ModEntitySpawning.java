@@ -89,6 +89,8 @@ public class ModEntitySpawning {
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
         BiomeModifications.addSpawn(BiomeSelectors.tag(NETHER), MobCategory.CREATURE, ModEntityTypes.PUFFERCOPTER, 30, 1, 2);
 
+        SpawnPlacements.register(ModEntityTypes.NOT_BLAZE, SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkDemonSpawnRules);
+
         SpawnPlacements.register(ModEntityTypes.DOLPHIN, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ModEntitySpawning::checkMonsterSpawnRules);
         BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), MobCategory.MONSTER, ModEntityTypes.DOLPHIN, 100, 1, 3);
         

@@ -18,6 +18,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.DemonRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.EndershrekRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FateRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FishRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FloatRenderer;
@@ -49,6 +50,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.SssdfgRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.WaterDeerRenderer;
+import gro.weirdshit.miencrap3minerat.entity.Endershrek;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
 
@@ -67,6 +69,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation LEFISHE = createMain("lefishe");
 	public static final ModelLayerLocation CABLE = createMain("cable");
 	public static final ModelLayerLocation SHREK = createMain("shrek");
+	public static final ModelLayerLocation ENDERSHREK = createMain("endershrek");
 	public static final ModelLayerLocation BROTHERS = createMain("brothers");
 	public static final ModelLayerLocation DEMON = createMain("demon");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
@@ -121,6 +124,7 @@ public class ModEntityModelLayers {
 		LefisheRenderer.register(LEFISHE);
 		CableRenderer.register(CABLE);
 		ShrekRenderer.register(SHREK);
+		EndershrekRenderer.register(ENDERSHREK);
 		BrothersRenderer.register(BROTHERS);
 		DemonRenderer.register(DEMON);
 		GigachickenRenderer.register(GIGACHICKEN);

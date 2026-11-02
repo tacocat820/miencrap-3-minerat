@@ -26,6 +26,7 @@ import gro.weirdshit.miencrap3minerat.client.skyboxes.EndSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.MetaSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.NetherSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.OverworldSkybox;
+import gro.weirdshit.miencrap3minerat.client.skyboxes.HeavenSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.PostNetherOverworldSkybox;
 import gro.weirdshit.miencrap3minerat.client.skyboxes.Skybox;
@@ -47,6 +48,7 @@ public class Skyboxes {
     
 	private static final Skybox OVERWORLD_SKYBOX = new OverworldSkybox();
 	private static final Skybox NETHER_SKYBOX = new NetherSkybox();
+	private static final Skybox HEAVEN_SKYBOX = new HeavenSkybox();
 	private static final Skybox END_SKYBOX = new EndSkybox();
 	private static final Skybox META_SKYBOX = new MetaSkybox();
 	private static final Skybox OPERA_SKYBOX = new OperaSkybox();
@@ -58,6 +60,7 @@ public class Skyboxes {
 	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
 	private static final Identifier CONVO_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"); 
 	private static final Identifier ORANGE_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"); 
+	private static final Identifier HEAVEN_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "heaven"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {
@@ -80,6 +83,8 @@ public class Skyboxes {
 			return (T)CONVO_SKYBOX;
 		} else if (dimension.equals(ORANGE_DIMENSION)) {
 			return (T)ORANGE_SKYBOX;
+		} else if (dimension.equals(HEAVEN_DIMENSION)) {
+			return (T)HEAVEN_SKYBOX;
 		}
         return (T)TEST_SKYBOX;
     }

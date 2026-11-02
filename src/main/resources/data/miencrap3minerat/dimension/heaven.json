@@ -1,0 +1,17 @@
+{
+  "type": "miencrap3minerat:heaven",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "miencrap3minerat:heaven",
+      "lakes": true,
+      "features": true,
+      "layers": [
+        {
+          "height": 20,
+          "block": "minecraft:barrier"
+        }
+      ]
+    }
+  }
+}

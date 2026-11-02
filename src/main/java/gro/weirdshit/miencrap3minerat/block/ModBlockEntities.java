@@ -5,6 +5,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2BlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlockEntity;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPipeBombBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
@@ -53,6 +54,9 @@ public class ModBlockEntities {
 
   public static final BlockEntityType<TheMicrowaveBlock.BlockEnt> MICROWAVE_ENTITY_TYPE =
   register("microwave", TheMicrowaveBlock.BlockEnt::new, ModBlocks.MICROWAVE.block);
+
+  public static final BlockEntityType<SpecificPipeBombBlock.BlockEnt> PIPE_BOMB_ENTITY_TYPE =
+  register("pipe_bomb", SpecificPipeBombBlock.BlockEnt::new, ModBlocks.PIPE_BOMB.block);
 
   
   public static final BlockEntityType<SpecificXpGlassBlockEntity> XP_GLASS_ENTITY_TYPE = register("xp_glass", SpecificXpGlassBlockEntity::new, ModBlocks.XP_GLASS.block);

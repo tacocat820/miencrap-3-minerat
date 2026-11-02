@@ -23,7 +23,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
-    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV;
+    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV, END;
 }
 
 public class Music {
@@ -93,6 +93,10 @@ public class Music {
             && ClientWtf.wtf == 100
         ) {
             return MusicType.PNOV;
+        }
+        if (minecraft.level.dimension().identifier().equals(BuiltinDimensionTypes.END.identifier())
+        ) {
+            return MusicType.END;
         }
         if (battle) {
             return MusicType.BATTLE;
@@ -293,6 +297,8 @@ public class Music {
                 });
             case LIVEITATION:
                 return MusicSounds.A_CAT_ATE_ME;
+            case END:
+                return MusicSounds.BOSS;
             case PNOV:
                 return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_CHEMISTRY,

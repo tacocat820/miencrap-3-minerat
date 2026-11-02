@@ -29,7 +29,7 @@ public class Shrek extends PathfinderMob {
 				.add(Attributes.MAX_HEALTH, 60)
 				.add(Attributes.TEMPT_RANGE, 10)
 				.add(Attributes.MOVEMENT_SPEED, 0.45)
-				.add(Attributes.ATTACK_DAMAGE, 5.0);
+				.add(Attributes.ATTACK_DAMAGE, 20.0);
 	}
 
     @Override

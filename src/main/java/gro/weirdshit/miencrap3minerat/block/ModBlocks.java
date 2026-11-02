@@ -37,6 +37,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanFriedGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPanGhastBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificPcBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificPipeBombBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificRedIceBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
@@ -417,7 +418,7 @@ public class ModBlocks {
 	public static RegisteredBlock BLACK_CRAFTING_TABLE = new GenericBlock("black_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
 	public static RegisteredBlock NEON_CRAFTING_TABLE = new GenericBlock("neon_crafting_table", CustomCraftingTableBlock::new, SoundType.WOOL, 1.0f,0.5f).reg();
 
-	public static RegisteredBlock PIPE_BOMB = new GenericBlock("pipe_bomb", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock PIPE_BOMB = new GenericBlock("pipe_bomb", SpecificPipeBombBlock.Blk::new, SoundType.STONE, 1.0f,1.0f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock SACABAMBASPIS = new GenericBlock("sacabambaspis", Block::new, SoundType.STONE, -1.0f,9999.0f).reg();
 	public static RegisteredBlock ORANGE_GRASS_BLOCK = new GenericBlock("orange_grass_block", GrassBlock::new).copyOf(Blocks.GRASS_BLOCK).reg();
 	public static RegisteredBlock PASTEL_WOOL = new GenericBlock("pastel_wool", Block::new).copyOf(Blocks.WHITE_WOOL).reg();

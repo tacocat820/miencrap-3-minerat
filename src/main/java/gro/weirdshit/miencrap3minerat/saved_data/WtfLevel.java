@@ -77,7 +77,7 @@ public class WtfLevel extends SavedData {
     }
 
     public static boolean getPostNetherForLevel(LevelAccessor level) {
-        //if (!level..equals(BuiltinDimensionTypes.OVERWORLD)) return false;
+        //if (!level.equals(BuiltinDimensionTypes.OVERWORLD)) return false;
         WtfLevel wtf = WtfLevel.getSavedBlockData(level.getServer());
 
         return wtf.getPostNether();

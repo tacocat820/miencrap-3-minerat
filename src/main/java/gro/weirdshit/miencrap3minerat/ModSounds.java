@@ -35,6 +35,7 @@ public class ModSounds {
     public static final SoundEvent PLUMBER = registerSound("plumber");
     public static final SoundEvent DAMN = registerSound("damn");
     public static final SoundEvent MICROWAVE = registerSound("microwave");
+    public static final SoundEvent PIPE_BOMB = registerSound("pipe_bomb");
 
     public static final SoundType FRANCE_SOUND_TYPE = new SoundType(
 		1.0F, 1.0F, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.WRENCH, ModSounds.LEFISHE
