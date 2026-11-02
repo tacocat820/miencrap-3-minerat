@@ -255,8 +255,12 @@ public class ModItems {
 	public static RegisteredItem<?> BLUE_TAPE = ModItems.register("blue_tape", Item::new, new Item.Properties());
 	public static RegisteredItem<?> KNIFE = ModItems.register("knife", Item::new, new Item.Properties());
 	
-	public static RegisteredItem<?> COW_CORPSE = ModItems.register("cow_corpse", Item::new, new Item.Properties());
-	public static RegisteredItem<?> COOKED_COW_CORPSE = ModItems.register("cooked_cow_corpse", Item::new, new Item.Properties());
+	public static RegisteredItem<?> COW_CORPSE = ModItems.register("cow_corpse", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(1).saturationModifier(0.3f).build())
+	);
+	public static RegisteredItem<?> COOKED_COW_CORPSE = ModItems.register("cooked_cow_corpse", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(6).saturationModifier(2.0f).build())
+	);
 	
 	public static RegisteredItem<?> PURPLE_BANANA = ModItems.register("purple_banana", Item::new, 
 		new Item.Properties().food(new FoodProperties
@@ -267,7 +271,9 @@ public class ModItems {
 	public static RegisteredItem<?> BLOOD_STICK = ModItems.register("blood_stick", Item::new, new Item.Properties());
 	public static RegisteredItem<?> BLAYS = ModItems.register("blays", Item::new, new Item.Properties());
 	public static RegisteredItem<?> DIAMOND_2 = ModItems.register("diamond_2", Item::new, new Item.Properties().stacksTo(68));
-	public static RegisteredItem<?> EVIL_BREAD = ModItems.register("evil_bread", Item::new, new Item.Properties());
+	public static RegisteredItem<?> EVIL_BREAD = ModItems.register("evil_bread", Item::new, new Item.Properties().food(new FoodProperties
+		.Builder().nutrition(5).saturationModifier(2.0f).build())
+	);
 	
 	public static void generate() {
 		// Items.CHEST
