@@ -5,7 +5,7 @@
     "step": "surface_structures",
     "spawn_overrides": {},
     "terrain_adaptation": "beard_thin",
-    "start_pool": "miencrap3minerat:backrooms/main",
+    "start_pool": "miencrap3minerat:backrooms/anchor",
     "size": 20,
     "start_height": {
       "absolute": 100

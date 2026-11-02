@@ -173,6 +173,33 @@
         "element_type": "minecraft:single_pool_element",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "miencrap3minerat:backrooms/x_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/pc_room",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/x_doors",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }

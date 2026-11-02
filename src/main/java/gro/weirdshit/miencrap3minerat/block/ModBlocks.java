@@ -445,6 +445,7 @@ public class ModBlocks {
 	public static RegisteredBlock BLOOD_ICICLE = new GenericBlock("blood_icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(3507428), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock IRON_ORE_SAND = new GenericBlock("iron_ore_sand", Block::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock BACKROOMS_PORTAL = new GenericBlock("backrooms_portal", TheBackroomsPortalBlock.Block::new, SoundType.STONE, -1f,32000f).noCollision().noOcclusion().reg();
+	public static RegisteredBlock TWITTER = new GenericBlock("twitter", Block::new, SoundType.STONE, -1.0f,32000.0f).reg();
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
