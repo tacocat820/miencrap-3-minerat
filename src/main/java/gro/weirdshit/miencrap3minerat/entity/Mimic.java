@@ -27,10 +27,10 @@ public class Mimic extends PathfinderMob {
 
 	public static AttributeSupplier.Builder createCubeAttributes() {
 		return PathfinderMob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 25)
-				.add(Attributes.TEMPT_RANGE, 10)
-				.add(Attributes.MOVEMENT_SPEED, 0.5)
-				.add(Attributes.ATTACK_DAMAGE, 3.5);
+			.add(Attributes.MAX_HEALTH, 25)
+			.add(Attributes.TEMPT_RANGE, 10)
+			.add(Attributes.MOVEMENT_SPEED, 0.5)
+			.add(Attributes.ATTACK_DAMAGE, 3.5);
 	}
 
 	public Mimic(EntityType<? extends Mimic> entityType, Level world) {

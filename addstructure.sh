@@ -1,3 +1,4 @@
+#!/bin/bash
 read -r -p "> Enter structures(s), space as splitter: " structure_names
 
 resources_PATH="src/main/resources"

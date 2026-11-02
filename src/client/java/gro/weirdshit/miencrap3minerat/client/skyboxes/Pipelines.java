@@ -149,9 +149,9 @@ public class Pipelines {
 
 
     public static final RenderPipeline GENERIC_BLOCK_PIPELINE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_PROJECTION_SNIPPET)
-		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/xp_glass"))
-        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
-        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/xp_glass"))
+		.withLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "pipeline/generic_shader_block"))
+        .withFragmentShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/generic_shader_block"))
+        .withVertexShader(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "core/blocks/generic_shader_block"))
         .withColorTargetState(new ColorTargetState(BlendFunction.TRANSLUCENT))
         .withVertexFormat(FULL_VERTEX_FORMAT, Mode.QUADS)
         .withDepthStencilState(DepthStencilState.DEFAULT)

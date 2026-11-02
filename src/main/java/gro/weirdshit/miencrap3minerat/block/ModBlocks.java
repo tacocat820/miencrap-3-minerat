@@ -43,6 +43,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificVlcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlass;
+import gro.weirdshit.miencrap3minerat.block.classes.TheBackroomsPortalBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
@@ -443,7 +444,7 @@ public class ModBlocks {
 	public static RegisteredBlock SSSDFG = new GenericBlock("sssdfg", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	public static RegisteredBlock BLOOD_ICICLE = new GenericBlock("blood_icicle", p-> new HangingFallingBlock(p).shape(ModShapes.ICICLE_SHAPE).dustColor(3507428), SoundType.GLASS, 0.2f,0.0f).noOcclusion().reg();
 	public static RegisteredBlock IRON_ORE_SAND = new GenericBlock("iron_ore_sand", Block::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).reg();
-	
+	public static RegisteredBlock BACKROOMS_PORTAL = new GenericBlock("backrooms_portal", TheBackroomsPortalBlock.Block::new, SoundType.STONE, 1.0f,1.0f).reg();
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 
