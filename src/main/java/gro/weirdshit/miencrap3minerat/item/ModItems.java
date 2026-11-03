@@ -275,6 +275,10 @@ public class ModItems {
 		.Builder().nutrition(5).saturationModifier(2.0f).build())
 	);
 	
+	public static RegisteredItem<?> GLASS_EMPTY = ModItems.register("glass_empty", Item::new, new Item.Properties());
+	public static RegisteredItem<?> GLASS_OF_POISON = ModItems.register("glass_of_poison", Item::new, new Item.Properties());
+	public static RegisteredItem<?> WOLFBERRIES = ModItems.register("wolfberries", Item::new, new Item.Properties());
+	
 	public static void generate() {
 		// Items.CHEST
 	}

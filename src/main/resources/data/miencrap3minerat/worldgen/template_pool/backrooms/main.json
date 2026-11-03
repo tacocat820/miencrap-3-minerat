@@ -4,7 +4,7 @@
   "elements": [
 
     {
-      "weight": 50,
+      "weight": 30,
       "element": {
         "location": "miencrap3minerat:backrooms/x",
         "projection": "rigid",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 35,
       "element": {
         "location": "miencrap3minerat:backrooms/t",
         "projection": "rigid",
@@ -22,7 +22,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 35,
       "element": {
         "location": "miencrap3minerat:backrooms/l",
         "projection": "rigid",
@@ -31,7 +31,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 35,
       "element": {
         "location": "miencrap3minerat:backrooms/r",
         "projection": "rigid",
@@ -175,9 +175,153 @@
       }
     },
     {
-      "weight": 6,
+      "weight": 12,
       "element": {
         "location": "miencrap3minerat:backrooms/x_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 9,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/x_long_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/long_pretty_1",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/long_pretty_2",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/long_pretty_3",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/long_pretty_4",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/long_pretty_5",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/up",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/g",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/g_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/spiral",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/spooky_corridor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/spooky_corridor_2",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/t_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "miencrap3minerat:backrooms/etc/spooky_corridor_trap",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 15,
+      "element": {
+        "location": "miencrap3minerat:backrooms/r_loot",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 15,
+      "element": {
+        "location": "miencrap3minerat:backrooms/t_loot",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element",
         "processors": "minecraft:empty"
