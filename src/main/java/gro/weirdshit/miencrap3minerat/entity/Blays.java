@@ -81,8 +81,6 @@ public class Blays extends Monster {
 			if (serverLevel.getBlockState(BlockPos.containing(this.getX(), this.getY(), this.getZ())).is(Blocks.LAVA)) {
 				Vec3 direction = Vec3.directionFromRotation(this.getXRot(), this.getYHeadRot());
 				this.setDeltaMovement(direction.multiply(0.4, 0.4, 0.4).add(0.0, 0.4, 0.0));
-
-				MIENCRAP3MINERAT.LOGGER.info("lave");
 			}
 		}
 

@@ -17,6 +17,8 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.DeathRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DemonRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.PtlRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.DolphinRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.ElonRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.ElonSpitRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EnderDragonRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.EndershrekRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.FateRenderer;
@@ -50,6 +52,7 @@ import gro.weirdshit.miencrap3minerat.client.entity.classes.SssdfgRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.SteveJobsRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.TetoRenderer;
 import gro.weirdshit.miencrap3minerat.client.entity.classes.WaterDeerRenderer;
+import gro.weirdshit.miencrap3minerat.client.entity.classes.WolfberryTreeRenderer;
 import gro.weirdshit.miencrap3minerat.entity.Endershrek;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
@@ -70,6 +73,7 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation CABLE = createMain("cable");
 	public static final ModelLayerLocation SHREK = createMain("shrek");
 	public static final ModelLayerLocation ENDERSHREK = createMain("endershrek");
+	public static final ModelLayerLocation ELON = createMain("elon");
 	public static final ModelLayerLocation BROTHERS = createMain("brothers");
 	public static final ModelLayerLocation DEMON = createMain("demon");
 	public static final ModelLayerLocation GIGACHICKEN = createMain("gigachicken");
@@ -98,12 +102,15 @@ public class ModEntityModelLayers {
 	public static final ModelLayerLocation FLOAT = createMain("float");
 	public static final ModelLayerLocation REPEER = createMain("repeer");
 	public static final ModelLayerLocation PUFFERCOPTER = createMain("puffercopter");
+	public static final ModelLayerLocation MOSSCOW = createMain("mosscow");
+	
 	public static final ModelLayerLocation NOTJUAN_SPIT = createMain("notjuan_spit");
 	public static final ModelLayerLocation BLAYS_SPIT = createMain("blays_spit");
+	public static final ModelLayerLocation ELON_SPIT = createMain("elon_spit");
 	public static final ModelLayerLocation BRAIN_MARKER = createMain("brain_marker");
 	public static final ModelLayerLocation RED_LIGHTNING_BOLT = createMain("red_lightning_bolt");
 	public static final ModelLayerLocation PC = createMain("pc");
-	public static final ModelLayerLocation MOSSCOW = createMain("mosscow");
+	public static final ModelLayerLocation WOLFBERRY_TREE = createMain("wolfberry_tree");
 
 	private static ModelLayerLocation createMain(String name) {
 		return new ModelLayerLocation(Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, name), "main");
@@ -125,6 +132,7 @@ public class ModEntityModelLayers {
 		CableRenderer.register(CABLE);
 		ShrekRenderer.register(SHREK);
 		EndershrekRenderer.register(ENDERSHREK);
+		ElonRenderer.register(ELON);
 		BrothersRenderer.register(BROTHERS);
 		DemonRenderer.register(DEMON);
 		GigachickenRenderer.register(GIGACHICKEN);
@@ -153,11 +161,14 @@ public class ModEntityModelLayers {
 		FloatRenderer.register(FLOAT);
 		RepeerRenderer.register(REPEER);
 		PuffercopterRenderer.register(PUFFERCOPTER);
+		MosscowRenderer.register(MOSSCOW);
+
 		NotjuanSpitRenderer.register(NOTJUAN_SPIT);
 		BlaysSpitRenderer.register(BLAYS_SPIT);
+		ElonSpitRenderer.register(ELON_SPIT);
 		BrainMarkerRenderer.register(BRAIN_MARKER);
 		RedLightningBoltRenderer.register(RED_LIGHTNING_BOLT);
 		PcEntityRenderer.register(PC);
-		MosscowRenderer.register(MOSSCOW);
+		WolfberryTreeRenderer.register(WOLFBERRY_TREE);
 	}
 }

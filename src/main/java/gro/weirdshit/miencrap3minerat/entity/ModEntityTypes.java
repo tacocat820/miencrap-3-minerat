@@ -78,6 +78,10 @@ public class ModEntityTypes {
 			"endershrek",
 			EntityType.Builder.<Endershrek>of(Endershrek::new, MobCategory.MONSTER)
 					.sized(0.9f, 3.0f));
+	public static final EntityType<Elon> ELON = register(
+			"elon",
+			EntityType.Builder.<Elon>of(Elon::new, MobCategory.MONSTER)
+					.sized(0.9f, 1.7f));
 	public static final EntityType<Brothers> BROTHERS = register(
 			"brothers",
 			EntityType.Builder.<Brothers>of(Brothers::new, MobCategory.MONSTER)
@@ -203,6 +207,9 @@ public class ModEntityTypes {
 	public static final EntityType<BlaysSpit> BLAYS_SPIT = register(
 			"blays_spit",
 			EntityType.Builder.<BlaysSpit>of(BlaysSpit::new, MobCategory.MISC).fireImmune());
+	public static final EntityType<ElonSpit> ELON_SPIT = register(
+			"elon_spit",
+			EntityType.Builder.<ElonSpit>of(ElonSpit::new, MobCategory.MISC).fireImmune());
 	public static final EntityType<PcEntity> PC = register(
 			"pc",
 			EntityType.Builder.<PcEntity>of(PcEntity::new, MobCategory.MISC)
@@ -244,6 +251,9 @@ public class ModEntityTypes {
 			EntityType.Builder.<Mosscow>of(Mosscow::new, MobCategory.CREATURE)
 					.sized(1.0f, 1.0f)
 	);
+	public static final EntityType<WolfberryTree> WOLFBERRY_TREE = register(
+			"wolfberry_tree",
+			EntityType.Builder.<WolfberryTree>of(WolfberryTree::new, MobCategory.MISC).noLootTable().sized(1.3F, 3.0F));
 
 	// .noLootTable().sized(0.0F, 0.0F).clientTrackingRange(0)
 
@@ -274,6 +284,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(CABLE, Cable.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(SHREK, Shrek.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(ENDERSHREK, Endershrek.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(ELON, Elon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(BROTHERS, Brothers.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(DEMON, Demon.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(GIGACHICKEN, Gigachicken.createCubeAttributes());
@@ -303,6 +314,7 @@ public class ModEntityTypes {
 		FabricDefaultAttributeRegistry.register(FLOAT, Float.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(REPEER, Repeer.createCubeAttributes());
 		FabricDefaultAttributeRegistry.register(PUFFERCOPTER, Puffercopter.createCubeAttributes());
+		FabricDefaultAttributeRegistry.register(WOLFBERRY_TREE, WolfberryTree.createCubeAttributes());
 	}
 
 	public static void generate() {

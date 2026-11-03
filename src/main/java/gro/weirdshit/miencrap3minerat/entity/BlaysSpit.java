@@ -33,7 +33,7 @@ public class BlaysSpit extends AbstractHurtingProjectile {
    }
 
    public BlaysSpit(final Level level, final LivingEntity mob, final Vec3 direction) {
-      super(ModEntityTypes.NOTJUAN_SPIT, mob, direction, level);
+      super(ModEntityTypes.ELON_SPIT, mob, direction, level);
    }
 
    @Override

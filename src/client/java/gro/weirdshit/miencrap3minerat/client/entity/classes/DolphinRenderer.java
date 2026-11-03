@@ -76,8 +76,7 @@ public class DolphinRenderer extends MobRenderInterface {
                     
             this.head.xRot = state.xRot * (float) (Math.PI / 180.0);
             this.head.yRot = state.yRot * (float) (Math.PI / 180.0);
-            float limbSwingAmplitude = state.walkAnimationSpeed;
-            float limbSwingAnimationProgress = state.walkAnimationPos;/*
+            /*
             
             this.leg.xRot = Mth.cos(limbSwingAnimationProgress * 0.2f + Mth.PI) * 3.4f * limbSwingAmplitude;
             this.leg2.xRot = Mth.cos(limbSwingAnimationProgress * 0.2f) * 3.4f * limbSwingAmplitude;

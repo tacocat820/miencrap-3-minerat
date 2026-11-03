@@ -23,6 +23,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.InsideBlockEffectType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -66,11 +67,11 @@ public abstract class SulfuricAcidFluid extends FlowingFluid {
 	protected void entityInside(Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler) {
 		handler.apply(InsideBlockEffectType.EXTINGUISH);
 
-		if (!(world instanceof ServerLevel serverLevel) || !(entity instanceof LivingEntity livingEntity)) return;
+		if (!(world instanceof ServerLevel serverLevel) || !(entity instanceof Mob mob)) return;
 
 		if (world.getGameTime() % 20 == 0) {
 			// Hurt and weaken entities that step inside.
-			livingEntity.hurtServer(serverLevel, world.damageSources().magic(), 6.0F); // 1 heart/sec
+			mob.hurtServer(serverLevel, world.damageSources().magic(), 6.0F); // 1 heart/sec
 		}
 	}
 
