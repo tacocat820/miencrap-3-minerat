@@ -228,7 +228,13 @@ public class ModEntityTypes {
 	public static final EntityType<HospitalMarker> HOSPITAL_MARKER = register(
 			"hospital_marker",
 			EntityType.Builder.<HospitalMarker>of(HospitalMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
-					.clientTrackingRange(0));
+					.clientTrackingRange(0)
+	);
+	public static final EntityType<BackroomsMarker> BACKROOMS_MARKER = register(
+			"backrooms_marker",
+			EntityType.Builder.<BackroomsMarker>of(BackroomsMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+			.clientTrackingRange(0)
+	);
 	public static final EntityType<PlayerDeathMarker> PLAYER_DEATH_MARKER = register(
 			"player_death_marker",
 			EntityType.Builder.<PlayerDeathMarker>of(PlayerDeathMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
