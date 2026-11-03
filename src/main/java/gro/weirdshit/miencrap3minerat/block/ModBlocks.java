@@ -240,12 +240,12 @@ public class ModBlocks {
 	public static RegisteredBlock URANIUM_BLOCK = new GenericBlock("uranium_block", Block::new, SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering().tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock URANIUM_ORE = new GenericBlock("uranium_ore", Block::new, SoundType.STONE,4.0f, 10.0f).light(5).emissiveRendering().tool(WithTool.PICKAXE).reg();
     
-	public static RegisteredBlock BACKROOMS_LAMP = new GenericBlock("backrooms_lamp", Block::new, SoundType.GLASS,32.0f, 32.0f).light(15).reg();
+	public static RegisteredBlock BACKROOMS_LAMP = new GenericBlock("backrooms_lamp", Block::new, SoundType.GLASS,32.0f, 640.0f).light(15).reg();
 	public static RegisteredBlock DAMAGED_BACKROOMS_LAMP = new GenericBlock("damaged_backrooms_lamp", Block::new, SoundType.GLASS, 32.0f,32.0f).light(8).reg();
-    public static RegisteredBlock BACKROOMS_CARPET = new GenericBlock("backrooms_carpet", Block::new, SoundType.WOOL,32.0f, 32.0f).reg();
-    public static RegisteredBlock BACKROOMS = new GenericBlock("backrooms", Block::new, SoundType.STONE,32.0f,32.0f).reg();
-	public static RegisteredBlock BACKROOMS_SLAB = new GenericBlock("backrooms_slab", SlabBlock::new, SoundType.STONE, 32.0f,32.0f).copyOf(BACKROOMS.block).reg();
-	public static RegisteredBlock BACKROOMS_STAIRS = new GenericBlock("backrooms_stairs", p -> new StairBlock(BACKROOMS.block.defaultBlockState(), p), SoundType.WOOD,32f,32.0f).copyOf(BACKROOMS.block).reg();
+    public static RegisteredBlock BACKROOMS_CARPET = new GenericBlock("backrooms_carpet", Block::new, SoundType.WOOL,32.0f, 640.0f).reg();
+    public static RegisteredBlock BACKROOMS = new GenericBlock("backrooms", Block::new, SoundType.STONE,32.0f,640.0f).reg();
+	public static RegisteredBlock BACKROOMS_SLAB = new GenericBlock("backrooms_slab", SlabBlock::new, SoundType.STONE, 32.0f,640.0f).copyOf(BACKROOMS.block).reg();
+	public static RegisteredBlock BACKROOMS_STAIRS = new GenericBlock("backrooms_stairs", p -> new StairBlock(BACKROOMS.block.defaultBlockState(), p), SoundType.WOOD,32f,640.0f).copyOf(BACKROOMS.block).reg();
     
 	public static RegisteredBlock BLACKSCREEN = new GenericBlock("blackscreen", Block::new, SoundType.STONE,-1.0f,10000.0f).reg();
     public static RegisteredBlock WHITESCREEN = new GenericBlock("whitescreen", Block::new, SoundType.STONE,-1.0f,10000.0f).light(15).reg();
