@@ -92,11 +92,15 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        
-        if (PlayerStartTransition.isTrans(player)) return InteractionResult.PASS;
 
         if (player instanceof ServerPlayer serverPlayer) {
-            if (PlayerEventStack.back(serverPlayer).id() == "operaGeometry") {
+            if (PlayerStartTransition.isTrans(player)) return InteractionResult.PASS;
+
+            MIENCRAP3MINERAT.LOGGER.info(PlayerEventStack.back(serverPlayer).id());
+
+            if (PlayerEventStack.back(serverPlayer).id().equals("operaGeometry")) {
+
+                MIENCRAP3MINERAT.LOGGER.info("type a");
 
                 StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
                 ServerPlayNetworking.send(serverPlayer, boxPayload);
@@ -104,6 +108,8 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
                 PlayerEventStack.popAndTransition(serverPlayer, "geometry_pc_vertical_close", 40);
 
             } else {
+
+                MIENCRAP3MINERAT.LOGGER.info("type b");
 
                 PlayerEventStack.push(serverPlayer, "operaGeometry");
 

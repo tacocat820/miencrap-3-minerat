@@ -49,8 +49,6 @@ public class OperaSkybox extends Skybox {
             Vec2 camRot = Minecraft.getInstance().getCameraEntity().getRotationVector();
             Vec3 cam = Minecraft.getInstance().gameRenderer.getMainCamera().position();
 
-            MIENCRAP3MINERAT.LOGGER.info(String.valueOf((float)camRot.y));
-
             Std140Builder.intoBuffer(view.data())
                 .putFloat(win.getWidth()).putFloat(win.getHeight())
                 .putFloat((float)camRot.x).putFloat((float)camRot.y).putFloat(0.0f)
