@@ -5,8 +5,11 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 
+import gro.weirdshit.miencrap3minerat.etc.EventStackMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
+import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
@@ -93,6 +96,34 @@ public class ModCommands {
                         
                         if (ctx.getSource().getEntityOrException() instanceof Player player) {
                             PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "vertical_close", 20);
+                        }
+
+                        return 1;
+                    }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("eventIdPush")
+                    .then(Commands.argument("val", StringArgumentType.string())
+                            .executes(ctx -> {
+                                      
+                                String val = StringArgumentType.getString(ctx, "val");
+                                
+                                if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+                                    ((EventStackMixinInterface)(Object)player).push(val);
+                                }
+
+                                return 1;
+                            })));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("eventIdPop")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+                            ((EventStackMixinInterface)(Object)player).popAndTransition("vertical_close", 20);
                         }
 
                         return 1;

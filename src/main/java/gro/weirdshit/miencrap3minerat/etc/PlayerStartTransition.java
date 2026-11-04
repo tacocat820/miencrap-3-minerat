@@ -12,7 +12,7 @@ import net.minecraft.world.phys.Vec3;
 public class PlayerStartTransition {
     public static void run(Player player, ResourceKey<Level> dimension, Vec3 pos, String transition, int when) {
 
-        ((TransitionsMixinInterface)(Object)player).teleportTo(dimension, pos, 20);
+        ((TransitionsMixinInterface)(Object)player).teleportTo(dimension, pos, when);
         
         StartTransitionPayload payload = new StartTransitionPayload(player.level().dimension() != dimension, transition);
         if (player instanceof ServerPlayer serverPlayer) {

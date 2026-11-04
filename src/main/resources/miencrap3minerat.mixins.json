@@ -22,7 +22,9 @@
 		"ItemMixin",
 		"EndPodiumMixin",
 		"MakeFeatureMethodsPublicMixin",
-		"EnderDragonMixin"
+		"EnderDragonMixin",
+		"SynchedEventIDMixin",
+		"EventStackMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

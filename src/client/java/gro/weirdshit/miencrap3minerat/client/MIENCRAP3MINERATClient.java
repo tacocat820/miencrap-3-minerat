@@ -35,6 +35,8 @@ import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTran
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransitions;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
+import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
+import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -73,6 +75,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;

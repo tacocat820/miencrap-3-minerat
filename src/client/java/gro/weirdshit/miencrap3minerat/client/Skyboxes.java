@@ -56,11 +56,11 @@ public class Skyboxes {
 	private static final Skybox ORANGE_SKYBOX = new OrangeSkybox();
 	private static final Skybox POST_NETHER_OVERWORLD_SKYBOX = new PostNetherOverworldSkybox();
 	
-	private static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
-	private static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
-	private static final Identifier CONVO_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"); 
-	private static final Identifier ORANGE_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"); 
-	private static final Identifier HEAVEN_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "heaven"); 
+	public static final Identifier META_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta");
+	public static final Identifier OPERA_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"); 
+	public static final Identifier CONVO_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"); 
+	public static final Identifier ORANGE_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"); 
+	public static final Identifier HEAVEN_DIMENSION = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "heaven"); 
 
     @SuppressWarnings("unchecked")
     private static <T extends Skybox> T getCurrentSkybox() {

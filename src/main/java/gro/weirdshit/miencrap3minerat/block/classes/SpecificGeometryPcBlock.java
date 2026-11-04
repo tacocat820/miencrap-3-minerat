@@ -5,6 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import com.mojang.serialization.MapCodec;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.etc.PlayerEventStack;
+import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.TransitionsMixinInterface;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
@@ -91,17 +93,33 @@ public class SpecificGeometryPcBlock extends BaseEntityBlock {
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         
+        if (PlayerStartTransition.isTrans(player)) return InteractionResult.PASS;
+
         if (player instanceof ServerPlayer serverPlayer) {
-            StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
-            ServerPlayNetworking.send(serverPlayer, boxPayload);
+            if (PlayerEventStack.back(serverPlayer).id() == "operaGeometry") {
 
-            ((TransitionsMixinInterface)(Object)player).teleportTo(
-                ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"))
-                , new Vec3(32, -28, 37), 40
-            );
+                StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
+                ServerPlayNetworking.send(serverPlayer, boxPayload);
 
-            StartTransitionPayload payload = new StartTransitionPayload(true, "geometry_pc_vertical_close");
-            ServerPlayNetworking.send(serverPlayer, payload);
+                PlayerEventStack.popAndTransition(serverPlayer, "geometry_pc_vertical_close", 40);
+
+            } else {
+
+                PlayerEventStack.push(serverPlayer, "operaGeometry");
+
+                StartBoxTransitionPayload boxPayload = new StartBoxTransitionPayload(pos);
+                ServerPlayNetworking.send(serverPlayer, boxPayload);
+
+                ((TransitionsMixinInterface)(Object)player).teleportTo(
+                    ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"))
+                    , new Vec3(32, -28, 37), 40
+                );
+
+                StartTransitionPayload payload = new StartTransitionPayload(true, "geometry_pc_vertical_close");
+                ServerPlayNetworking.send(serverPlayer, payload);
+
+            }
+
         }
 
 		return InteractionResult.SUCCESS;

@@ -8,9 +8,11 @@ import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.BrainMarker;
+import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
@@ -23,7 +25,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
-    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV, END;
+    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV, END, META;
 }
 
 public class Music {
@@ -36,8 +38,7 @@ public class Music {
     private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
     private static TagKey<Biome> CONVO = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"));
     private static TagKey<Biome> ORANGE = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"));
-
-
+    
     static Random rand = new Random();
     private static SoundInstance music = null;
     private static int counter = 0;
@@ -74,6 +75,9 @@ public class Music {
         
         type = getMusicType(minecraft);
         SoundEvent chosen = chooseSong(minecraft);
+
+        if (chosen == null) return;
+
         nowPlaying = chosen.location().getPath();
         music = SimpleSoundInstance.forMusic(chosen);
 
@@ -83,24 +87,20 @@ public class Music {
     }
     
     private static MusicType getMusicType(Minecraft minecraft) {
-        if (minecraft.level == null) {
-            return MusicType.MENU;
-        }
-        if (minecraft.player != null && minecraft.player.getEffectBlendFactor(ModEffects.LIVEITATION, 0.0f) > 0) {
+        if (minecraft.level == null) return MusicType.MENU;
+
+        if (minecraft.player != null && minecraft.player.getEffectBlendFactor(ModEffects.LIVEITATION, 0.0f) > 0)
             return MusicType.LIVEITATION;
-        }
+        
         if (minecraft.level.dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier())
-            && ClientWtf.wtf == 100
-        ) {
-            return MusicType.PNOV;
-        }
-        if (minecraft.level.dimension().identifier().equals(BuiltinDimensionTypes.END.identifier())
-        ) {
+            && ClientWtf.wtf == 100) return MusicType.PNOV;
+        
+        if (minecraft.level.dimension().identifier().equals(BuiltinDimensionTypes.END.identifier())) 
             return MusicType.END;
-        }
-        if (battle) {
-            return MusicType.BATTLE;
-        }
+        
+        if (minecraft.level.dimension().identifier().equals(Skyboxes.META_DIMENSION)) return MusicType.META;
+        
+        if (battle) return MusicType.BATTLE; 
         return MusicType.PEACEFUL;
     }
     
@@ -127,6 +127,19 @@ public class Music {
                     MusicSounds.EPIK,
                     MusicSounds.BORING,
                 });
+
+
+            case META:
+
+                Player p = (Player)Minecraft.getInstance().player;
+				SynchedEventIDMixinInterface seidmi = (SynchedEventIDMixinInterface)(Object)p;;
+				
+                switch (seidmi.getCurrentEventID()) {
+                    case "backrooms": return MusicSounds.BACKROOMS;
+                    default: return null;
+                }
+
+
             case PEACEFUL:
 
                 if (brainCheck(minecraft.player)) return Choose(new SoundEvent[]{

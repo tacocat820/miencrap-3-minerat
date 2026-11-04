@@ -218,6 +218,11 @@ public class Elon extends Monster {
 			}
 		}
 
+		float distance = target == null ? 1000.0f : this.distanceTo(target);
+		if (level() instanceof ServerLevel && level().getGameTime() % 400 == 0 && distance > 20.0f) {
+			this.discard(); // elon musketeer disappears
+		}
+
 		super.tick();
 	}
 

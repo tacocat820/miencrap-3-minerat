@@ -344,6 +344,15 @@
         "element_type": "minecraft:single_pool_element",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "miencrap3minerat:backrooms/geometry",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }

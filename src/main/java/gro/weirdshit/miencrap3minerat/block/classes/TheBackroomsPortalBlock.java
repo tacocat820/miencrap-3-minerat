@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
+import gro.weirdshit.miencrap3minerat.etc.PlayerEventStack;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -42,6 +43,7 @@ public class TheBackroomsPortalBlock {
             Vec3 movement = entity.getDeltaMovement();
             entity.setDeltaMovement(movement.x / 3, movement.y / 3, movement.z / 3);
             if (entity instanceof ServerPlayer player && !PlayerStartTransition.isTrans(player)) {
+                PlayerEventStack.push(player, "backrooms");
                 PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
             }
         }
