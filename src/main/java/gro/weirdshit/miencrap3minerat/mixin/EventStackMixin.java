@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,17 +12,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.serialization.Codec;
 
-import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.etc.EventRecord;
 import gro.weirdshit.miencrap3minerat.etc.EventStackMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
