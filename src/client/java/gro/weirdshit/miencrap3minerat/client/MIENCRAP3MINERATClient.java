@@ -8,6 +8,7 @@ import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModParticles;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import gro.weirdshit.miencrap3minerat.net.classes.CT2RecipesPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
@@ -329,6 +330,9 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(ReverseTransitionTeleportingPayload.TYPE, (payload, context) -> {
 			OverlayTransitions.out();
+		});
+		ClientPlayNetworking.registerGlobalReceiver(CT2RecipesPayload.TYPE, (payload, context) -> {
+			CTableScreen.cachedCraftDisplayCollection = payload.collection();
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());

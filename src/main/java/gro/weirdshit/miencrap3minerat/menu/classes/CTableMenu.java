@@ -10,6 +10,9 @@ import java.util.Map.Entry;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
@@ -21,9 +24,15 @@ import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.GridItem;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsGrid;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ItemsSet;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -230,7 +239,68 @@ public class CTableMenu extends AbstractContainerMenu {
 		return clicked;
 	}
 	//-------class
+	static public class CraftDisplayCollection {
+
+		public CraftDisplay[] craftDisplays;
+
+		public CraftDisplayCollection(CraftDisplay[] craftDisplays) {
+			this.craftDisplays = craftDisplays;
+		}
+
+		public static final StreamCodec<RegistryFriendlyByteBuf, CraftDisplayCollection> STREAM_CODEC = new StreamCodec<RegistryFriendlyByteBuf, CraftDisplayCollection>() {
+			public CraftDisplayCollection decode(final RegistryFriendlyByteBuf input) {
+				int length = input.readInt();
+
+				CraftDisplay[] craftDisplays = new CraftDisplay[length];
+
+				for (int i = 0; i < length; ++i) {
+					craftDisplays[i] = CraftDisplay.STREAM_CODEC.decode(input); 
+				}
+				return new CraftDisplayCollection(craftDisplays);
+			}
+
+			public void encode(final RegistryFriendlyByteBuf output, final CraftDisplayCollection value) {
+				//FriendlyByteBuf.writeBlockPos(output, value);
+				output.writeInt(value.craftDisplays.length);
+
+				for (CraftDisplay craftDisplay : value.craftDisplays) {
+					CraftDisplay.STREAM_CODEC.encode(output, craftDisplay);
+				}
+			}
+		};
+
+	}
 	static public class CraftDisplay {
+
+		public static final StreamCodec<RegistryFriendlyByteBuf, CraftDisplay> STREAM_CODEC = new StreamCodec<RegistryFriendlyByteBuf, CraftDisplay>() {
+			public CraftDisplay decode(final RegistryFriendlyByteBuf input) {
+				int importance = input.readInt();
+				int cols = input.readInt();
+				int rows = input.readInt();
+
+				ItemStack result = ItemStack.OPTIONAL_STREAM_CODEC.decode(input);
+				CraftDisplay newCraftDisplay = new CraftDisplay(cols, rows, result, importance);
+
+				for (int i = 0; i < cols * rows; ++i) {
+					ItemStack item = ItemStack.OPTIONAL_STREAM_CODEC.decode(input);
+					newCraftDisplay.setItem(item, i);
+				}
+				return newCraftDisplay;
+			}
+
+			public void encode(final RegistryFriendlyByteBuf output, final CraftDisplay value) {
+				//FriendlyByteBuf.writeBlockPos(output, value);
+				output.writeInt(value.importance);
+				output.writeInt(value.cols);
+				output.writeInt(value.rows);
+				
+				ItemStack.OPTIONAL_STREAM_CODEC.encode(output, value.result);
+				for (ItemStack stack : value.items) {
+					ItemStack.OPTIONAL_STREAM_CODEC.encode(output, stack);
+				}
+			}
+		};
+
 		final public int importance;
 		final public int cols;
 		final public int rows;

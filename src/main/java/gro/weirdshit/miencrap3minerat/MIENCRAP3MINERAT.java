@@ -31,7 +31,10 @@ import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
 import gro.weirdshit.miencrap3minerat.item.ModItems;
 import gro.weirdshit.miencrap3minerat.item.RegisteredItem;
 import gro.weirdshit.miencrap3minerat.menu.ModMenuType;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplay;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplayCollection;
 import gro.weirdshit.miencrap3minerat.net.ModPackets;
+import gro.weirdshit.miencrap3minerat.net.classes.CT2RecipesPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.saved_data.MetMerl;
@@ -47,6 +50,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
@@ -102,6 +106,25 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 				}
 			}
 			return InteractionResult.PASS;
+		});
+		ServerPlayConnectionEvents.JOIN.register((listener, sender, server) -> {
+
+			ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
+			ModRegistry.RECIPES_2.values().forEach(v -> {
+				v.forEach(craftRecipe -> {
+
+					
+					displayedItems.add(
+						craftRecipe.toDisplay()
+					);
+
+				});
+			});
+			
+			CraftDisplayCollection craftDisplayCollection = new CraftDisplayCollection(displayedItems.toArray(new CraftDisplay[displayedItems.size()]));
+			CT2RecipesPayload payload = new CT2RecipesPayload(craftDisplayCollection);
+			ServerPlayNetworking.send(listener.getPlayer(), payload);
+			
 		});
 		ServerMessageEvents.CHAT_MESSAGE.register((message, sender, boundChatType) -> {
 

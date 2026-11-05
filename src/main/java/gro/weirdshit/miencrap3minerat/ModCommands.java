@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -12,6 +13,9 @@ import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplay;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplayCollection;
+import gro.weirdshit.miencrap3minerat.net.classes.CT2RecipesPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
@@ -96,6 +100,33 @@ public class ModCommands {
                         
                         if (ctx.getSource().getEntityOrException() instanceof Player player) {
                             PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "vertical_close", 20);
+                        }
+
+                        return 1;
+                    }));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("sendCT2DisplaysTest")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+
+                        ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
+                        ModRegistry.RECIPES_2.values().forEach(v -> {
+                            v.forEach(craftRecipe -> {
+
+                                
+                                displayedItems.add(
+                                    craftRecipe.toDisplay()
+                                );
+
+                            });
+                        });
+                        
+                        CraftDisplayCollection craftDisplayCollection = new CraftDisplayCollection(displayedItems.toArray(new CraftDisplay[displayedItems.size()]));
+                        CT2RecipesPayload payload = new CT2RecipesPayload(craftDisplayCollection);
+						if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+							ServerPlayNetworking.send(player, payload);
                         }
 
                         return 1;

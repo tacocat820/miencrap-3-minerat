@@ -42,6 +42,9 @@ public class AbstractMassCookingBlock {
         
         @Override
         protected InteractionResult useItemOn(final ItemStack player_stack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
+            
+            if (level.isClientSide()) return InteractionResult.PASS;
+
             if (level.getBlockEntity(pos) instanceof BlockEnt entity) {
 
                 ItemStack inner_stack = entity.getItem().copy();
@@ -130,6 +133,8 @@ public class AbstractMassCookingBlock {
         }
 
         public void tick(Level level, BlockPos pos, BlockState blockState) {
+
+            if (level.isClientSide()) return;
 
             if (this.isActive) {
                 this.ticksLeft--;

@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.net;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.menu.classes.WatercoolerMenu;
+import gro.weirdshit.miencrap3minerat.net.classes.CT2RecipesPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
@@ -28,6 +29,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> BOX_TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartBoxTransitionPayload.TYPE, StartBoxTransitionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> TRANSITION_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartTransitionPayload.TYPE, StartTransitionPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> REVERSE_TRANSITION_TELEPORTING_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ReverseTransitionTeleportingPayload.TYPE, ReverseTransitionTeleportingPayload.CODEC);
+    public static CustomPacketPayload.TypeAndCodec<?, ?> CT2_RECIPES_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(CT2RecipesPayload.TYPE, CT2RecipesPayload.CODEC);
     //public static CustomPacketPayload.TypeAndCodec<?, ?> MICROWAVE_SOUND_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(MicrowaveSoundPayload.TYPE, MicrowaveSoundPayload.CODEC);
 
     public static void clientGenerate() {}

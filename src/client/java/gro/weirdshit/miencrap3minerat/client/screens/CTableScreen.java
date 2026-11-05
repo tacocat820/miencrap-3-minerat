@@ -22,6 +22,7 @@ import gro.weirdshit.miencrap3minerat.etc.ModShapes;
 import gro.weirdshit.miencrap3minerat.etc.Point2i;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplay;
+import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.CraftDisplayCollection;
 import gro.weirdshit.miencrap3minerat.menu.classes.CTableMenu.ShapelessRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -73,22 +74,16 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 
 	private ArrayList<CraftDisplay> displayedItems = new ArrayList<>();
 
+	public static CraftDisplayCollection cachedCraftDisplayCollection = new CraftDisplayCollection(new CraftDisplay[0]);
+
 	public CTableScreen(CTableMenu abstractContainerMenu, Inventory inventory, Component component) {
 		super(abstractContainerMenu, inventory, component);
 		// Center the title
 		// this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 		this.titleLabelX = 8;
 
-		ModRegistry.RECIPES_2.values().forEach(v -> {
-			v.forEach(craftRecipe -> {
-
-				
-				displayedItems.add(
-					craftRecipe.toDisplay()
-				);
-
-			});
-		});
+		for (CraftDisplay craftDisplay : cachedCraftDisplayCollection.craftDisplays) 
+			displayedItems.add(craftDisplay);
 
 		// System.out.println("\nbefore:"); for (CraftDisplay iterable_element : displayedItems) {System.out.print(" "+iterable_element.importance);}
 		displayedItems.sort( (a, b) -> { return -1 * ((Integer)a.importance).compareTo(b.importance);} );		
