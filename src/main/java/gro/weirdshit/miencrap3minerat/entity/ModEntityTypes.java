@@ -201,6 +201,12 @@ public class ModEntityTypes {
 			"puffercopter",
 			EntityType.Builder.<Puffercopter>of(Puffercopter::new, MobCategory.CREATURE)
 					.sized(0.8f, 0.8f));
+	public static final EntityType<Mosscow> MOSSCOW = register(
+			"mosscow",
+			EntityType.Builder.<Mosscow>of(Mosscow::new, MobCategory.CREATURE)
+					.sized(1.0f, 1.0f)
+	);
+
 	public static final EntityType<NotjuanSpit> NOTJUAN_SPIT = register(
 			"notjuan_spit",
 			EntityType.Builder.<NotjuanSpit>of(NotjuanSpit::new, MobCategory.MISC).fireImmune());
@@ -252,10 +258,10 @@ public class ModEntityTypes {
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
 					.clientTrackingRange(0)
 	);
-	public static final EntityType<Mosscow> MOSSCOW = register(
-			"mosscow",
-			EntityType.Builder.<Mosscow>of(Mosscow::new, MobCategory.CREATURE)
-					.sized(1.0f, 1.0f)
+	public static final EntityType<WolfberryJuiceProjectile> WOLFBERRY_JUICE_PROJECTILE = register(
+			"wolfberry_juice_projectile",
+			EntityType.Builder.<WolfberryJuiceProjectile>of(WolfberryJuiceProjectile::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+					.clientTrackingRange(0)
 	);
 	public static final EntityType<WolfberryTree> WOLFBERRY_TREE = register(
 			"wolfberry_tree",

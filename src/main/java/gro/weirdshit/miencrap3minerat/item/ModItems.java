@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.item.classes.ChiselItem;
 import gro.weirdshit.miencrap3minerat.item.classes.DvdItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FeatherSwordItem;
 import gro.weirdshit.miencrap3minerat.item.classes.FireExtinguisherItem;
+import gro.weirdshit.miencrap3minerat.item.classes.GlassOfWolfberryJuiceItem;
 import gro.weirdshit.miencrap3minerat.item.classes.HairdryerItem;
 import gro.weirdshit.miencrap3minerat.item.classes.IronAppleItem;
 import gro.weirdshit.miencrap3minerat.item.classes.LavaPotionItem;
@@ -276,7 +277,7 @@ public class ModItems {
 	);
 	
 	public static RegisteredItem<?> GLASS_EMPTY = ModItems.register("glass_empty", Item::new, new Item.Properties());
-	public static RegisteredItem<?> GLASS_OF_POISON = ModItems.register("glass_of_poison", Item::new, new Item.Properties());
+	public static RegisteredItem<?> GLASS_OF_POISON = ModItems.register("glass_of_poison", GlassOfWolfberryJuiceItem::new, new Item.Properties());
 	public static RegisteredItem<?> WOLFBERRIES = ModItems.register("wolfberries", Item::new, new Item.Properties());
 	
 	public static void generate() {
