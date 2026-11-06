@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -49,6 +50,9 @@ public class BasketRenderer {
             BlockEntityRenderer.super.extractRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
             
             ItemStack stack = blockEntity.getItem();
+
+            //MIENCRAP3MINERAT.LOGGER.info("xtracting za RENDA STATE!!");
+            //MIENCRAP3MINERAT.LOGGER.info(stack.toString());
 
             ItemStackRenderState isrs = new ItemStackRenderState();
             itemModelResolver.updateForTopItem(isrs, stack, ItemDisplayContext.ON_SHELF, blockEntity.level(), blockEntity, 0);

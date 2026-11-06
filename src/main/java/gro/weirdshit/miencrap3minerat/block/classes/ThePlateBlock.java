@@ -26,6 +26,8 @@ public class ThePlateBlock {
 
         @Override
         protected InteractionResult useItemOn(final ItemStack player_stack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
+            if (level.isClientSide()) return InteractionResult.SUCCESS;
+            
             if (level.getBlockEntity(pos) instanceof ThePlateBlock.BlockEnt entity) {
                 entity.incrementClicks();
 

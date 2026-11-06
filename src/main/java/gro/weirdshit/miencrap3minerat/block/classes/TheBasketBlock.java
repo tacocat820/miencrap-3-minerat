@@ -1,6 +1,12 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
+import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
+import gro.weirdshit.miencrap3minerat.block.ModBlocks;
+import gro.weirdshit.miencrap3minerat.item.ModItems;
+import gro.weirdshit.miencrap3minerat.net.classes.ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -8,9 +14,11 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
@@ -24,6 +32,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.ShelfBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -47,13 +56,14 @@ public class TheBasketBlock {
         }
 
         @Override
-        protected InteractionResult useItemOn(final ItemStack player_stack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
-            if (level.isClientSide()) return InteractionResult.PASS;
+        protected InteractionResult useItemOn(final ItemStack playerStack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
+            if (level.isClientSide()) return InteractionResult.SUCCESS;
             
             if (level.getBlockEntity(pos) instanceof TheBasketBlock.BlockEnt basketEntity) {
                 basketEntity.incrementClicks();
 
-                ItemStack inner_stack = basketEntity.getItem().copy();
+                MIENCRAP3MINERAT.LOGGER.info(playerStack.getItemName().toString());
+                ItemStack innerStack = basketEntity.getItem().copy();
 
                 // //drop last
                 // if (!inner_stack.isEmpty()) {
@@ -62,10 +72,12 @@ public class TheBasketBlock {
                 // }
 
                 //swap
-                basketEntity.setItem(player_stack);
-                player.setItemInHand(hand, inner_stack);
+                if (!playerStack.isEmpty()) basketEntity.setItem(playerStack.copy());
+                else basketEntity.removeItem();
 
-                return InteractionResult.SUCCESS;
+                MIENCRAP3MINERAT.LOGGER.info("piss");
+                player.setItemInHand(hand, innerStack);
+                return InteractionResult.SUCCESS.heldItemTransformedTo(innerStack);
             }
             
             return InteractionResult.PASS;
@@ -83,12 +95,18 @@ public class TheBasketBlock {
         }
 
         public void setItem(ItemStack stack) {
-            this.items.set(0, stack);
+            if (stack.isEmpty()) this.removeItem();
+            else this.items.set(0, stack);
             this.setChanged();
         }
 
         public void removeItem() {
-            this.items.clear();;
+            this.items.set(0, new ItemStack(Items.TNT));
+            this.items.set(0, ItemStack.EMPTY);
+
+            ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload serverClientItemDesyncWhenTheItemIsAirWorkaroundPayload = new ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload(this.getBlockPos(), ItemStack.EMPTY);
+            this.sendPacketToTrackingClients(serverClientItemDesyncWhenTheItemIsAirWorkaroundPayload);
+            //this.items.remove(0);
             this.setChanged();
         }
 
@@ -175,6 +193,11 @@ public class TheBasketBlock {
         @Override
         public NonNullList<ItemStack> getItems() {
             return items;
+        }
+
+        public void sendPacketToTrackingClients(CustomPacketPayload payload) {
+            if (payload == null || !(this.getLevel() instanceof ServerLevel)) return;
+            PlayerLookup.tracking(this).forEach(player -> ServerPlayNetworking.send(player, payload));
         }
     }
 }

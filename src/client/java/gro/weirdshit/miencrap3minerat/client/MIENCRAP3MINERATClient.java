@@ -13,6 +13,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.FlashPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.PlayerHitTensionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
+import gro.weirdshit.miencrap3minerat.net.classes.ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
@@ -56,6 +57,7 @@ import net.minecraft.client.particle.CampfireSmokeParticle.CosyProvider;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import gro.weirdshit.miencrap3minerat.block.ModFluids;
+import gro.weirdshit.miencrap3minerat.block.classes.ImplementedContainer;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBackroomsPortalBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
@@ -79,6 +81,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class MIENCRAP3MINERATClient implements ClientModInitializer {
@@ -333,6 +336,11 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(CT2RecipesPayload.TYPE, (payload, context) -> {
 			CTableScreen.cachedCraftDisplayCollection = payload.collection();
+		});
+		ClientPlayNetworking.registerGlobalReceiver(ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload.TYPE, (payload, context) -> {
+			BlockEntity blockEntity = context.client().level.getBlockEntity(payload.pos());
+			if (blockEntity instanceof ImplementedContainer implementedContainer)
+				implementedContainer.setItem(0, payload.itemStack());
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());

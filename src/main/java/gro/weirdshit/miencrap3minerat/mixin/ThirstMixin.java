@@ -116,7 +116,6 @@ public abstract class ThirstMixin implements ThirstMixinInterface {
             if (timer >= 40) {
                 if (this.m3m$isAlive()) {
                     int thirst = this.getThirst();
-                    System.err.println("thirst thirst" + thirst);
                     if (thirst <= 0) {
 
                         DamageSource damageSource = new DamageSource(
