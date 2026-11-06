@@ -3,11 +3,15 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 import org.jspecify.annotations.Nullable;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.net.classes.ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -116,6 +120,14 @@ public class AbstractMassCookingBlock {
             this.isActive = false;
             this.stopCooking(pos);
 
+            ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload serverClientItemDesyncWhenTheItemIsAirWorkaroundPayload = new ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload(this.getBlockPos(), ItemStack.EMPTY);
+            this.sendPacketToTrackingClients(serverClientItemDesyncWhenTheItemIsAirWorkaroundPayload);
+
+        }
+
+        public void sendPacketToTrackingClients(CustomPacketPayload payload) {
+            if (payload == null || !(this.getLevel() instanceof ServerLevel)) return;
+            PlayerLookup.tracking(this).forEach(player -> ServerPlayNetworking.send(player, payload));
         }
 
         /// ## put item in the block and wait.....
