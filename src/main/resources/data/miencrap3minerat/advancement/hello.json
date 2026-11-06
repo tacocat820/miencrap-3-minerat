@@ -1,21 +1,27 @@
 {
-    "criteria": {
-        "e" : {
-            "trigger": "tick"
-        }
-    },
-    "display": {
-        "hidden": false,
-        "icon": {
-            "id": "miencrap3minerat:globe"
-        },
-        "title": {"color": "green","translate": "adv.miencrap3minerat.hello"},
-        "description": {"color": "red", "translate": "adv.miencrap3minerat.hello.desc"},
-        "frame": "challenge",
-        "announce_to_chat": true,
-        "background": "miencrap3minerat:death"
-    },
-    "rewards": {
-        "function": "miencrap3minerat:hello"
+  "criteria": {
+    "e": {
+      "trigger": "tick"
     }
+  },
+  "display": {
+    "hidden": false,
+    "icon": {
+      "id": "miencrap3minerat:globe"
+    },
+    "title": {
+      "color": "green",
+      "translate": "adv.miencrap3minerat.hello"
+    },
+    "description": {
+      "color": "red",
+      "translate": "adv.miencrap3minerat.hello.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "background": "miencrap3minerat:death"
+  },
+  "rewards": {
+    "function": "miencrap3minerat:hello"
+  }
 }

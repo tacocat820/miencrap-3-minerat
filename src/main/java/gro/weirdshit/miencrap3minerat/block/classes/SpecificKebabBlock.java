@@ -3,6 +3,8 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -42,12 +44,15 @@ public class SpecificKebabBlock extends RotatedPillarBlock {
         
         BlockState below = level.getBlockState(pos.below());
 		if (below.is(HOT) && !(below.is(Blocks.CAMPFIRE) && !below.getValue(CampfireBlock.LIT))) {
-            int progress = state.getValue(COOKING) + 1;
+
+            int progress = state.getValue(COOKING) + random.nextInt(1) + 1;
 
             if (progress > 3 )  {
+                level.sendParticles(ParticleTypes.HEART, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 25, 0.4, 0.4, 0.4, 0.11);
                 level.setBlock(pos, ModBlocks.KEBAB_COOKED.block.defaultBlockState().setValue(AXIS, state.getValue(AXIS)), UPDATE_ALL); 
             }
             else {
+                level.sendParticles(ParticleTypes.LAVA, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, 25, 0.4, 0.4, 0.4, 0.11);
                 level.setBlockAndUpdate(pos, state.setValue(COOKING, progress));
             }
             

@@ -280,6 +280,20 @@ public class ModItems {
 	public static RegisteredItem<?> GLASS_OF_POISON = ModItems.register("glass_of_poison", GlassOfWolfberryJuiceItem::new, new Item.Properties());
 	public static RegisteredItem<?> WOLFBERRIES = ModItems.register("wolfberries", Item::new, new Item.Properties());
 	
+	public static RegisteredItem<?> TRIPLE_BAKA = ModItems.register("triple_baka", Item::new, new Item.Properties());
+	public static RegisteredItem<?> TOGETHER_FOREVER = ModItems.register("together_forever", Item::new, new Item.Properties());
+
+	public static RegisteredItem<?> STICK_HOE = ModItems.register("stick_hoe", Item::new, new Item.Properties().hoe(ToolMaterial.WOOD, 1.1f, 1).durability(11));
+	public static RegisteredItem<?> STICK_PICKAXE = ModItems.register("stick_pickaxe", Item::new, new Item.Properties().pickaxe(ToolMaterial.WOOD, 1.1f, 1).durability(11));
+	public static RegisteredItem<?> STICK_AXE = ModItems.register("stick_axe", Item::new, new Item.Properties().axe(ToolMaterial.WOOD, 1.1f, 1).durability(11));
+	public static RegisteredItem<?> STICK_SWORD = ModItems.register("stick_sword", Item::new, new Item.Properties().sword(ToolMaterial.WOOD, 1.1f, 1).durability(11));
+	public static RegisteredItem<?> STICK_SHOVEL = ModItems.register("stick_shovel", Item::new, new Item.Properties().shovel(ToolMaterial.WOOD, 1.1f, 1).durability(11));
+
+	public static RegisteredItem<?> SULFUR_SHARD = ModItems.register("sulfur_shard", Item::new, new Item.Properties());
+
+	public static RegisteredItem<?> MONITORING = ModItems.register("monitoring", Item::new, new Item.Properties());
+	public static RegisteredItem<?> LOOPINGTHEROOMS = ModItems.register("loopingtherooms", Item::new, new Item.Properties());
+
 	public static void generate() {
 		// Items.CHEST
 	}

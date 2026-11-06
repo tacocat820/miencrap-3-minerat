@@ -20,5 +20,15 @@
         "announce_to_chat": true,
         "show_toast": true
     },
-    "parent": "miencrap3minerat:hello"
+    "parent": "miencrap3minerat:hello",
+
+    "rewards": {
+        "recipes": [
+            "miencrap3minerat:dirt_pickaxe",
+            "miencrap3minerat:dirt_sword",
+            "miencrap3minerat:dirt_axe",
+            "miencrap3minerat:dirt_shovel",
+            "miencrap3minerat:dirt_hoe"
+        ]
+    }
 }

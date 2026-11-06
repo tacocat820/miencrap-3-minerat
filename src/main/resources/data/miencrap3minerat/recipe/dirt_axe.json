@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": "minecraft:stick",
-    "X": "#minecraft:dirt"
+    "X": "#minecraft:stick"
   },
   "pattern": [
     "XX",
@@ -11,6 +11,6 @@
     " #"
   ],
   "result": {
-    "id": "miencrap3minerat:dirt_axe"
+    "id": "miencrap3minerat:stick_axe"
   }
 }
