@@ -9,16 +9,13 @@ import gro.weirdshit.miencrap3minerat.entity.BackroomsMarker;
 import gro.weirdshit.miencrap3minerat.entity.Elon;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.WolfberryTree;
+import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.feline.Cat;
-import net.minecraft.world.entity.animal.wolf.Wolf;
-import net.minecraft.world.entity.npc.villager.Villager;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -30,7 +27,9 @@ public class Backrooms {
     public static void run(MinecraftServer m) {
 
         // this looks really unoptimized to me for some reason
-        // even though the datapack has even more of that stuff
+        // even though the datapack has even more of that kind of stuff
+        WtfLevel wtf = WtfLevel.getSavedBlockData(m);
+        if (wtf.getMuskGone()) return;
 
         ServerLevel meta = m.getLevel(META_DIMENSION);
         if (meta == null) return;

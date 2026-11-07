@@ -1,0 +1,26 @@
+{
+    "type":"shaped",
+    "result": {"id":"miencrap3minerat:microwave","count":1},
+    "importance": 5,
+    "grid": {
+        "cols":4,
+        "rows":3,
+        "items": [
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1},
+
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:air","count":0},
+            {"id":"minecraft:iron_ingot","count":1},
+
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1},
+            {"id":"minecraft:iron_ingot","count":1}
+        ]
+    }
+
+}

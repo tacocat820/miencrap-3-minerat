@@ -214,6 +214,18 @@ public class ModCommands {
                     }));        
         });
 
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("unsetMuskGone")
+                .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        WtfLevel wtf = WtfLevel.getSavedBlockData(ctx.getSource().getServer());
+                        
+                        wtf.unsetMuskGone();
+                        return 1;
+                    }));        
+        });
+
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("hungary")

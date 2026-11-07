@@ -23,6 +23,7 @@ public class TheBackroomsPortalBlock {
     //blk
     static public class Block extends TransparentBlock implements EntityBlock {
     	private static final ResourceKey<Level> META_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"));
+    	private static final ResourceKey<Level> HEAVEN_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "heaven"));
 
         public Block(Properties properties) {
             super(properties);
@@ -43,8 +44,15 @@ public class TheBackroomsPortalBlock {
             Vec3 movement = entity.getDeltaMovement();
             entity.setDeltaMovement(movement.x / 3, movement.y / 3, movement.z / 3);
             if (entity instanceof ServerPlayer player && !PlayerStartTransition.isTrans(player)) {
-                PlayerEventStack.push(player, "backrooms");
-                PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
+                
+                if (PlayerEventStack.back(player).id().equals("backrooms")) {
+                    PlayerEventStack.pop(player);
+                    PlayerStartTransition.run(player, HEAVEN_DIMENSION, new Vec3(0, -20, 0), "rect_close", 20);
+                } else {
+                    PlayerEventStack.push(player, "backrooms");
+                    PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
+                }
+
             }
         }
     }

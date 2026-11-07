@@ -152,6 +152,9 @@ public class TheMicrowaveBlock {
                 case "miencrap3minerat:blood_icicle": return new ItemStack(ModItems.BLOOD_STICK.item);
                 case "miencrap3minerat:nokia": return new ItemStack(ModItems.NOKIA.item);
                 case "miencrap3minerat:red_ice": return new ItemStack(ModFluids.BLOOD.item);
+                case "miencrap3minerat:rickroll": return new ItemStack(ModItems.TOGETHER_FOREVER.item);
+                case "miencrap3minerat:monitoring": return new ItemStack(ModItems.TRIPLE_BAKA.item);
+                case "miencrap3minerat:ice_cream": return new ItemStack(ModItems.MELTED_ICE_CREAM.item);
                 
                 case "minecraft:cobblestone": return new ItemStack(Items.MAGMA_BLOCK);
                 case "minecraft:coal": return new ItemStack(ModItems.FIRE.item);

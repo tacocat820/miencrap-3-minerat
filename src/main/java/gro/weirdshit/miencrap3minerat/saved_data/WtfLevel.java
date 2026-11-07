@@ -10,7 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
 
@@ -25,18 +24,20 @@ public class WtfLevel extends SavedData {
     private int from = 0;
     private int to = 0;
     private boolean postNether = false;
+    private boolean muskGone = false;
     public static final Codec<WtfLevel> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         // Up to 16 fields can be declared here
         Codec.INT.fieldOf("from").forGetter(WtfLevel::getFrom),
         Codec.INT.fieldOf("to").forGetter(WtfLevel::getTo),
-        Codec.BOOL.fieldOf("postNether").forGetter(WtfLevel::getPostNether)
+        Codec.BOOL.fieldOf("postNether").forGetter(WtfLevel::getPostNether),
+        Codec.BOOL.fieldOf("muskGone").forGetter(WtfLevel::getMuskGone)
     ).apply(instance, WtfLevel::new));
 
     public WtfLevel() {
 
     }
-    public WtfLevel(int from, int to, boolean postNether) {
-        this.from = from; this.to = to; this.postNether = postNether;
+    public WtfLevel(int from, int to, boolean postNether, boolean muskGone) {
+        this.from = from; this.to = to; this.postNether = postNether; this.muskGone = muskGone;
     }
 
     public float getWtf(Level level) {
@@ -97,6 +98,18 @@ public class WtfLevel extends SavedData {
     }
     public boolean getPostNether() {
         return this.postNether;
+    }
+
+    public void setMuskGone() {
+        this.muskGone = true;
+        this.setDirty();
+    }
+    public void unsetMuskGone() {
+        this.muskGone = false;
+        this.setDirty();
+    }
+    public boolean getMuskGone() {
+        return this.muskGone;
     }
 
     public int getFrom() { return this.from; }
