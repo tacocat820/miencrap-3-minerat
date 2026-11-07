@@ -258,6 +258,11 @@ public class ModEntityTypes {
 			EntityType.Builder.<Spawner>of(Spawner::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
 					.clientTrackingRange(0)
 	);
+	public static final EntityType<WorldspawnMarker> WORLDSPAWN_MARKER = register(
+			"worldspawn_marker",
+			EntityType.Builder.<WorldspawnMarker>of(WorldspawnMarker::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
+					.clientTrackingRange(0)
+	);
 	public static final EntityType<WolfberryJuiceProjectile> WOLFBERRY_JUICE_PROJECTILE = register(
 			"wolfberry_juice_projectile",
 			EntityType.Builder.<WolfberryJuiceProjectile>of(WolfberryJuiceProjectile::new, MobCategory.MISC).noLootTable().sized(0.0F, 0.0F)
