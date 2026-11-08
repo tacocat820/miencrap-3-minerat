@@ -293,6 +293,9 @@ public class ModItems {
 
 	public static RegisteredItem<?> MONITORING = ModItems.register("monitoring", Item::new, new Item.Properties());
 	public static RegisteredItem<?> LOOPINGTHEROOMS = ModItems.register("loopingtherooms", Item::new, new Item.Properties());
+	public static RegisteredItem<?> LARPINGTHEROOMS = ModItems.register("larpingtherooms", Item::new, new Item.Properties());
+	public static RegisteredItem<?> PPAP = ModItems.register("ppap", Item::new, new Item.Properties());
+	public static RegisteredItem<?> RICKROLL_CHECKER = ModItems.register("rickroll_checker", Item::new, new Item.Properties());
 
 	public static void generate() {
 		// Items.CHEST

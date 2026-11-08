@@ -25,6 +25,7 @@ import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.ModEntitySpawning;
 import gro.weirdshit.miencrap3minerat.entity.ModEntityTypes;
 import gro.weirdshit.miencrap3minerat.entity.PlayerDeathMarker;
+import gro.weirdshit.miencrap3minerat.etc.ModDimensionTypes;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MarkovTokenizer;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.MerlChain;
 import gro.weirdshit.miencrap3minerat.etc.markov_chains.TestChain;
@@ -237,6 +238,8 @@ public class MIENCRAP3MINERAT implements ModInitializer {
 
 		TestChain.generate();
 		MerlChain.generate();
+
+		ModDimensionTypes.generate();
 
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
 	}
