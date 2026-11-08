@@ -1,0 +1,23 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "changed_dimension",
+            "conditions": {
+                "to": "miencrap3minerat:heaven"
+            }
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:whitescreen"
+        },
+        "title": {"color": "#f1f1f1","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.heaven"},
+        "description": {"color": "#e264fc", "bold": true, "translate": "adv.miencrap3minerat.heaven.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:brooms"
+}

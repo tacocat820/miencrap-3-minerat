@@ -6,11 +6,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
-import java.util.List;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.server.MinecraftServer;
 
 public class TestChain implements Serializable {
     public static MarkovModel model = new MarkovModel(3);

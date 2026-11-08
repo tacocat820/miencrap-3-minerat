@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "e" : {
+            "trigger": "impossible"
+        }
+    },
+    "display": {
+        "hidden": true,
+        "icon": {
+            "id": "miencrap3minerat:backrooms"
+        },
+        "title": {"color": "#7de02e","underlined":true, "bold":true, "translate": "adv.miencrap3minerat.brooms"},
+        "description": {"color": "#e3d80d", "bold": true, "translate": "adv.miencrap3minerat.brooms.desc"},
+        "frame": "challenge",
+        "announce_to_chat": true,
+        "show_toast": true,
+        "background": "minecraft:textures/item/block/obama.png"
+    },
+    "parent": "miencrap3minerat:end"
+}

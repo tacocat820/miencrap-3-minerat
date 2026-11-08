@@ -5,7 +5,7 @@
         }
     },
     "display": {
-        "hidden": false,
+        "hidden": true,
         "icon": {
             "id": "miencrap3minerat:die"
         },

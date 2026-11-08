@@ -2,6 +2,7 @@ package gro.weirdshit.miencrap3minerat.block.classes;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.ModBlockEntities;
+import gro.weirdshit.miencrap3minerat.etc.GrantAdvancement;
 import gro.weirdshit.miencrap3minerat.etc.PlayerEventStack;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import net.minecraft.core.BlockPos;
@@ -47,8 +48,9 @@ public class TheBackroomsPortalBlock {
                 
                 if (PlayerEventStack.back(player).id().equals("backrooms")) {
                     PlayerEventStack.pop(player);
-                    PlayerStartTransition.run(player, HEAVEN_DIMENSION, new Vec3(0, -20, 0), "rect_close", 20);
+                    PlayerStartTransition.run(player, HEAVEN_DIMENSION, new Vec3(0, -30, 0), "rect_close", 20);
                 } else {
+                    GrantAdvancement.grant(player, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "brooms")); // TODO: give it a few ticks later
                     PlayerEventStack.push(player, "backrooms");
                     PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
                 }

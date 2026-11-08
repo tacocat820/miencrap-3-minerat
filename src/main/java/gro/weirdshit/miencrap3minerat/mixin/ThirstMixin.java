@@ -124,7 +124,7 @@ public abstract class ThirstMixin implements ThirstMixinInterface {
                                 .get(DamageTypes.DRY_OUT.identifier()).orElseThrow());
 
                         if (this.m3m$level() instanceof ServerLevel serverLevel) {
-                            this.hurtServer(serverLevel, damageSource, 1.0f);
+                            this.hurtServer(serverLevel, damageSource, 5.0f);
                             serverLevel.sendParticles(ParticleTypes.LAVA, 
                                 this.m3m$getX(), this.m3m$getY() + 1.5, this.m3m$getZ(), 50, 0.3, 0.3, 0.3, 1.5);
                         }
