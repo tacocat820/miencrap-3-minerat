@@ -267,6 +267,8 @@
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/do","stream": true}]},
 	"ost.a_cat_ate_me":
 	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/a_cat_ate_me","stream": true}]},
+	"ost.blocksandshit_meiji":
+	{"category": "music","sounds": [{"name": "miencrap3minerat:ost/blocksandshit_meiji","stream": true}]},
 	"tacobell":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:tacobell","stream": false}]},
 	"plumber":

@@ -5,7 +5,8 @@
     "birch_forest",
     "old_growth_birch_forest",
     "savanna",
-    "forest"
+    "forest",
+    "miencrap3minerat:heaven"
   ],
   "step": "surface_structures",
   "spawn_overrides": {},

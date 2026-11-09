@@ -27,6 +27,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificEpicConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificEscalatorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificFallLeafLitterBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificGeometryPcBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificHeavenGoodbyeBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificKebabBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLegoBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificLiveBlock;
@@ -281,7 +282,8 @@ public class ModBlocks {
 	public static RegisteredBlock RUST_BLOCK = new GenericBlock("rust_block", RotatedPillarBlock::new, SoundType.IRON,7.0f,9.5f).tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock RUST_MINIBLOCKS = new GenericBlock("rust_miniblocks", p -> new MiniBlocksBlock(p, RUST_BLOCK.block)).copyOf(RUST_BLOCK.block).tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock DRY_WATER = new GenericBlock("literally_dry_water", TransparentDustFallingBlock::new, SoundType.CORAL_BLOCK, 0.1f,0.0f).noOcclusion().reg();
-    public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).tool(WithTool.PICKAXE).tool(WithTool.SHOVEL).reg();
+    public static RegisteredBlock LITERALLY_DRY_WATER_MINIBLOCKS = new GenericBlock("literally_dry_water_miniblocks", p -> new MiniBlocksBlock(p, DRY_WATER.block)).copyOf(DRY_WATER.block).reg();
+	public static RegisteredBlock STRANGE_DIRT = new GenericBlock("strange_dirt", Block::new, SoundType.CACTUS_FLOWER,1.5f,0.5f).tool(WithTool.PICKAXE).tool(WithTool.SHOVEL).reg();
 	public static RegisteredBlock FALL_WOOD = new GenericBlock("fall_wood", Block::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).tool(WithTool.AXE).ignitedByLava().tool(WithTool.AXE).reg();
 	public static RegisteredBlock FALL_LOG = new GenericBlock("fall_log", RotatedPillarBlock::new, SoundType.BAMBOO_WOOD_HANGING_SIGN,2.0f,1.5f).tool(WithTool.AXE).ignitedByLava().tool(WithTool.AXE).reg();
     public static RegisteredBlock FALL_LEAVES = new GenericBlock("fall_leaves", p -> new UntintedParticleLeavesBlock(0.1f, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 13257748), p), SoundType.WOOL,2.0f,1.5f).noOcclusion().ignitedByLava().reg();
@@ -446,6 +448,7 @@ public class ModBlocks {
 	public static RegisteredBlock IRON_ORE_SAND = new GenericBlock("iron_ore_sand", Block::new, SoundType.STONE, 1.0f,1.0f).tool(WithTool.PICKAXE).reg();
 	public static RegisteredBlock BACKROOMS_PORTAL = new GenericBlock("backrooms_portal", TheBackroomsPortalBlock.Block::new, SoundType.STONE, -1f,32000f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock TWITTER = new GenericBlock("twitter", Block::new, SoundType.STONE, -1.0f,32000.0f).reg();
+	public static RegisteredBlock HEAVEN_GOODBYE = new GenericBlock("heaven_goodbye", SpecificHeavenGoodbyeBlock::new, SoundType.STONE, -1.0f,9999999.0f).reg();
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 

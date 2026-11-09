@@ -61,7 +61,8 @@ public class SpecificDieBlock extends HorizontallyRotatingBlock {
             entity.playSound(SoundEvents.GENERIC_EXPLODE.value());
             entity.setPos(entity.getX(), entity.getY() + 1.0, entity.getZ());
 
-            level.setBlockAndUpdate(pos, ModBlocks.LIVE.block.defaultBlockState());
+            // TODO
+            //level.setBlockAndUpdate(pos, ModBlocks.LIVE.block.defaultBlockState());
             if (level instanceof ServerLevel serverLevel) {
 
                 serverLevel.sendParticles(ParticleTypes.EXPLOSION, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 

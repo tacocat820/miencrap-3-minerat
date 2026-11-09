@@ -3,14 +3,18 @@
     "result": {"id":"miencrap3minerat:glass_of_poison","count":1},
     "importance": 999,
     "grid": {
-        "cols":3,
+        "cols":4,
         "rows":3,
         "items": [
             {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:wolfberries","count":1},
+
+            {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:glass_empty","count":1},
+            {"id":"miencrap3minerat:wolfberries","count":1},
+            
             {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:wolfberries","count":1},
             {"id":"miencrap3minerat:wolfberries","count":1},

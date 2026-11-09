@@ -9,6 +9,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPa
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartCreditsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WatercoolerPutPayload;
@@ -32,6 +33,7 @@ public class ModPackets {
     public static CustomPacketPayload.TypeAndCodec<?, ?> REVERSE_TRANSITION_TELEPORTING_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ReverseTransitionTeleportingPayload.TYPE, ReverseTransitionTeleportingPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> CT2_RECIPES_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(CT2RecipesPayload.TYPE, CT2RecipesPayload.CODEC);
     public static CustomPacketPayload.TypeAndCodec<?, ?> SERVER_CLIENT_ITEM_DESYNC_WHEN_THE_ITEM_IS_AIR_WORKAROUND_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload.TYPE, ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload.CODEC);
+    public static CustomPacketPayload.TypeAndCodec<?, ?> START_CREDITS_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(StartCreditsPayload.TYPE, StartCreditsPayload.CODEC);
     
     //public static CustomPacketPayload.TypeAndCodec<?, ?> MICROWAVE_SOUND_PAYLOAD = PayloadTypeRegistry.clientboundPlay().register(MicrowaveSoundPayload.TYPE, MicrowaveSoundPayload.CODEC);
 

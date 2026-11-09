@@ -86,6 +86,7 @@ public class MusicSounds {
     public static final SoundEvent OAPPLE = registerSound("ost.oapple");
     public static final SoundEvent DESIRABLE_ORANGE = registerSound("ost.do");
     public static final SoundEvent A_CAT_ATE_ME = registerSound("ost.a_cat_ate_me");
+    public static final SoundEvent BLOCKS_AND_SHIT_MEIJI = registerSound("ost.blocksandshit_meiji");
     
     private static SoundEvent registerSound(String id) {
 		Identifier identifier = Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, id);

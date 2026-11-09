@@ -6,6 +6,7 @@ import java.util.Random;
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import gro.weirdshit.miencrap3minerat.client.special.credits.Credits;
 import gro.weirdshit.miencrap3minerat.effects.ModEffects;
 import gro.weirdshit.miencrap3minerat.entity.BrainMarker;
 import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
@@ -25,7 +26,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 
 enum MusicType {
-    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV, END, META;
+    MENU, PEACEFUL, BATTLE, LIVEITATION, PNOV, END, META, CREDITS;
 }
 
 public class Music {
@@ -38,6 +39,7 @@ public class Music {
     private static TagKey<Biome> OPERA = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "opera"));
     private static TagKey<Biome> CONVO = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "convo"));
     private static TagKey<Biome> ORANGE = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "orange"));
+    private static TagKey<Biome> HEAVEN = TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "heaven"));
     
     static Random rand = new Random();
     private static SoundInstance music = null;
@@ -74,6 +76,8 @@ public class Music {
         Stop();
         
         type = getMusicType(minecraft);
+        if (type.equals(MusicType.CREDITS)) return;
+
         SoundEvent chosen = chooseSong(minecraft);
 
         if (chosen == null) return;
@@ -87,6 +91,7 @@ public class Music {
     }
     
     private static MusicType getMusicType(Minecraft minecraft) {
+        if (Credits.current != null) return MusicType.CREDITS;
         if (minecraft.level == null) return MusicType.MENU;
 
         if (minecraft.player != null && minecraft.player.getEffectBlendFactor(ModEffects.LIVEITATION, 0.0f) > 0)
@@ -158,6 +163,17 @@ public class Music {
                 else if (CurrentBiome.is(ORANGE)) return Choose(new SoundEvent[]{
                     MusicSounds.OAPPLE,
                     MusicSounds.DESIRABLE_ORANGE
+                });
+                else if (CurrentBiome.is(HEAVEN)) return Choose(new SoundEvent[]{
+                    MusicSounds.RAT,
+                    MusicSounds.RAT,
+                    MusicSounds.RAT,
+                    MusicSounds.RAT,
+                    MusicSounds.STALLAT,
+                    MusicSounds.GREECE,
+                    MusicSounds.KR,
+                    MusicSounds.MENU_VERY_ORCHESTRAL_MUSIC,
+                    MusicSounds.A_CAT_ATE_ME
                 });
                 else if (CurrentBiome.is(OPERA)) return Choose(new SoundEvent[]{
                     MusicSounds.ARIA_MATH,
@@ -325,7 +341,7 @@ public class Music {
         return MusicSounds.BAPPLE;
     }
 
-    private static void Stop() {
+    public static void Stop() {
         if (music != null) {
             Minecraft minecraft = Minecraft.getInstance();
             minecraft.getSoundManager().stop(music);

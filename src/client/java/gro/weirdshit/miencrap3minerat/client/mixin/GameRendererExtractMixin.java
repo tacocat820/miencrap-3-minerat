@@ -5,29 +5,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.blaze3d.systems.GpuDevice;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.AddressMode;
-import com.mojang.blaze3d.textures.FilterMode;
-import com.mojang.blaze3d.textures.GpuSampler;
-import com.mojang.blaze3d.textures.GpuTexture;
-import com.mojang.blaze3d.textures.GpuTextureView;
-import com.mojang.blaze3d.textures.TextureFormat;
-import com.mojang.blaze3d.textures.GpuTexture.Usage;
-
-import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
-import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransition;
+import gro.weirdshit.miencrap3minerat.client.special.credits.Credits;
 import gro.weirdshit.miencrap3minerat.client.transitions.overlay_transitions.OverlayTransitions;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.state.GameRenderState;
-import net.minecraft.util.ARGB;
-import net.minecraft.util.Mth;
-import net.minecraft.util.Util;
 import net.minecraft.util.profiling.Profiler;
 import net.minecraft.util.profiling.ProfilerFiller;
 
@@ -75,6 +59,8 @@ public class GameRendererExtractMixin {
         graphics.blit(textureView, sampler, 0, 0, 
             graphics.guiWidth(), drawHeight, 
             0.0f, 1.0f, 1.0f, 0.0f); */
+
+        Credits.draw(graphics);
 
         profiler.pop();
     }

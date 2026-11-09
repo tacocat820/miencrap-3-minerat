@@ -15,6 +15,7 @@ import gro.weirdshit.miencrap3minerat.net.classes.ReverseTransitionTeleportingPa
 import gro.weirdshit.miencrap3minerat.net.classes.ScreenshakePayload;
 import gro.weirdshit.miencrap3minerat.net.classes.ServerClientItemDesyncWhenTheItemIsAirWorkaroundPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartBoxTransitionPayload;
+import gro.weirdshit.miencrap3minerat.net.classes.StartCreditsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.StartTransitionPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.TtsPayload;
 import gro.weirdshit.miencrap3minerat.net.classes.WtfPayload;
@@ -32,6 +33,8 @@ import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.MicrowaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.PlateRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
+import gro.weirdshit.miencrap3minerat.client.special.credits.Credits;
+import gro.weirdshit.miencrap3minerat.client.special.credits.HeavenCredits;
 import gro.weirdshit.miencrap3minerat.client.special.GenericShaderBlockRenderer;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitionPipelines;
 import gro.weirdshit.miencrap3minerat.client.transitions.box_transitions.BoxTransitions;
@@ -344,6 +347,10 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		});
 		ClientPlayNetworking.registerGlobalReceiver(TtsPayload.TYPE, (payload, context) -> {
 			Minecraft.getInstance().getNarrator().saySystemNow(payload.power());
+		});
+		ClientPlayNetworking.registerGlobalReceiver(StartCreditsPayload.TYPE, (payload, context) -> {
+			if (Credits.current != null) return;
+			Credits.current = new HeavenCredits();
 		});
 
 		BlockEntityRenderers.register(ModBlockEntities.STATIC_ENTITY_TYPE, StaticBlockRenderer.Renderer::new);

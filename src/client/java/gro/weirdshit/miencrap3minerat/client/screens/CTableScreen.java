@@ -3,6 +3,7 @@ package gro.weirdshit.miencrap3minerat.client.screens;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -52,6 +53,7 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 	private static final Identifier BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button");
 	private static final Identifier ACTIVE_BUTTON_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/button_active");
 	private static final Identifier OK_SPRITE = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/book");
+	private static final Identifier OK_SPRITE_ALT = Identifier.fromNamespaceAndPath("miencrap3minerat", "container/ctable2/book_alt");
 	private static final int SLOT_SIZE = AbstractContainerMenu.SLOT_SIZE;
 
 	public static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(MIENCRAP3MINERAT.MOD_ID + "-screens");
@@ -386,17 +388,21 @@ public class CTableScreen extends AbstractContainerScreen<CTableMenu> {
 		public boolean bookOpened = false;
 		Consumer<Boolean> change_visibility;
 
+		private boolean useAltTexture = false;
+
 		public RecipeBookButton(Consumer<Boolean> change_visibility, boolean default_value, int x, int y, int width, int height, Component message) {
 			super(x, y, width, height, message);
 			this.change_visibility = change_visibility;
 			
 			change_visibility.accept(default_value);
 			this.bookOpened = default_value;
+
+			this.useAltTexture = new Random().nextInt(100) > 91;
 		}
 
 		@Override
 		protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, OK_SPRITE, this.getX(), this.getY(), this.width, this.height);
+			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, useAltTexture ? OK_SPRITE_ALT : OK_SPRITE, this.getX(), this.getY(), this.width, this.height);
 		}
 
 		@Override
