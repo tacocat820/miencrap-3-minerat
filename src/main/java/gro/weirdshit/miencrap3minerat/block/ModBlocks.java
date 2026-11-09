@@ -46,6 +46,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlass;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBackroomsPortalBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheConnectedXpGlassBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
@@ -361,7 +362,7 @@ public class ModBlocks {
 	);
 
 	// CONNECTED TEXTURES //
-    public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TransparentConnectedTextureBlock::new).copyOf(XP_GLASS.block).reg();
+    public static RegisteredBlock CONNECTED_XP_GLASS = new GenericBlock("connected_xp_glass", TheConnectedXpGlassBlock.Block::new).copyOf(XP_GLASS.block).reg();
 	public static RegisteredBlock CONNECTED_STONE = new GenericBlock("connected_stone", ConnectedTextureBlock::new).copyOf(Blocks.STONE).reg();
 	public static RegisteredBlock CONNECTED_OAK_PLANKS = new GenericBlock("connected_oak_planks", ConnectedTextureBlock::new).copyOf(Blocks.OAK_PLANKS).reg();
 	// --- //

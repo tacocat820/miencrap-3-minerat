@@ -29,7 +29,7 @@ void main() {
 
     vec4 color = vec4(0);
 
-    if (m3mType == 0) { //IDK
+    if (m3mType == 0) { //XP glass
         float pos2 = mod((Pos.x+Pos.z+Pos.y)*0.5, 7);
         if ( pos2 > 4 ) {
             color = vec4(vec3(1.0), (1-abs(pos2-5))*1.5);
@@ -73,7 +73,21 @@ void main() {
             1.0
         );
     }
-    else if (m3mType == 6) { //IDK 1
+    else if (m3mType == 6) { //XP glass, but clean!
+        float pos2 = mod((Pos.x+Pos.z+Pos.y)*0.4, 7);
+        if ( pos2 > 4 ) {
+            float alpha = (1-abs(pos2-5));
+            if (alpha < 0.06) {
+                discard;
+            }
+            color = vec4(vec3(1.0), alpha);
+        }
+        else {
+            color = vec4(0,0,0,0);
+            discard;
+        }
+    }
+    else if (m3mType == 7) { //IDK 1
         float t0 = (vertexColor.r*5*3.145*2 + Pos.x+Pos.z);
         float t1 = (vertexColor.r*5*3.145*2 + Pos.y+Pos.z);
         float t2 = (vertexColor.r*5*3.145*2 + Pos.x+Pos.y);
@@ -87,7 +101,7 @@ void main() {
             0.85
         );
     }
-    else if (m3mType == 7) { // IDK 2
+    else if (m3mType == 8) { // IDK 2
         float t0 = Pos.z + Pos.y - vertexColor.r * 3.145*2 + 0.3;
         float t1 = Pos.x - Pos.y + vertexColor.r * 3.145*2 - 0.2;
         float t2 = - Pos.x + Pos.z + vertexColor.r * 3.145*2 - 0.2;

@@ -11,6 +11,7 @@ import gro.weirdshit.miencrap3minerat.block.classes.SpecificWatercoolerBlockEnti
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBackroomsPortalBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBasketBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheConnectedXpGlassBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
@@ -61,6 +62,7 @@ public class ModBlockEntities {
 
   
   public static final BlockEntityType<SpecificXpGlassBlockEntity> XP_GLASS_ENTITY_TYPE = register("xp_glass", SpecificXpGlassBlockEntity::new, ModBlocks.XP_GLASS.block);
+  public static final BlockEntityType<TheConnectedXpGlassBlock.BlockEntity> CONNECTED_XP_GLASS_ENTITY_TYPE = register("connected_xp_glass", TheConnectedXpGlassBlock.BlockEntity::new, ModBlocks.CONNECTED_XP_GLASS.block);
   public static final BlockEntityType<TheMatrixBlock.BlockEntity> MATRIX_ENTITY_TYPE = register("matrix_block", TheMatrixBlock.BlockEntity::new, ModBlocks.MATRIX_BLOCK.block);
   public static final BlockEntityType<TheWaveBlock.BlockEntity> WAVE_BLOCK_ENTITY_TYPE = register("wave_block", TheWaveBlock.BlockEntity::new, ModBlocks.WAVE_BLOCK.block);
   public static final BlockEntityType<TheLiquidMatrix.BlockEntity> LIQUID_MATRIX_BLOCK_ENTITY_TYPE = register("liquid_matrix", TheLiquidMatrix.BlockEntity::new, ModBlocks.LIQUID_MATRIX.block);

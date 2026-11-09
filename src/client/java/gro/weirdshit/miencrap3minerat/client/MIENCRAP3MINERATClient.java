@@ -63,6 +63,7 @@ import gro.weirdshit.miencrap3minerat.block.ModFluids;
 import gro.weirdshit.miencrap3minerat.block.classes.ImplementedContainer;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificXpGlassBlockEntity;
 import gro.weirdshit.miencrap3minerat.block.classes.TheBackroomsPortalBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.TheConnectedXpGlassBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLavaWaveBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.TheLiquidMatrix;
 import gro.weirdshit.miencrap3minerat.block.classes.TheMatrixBlock;
@@ -366,6 +367,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntities.LIQUID_MATRIX_BLOCK_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheLiquidMatrix.BlockEntity>(ctx, "liquid_matrix", 4.0f / 256.0f, 0));
 		BlockEntityRenderers.register(ModBlockEntities.LAVA_WAVE_BLOCK_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheLavaWaveBlock.BlockEntity>(ctx, "lava_wave_block", 5.0f / 256.0f, 0));
 		BlockEntityRenderers.register(ModBlockEntities.BACKROOMS_PORTAL_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheBackroomsPortalBlock.BlockEntity>(ctx, "backrooms_portal", 6.0f / 256.0f, 0, 255));
+		BlockEntityRenderers.register(ModBlockEntities.CONNECTED_XP_GLASS_ENTITY_TYPE, ctx -> new GenericShaderBlockRenderer.Renderer<TheConnectedXpGlassBlock.BlockEntity>(ctx, "connected_xp_glass", 7.0f / 256.0f));
 
 		ParticleProviderRegistry.getInstance().register(ModParticles.FALL_DUST, CosyProvider::new);
 		ParticleProviderRegistry.getInstance().register(ModParticles.DEATH, CosyProvider::new);
