@@ -52,7 +52,7 @@ public class TheBackroomsPortalBlock {
                 } else {
                     GrantAdvancement.grant(player, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "brooms")); // TODO: give it a few ticks later
                     PlayerEventStack.push(player, "backrooms");
-                    PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1058, 36, 1058), "rect_close", 20);
+                    PlayerStartTransition.run(player, META_DIMENSION, new Vec3(1060.5, 36, 1060.5), "rect_close", 20);
                 }
 
             }
