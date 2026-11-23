@@ -1,7 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "item/generated",
   "textures": {
-    "particle": "minecraft:block/white_concrete",
-    "all": "minecraft:block/water_still"
+    "layer0": "miencrap3minerat:item/waves_block"
   }
 }
