@@ -15,6 +15,9 @@ public class Wtf {
 
         int wtfSend =
             wtf.getPostNether() ? 100 : (int)Math.floor(wtf.getWtf(m.overworld()) / 220);
+
+        if (wtf.getWtf(m.overworld()) >= 1000) wtfSend = 5;
+
         WtfPayload payload = new WtfPayload(wtfSend);
         PlayerList p = m.getPlayerList();
 

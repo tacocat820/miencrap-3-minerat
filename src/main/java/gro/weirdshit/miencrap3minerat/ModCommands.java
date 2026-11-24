@@ -105,6 +105,18 @@ public class ModCommands {
                         return 1;
                     }));
         });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("transitionTest2")
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
+                    .executes(ctx -> {
+                        
+                        if (ctx.getSource().getEntityOrException() instanceof Player player) {
+                            PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "white_fade", 40);
+                        }
+
+                        return 1;
+                    }));
+        });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("sendCT2DisplaysTest")

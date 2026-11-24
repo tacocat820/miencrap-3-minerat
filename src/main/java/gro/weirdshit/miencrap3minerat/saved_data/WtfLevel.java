@@ -7,16 +7,23 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.PlayerList;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
+import net.minecraft.world.phys.Vec3;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.etc.PlayerEventStack;
+import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 
 public class WtfLevel extends SavedData {
     public static final ResourceKey<Level> OVERWORLD_KEY = ResourceKey.create(Registries.DIMENSION, Identifier.withDefaultNamespace("overworld"));
@@ -121,7 +128,23 @@ public class WtfLevel extends SavedData {
 
             Random rand = new Random();
             to = rand.nextInt(0, 1000);
+            if (from == 1000) to = 1000;
             this.setDirty();
+        }
+
+        if (from == 1000 && level.getGameTime() % 10000 == 1800) {
+
+            PlayerList p = level.getServer().getPlayerList();
+            for (ServerPlayer player : p.getPlayers()) {
+
+                if (!player.level().dimension().identifier().equals(BuiltinDimensionTypes.OVERWORLD.identifier())) 
+                    continue;
+                
+                PlayerEventStack.push(player, "miencrap4minerat");
+                PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "white_fade", 40);
+
+            }
+
         }
     }
 

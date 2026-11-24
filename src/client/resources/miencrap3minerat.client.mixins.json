@@ -15,7 +15,9 @@
 		"DontApplyCursorMixin",
 		"HumanoidRenderStateMixin",
 		"HumanoidMobRendererMixin",
-		"HumanoidRendererMixin"
+		"HumanoidRendererMixin",
+		"ExperienceBarMixin",
+		"ContextualBarMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

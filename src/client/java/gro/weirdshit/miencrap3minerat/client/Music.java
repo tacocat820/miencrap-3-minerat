@@ -184,6 +184,7 @@ public class Music {
                     MusicSounds.EROR
                 });
                 // overworld biomes:
+                else if (ClientWtf.wtf >= 5) return MusicSounds.TWEETERER_ALARM;
                 else if (ClientWtf.wtf >= 4) return Choose(new SoundEvent[]{
                     MusicSounds.DIE,
                     MusicSounds.IDRINKGLUE,

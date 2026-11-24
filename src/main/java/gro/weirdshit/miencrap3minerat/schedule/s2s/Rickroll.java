@@ -19,19 +19,23 @@ import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 
 public class Rickroll {
 
+    public static Item chooseRandomly(Item a, Item b) {
+
+        RandomSource random = RandomSource.create();
+        if (random.nextFloat() < 0.05) {
+            return b;
+        } else {
+            return a;
+        }
+    }
+
     public static Item chooseItem(ServerPlayer p) {
-        if (PlayerEventStack.back(p).id().equals("backrooms")) {
-            RandomSource random = RandomSource.create();
-            if (random.nextFloat() < 0.05) {
-                return ModItems.LARPINGTHEROOMS.item;
-            } else {
-                return ModItems.LOOPINGTHEROOMS.item;
-            }
-        };
+        if (PlayerEventStack.back(p).id().equals("backrooms")) return chooseRandomly(ModItems.LOOPINGTHEROOMS.item, ModItems.LARPINGTHEROOMS.item);
         if (p.level().dimension().identifier().equals(BuiltinDimensionTypes.END.identifier())) return ModItems.MONITORING.item;
-        if (p.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier())) return ModItems.TOGETHER_FOREVER.item;
+        if (p.level().dimension().identifier().equals(BuiltinDimensionTypes.NETHER.identifier())) return ModItems.TENTENTENGOKUJIGOKUGOKU.item;
         if (p.level().dimension().identifier().equals(ModDimensionTypes.ORANGE)) return ModItems.PPAP.item;
-        return ModItems.RICKROLL.item;
+
+        return chooseRandomly(ModItems.RICKROLL.item, ModItems.TOGETHER_FOREVER.item);
     }
 
     public static void run(MinecraftServer m, ServerPlayer p) {

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.client.MusicSounds;
+import gro.weirdshit.miencrap3minerat.client.special.Endings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -16,6 +17,7 @@ public class HeavenCredits extends AbstractCredits {
     public HeavenCredits() {
         super();
         super.start();
+        Endings.markAchieved(0);
     }
     protected double getTimeDivisor() {
         return 20.0;

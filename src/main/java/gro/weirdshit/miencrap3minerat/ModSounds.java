@@ -38,6 +38,7 @@ public class ModSounds {
     public static final SoundEvent PIPE_BOMB = registerSound("pipe_bomb");
     public static final SoundEvent MUSK = registerSound("musk");
     public static final SoundEvent ELONSTUTTER = registerSound("elonstutter");
+    public static final SoundEvent TP = registerSound("tp");
 
     public static final SoundType FRANCE_SOUND_TYPE = new SoundType(
 		1.0F, 1.0F, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.LEFISHE, ModSounds.WRENCH, ModSounds.LEFISHE

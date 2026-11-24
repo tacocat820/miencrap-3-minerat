@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
+import gro.weirdshit.miencrap3minerat.client.special.Endings;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
@@ -29,5 +30,29 @@ public class TitleScreenMixin {
         //MIENCRAP3MINERAT.LOGGER.info("she");
         // why doesn't this work
         graphics.text(m3m$getFont(), "MIENCRAP 3 MINERAT", 2, m3m$getHeight() - 10, ARGB.color(255, 255, 0, 0));
+        
+        int posX = 15;
+        int posY = 35;
+
+        int sizeX = 30;
+        int sizeY = 15;
+
+        int i = 0;
+        for (String e : Endings.ENDINGS) {
+            if (Endings.get(i)) graphics.fill(posX, posY, posX + sizeX, posY + sizeY, 0xFFFFFFFF);
+            else graphics.fill(posX, posY, posX + sizeX, posY + sizeY, 0xFF0000FF);
+            graphics.outline(posX, posY, sizeX, sizeY, 0xFFFFFFFF);
+
+            if (
+                mouseX > posX && mouseX < posX + sizeX &&
+                mouseY > posY && mouseY < posY + sizeY
+            ) {
+                graphics.text(m3m$getFont(), e, mouseX, mouseY, ARGB.color(255, 255, 255, 255));
+
+            }
+
+            posY += sizeY + 5;
+            ++i;
+        }
     }
 }

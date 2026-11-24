@@ -28,6 +28,7 @@ import gro.weirdshit.miencrap3minerat.client.special.BasketRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.BlissPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
 import gro.weirdshit.miencrap3minerat.client.special.CurrentBiome;
+import gro.weirdshit.miencrap3minerat.client.special.Endings;
 import gro.weirdshit.miencrap3minerat.client.special.GeometryPcRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.MicrowaveRenderer;
@@ -131,6 +132,7 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 		// what a looooooong name
 		BoxTransitionPipelines.generate();
 		OverlayTransitions.generate();
+		Endings.generate();
 
 		// BIOME TINTED vvvvvv
 		BlockColorRegistry.register(List.of(new BlockTintSource() {

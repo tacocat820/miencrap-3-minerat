@@ -275,6 +275,8 @@
 	{"category": "player","sounds": [{"name": "miencrap3minerat:plumber","stream": false}]},
 	"damn":
 	{"category": "player","sounds": [{"name": "miencrap3minerat:damn","stream": false}]},
+	"tp":
+	{"category": "player","sounds": [{"name": "miencrap3minerat:tp","stream": false}]},
 
 
 	"ed2_scream": {
