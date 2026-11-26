@@ -27,6 +27,7 @@ import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 
 public class WtfLevel extends SavedData {
     public static final ResourceKey<Level> OVERWORLD_KEY = ResourceKey.create(Registries.DIMENSION, Identifier.withDefaultNamespace("overworld"));
+    private static final ResourceKey<Level> META_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"));
 
     private int from = 0;
     private int to = 0;
@@ -141,7 +142,7 @@ public class WtfLevel extends SavedData {
                     continue;
                 
                 PlayerEventStack.push(player, "miencrap4minerat");
-                PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "white_fade", 40);
+                PlayerStartTransition.run(player, META_DIMENSION, new Vec3(-1013, -59, -1055), "white_fade", 40);
 
             }
 

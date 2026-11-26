@@ -81,7 +81,7 @@ public class SpecificWatercoolerBlockEntity extends BlockEntity implements Imple
         UNKNOWN(0xA0000000, 0xA0000000, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item), 
         WATER(0xA0345FDA, 0xA0344875, ModItems.CUP_OF_WATER.item, ModItems.CUP_OF_WATER.item), 
         LAVA(0xA0DF9033, 0xA0CA4D0D, ModItems.CUP_OF_LAVA.item, ModItems.CUP_OF_OBSIDIAN.item),
-        BLOOD(0xA0D31E1D, 0xA0AD0606, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item),
+        BLOOD(0xA0D31E1D, 0xA0AD0606, ModItems.CUP_OF_BLOOD.item, ModItems.CUP_OF_BLOOD.item),
         EARS(0xA0C77966, 0xA0E4B1A4, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item),
         OIL(0x00000FFF, 0x000000FF, ModItems.TEST_ITEM.item, ModItems.TEST_ITEM.item);
         

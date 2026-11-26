@@ -34,6 +34,7 @@ import gro.weirdshit.miencrap3minerat.client.special.InverseForestTilt;
 import gro.weirdshit.miencrap3minerat.client.special.MicrowaveRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.PlateRenderer;
 import gro.weirdshit.miencrap3minerat.client.special.StaticBlockRenderer;
+import gro.weirdshit.miencrap3minerat.client.special.TwoDimensionalMovement;
 import gro.weirdshit.miencrap3minerat.client.special.credits.Credits;
 import gro.weirdshit.miencrap3minerat.client.special.credits.HeavenCredits;
 import gro.weirdshit.miencrap3minerat.client.special.GenericShaderBlockRenderer;
@@ -219,6 +220,24 @@ public class MIENCRAP3MINERATClient implements ClientModInitializer {
 					if (InverseForestTilt.inverseForestTilt < 100) ++InverseForestTilt.inverseForestTilt;
 				} else if (InverseForestTilt.inverseForestTilt > 0) --InverseForestTilt.inverseForestTilt; 
 			}
+		}); 
+
+		ClientTickEvents.START_CLIENT_TICK.register(m -> {	
+			// TODO: optimize?
+			if (Minecraft.getInstance().player != null) {
+				
+				//if (Minecraft.getInstance().level.dimension().identifier().equals(Skyboxes.META_DIMENSION)) {
+
+
+					Player p = (Player)Minecraft.getInstance().player;
+					SynchedEventIDMixinInterface seidmi = (SynchedEventIDMixinInterface)(Object)p;;
+					
+					switch (seidmi.getCurrentEventID()) {
+						case "miencrap4minerat": { TwoDimensionalMovement.is2D = true; return; }
+					}
+				//}
+			}
+			TwoDimensionalMovement.is2D = false; 
 		}); 
 
 		

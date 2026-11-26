@@ -5,8 +5,12 @@
 	"client": [
 		"ExampleClientMixin",
 		"PlayerDamageMixin",
+		"TwoDimensionalPlayerMovementKeyboardInput",
+		"TwoDimensionalPlayerMovementLocalPlayer",
+		"ClientInputMoveVectorAccessorMixin",
 		"MakeSetPostEffectPublicMixin",
-		"CameraRotation",
+		"CameraMixin",
+		"CameraTypeMixin",
 		"StfuAskForBackup",
 		"GetNowPlayingMixin",
 		"RemoveVanillaMusicMixin",

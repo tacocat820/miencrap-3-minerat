@@ -11,7 +11,9 @@ import gro.weirdshit.miencrap3minerat.block.classes.MiniBlocksBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NormalFallingBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.NotDecayingUntintedParticleLeavesBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlock;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificBloodClaudeBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificCTable2Block;
+import gro.weirdshit.miencrap3minerat.block.classes.SpecificCheckpointBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificConveyorBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDieBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificDirtBlock;
@@ -450,6 +452,13 @@ public class ModBlocks {
 	public static RegisteredBlock BACKROOMS_PORTAL = new GenericBlock("backrooms_portal", TheBackroomsPortalBlock.Block::new, SoundType.STONE, -1f,32000f).noCollision().noOcclusion().reg();
 	public static RegisteredBlock TWITTER = new GenericBlock("twitter", Block::new, SoundType.STONE, -1.0f,32000.0f).reg();
 	public static RegisteredBlock HEAVEN_GOODBYE = new GenericBlock("heaven_goodbye", SpecificHeavenGoodbyeBlock::new, SoundType.STONE, -1.0f,9999999.0f).reg();
+	
+	// mmmm stuff
+	public static RegisteredBlock MMMM_GRASS_FLOOR = new GenericBlock("mmmm_grass_floor", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock MMMM_CONCRETE_FLOOR = new GenericBlock("mmmm_concrete_floor", Block::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock MMMM_BLOOD_CLAUDE = new GenericBlock("mmmm_blood_claude", SpecificBloodClaudeBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
+	public static RegisteredBlock MMMM_CHECKPOINT = new GenericBlock("mmmm_checkpoint", SpecificCheckpointBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
+
 	// VANILLA MINIBLOCKS //
 	//public static RegisteredBlock aboba228666 = new GenericBlock("aboba228666", PrismarineLampBlock::new, SoundType.STONE, 1.0f,1.0f).reg();
 

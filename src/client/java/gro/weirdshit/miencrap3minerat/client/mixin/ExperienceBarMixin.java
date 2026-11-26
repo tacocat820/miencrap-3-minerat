@@ -1,16 +1,11 @@
 package gro.weirdshit.miencrap3minerat.client.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import gro.weirdshit.miencrap3minerat.client.special.ClientWtf;
-import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.contextualbar.ExperienceBarRenderer;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.RenderPipelines;
 
 @Mixin(ExperienceBarRenderer.class)
 public class ExperienceBarMixin {

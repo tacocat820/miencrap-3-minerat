@@ -11,7 +11,7 @@ import net.fabricmc.loader.api.FabricLoader;
 public class Endings {
     
     public static BitSet bs = new BitSet(1024);
-    private static Path endings = FabricLoader.getInstance().getConfigDir().resolve("datatatatata.bin");
+    private static Path endings = FabricLoader.getInstance().getGameDir().resolve("datatatatata.bin");
 
     public static String[] ENDINGS = {
         "See you :3",

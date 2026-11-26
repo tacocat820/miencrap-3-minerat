@@ -9,6 +9,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
 import gro.weirdshit.miencrap3minerat.etc.EventStackMixinInterface;
+import gro.weirdshit.miencrap3minerat.etc.PlayerEventStack;
 import gro.weirdshit.miencrap3minerat.etc.PlayerStartTransition;
 import gro.weirdshit.miencrap3minerat.etc.SynchedEventIDMixinInterface;
 import gro.weirdshit.miencrap3minerat.etc.ThirstMixinInterface;
@@ -22,7 +23,10 @@ import gro.weirdshit.miencrap3minerat.saved_data.WtfLevel;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.commands.Commands;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;
 import net.minecraft.server.players.PlayerList;
@@ -110,8 +114,13 @@ public class ModCommands {
                     .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
                     .executes(ctx -> {
                         
-                        if (ctx.getSource().getEntityOrException() instanceof Player player) {
-                            PlayerStartTransition.run(player, Level.NETHER, new Vec3(0, 0, 0), "white_fade", 40);
+                        if (ctx.getSource().getEntityOrException() instanceof ServerPlayer player) {
+                                        
+                            ResourceKey<Level> META_DIMENSION = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(MIENCRAP3MINERAT.MOD_ID, "meta"));
+
+                            PlayerEventStack.push(player, "miencrap4minerat");
+                            PlayerStartTransition.run(player, META_DIMENSION, new Vec3(-1013, -59, -1055), "white_fade", 40);
+
                         }
 
                         return 1;

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "miencrap3minerat:m4m/lvl1",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:specific_pos",
+    "salt": 0,
+    "pos_x": -66,
+    "pos_z": -66
+  }
+}

@@ -1,43 +1,22 @@
 package gro.weirdshit.miencrap3minerat.client.special;
 
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlock;
 import gro.weirdshit.miencrap3minerat.block.classes.SpecificBlissPcBlockEntity;
-import gro.weirdshit.miencrap3minerat.block.classes.SpecificStaticBlockEntity;
-import gro.weirdshit.miencrap3minerat.client.skyboxes.Pipelines;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.FaceInfo;
-import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.blockentity.AbstractEndPortalRenderer;
-import net.minecraft.client.renderer.blockentity.BeaconRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
-import net.minecraft.client.renderer.blockentity.state.EndGatewayRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.client.renderer.rendertype.RenderSetup;
-import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 
-import com.mojang.math.Axis;
-import net.minecraft.util.Util;
 import net.minecraft.world.phys.Vec3;
 
 public class BlissPcRenderer {
@@ -47,14 +26,8 @@ public class BlissPcRenderer {
     
     public static class Renderer implements BlockEntityRenderer<SpecificBlissPcBlockEntity, RenderState> {
         public Renderer(BlockEntityRendererProvider.Context context) {
-		    this.font = context.font();
+		    
 	    }
-
-        private final Font font;
-
-        private static final RenderType STATIC_RENDER_TYPE = RenderType.create("static", 
-            RenderSetup.builder(Pipelines.STATIC_PIPELINE)
-            .createRenderSetup());
 
         @Override
         public RenderState createRenderState() {

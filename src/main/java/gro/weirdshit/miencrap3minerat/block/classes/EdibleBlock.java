@@ -1,7 +1,5 @@
 package gro.weirdshit.miencrap3minerat.block.classes;
 
-import java.util.Optional;
-
 import gro.weirdshit.miencrap3minerat.MIENCRAP3MINERAT;
 import gro.weirdshit.miencrap3minerat.ModSounds;
 import gro.weirdshit.miencrap3minerat.etc.GrantAdvancement;
@@ -9,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;

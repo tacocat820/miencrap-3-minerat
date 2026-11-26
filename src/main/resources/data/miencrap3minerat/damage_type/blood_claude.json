@@ -1,0 +1,6 @@
+{
+  "message_id": "foot.blood_claude",
+  "exhaustion": 0.1,
+  "scaling": "always",
+  "death_message_type": "default"
+}

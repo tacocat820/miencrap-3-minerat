@@ -105,6 +105,8 @@ public abstract class EventStackMixin implements EventStackMixinInterface {
     public void copyRespawnPosition(final ServerPlayer oldPlayer, CallbackInfo ci) {
         this.spawnpointEventStack = ((EventStackMixinInterface)(Object)oldPlayer).getSpawnpointArrayStack();
         this.eventStack = ((EventStackMixinInterface)(Object)oldPlayer).getSpawnpointArrayStack();    
+
+        ((SynchedEventIDMixinInterface)(Player)(Object)this).setCurrentEventID(eventStack.getLast().id());
     }
 
 }
