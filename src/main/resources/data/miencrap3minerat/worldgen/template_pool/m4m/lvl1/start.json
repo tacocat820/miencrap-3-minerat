@@ -1,13 +1,13 @@
 {
-  "name": "miencrap3minerat:m4m/lvl1/p0",
+  "name": "miencrap3minerat:m4m/lvl1/start",
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 1,
+      "weight": 30,
       "element": {
-        "element_type": "minecraft:single_pool_element",
         "location": "miencrap3minerat:m4m/lvl1/p0",
         "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
         "processors": "minecraft:empty"
       }
     }
